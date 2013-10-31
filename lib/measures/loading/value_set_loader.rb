@@ -9,14 +9,25 @@ module Measures
     end
 
     def self.get_value_set_oids_from_hqmf(hqmf_path)
-      original_stdout = $stdout
-      $stdout = StringIO.new
-      begin
-        measure = Measures::Loader.load(nil, hqmf_path, nil)
-      ensure
-        $stdout = original_stdout
+      hash = Digest::MD5.hexdigest(hqmf_path)
+      FileUtils.mkdir_p Measures::Loader::HQMF_VS_OID_CACHE
+      cache_file = File.join(Measures::Loader::HQMF_VS_OID_CACHE, "#{hash}.json")
+      
+      oids = nil
+      if File.exists? cache_file
+        oids = JSON.parse(File.new(cache_file).read)
+      else
+        original_stdout = $stdout
+        $stdout = StringIO.new
+        begin
+          measure = Measures::Loader.load(nil, hqmf_path, nil)
+        ensure
+          $stdout = original_stdout
+        end
+        oids = measure.as_hqmf_model.all_code_set_oids
+        File.open(cache_file, 'w') {|f| f.write(JSON.pretty_generate(oids)) }
       end
-      measure.as_hqmf_model.all_code_set_oids
+      oids
     end
 
     def self.get_value_set_models(value_set_oids)
@@ -119,6 +130,7 @@ module Measures
 
     def self.load_value_sets_from_vsac(value_set_oids, username, password)
       value_set_models = []
+      from_vsac = 0
       
       existing_value_set_map = {}
       HealthDataStandards::SVS::ValueSet.all.each do |set|
@@ -148,6 +160,7 @@ module Measures
           else
             vs_data = api.get_valueset(oid) 
             vs_data.force_encoding("utf-8") # there are some funky unicodes coming out of the vs response that are not in ASCII as the string reports to be
+            from_vsac += 1
             File.open(cached_service_result, 'w') {|f| f.write(vs_data) }
           end
           
@@ -166,6 +179,7 @@ module Measures
           end
         end
       end
+      puts "\tloaded #{from_vsac} value sets from vsac" if from_vsac > 0
     end
 
 

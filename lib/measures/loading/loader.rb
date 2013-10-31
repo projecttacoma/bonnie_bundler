@@ -4,6 +4,7 @@ module Measures
 
     SOURCE_PATH = File.join(".", "db", "measures")
     VALUE_SET_PATH = File.join(".", "db", "value_sets")
+    HQMF_VS_OID_CACHE = File.join(".", "db", "hqmf_vs_oid_cache")
     
     def self.load(user, hqmf_path, value_set_models, measure_details=nil)
       hqmf_contents = Nokogiri::XML(File.new hqmf_path).to_s
