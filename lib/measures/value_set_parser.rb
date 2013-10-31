@@ -78,11 +78,13 @@ module HQMF
       # pull all the value sets and fill out the parents
       def extract_value_sets(file_path, sheet_index)
 
-        @child_oids = Set.new
-        @parent_oids = Set.new
-
         book = HQMF::ValueSet::Parser.book_by_format(file_path)
         book.default_sheet=book.sheets[sheet_index]
+
+        return if book.last_row.nil? || book.last_row < 2
+
+        @child_oids = Set.new
+        @parent_oids = Set.new
 
         (2..book.last_row).each do |row_index|
           extract_row(book.row(row_index))

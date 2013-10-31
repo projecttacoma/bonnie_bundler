@@ -4,7 +4,7 @@ module Measures
   class SourcesLoader 
 
     def self.load(sources_dir, user, measures_yml, vsac_user, vsac_password)
-
+      Measures::Loader.clear_sources
       measure_details_hash = Measures::Loader.parse_measures_yml(measures_yml)
 
       sources_dirs = Dir.glob(File.join(sources_dir,'*'))
@@ -18,7 +18,6 @@ module Measures
     end
 
     def self.load_measure(measure_dir, user, vsac_user, vsac_password, measure_details_hash)
-
       hqmf_path = Dir.glob(File.join(measure_dir, '*.xml')).first
       html_path = Dir.glob(File.join(measure_dir, '*.html')).first
 

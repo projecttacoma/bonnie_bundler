@@ -4,6 +4,7 @@ module Measures
   class BundleLoader 
 
     def self.load(bundle_path, user, measures_yml=nil, load_from_hqmf=false)
+      Measures::Loader.clear_sources
       measures = []
       Dir.mktmpdir do |tmp_dir|
         measures = load_bundle(user, bundle_path, tmp_dir, load_from_hqmf, measures_yml)
