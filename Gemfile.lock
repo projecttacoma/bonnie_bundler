@@ -65,7 +65,9 @@ GEM
     activesupport (3.2.14)
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
+    ansi (1.4.3)
     arel (3.0.2)
+    awesome_print (1.1.0)
     builder (3.0.4)
     coderay (1.0.9)
     coffee-script (2.2.0)
@@ -95,6 +97,7 @@ GEM
     method_source (0.8.2)
     mime-types (1.25)
     mini_portile (0.5.1)
+    minitest (4.7.5)
     mongoid (3.1.4)
       activemodel (~> 3.2)
       moped (~> 1.4)
@@ -145,6 +148,10 @@ GEM
     ruby-ole (1.2.11.6)
     rubyXL (1.2.10)
     rubyzip (0.9.9)
+    simplecov (0.7.1)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.7.1)
+    simplecov-html (0.7.1)
     slop (3.4.6)
     spreadsheet (0.8.3)
       ruby-ole (>= 1.0)
@@ -162,6 +169,8 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
+    turn (0.9.6)
+      ansi
     tzinfo (0.3.37)
     uuid (2.3.7)
       macaddr (~> 1.0)
@@ -170,15 +179,19 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  awesome_print
   coffee-script
   health-data-standards!
   hqmf2js!
+  minitest (~> 4.0)
   mongoid
   pry
   quality-measure-engine!
   rails (= 3.2.14)
   rake
   roo
+  simplecov
   sprockets
   therubyracer
   tilt
+  turn
