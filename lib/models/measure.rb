@@ -46,7 +46,6 @@ class Measure
 
   # Cache the generated JS code
   def map_fn(population_index)
-    binding.pry
     # FIXME: If we'll be updating measures we'll want some sort of cache clearing mechanism
     self.map_fns[population_index] ||= measure.as_javascript(population_index)
     save if changed?
