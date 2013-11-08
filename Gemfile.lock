@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/pophealth/hqmf2js.git
-  revision: ab2bf380eda00ef13aeba5a8140242ceb062173e
-  branch: perf
+  revision: 49b2485e176f159b51984f40c61cde5ff9f5deb6
+  branch: optional_underscore
   specs:
     hqmf2js (1.2.1)
 

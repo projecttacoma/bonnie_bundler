@@ -46,8 +46,9 @@ class Measure
 
   # Cache the generated JS code
   def map_fn(population_index)
+    binding.pry
     # FIXME: If we'll be updating measures we'll want some sort of cache clearing mechanism
-    self.map_fns[population_index] ||= HQMF2JS::Generator::Execution.logic(self, population_index, true, false)
+    self.map_fns[population_index] ||= measure.as_javascript(population_index)
     save if changed?
     self.map_fns[population_index]
   end
@@ -95,6 +96,19 @@ class Measure
   def value_sets
     @value_sets ||= HealthDataStandards::SVS::ValueSet.in(oid: value_set_oids)
     @value_sets
+  end
+
+  def as_javascript(population_index, check_crosswalk=false)
+    options = {
+      value_sets: value_sets,
+      episode_ids: episode_ids,
+      continuous_variable: continuous_variable,
+      force_sources: force_sources,
+      custom_functions: custom_functions,
+      check_crosswalk: check_crosswalk
+    }
+
+    HQMF2JS::Generator::Execution.logic(as_hqmf_model, population_index, options)
   end
 
 end
