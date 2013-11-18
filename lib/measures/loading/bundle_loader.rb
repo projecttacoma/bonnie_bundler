@@ -70,7 +70,7 @@ module Measures
 
 #      Measures::ADEHelper.update_if_ade(measure)
       measure.populations.each_with_index do |population, population_index|
-        measure.map_fns[population_index] = HQMF2JS::Generator::Execution.logic(measure, population_index, true, false)
+        measure.map_fns[population_index] = measure.as_javascript(population_index)
       end
 
       measure.save!
