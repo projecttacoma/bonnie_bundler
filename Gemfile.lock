@@ -6,11 +6,18 @@ GIT
     hqmf2js (1.2.1)
 
 GIT
-  remote: https://github.com/pophealth/quality-measure-engine.git
-  revision: d9884765147acc7ffff49896ed2078b8b6464d59
-  branch: perf
+  remote: https://github.com/pophealth/patientapi.git
+  revision: 6e5e231a6078409a4f5a7d0bafdacb0a63c2d54a
+  branch: develop
   specs:
-    quality-measure-engine (2.5.1)
+    hquery-patient-api (1.0.2)
+
+GIT
+  remote: https://github.com/pophealth/quality-measure-engine.git
+  revision: fa003ece6b880a96fe9a78a911a09db40fbe81a6
+  branch: mongoid_refactor
+  specs:
+    quality-measure-engine (3.0.0)
       delayed_job_mongoid (~> 2.0.0)
       mongoid (~> 3.1.4)
       moped (~> 1.5.1)
@@ -34,6 +41,12 @@ GIT
       rest-client (~> 1.6.7)
       rubyzip (= 0.9.9)
       uuid (~> 2.3.7)
+
+PATH
+  remote: .
+  specs:
+    bonnie_bundler (1.0.0)
+      quality-measure-engine (~> 3)
 
 GEM
   remote: http://rubygems.org/
@@ -180,9 +193,11 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
+  bonnie_bundler!
   coffee-script
   health-data-standards!
   hqmf2js!
+  hquery-patient-api!
   minitest (~> 4.0)
   mongoid
   pry

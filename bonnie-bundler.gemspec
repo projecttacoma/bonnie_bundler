@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.authors = ["Andre Quina"]
   s.version = '1.0.0'
 
-  s.add_dependency 'quality-measure-engine', '~>2'
+  s.add_dependency 'quality-measure-engine', '~>3'
   
   s.files = s.files = `git ls-files`.split("\n")
 end
