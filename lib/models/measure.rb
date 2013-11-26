@@ -45,7 +45,7 @@ class Measure
   field :map_fns, type: Array, default: []
 
   # Cache the generated JS code, with optional options to manipulate cached result                                                            
-  def map_fn(population_index, options)
+  def map_fn(population_index, options = {})
     options.assert_valid_keys :clear_db_cache, :cache_result_in_db
     # Defaults are: don't clear the cache, do cache the result in the DB
     options.reverse_merge! clear_db_cache: false, cache_result_in_db: true
@@ -53,6 +53,11 @@ class Measure
     self.map_fns[population_index] ||= as_javascript(population_index)
     save if changed? && options[:cache_result_in_db]
     self.map_fns[population_index]
+  end
+
+  # Pre-generate and cache all the javascript for the measure
+  def pregenerate_js
+    populations.each_with_index { |p, idx| map_fn(idx) }
   end
 
   belongs_to :user
