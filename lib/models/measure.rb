@@ -208,6 +208,14 @@ class Measure
   end
   
   def measure_json(population_index=0,check_crosswalk=false)
+    options = {
+      value_sets: value_sets,
+      episode_ids: episode_ids,
+      continuous_variable: continuous_variable,
+      force_sources: force_sources,
+      custom_functions: custom_functions,
+      check_crosswalk: check_crosswalk
+    }
         population_index ||= 0
         buckets = self.parameter_json(population_index, true)
         json = {
@@ -227,7 +235,7 @@ class Measure
           denominator: buckets["denominator"],
           numerator: buckets["numerator"],
           exclusions: buckets["exclusions"],
-          map_fn: HQMF2JS::Generator::Execution.measure_js(self, population_index, check_crosswalk),
+          map_fn: HQMF2JS::Generator::Execution.measure_js(self.as_hqmf_model, population_index, options),
           continuous_variable: self.continuous_variable,
           episode_of_care: self.episode_of_care,
           hqmf_document:  self.as_hqmf_model.to_json

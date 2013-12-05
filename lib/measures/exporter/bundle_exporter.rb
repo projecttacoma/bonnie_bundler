@@ -37,6 +37,7 @@ module Measures
 
 
       def rebuild_measures
+        BonnieBundler.logger.info("rebuilding measures")
         HealthDataStandards::CQM::Bundle.where({}).destroy
         HealthDataStandards::CQM::QueryCache.where({}).destroy
         HealthDataStandards::CQM::PatientCache.where({}).destroy
@@ -46,6 +47,7 @@ module Measures
         dummy_bundle = HealthDataStandards::CQM::Bundle.new(name: "dummy",version: "1", extensions: BundleExporter.refresh_js_libraries(check_crosswalk).keys)
         dummy_bundle.save!
         @measures.each do |mes|
+           BonnieBundler.logger.debug("Rebuilding measure #{mes["cms_id"]} -  #{mes["title"]}")
             mes.populations.each_with_index do |population, index|
               measure_json = mes.measure_json(index, check_crosswalk)
               MONGO_DB["measures"].insert(measure_json)
@@ -56,11 +58,13 @@ module Measures
         #insert all measures
       end
 
-      def calculate     
+      def calculate  
+        BonnieBundler.logger.info("Calculating measures")   
          HealthDataStandards::CQM::Measure.where({:hqmf_id => {"$in" => measures.pluck(:hqmf_id).uniq}}).each do |measure|  
           draft_measure = Measure.where({:hqmf_id => measure.hqmf_id}).first
           oid_dictionary = HQMF2JS::Generator::CodesToJson.from_value_sets(draft_measure.value_sets)
           report = QME::QualityReport.find_or_create(measure.hqmf_id, measure.sub_id, {'effective_date' => effective_date, 'enable_logging' => enable_logging, "enable_rationale" =>enable_rationale})
+          BonnieBundler.logger.debug("Calculating measure #{measure.cms_id} - #{measure.sub_id}")
           report.calculate({"oid_dictionary" =>oid_dictionary.to_json},false) unless report.calculated?
         end
       end
@@ -76,15 +80,17 @@ module Measures
         
         if export_filter.index("measures")
           BundleExporter.library_functions.each_pair do |name,data|
-            write_to_file File.join(library_path,name), data
+            write_to_file File.join(library_path,"#{name}.js"), data
           end
         end
-        write_to_file "bundle.json", bundle_json
+        write_to_file "bundle.json", bundle_json.to_json
       end
 
       def export_patients
+        BonnieBundler.logger.info("Exporting patients")
         exporter=HealthDataStandards::Export::HTML.new
         records.each do |patient|
+
           # puts "Exporting patient: #{patient.first}#{patient.last}"
           entries = Record::Sections.reduce([]) {|entries, section| entries.concat(patient[section.to_s] || []); entries }
           # puts "\tEntry Count != Source Data Criteria Count" if patient.source_data_criteria && entries.length != patient.source_data_criteria.length
@@ -96,7 +102,7 @@ module Measures
           patient_hash['measure_ids'] = patient_hash['measure_ids'].uniq if patient_hash['measure_ids']
           json = JSON.pretty_generate(JSON.parse(patient_hash.remove_nils.to_json))
           html = exporter.export(patient)
-
+          BonnieBundler.logger.info("Exporting patient #{filename}")
           path = File.join(records_path, patient.type)
           write_to_file File.join(path, "json", "#{filename}.json"), json
           write_to_file File.join(path, "html", "#{filename}.html"), html
@@ -105,6 +111,7 @@ module Measures
       end
 
       def export_results
+        BonnieBundler.logger.info("Exporting results")
         results_by_patient = MONGO_DB['patient_cache'].find({}).to_a
         results_by_patient = JSON.pretty_generate(JSON.parse(results_by_patient.as_json(:except => [ '_id' ]).to_json))
         results_by_measure = MONGO_DB['query_cache'].find({}).to_a
@@ -115,7 +122,7 @@ module Measures
       end
 
       def export_valuesets
-
+        BonnieBundler.logger.info("Exporting valuesets")
         value_sets = measures.map(&:value_set_oids).flatten.uniq
         value_sets.each do |oid|
 
@@ -132,19 +139,22 @@ module Measures
       end
 
       def export_measures
+        BonnieBundler.logger.info("Exporting measures")
         QME::QualityMeasure.where({:hqmf_id => {"$in" => measures.pluck(:hqmf_id).uniq}}).each do |measure|
-          measure_json = JSON.pretty_generate(measure.as_json(:except => [ '_id' ]), max_nesting: 250)
+          BonnieBundler.logger.info("Exporting measure #{measure.cms_id} - #{measure.sub_id}")
+          measure_json = JSON.pretty_generate(measure.attributes.as_json(:except => [ '_id' ]), max_nesting: 250)
           write_to_file File.join(measures_path, measure.type ,"#{measure['nqf_id']}#{measure['sub_id']}.json") ,measure_json
         end
       end
 
       def export_sources
         source_path = config["hqmf_path"]
+        BonnieBundler.logger.info("Exporting sources")
         measures.each do |measure|
           if source_path
             html = File.read(File.expand_path(File.join(source_path, "html", "#{measure.hqmf_id}.html")))
             hqmf1 = File.read(File.expand_path(File.join(source_path, "hqmf", "#{measure.hqmf_id}.xml")))
-            hqmf2 = HQMF2::Generator::ModelProcessor.to_hqmf(measure.as_hqmf_model) rescue puts("\tError generating HQMFv2 for #{measure.measure_id}")
+            hqmf2 = HQMF2::Generator::ModelProcessor.to_hqmf(measure.as_hqmf_model) rescue BonnieBundler.logger.warn("\tError generating HQMFv2 for #{measure.measure_id}")
             hqmf_model = JSON.pretty_generate(measure.as_hqmf_model.to_json, max_nesting: 250)
 
             sources = {}
@@ -174,6 +184,7 @@ module Measures
       end
 
       def clear_directories
+        BonnieBundler.logger.info("Clearing direcoties")
         FileUtils.rm_rf(ba)
       end
 
@@ -189,6 +200,7 @@ module Measures
       end
 
       def compress_artifacts
+        BonnieBundler.logger.info("compressing artifacts")
         zipfile_name = config["name"] 
          Zip::ZipFile.open("#{zipfile_name}.zip",  Zip::ZipFile::CREATE) do |zipfile|
           Dir[File.join(base_dir, '**', '**')].each do |file|

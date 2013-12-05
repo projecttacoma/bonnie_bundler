@@ -19,3 +19,16 @@ require_relative 'measures/value_set_parser.rb'
 require_relative 'measures/blacklist_parser.rb'
 require_relative 'ext/hash.rb'
 require_relative '../config/initializers/mongo.rb'
+
+module BonnieBundler
+  class << self
+    attr_accessor :logger
+  end
+end
+
+if defined?(Rails)
+  require_relative 'ext/railtie' 
+else
+  BonnieBundler.logger = Log4r::Logger.new("Bonnie Bundler")
+  BonnieBundler.logger.outputters = Log4r::Outputter.stdout
+end
