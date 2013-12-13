@@ -33,7 +33,7 @@ module Measures
       measure = Measure.new
       measure.user = user if user
 
-      measure.id = json["hqmf_id"]
+      # measure.id = json["hqmf_id"]
       measure.measure_id = json["id"]
       measure.hqmf_id = json["hqmf_id"]
       measure.hqmf_set_id = json["hqmf_set_id"]
