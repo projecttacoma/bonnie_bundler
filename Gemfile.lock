@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pophealth/hqmf2js.git
-  revision: da8d5f78565b6e87f515af6971c3c0f14233b43b
+  revision: a66dfd457607c5d9f0551038093f18e5d1468041
   branch: optional_underscore
   specs:
     hqmf2js (1.2.1)
@@ -27,10 +27,10 @@ GIT
 
 GIT
   remote: https://github.com/projectcypress/health-data-standards.git
-  revision: 73cf9a1144c2610c5ea85c8204ac8b3ee9e3625a
+  revision: 18babd3901d45e6175a1087e1f20125263c804cd
   branch: master
   specs:
-    health-data-standards (3.3.0)
+    health-data-standards (3.3.1)
       activesupport (~> 3.2.14)
       builder (~> 3.0.0)
       erubis (~> 2.7.0)
@@ -91,15 +91,14 @@ GEM
     delayed_job_mongoid (2.0.0)
       delayed_job (~> 3.0)
       mongoid (~> 3.0)
-    docile (1.1.0)
+    docile (1.1.1)
     erubis (2.7.0)
     execjs (2.0.2)
     hike (1.2.3)
-    i18n (0.6.5)
+    i18n (0.6.9)
     journey (1.0.4)
     json (1.8.1)
     libv8 (3.16.14.3)
-    lockfile (2.1.0)
     log4r (1.1.10)
     macaddr (1.6.1)
       systemu (~> 2.5.0)
@@ -108,10 +107,10 @@ GEM
       treetop (~> 1.4.8)
     memoist (0.9.1)
     method_source (0.8.2)
-    mime-types (1.25)
+    mime-types (1.25.1)
     mini_portile (0.5.2)
     minitest (4.7.5)
-    mongoid (3.1.5)
+    mongoid (3.1.6)
       activemodel (~> 3.2)
       moped (~> 1.4)
       origin (~> 1.0)
@@ -122,7 +121,7 @@ GEM
       mini_portile (~> 0.5.0)
     origin (1.1.0)
     polyglot (0.3.3)
-    pry (0.9.12.3)
+    pry (0.9.12.4)
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
@@ -161,14 +160,13 @@ GEM
     ruby-ole (1.2.11.7)
     rubyXL (1.2.10)
     rubyzip (0.9.9)
-    simplecov (0.8.1)
+    simplecov (0.8.2)
       docile (~> 1.1.0)
-      lockfile (>= 2.1.0)
       multi_json
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
     slop (3.4.7)
-    spreadsheet (0.9.4)
+    spreadsheet (0.9.6)
       ruby-ole (>= 1.0)
     sprockets (2.2.2)
       hike (~> 1.2)
