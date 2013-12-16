@@ -10,19 +10,26 @@ module HQMF
       ORGANIZATION_INDEX = 0
       OID_INDEX = 1
       CONCEPT_INDEX = 3
-      CATEGORY_INDEX = 4
-      CODE_SET_INDEX =5
-      VERSION_INDEX = 6
-      CODE_INDEX = 7
-      DESCRIPTION_INDEX = 8
+#      CATEGORY_INDEX = 4
+      CODE_SET_INDEX =4
+      VERSION_INDEX = 5
+      CODE_INDEX = 6
+      DESCRIPTION_INDEX = 7
  
-      DEFAULT_SHEET = 1
-      SUPPLEMENTAL_SHEET = 2
+      DEFAULT_SHEET = 0
+      SUPPLEMENTAL_SHEET = 1
 
       CODE_SYSTEM_NORMALIZER = {
         'ICD-9'=>'ICD-9-CM',
+        'ICD9CM'=>'ICD-9-CM',
+        'ICD9PCS'=>'ICD-9-PCS',
         'ICD-10'=>'ICD-10-CM',
-        'HL7 (2.16.840.1.113883.5.1)'=>'HL7'
+        'ICD10CM'=>'ICD-10-CM',
+        'ICD10PCS'=>'ICD-10-PCS',
+        'HL7 (2.16.840.1.113883.5.1)'=>'HL7',
+        'SNOMEDCT'=>'SNOMED-CT',
+        'CDCREC'=>'CDC Race',
+        'RXNORM'=>'RxNorm'
       }
       IGNORED_CODE_SYSTEM_NAMES = ['Grouping', 'GROUPING' ,'HL7', "Administrative Sex", 'CDC']
   
@@ -107,7 +114,8 @@ module HQMF
 
         version = row[VERSION_INDEX]
         if existing_vs.nil?
-          display_name = normalize_names(row[CATEGORY_INDEX],row[CONCEPT_INDEX]).titleize
+          # display_name = normalize_names(row[CATEGORY_INDEX],row[CONCEPT_INDEX]).titleize
+          display_name = row[CONCEPT_INDEX].titleize
           existing_vs = HealthDataStandards::SVS::ValueSet.new({oid: oid, display_name: display_name, version: version ,concepts: []})
           @value_set_models[oid] = existing_vs
         end
