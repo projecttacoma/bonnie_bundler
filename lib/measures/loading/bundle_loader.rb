@@ -82,6 +82,7 @@ module Measures
     end
 
     def self.set_expected_values(results)
+      return unless results
       sub_ids = ("a".."z").to_a
 
       # for each result entry in the array of imported results
@@ -162,10 +163,12 @@ module Measures
 
     def self.extract_results(zip_file, tmp_dir)
       result_root_entry = zip_file.glob(File.join('results','by_patient.json')).first
-      r_path = File.join(tmp_dir, 'by_patient.json')
-      result_root_entry.extract(r_path)
-      results_json = JSON.parse(File.read(r_path))
-      results_json
+      if result_root_entry
+        r_path = File.join(tmp_dir, 'by_patient.json')
+        result_root_entry.extract(r_path)
+        results_json = JSON.parse(File.read(r_path))
+        results_json
+      end
     end
 
   end
