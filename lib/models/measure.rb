@@ -54,9 +54,9 @@ class Measure
     self.map_fns[population_index]
   end
 
-  # Pre-generate and cache all the javascript for the measure
-  def pregenerate_js
-    populations.each_with_index { |p, idx| map_fn(idx) }
+  # Generate and cache all the javascript for the measure, optionally clearing the cache first
+  def generate_js(options = {})
+    populations.each_with_index {  |p, idx| map_fn(idx, options) }
   end
 
   belongs_to :user
