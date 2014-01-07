@@ -95,7 +95,7 @@ module Measures
         measure = Measure.or({ measure_id: result['value']['measure_id'] }, { hqmf_id: result['value']['measure_id'] }, { hqmf_set_id: result['value']['measure_id'] }).first
 
         # if the patient doesn't have an EV array, create one
-        if patient.expected_values.nil?
+        unless patient.attribute_present?("expected_values")
           patient.expected_values = []
         end
 
