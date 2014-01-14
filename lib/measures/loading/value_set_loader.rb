@@ -37,6 +37,7 @@ module Measures
     def self.load_value_sets_from_xls(value_set_path)
       value_set_parser = HQMF::ValueSet::Parser.new()
       value_sets = value_set_parser.parse(value_set_path)
+      raise ValueSetException.new "No ValueSets found" if value_sets.length == 0
       value_sets
     end
 

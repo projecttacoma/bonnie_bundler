@@ -10,6 +10,7 @@ require 'hqmf2js'
 
 require_relative 'models/measure.rb'
 require_relative 'measures/loading/bundle_loader.rb'
+require_relative 'measures/loading/exceptions.rb'
 require_relative 'measures/loading/loader.rb'
 require_relative 'measures/loading/mat_loader.rb'
 require_relative 'measures/loading/sources_loader.rb'
