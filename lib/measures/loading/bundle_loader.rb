@@ -3,22 +3,25 @@ module Measures
   # Utility class for loading measure definitions into the database from MITRE bundles
   class BundleLoader 
 
-    def self.load(bundle_path, user, measures_yml=nil, load_from_hqmf=false)
+    def self.load(bundle_path, user, measures_yml=nil, load_from_hqmf=false, measure_type='*')
       Measures::Loader.clear_sources
       measures = []
       Dir.mktmpdir do |tmp_dir|
-        measures = load_bundle(user, bundle_path, tmp_dir, load_from_hqmf, measures_yml)
+        measures = load_bundle(user, bundle_path, tmp_dir, load_from_hqmf, measures_yml, measure_type)
       end
       measures
     end
 
-    def self.load_bundle(user, bundle_path, tmp_dir, load_from_hqmf, measures_yml)
+    def self.load_bundle(user, bundle_path, tmp_dir, load_from_hqmf, measures_yml, measure_type)
 
       # remove existing code_sets directory
       FileUtils.rm_r Measures::Loader::VALUE_SET_PATH if File.exist? Measures::Loader::VALUE_SET_PATH
       FileUtils.mkdir_p(Measures::Loader::VALUE_SET_PATH)
 
-      measure_root = File.join('sources','*','*')
+      unless (not measure_type.nil?) || measure_type =~ /ep|eh|\*/i
+        measure_type = '*'
+      end
+      measure_root = File.join('sources',measure_type,'*')
       value_set_root = File.join('value_sets','xml')
 
       Zip::ZipFile.open(bundle_path) do |zip_file|
@@ -36,7 +39,7 @@ module Measures
         end
         measure_details_hash = Measures::Loader.parse_measures_yml(measures_yml)
 
-        measure_root_entries = zip_file.glob(File.join('sources','*','*'))
+        measure_root_entries = zip_file.glob(File.join('sources',measure_type,'*'))
         measure_root_entries.each_with_index do |measure_entry, index|
           measure = load_measure(zip_file, measure_entry, user,tmp_dir, load_from_hqmf, measure_details_hash)
           puts "(#{index+1}/#{measure_root_entries.count}): measure #{measure.measure_id} successfully loaded from #{load_from_hqmf ? 'HQMF' : 'JSON'}"
@@ -94,13 +97,13 @@ module Measures
         # and it's corresponding measure id
         measure = Measure.or({ measure_id: result['value']['measure_id'] }, { hqmf_id: result['value']['measure_id'] }, { hqmf_set_id: result['value']['measure_id'] }).first
 
-        # if the patient doesn't have an EV array, create one
-        unless patient.attribute_present?("expected_values")
-          patient.expected_values = []
-        end
-
         # if we have found a measure
-        unless measure.nil?
+        unless measure.nil? || patient.nil?
+
+          # if the patient doesn't have an EV array, create one
+          if patient.expected_values.nil?
+            patient.expected_values = []
+          end
 
           # grab it's hqmf_set_id
           mid = measure.try(:hqmf_set_id)
