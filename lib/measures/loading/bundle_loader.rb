@@ -95,7 +95,7 @@ module Measures
         measure = Measure.or({ measure_id: result['value']['measure_id'] }, { hqmf_id: result['value']['measure_id'] }, { hqmf_set_id: result['value']['measure_id'] }).first
 
         # if the patient doesn't have an EV array, create one
-        if patient.expected_values.nil?
+        unless patient.attribute_present?("expected_values")
           patient.expected_values = []
         end
 
@@ -109,31 +109,28 @@ module Measures
           result_index = result['value']['sub_id'] ||= 'a'
           expectedValues = { measure_id: mid, population_index: sub_ids.find_index(result_index) }
 
-          measure.populations.each_with_index do |populations, index|
-            # if we are at the correct population index
-            if result_index and sub_ids[index] == result_index
+          populations = measure.populations[expectedValues[:population_index]]
 
-              validPopulations = populations.keys & Measure.or({ measure_id: mid }, { hqmf_id: mid }, { hqmf_set_id: mid }).first.population_criteria.keys
+          validPopulations = populations.keys & measure.population_criteria.keys
 
-              # set the values for each population in the result
-              validPopulations.each do |population|
-                if population == 'OBSERV' 
-                  result_value = result['value']['values'].first 
-                else 
-                  result_value = result['value'][population].to_i
-                end
+          # set the values for each population in the result
+          validPopulations.each do |population|
+            if population == 'OBSERV'
+              result_value = result['value']['values'].first
+            else
+              result_value = result['value'][population].to_i
+            end
 
-                # if we dont have a result value (e.g., for OBSERV), then don't store it
-                unless result_value.blank? 
-                  expectedValues[population] = result_value
-                end
-              end
-
-              # save changes to the patient
-              patient.expected_values << expectedValues
-              patient.save
+            # if we don't have a result value (e.g., for OBSERV), then don't store it
+            if result_value
+              expectedValues[population] = result_value
             end
           end
+
+          # save changes to the patient
+          patient.expected_values << expectedValues
+          patient.save
+
           print "\rLoading: Expected Values from results/by_patient.json #{(index*100/results.length)}% complete"
           STDOUT.flush
         end
