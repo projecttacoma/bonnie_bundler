@@ -124,13 +124,14 @@ module Measures
       def export_valuesets
         BonnieBundler.logger.info("Exporting valuesets")
         value_sets = measures.map(&:value_set_oids).flatten.uniq
-        value_sets.each do |oid|
-
-          code_set_file = File.expand_path(File.join(config["valueset_sources"],"#{oid}.xml"))
-          if File.exist? code_set_file
-            write_to_file  File.join(valuesets_path, "xml", "#{oid}.xml"), File.read(code_set_file)
-          else
-            # puts("\tError generating code set for #{oid}")
+        if config["valueset_sources"]  
+          value_sets.each do |oid|
+            code_set_file = File.expand_path(File.join(config["valueset_sources"],"#{oid}.xml"))
+            if File.exist? code_set_file
+              write_to_file  File.join(valuesets_path, "xml", "#{oid}.xml"), File.read(code_set_file)
+            else
+              # puts("\tError generating code set for #{oid}")
+            end
           end
         end
         HealthDataStandards::SVS::ValueSet.where({oid: {'$in'=>value_sets}}).to_a.each do |vs|
@@ -185,7 +186,7 @@ module Measures
 
       def clear_directories
         BonnieBundler.logger.info("Clearing direcoties")
-        FileUtils.rm_rf(ba)
+        FileUtils.rm_rf(base_dir)
       end
 
       def write_to_file(file_name, data)
