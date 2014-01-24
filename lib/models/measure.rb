@@ -49,7 +49,7 @@ class Measure
     # Defaults are: don't clear the cache, do cache the result in the DB
     options.reverse_merge! clear_db_cache: false, cache_result_in_db: true
     self.map_fns[population_index] = nil if options[:clear_db_cache]
-    self.map_fns[population_index] ||= as_javascript(population_index)
+    self.map_fns[population_index] ||= as_javascript(population_index,options[:check_crosswalk])
     save if changed? && options[:cache_result_in_db]
     self.map_fns[population_index]
   end
