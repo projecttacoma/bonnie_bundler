@@ -45,7 +45,7 @@ class Measure
 
   # Cache the generated JS code, with optional options to manipulate cached result                                                            
   def map_fn(population_index, options = {})
-    options.assert_valid_keys :clear_db_cache, :cache_result_in_db
+    options.assert_valid_keys :clear_db_cache, :cache_result_in_db, :check_crosswalk
     # Defaults are: don't clear the cache, do cache the result in the DB
     options.reverse_merge! clear_db_cache: false, cache_result_in_db: true
     self.map_fns[population_index] = nil if options[:clear_db_cache]
