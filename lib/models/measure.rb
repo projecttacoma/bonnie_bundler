@@ -46,17 +46,23 @@ class Measure
   # Cache the generated JS code, with optional options to manipulate cached result                                                            
   def map_fn(population_index, options = {})
     options.assert_valid_keys :clear_db_cache, :cache_result_in_db, :check_crosswalk
-    # Defaults are: don't clear the cache, do cache the result in the DB
-    options.reverse_merge! clear_db_cache: false, cache_result_in_db: true
+    # Defaults are: don't clear the cache, do cache the result in the DB, use user specified crosswalk setting
+    options.reverse_merge! clear_db_cache: false, cache_result_in_db: true, check_crosswalk: !!self.user.crosswalk_enabled
     self.map_fns[population_index] = nil if options[:clear_db_cache]
-    self.map_fns[population_index] ||= as_javascript(population_index,options[:check_crosswalk])
+    self.map_fns[population_index] ||= as_javascript(population_index, options[:check_crosswalk])
     save if changed? && options[:cache_result_in_db]
     self.map_fns[population_index]
   end
 
   # Generate and cache all the javascript for the measure, optionally clearing the cache first
   def generate_js(options = {})
-    populations.each_with_index {  |p, idx| map_fn(idx, options) }
+    populations.each_with_index { |p, idx| map_fn(idx, options) }
+  end
+
+  # Clear any cached JavaScript, forcing it to be generated next time it's requested
+  def clear_cached_js
+    self.map_fns.map! { nil }
+    self.save
   end
 
   belongs_to :user
