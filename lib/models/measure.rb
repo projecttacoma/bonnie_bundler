@@ -47,7 +47,7 @@ class Measure
   def map_fn(population_index, options = {})
     options.assert_valid_keys :clear_db_cache, :cache_result_in_db, :check_crosswalk
     # Defaults are: don't clear the cache, do cache the result in the DB, use user specified crosswalk setting
-    options.reverse_merge! clear_db_cache: false, cache_result_in_db: true, check_crosswalk: !!self.user.crosswalk_enabled
+    options.reverse_merge! clear_db_cache: false, cache_result_in_db: true, check_crosswalk: !!self.user.try(:crosswalk_enabled)
     self.map_fns[population_index] = nil if options[:clear_db_cache]
     self.map_fns[population_index] ||= as_javascript(population_index, options[:check_crosswalk])
     save if changed? && options[:cache_result_in_db]
