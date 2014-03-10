@@ -3,9 +3,13 @@ module Measures
   # Utility class for loading value sets
   class ValueSetLoader 
 
-    def self.save_value_sets(value_set_models)
-      loaded_value_sets = HealthDataStandards::SVS::ValueSet.all.map(&:oid)
-      value_set_models.each { |vsm| vsm.save! unless loaded_value_sets.include? vsm.oid }
+    def self.save_value_sets(value_set_models, user = nil)
+      #loaded_value_sets = HealthDataStandards::SVS::ValueSet.all.map(&:oid)
+      value_set_models.each do |vsm|
+        HealthDataStandards::SVS::ValueSet.by_user(user).where(oid: vsm.oid).delete_all() 
+        vsm.user = user
+        vsm.save! 
+      end
     end
 
     def self.get_value_set_oids_from_hqmf(hqmf_path)
@@ -30,21 +34,21 @@ module Measures
       oids
     end
 
-    def self.get_value_set_models(value_set_oids)
-      HealthDataStandards::SVS::ValueSet.in(oid: value_set_oids)
+    def self.get_value_set_models(value_set_oids, user=nil)
+      HealthDataStandards::SVS::ValueSet.by_user(user).in(oid: value_set_oids)
     end
 
-    def self.load_value_sets_from_xls(value_set_path)
+    def self.load_value_sets_from_xls(value_set_path,user)
       value_set_parser = HQMF::ValueSet::Parser.new()
       value_sets = value_set_parser.parse(value_set_path)
       raise ValueSetException.new "No ValueSets found" if value_sets.length == 0
       value_sets
     end
 
-    def self.clear_white_black_list
+    def self.clear_white_black_list(user=nil)
       white_delete_count = 0
       black_delete_count = 0
-      HealthDataStandards::SVS::ValueSet.all.each do |vs|
+      HealthDataStandards::SVS::ValueSet.by_user(user).each do |vs|
         concepts = vs.concepts
         match = false
         concepts.each do |c| 
@@ -64,13 +68,13 @@ module Measures
       puts "deleted #{white_delete_count} white / #{black_delete_count} black list entries"
     end
 
-    def self.load_white_list(white_list_path)
+    def self.load_white_list(white_list_path, user =nil)
       parser = HQMF::ValueSet::Parser.new()
       value_sets = parser.parse(white_list_path)
       child_oids = parser.child_oids
       white_list_total = 0
       value_sets.each do |value_set|
-        existing = HealthDataStandards::SVS::ValueSet.where(oid: value_set.oid).first
+        existing = HealthDataStandards::SVS::ValueSet.by_user(user).where(oid: value_set.oid).first
         if !existing && child_oids.include?(value_set.oid)
           next
         elsif !existing
@@ -101,14 +105,14 @@ module Measures
 
     end
 
-    def self.load_black_list(black_list_path)
+    def self.load_black_list(black_list_path, user = nil)
       parser = HQMF::BlackList::Parser.new()
       black_list = parser.parse(black_list_path)
 
       black_list_map = black_list.reduce({}) {|hash, concept| hash[concept[:code_system_name]]||=Set.new; hash[concept[:code_system_name]] << concept[:code]; hash}
 
       black_list_count = 0
-      HealthDataStandards::SVS::ValueSet.all.each do |vs|
+      HealthDataStandards::SVS::ValueSet.by_user(user).each do |vs|
         concepts = vs.concepts
         match = false
         concepts.each do |concept|
@@ -129,12 +133,12 @@ module Measures
 
     end
 
-    def self.load_value_sets_from_vsac(value_set_oids, username, password)
+    def self.load_value_sets_from_vsac(value_set_oids, username, password, user=nil)
       value_set_models = []
       from_vsac = 0
       
       existing_value_set_map = {}
-      HealthDataStandards::SVS::ValueSet.all.each do |set|
+      HealthDataStandards::SVS::ValueSet.by_user(user).each do |set|
         existing_value_set_map[set.oid] = set
       end
       
@@ -174,6 +178,7 @@ module Measures
           if vs_element && vs_element["ID"] == oid
             vs_element["id"] = oid
             set = HealthDataStandards::SVS::ValueSet.load_from_xml(doc)
+            set.user = user
             set.save!
           else
             raise "Value set not found: #{oid}"

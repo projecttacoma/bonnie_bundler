@@ -19,6 +19,8 @@ require_relative 'measures/exporter/bundle_exporter.rb'
 require_relative 'measures/value_set_parser.rb'
 require_relative 'measures/blacklist_parser.rb'
 require_relative 'ext/hash.rb'
+require_relative 'ext/valueset.rb'
+require_relative 'ext/user.rb'
 require_relative '../config/initializers/mongo.rb'
 
 module BonnieBundler

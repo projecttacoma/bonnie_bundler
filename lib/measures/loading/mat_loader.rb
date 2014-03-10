@@ -32,7 +32,7 @@ module Measures
 
           # handle value sets
           begin
-            value_set_models = Measures::ValueSetLoader.load_value_sets_from_xls(xls_path)
+            value_set_models = Measures::ValueSetLoader.load_value_sets_from_xls(xls_path,user)
           rescue Exception => e
             if e.is_a? Measures::ValueSetException
               raise e
@@ -40,7 +40,7 @@ module Measures
               raise ValueSetException.new "Error Parsing Value Sets: #{e.message}" unless e.is_a? Measures::ValueSetException
             end
           end
-          Measures::ValueSetLoader.save_value_sets(value_set_models)
+          Measures::ValueSetLoader.save_value_sets(value_set_models,user)
 
           measure = Measures::Loader.load(user, hqmf_path, value_set_models)
 

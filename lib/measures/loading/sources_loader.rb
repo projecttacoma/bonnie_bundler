@@ -25,9 +25,9 @@ module Measures
       measure_details = measure_details_hash[hqmf_set_id]
 
       value_set_oids = Measures::ValueSetLoader.get_value_set_oids_from_hqmf(hqmf_path)
-      Measures::ValueSetLoader.load_value_sets_from_vsac(value_set_oids, vsac_user, vsac_password)
+      Measures::ValueSetLoader.load_value_sets_from_vsac(value_set_oids, vsac_user, vsac_password, user)
 
-      value_set_models = Measures::ValueSetLoader.get_value_set_models(value_set_oids)
+      value_set_models = Measures::ValueSetLoader.get_value_set_models(value_set_oids,user)
       measure = Measures::Loader.load(user, hqmf_path, value_set_models, measure_details)
       Measures::Loader.save_sources(measure, hqmf_path, html_path)
 
