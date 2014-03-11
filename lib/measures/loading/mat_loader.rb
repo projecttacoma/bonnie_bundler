@@ -40,7 +40,7 @@ module Measures
               raise ValueSetException.new "Error Parsing Value Sets: #{e.message}" unless e.is_a? Measures::ValueSetException
             end
           end
-          Measures::ValueSetLoader.save_value_sets(value_set_models)
+          Measures::ValueSetLoader.save_value_sets(value_set_models,user)
 
           measure = Measures::Loader.load(user, hqmf_path, value_set_models)
 

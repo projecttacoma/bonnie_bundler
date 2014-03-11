@@ -64,7 +64,7 @@ module Measures
       measure_details = measure_details_hash[hqmf_set_id]
 
       if (load_from_hqmf)
-        value_set_models = Measures::ValueSetLoader.get_value_set_models(Measures::ValueSetLoader.get_value_set_oids_from_hqmf(hqmf_path))
+        value_set_models = Measures::ValueSetLoader.get_value_set_models( Measures::ValueSetLoader.get_value_set_oids_from_hqmf(hqmf_path), user)
         measure = Measures::Loader.load(user, hqmf_path, value_set_models, measure_details)
       else
         measure_json = JSON.parse(File.read(json_path), max_nesting: 250)
