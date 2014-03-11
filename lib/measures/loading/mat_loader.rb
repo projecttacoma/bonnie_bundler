@@ -32,7 +32,7 @@ module Measures
 
           # handle value sets
           begin
-            value_set_models = Measures::ValueSetLoader.load_value_sets_from_xls(xls_path,user)
+            value_set_models = Measures::ValueSetLoader.load_value_sets_from_xls(xls_path)
           rescue Exception => e
             if e.is_a? Measures::ValueSetException
               raise e
