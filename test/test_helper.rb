@@ -26,3 +26,9 @@ class Record
   belongs_to :user
   scope :by_user, ->(user) { where({'user_id'=>user.id}) }
 end
+
+
+class User
+  include Mongoid::Document
+  include Mongoid::Timestamps
+end
