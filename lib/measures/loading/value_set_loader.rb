@@ -8,6 +8,9 @@ module Measures
       value_set_models.each do |vsm|
         HealthDataStandards::SVS::ValueSet.by_user(user).where(oid: vsm.oid).delete_all() 
         vsm.user = user
+        #bundle id for user should always be the same 1 user to 1 bundle
+        #using this to allow cat I generation without extensive modification to HDS
+        vsm.bundle = user.bundle if (user && user.respond_to?(:bundle))
         vsm.save! 
       end
     end

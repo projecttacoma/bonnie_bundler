@@ -1,7 +1,7 @@
 test:
   sessions:
     default:
-      database: bonnie_development
+      database: bonnie_test
       hosts:
         - localhost:27017
 

@@ -66,6 +66,7 @@ class Measure
   end
 
   belongs_to :user
+  belongs_to :bundle, class_name: "HealthDataStandards::CQM::Bundle"
   has_and_belongs_to_many :records, :inverse_of => nil
 
   scope :by_measure_id, ->(id) { where({'measure_id'=>id }) }
