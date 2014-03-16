@@ -18,23 +18,23 @@ module Measures
                   "effective_date" => Measure::DEFAULT_EFFECTIVE_DATE,
                   "name" =>"bundle-#{Time.now.to_i}",
                   "check_crosswalk" => false,
+                  "use_nqf" => true,
                   "export_filter" => ["measures", "sources","records", "valuesets", "results"]}
       
       DEFAULTS.keys.each do |k|
         attr_accessor k.to_sym
       end
 
-      def initialize(measures=Measure.all, config={})
+      def initialize(measures=Measure.all, config={}, zip=nil)
         @config = DEFAULTS.merge(config)
         @measures = measures
         @records =  Record.where(type: {"$in" => measures.pluck(:type).uniq})
+        @zip = zip
         DEFAULTS.keys.each do |name|
           instance_variable_set("@#{name}", @config[name])
         end
 
       end
-
-
 
       def rebuild_measures
         BonnieBundler.logger.info("rebuilding measures")
@@ -153,17 +153,19 @@ module Measures
         BonnieBundler.logger.info("Exporting sources")
         measures.each do |measure|
           if source_path
-            html = File.read(File.expand_path(File.join(source_path, "html", "#{measure.hqmf_id}.html")))
-            hqmf1 = File.read(File.expand_path(File.join(source_path, "hqmf", "#{measure.hqmf_id}.xml")))
+            html = File.read(File.expand_path(File.join(source_path, "html", "#{measure.hqmf_id}.html"))) rescue BonnieBundler.logger.warn("\tNo source HTML for #{measure.measure_id}")
+            hqmf1 = File.read(File.expand_path(File.join(source_path, "hqmf", "#{measure.hqmf_id}.xml"))) rescue BonnieBundler.logger.warn("\tNo source HQMFv1 for #{measure.measure_id}")
             hqmf2 = HQMF2::Generator::ModelProcessor.to_hqmf(measure.as_hqmf_model) rescue BonnieBundler.logger.warn("\tError generating HQMFv2 for #{measure.measure_id}")
             hqmf_model = JSON.pretty_generate(measure.as_hqmf_model.to_json, max_nesting: 250)
+            metadata = JSON.pretty_generate(measure_metadata(measure))
 
             sources = {}
-            path = File.join(sources_path, measure.type,  measure.measure_id)
+            path = File.join(sources_path, measure.type, (config['use_nqf'] ? measure.measure_id : measure.hqmf_id))
             write_to_file File.join(path, "#{measure.measure_id}.html"),html
             write_to_file File.join(path, "hqmf1.xml"), hqmf1
             write_to_file File.join(path, "hqmf2.xml"), hqmf2 if hqmf2
             write_to_file File.join(path, "hqmf_model.json"), hqmf_model
+            write_to_file File.join(path, "measure.metadata"), metadata
           end
         end
       end
@@ -190,12 +192,17 @@ module Measures
       end
 
       def write_to_file(file_name, data)
-        FileUtils.mkdir_p base_dir
-        w_file_name = File.join(base_dir,file_name)
-        FileUtils.mkdir_p File.dirname(w_file_name)
-        FileUtils.remove_file(w_file_name,true)
-        File.open(w_file_name,"w") do |f|
-          f.puts data
+        if (@zip.nil?)
+          FileUtils.mkdir_p base_dir
+          w_file_name = File.join(base_dir,file_name)
+          FileUtils.mkdir_p File.dirname(w_file_name)
+          FileUtils.remove_file(w_file_name,true)
+          File.open(w_file_name,"w") do |f|
+            f.puts data
+          end
+        else
+          @zip.put_next_entry file_name
+          @zip.puts data
         end
 
       end
@@ -213,6 +220,27 @@ module Measures
            end
         end
         zipfile_name
+      end
+
+      def measure_metadata(measure)
+        metadata = {}
+        metadata["nqf_id"] = measure.measure_id
+        metadata["type"] = measure.type
+        metadata["category"] = measure.category
+        metadata["episode_of_care"] = measure.episode_of_care
+        metadata["continuous_variable"] = measure.continuous_variable
+        metadata["episode_ids"] = measure.episode_ids
+        if (measure.populations.count > 1)
+          sub_ids = ('a'..'az').to_a
+          measure.populations.each_with_index do |population, population_index|
+            sub_id = sub_ids[population_index]
+            metadata['subtitles'] ||= {}
+            metadata['subtitles'][sub_id] = measure.populations[population_index]['title']
+          end
+        end
+        metadata["custom_functions"] = measure.custom_functions
+        metadata["force_sources"] = measure.force_sources
+        metadata
       end
 
 

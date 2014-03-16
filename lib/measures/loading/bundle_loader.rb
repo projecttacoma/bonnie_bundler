@@ -35,11 +35,13 @@ module Measures
         if (measures_yml.nil?)
           puts "finding measure yml by version"
           measures_yml = find_measure_yml(zip_file)
-          raise "no measure yml file could be found" if measures_yml.nil?
+          puts "\tno measure yml file could be found" if measures_yml.nil? 
         end
-        measure_details_hash = Measures::Loader.parse_measures_yml(measures_yml)
+        measure_details_hash = Measures::Loader.parse_measures_yml(measures_yml) if measures_yml
 
         measure_root_entries = zip_file.glob(File.join('sources',measure_type,'*'))
+        # if a zip output stream was used, we cannot access the directories
+        measure_root_entries = zip_file.glob(File.join('sources',measure_type,'*','*.json')).map {|e| File.dirname(e.name)} if measure_root_entries.empty?
         measure_root_entries.each_with_index do |measure_entry, index|
           measure = load_measure(zip_file, measure_entry, user,tmp_dir, load_from_hqmf, measure_details_hash)
           puts "(#{index+1}/#{measure_root_entries.count}): measure #{measure.measure_id} successfully loaded from #{load_from_hqmf ? 'HQMF' : 'JSON'}"
@@ -59,9 +61,12 @@ module Measures
       hqmf_path = extract_entry(zip_file, measure_entry, outdir, 'hqmf1.xml')
       html_path = extract_entry(zip_file, measure_entry, outdir, '*.html')
       json_path = extract_entry(zip_file, measure_entry, outdir, '*.json')
+      metadata_path = extract_entry(zip_file, measure_entry, outdir, '*.metadata') rescue metadata_path = nil
 
-      hqmf_set_id = HQMF::Parser.parse_fields(File.read(hqmf_path),HQMF::Parser::HQMF_VERSION_1)['set_id']
-      measure_details = measure_details_hash[hqmf_set_id]
+      if measure_details_hash
+        hqmf_set_id = HQMF::Parser.parse_fields(File.read(hqmf_path),HQMF::Parser::HQMF_VERSION_1)['set_id']
+        measure_details = measure_details_hash[hqmf_set_id] 
+      end
 
       if (load_from_hqmf)
         value_set_models = Measures::ValueSetLoader.get_value_set_models( Measures::ValueSetLoader.get_value_set_oids_from_hqmf(hqmf_path), user)
@@ -69,6 +74,7 @@ module Measures
       else
         measure_json = JSON.parse(File.read(json_path), max_nesting: 250)
         hqmf_model = HQMF::Document.from_json(measure_json)
+        measure_details = JSON.parse(File.read(metadata_path)) if !measure_details && metadata_path
         measure = Measures::Loader.load_hqmf_json(measure_json, user, hqmf_model.all_code_set_oids, measure_details)
       end
 
