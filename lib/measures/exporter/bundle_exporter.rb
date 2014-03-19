@@ -25,15 +25,13 @@ module Measures
         attr_accessor k.to_sym
       end
 
-      def initialize(measures=Measure.all, config={}, zip=nil)
+      def initialize(measures=Measure.all, config={})
         @config = DEFAULTS.merge(config)
         @measures = measures
         @records =  Record.where(type: {"$in" => measures.pluck(:type).uniq})
-        @zip = zip
         DEFAULTS.keys.each do |name|
           instance_variable_set("@#{name}", @config[name])
         end
-
       end
 
       def rebuild_measures
@@ -80,10 +78,21 @@ module Measures
         
         if export_filter.index("measures")
           BundleExporter.library_functions.each_pair do |name,data|
-            write_to_file File.join(library_path,"#{name}.js"), data
+            export_file File.join(library_path,"#{name}.js"), data
           end
         end
-        write_to_file "bundle.json", bundle_json.to_json
+        export_file "bundle.json", bundle_json.to_json
+      end
+
+      # Export an in-memory zip file
+      def export_zip
+        stringio = Zip::ZipOutputStream::write_buffer do |zip|
+          @zip = zip
+          export
+        end
+        @zip = nil
+        stringio.rewind
+        stringio.sysread
       end
 
       def export_patients
@@ -104,8 +113,8 @@ module Measures
           html = exporter.export(patient)
           BonnieBundler.logger.info("Exporting patient #{filename}")
           path = File.join(records_path, patient.type)
-          write_to_file File.join(path, "json", "#{filename}.json"), json
-          write_to_file File.join(path, "html", "#{filename}.html"), html
+          export_file File.join(path, "json", "#{filename}.json"), json
+          export_file File.join(path, "html", "#{filename}.html"), html
 
         end
       end
@@ -117,8 +126,8 @@ module Measures
         results_by_measure = MONGO_DB['query_cache'].find({}).to_a
         results_by_measure = JSON.pretty_generate(JSON.parse(results_by_measure.as_json(:except => [ '_id' ]).to_json))
         
-        write_to_file File.join(results_path,"by_patient.json"), results_by_patient
-        write_to_file File.join(results_path,"by_measure.json") ,results_by_measure
+        export_file File.join(results_path,"by_patient.json"), results_by_patient
+        export_file File.join(results_path,"by_measure.json") ,results_by_measure
       end
 
       def export_valuesets
@@ -128,14 +137,14 @@ module Measures
           value_sets.each do |oid|
             code_set_file = File.expand_path(File.join(config["valueset_sources"],"#{oid}.xml"))
             if File.exist? code_set_file
-              write_to_file  File.join(valuesets_path, "xml", "#{oid}.xml"), File.read(code_set_file)
+              export_file  File.join(valuesets_path, "xml", "#{oid}.xml"), File.read(code_set_file)
             else
               # puts("\tError generating code set for #{oid}")
             end
           end
         end
         HealthDataStandards::SVS::ValueSet.where({oid: {'$in'=>value_sets}}).to_a.each do |vs|
-           write_to_file File.join(valuesets_path,"json", "#{vs.oid}.json"), JSON.pretty_generate(vs.as_json(:except => [ '_id' ]), max_nesting: 250)
+           export_file File.join(valuesets_path,"json", "#{vs.oid}.json"), JSON.pretty_generate(vs.as_json(:except => [ '_id' ]), max_nesting: 250)
         end
       end
 
@@ -144,7 +153,7 @@ module Measures
         QME::QualityMeasure.where({:hqmf_id => {"$in" => measures.pluck(:hqmf_id).uniq}}).each do |measure|
           BonnieBundler.logger.info("Exporting measure #{measure.cms_id} - #{measure.sub_id}")
           measure_json = JSON.pretty_generate(measure.attributes.as_json(:except => [ '_id' ]), max_nesting: 250)
-          write_to_file File.join(measures_path, measure.type ,"#{measure['nqf_id']}#{measure['sub_id']}.json") ,measure_json
+          export_file File.join(measures_path, measure.type ,"#{measure['nqf_id']}#{measure['sub_id']}.json") ,measure_json
         end
       end
 
@@ -161,11 +170,11 @@ module Measures
 
             sources = {}
             path = File.join(sources_path, measure.type, (config['use_nqf'] ? measure.measure_id : measure.hqmf_id))
-            write_to_file File.join(path, "#{measure.measure_id}.html"),html
-            write_to_file File.join(path, "hqmf1.xml"), hqmf1
-            write_to_file File.join(path, "hqmf2.xml"), hqmf2 if hqmf2
-            write_to_file File.join(path, "hqmf_model.json"), hqmf_model
-            write_to_file File.join(path, "measure.metadata"), metadata
+            export_file File.join(path, "#{measure.measure_id}.html"),html
+            export_file File.join(path, "hqmf1.xml"), hqmf1
+            export_file File.join(path, "hqmf2.xml"), hqmf2 if hqmf2
+            export_file File.join(path, "hqmf_model.json"), hqmf_model
+            export_file File.join(path, "measure.metadata"), metadata
           end
         end
       end
@@ -191,20 +200,23 @@ module Measures
         FileUtils.rm_rf(base_dir)
       end
 
-      def write_to_file(file_name, data)
-        if (@zip.nil?)
-          FileUtils.mkdir_p base_dir
-          w_file_name = File.join(base_dir,file_name)
-          FileUtils.mkdir_p File.dirname(w_file_name)
-          FileUtils.remove_file(w_file_name,true)
-          File.open(w_file_name,"w") do |f|
-            f.puts data
-          end
-        else
+      def export_file(file_name, data)
+        if @zip
           @zip.put_next_entry file_name
           @zip.puts data
+        else
+          write_to_file(file_name, data)
         end
+      end
 
+      def write_to_file(file_name, data)
+        FileUtils.mkdir_p base_dir
+        w_file_name = File.join(base_dir,file_name)
+        FileUtils.mkdir_p File.dirname(w_file_name)
+        FileUtils.remove_file(w_file_name,true)
+        File.open(w_file_name,"w") do |f|
+          f.puts data
+        end
       end
 
       def compress_artifacts
