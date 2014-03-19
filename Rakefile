@@ -5,6 +5,7 @@ require 'pry'
 require 'health-data-standards'
 require 'rails'
 require 'health-data-standards/railtie'
+require 'zip/zip'
 
 require_relative 'lib/bonnie_bundler'
 

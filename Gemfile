@@ -19,6 +19,7 @@ gem 'coffee-script'
 gem 'sprockets'
 gem "therubyracer", :require => 'v8'
 gem 'mongoid'
+gem 'rubyzip', '< 1.0.0'
 
 # needed for parsing value sets (we need to use roo rather than rubyxl because the value sets are in xls rather than xlsx)
 gem 'roo'

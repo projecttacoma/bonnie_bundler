@@ -60,9 +60,25 @@ class BundleExportTest < ActiveSupport::TestCase
 
     assert File.exists?(File.join(@exporter.base_dir,@exporter.results_path,"by_patient.json"))
     assert File.exists?(File.join(@exporter.base_dir,@exporter.results_path,"by_measure.json"))
+  end
 
-
-  end 
+  test "export_zip" do
+    assert !File.exists?(@exporter.base_dir)
+    record = Record.new({first: "a", last: "b", birthdate: 0,type: Measure.first.type})
+    record.save
+    zip_data = StringIO.new(@exporter.export_zip)
+    def zip_data.path ; end # Work around ZipInputStream need for path (?) for IO buffer
+    file_names = []
+    Zip::ZipInputStream.open_buffer(zip_data) do |io|
+      while entry = io.get_next_entry
+        file_names << entry.name
+      end
+    end
+    assert file_names.include? File.join(@exporter.records_path, record.type, "json", "a_b.json")
+    assert file_names.include? File.join(@exporter.records_path, record.type, "html", "a_b.html")
+    assert file_names.include? File.join(@exporter.results_path, "by_patient.json")
+    assert file_names.include? File.join(@exporter.results_path, "by_measure.json")
+  end
 
   test "export_patients" do
     assert_equal 0,Record.count
