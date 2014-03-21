@@ -25,10 +25,11 @@ module Measures
         attr_accessor k.to_sym
       end
 
-      def initialize(measures=Measure.all, config={})
+      def initialize(user, config={})
+        @user = user
         @config = DEFAULTS.merge(config)
-        @measures = measures
-        @records =  Record.where(type: {"$in" => measures.pluck(:type).uniq})
+        @measures = user.measures
+        @records = user.records
         DEFAULTS.keys.each do |name|
           instance_variable_set("@#{name}", @config[name])
         end
@@ -143,8 +144,8 @@ module Measures
             end
           end
         end
-        HealthDataStandards::SVS::ValueSet.where({oid: {'$in'=>value_sets}}).to_a.each do |vs|
-           export_file File.join(valuesets_path,"json", "#{vs.oid}.json"), JSON.pretty_generate(vs.as_json(:except => [ '_id' ]), max_nesting: 250)
+        HealthDataStandards::SVS::ValueSet.where(oid: {'$in'=>value_sets}, user_id: @user.id).to_a.each do |vs|
+          export_file File.join(valuesets_path,"json", "#{vs.oid}.json"), JSON.pretty_generate(vs.as_json(:except => [ '_id' ]), max_nesting: 250)
         end
       end
 
