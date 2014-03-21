@@ -6,7 +6,17 @@ class BundleExportTest < ActiveSupport::TestCase
     dump_db
     @mat_export = File.new File.join('test','fixtures','07_ExclusiveBreastMilkFeeding_Artifacts.zip')
     Measures::MATLoader.load(@mat_export, nil, {})
-    @exporter =  Measures::Exporter::BundleExporter.new(Measure.all, {"base_dir"=>"./tmp", "name"=>"test_bundle"})
+    # Measures and value sets are scoped by user, set up fake matching user object and update test DB
+    class User
+      attr_reader :id
+      def initialize(id) ; @id = id ; end
+      def measures ; Measure.where(user_id: @id) ; end
+      def records ; Record.where(user_id: @id) ; end
+    end
+    @user = User.new('123456789')
+    Measure.each { |m| m.update_attributes user_id: @user.id }
+    HealthDataStandards::SVS::ValueSet.each { |vs| vs.update_attributes user_id: @user.id }
+    @exporter =  Measures::Exporter::BundleExporter.new(@user, {"base_dir"=>"./tmp", "name"=>"test_bundle"})
     FileUtils.rm_rf(@exporter.base_dir)
   end
 
@@ -30,7 +40,7 @@ class BundleExportTest < ActiveSupport::TestCase
     assert_equal 0,HealthDataStandards::CQM::QueryCache.count
     assert_equal 0,HealthDataStandards::CQM::PatientCache.count
     assert_equal 0,Record.count
-    Record.new({first: "a", last: "b", birthdate: 0}).save
+    Record.new({first: "a", last: "b", birthdate: 0, user_id: @user.id}).save
     @exporter.rebuild_measures
     @exporter.calculate
     assert_equal 2,HealthDataStandards::CQM::QueryCache.count
@@ -40,7 +50,7 @@ class BundleExportTest < ActiveSupport::TestCase
 
   test  "export" do
     assert !File.exists?(@exporter.base_dir)
-    record = Record.new({first: "a", last: "b", birthdate: 0,type: Measure.first.type})
+    record = Record.new({first: "a", last: "b", birthdate: 0, type: Measure.first.type, user_id: @user.id})
     record.save
     @exporter.rebuild_measures
     @exporter.calculate
@@ -64,7 +74,7 @@ class BundleExportTest < ActiveSupport::TestCase
 
   test "export_zip" do
     assert !File.exists?(@exporter.base_dir)
-    record = Record.new({first: "a", last: "b", birthdate: 0,type: Measure.first.type})
+    record = Record.new({first: "a", last: "b", birthdate: 0, type: Measure.first.type, user_id: @user.id})
     record.save
     zip_data = StringIO.new(@exporter.export_zip)
     def zip_data.path ; end # Work around ZipInputStream need for path (?) for IO buffer
@@ -82,7 +92,7 @@ class BundleExportTest < ActiveSupport::TestCase
 
   test "export_patients" do
     assert_equal 0,Record.count
-    record = Record.new({first: "a", last: "b", birthdate: 0,type: Measure.first.type})
+    record = Record.new({first: "a", last: "b", birthdate: 0, type: Measure.first.type, user_id: @user.id})
     record.save
     assert_equal 1,Record.count
     assert !File.exists?(@exporter.base_dir)
@@ -95,7 +105,7 @@ class BundleExportTest < ActiveSupport::TestCase
 
   test "export_results" do
     assert !File.exists?(@exporter.base_dir)
-    Record.new({first: "a", last: "b", birthdate: 0, type: Measure.first.type}).save
+    Record.new({first: "a", last: "b", birthdate: 0, type: Measure.first.type, user_id: @user.id}).save
     @exporter.rebuild_measures
     @exporter.calculate
     @exporter.export_results

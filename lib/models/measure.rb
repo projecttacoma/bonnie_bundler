@@ -73,6 +73,11 @@ class Measure
   scope :by_user, ->(user) { where({'user_id'=>user.id}) }
   scope :by_type, ->(type) { where({'type'=>type}) }
 
+  # Find the measures matching a patient
+  def self.for_patient(record)
+    where user_id: record.user_id, hqmf_set_id: { '$in' => record.measure_ids }
+  end
+
   TYPE_MAP = {
     'problem' => 'conditions',
     'encounter' => 'encounters',
