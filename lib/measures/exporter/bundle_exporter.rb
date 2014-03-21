@@ -113,7 +113,8 @@ module Measures
           json = JSON.pretty_generate(JSON.parse(patient_hash.remove_nils.to_json))
           html = exporter.export(patient)
           BonnieBundler.logger.info("Exporting patient #{filename}")
-          path = File.join(records_path, patient.type)
+          patient_type = patient.type || Measure.for_patient(patient).first.try(:type)
+          path = File.join(records_path, patient_type.to_s)
           export_file File.join(path, "json", "#{filename}.json"), json
           export_file File.join(path, "html", "#{filename}.html"), html
 
