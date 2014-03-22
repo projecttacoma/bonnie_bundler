@@ -49,7 +49,7 @@ module Measures
            BonnieBundler.logger.debug("Rebuilding measure #{mes["cms_id"]} -  #{mes["title"]}")
             mes.populations.each_with_index do |population, index|
               measure_json = mes.measure_json(index, check_crosswalk)
-              MONGO_DB["measures"].insert(measure_json)
+              Mongoid.default_session["measures"].insert(measure_json)
             end
            # dummy_bundle.measure_ids << mes.hqmf_id
         end
@@ -123,9 +123,9 @@ module Measures
 
       def export_results
         BonnieBundler.logger.info("Exporting results")
-        results_by_patient = MONGO_DB['patient_cache'].find({}).to_a
+        results_by_patient = Mongoid.default_session['patient_cache'].find({}).to_a
         results_by_patient = JSON.pretty_generate(JSON.parse(results_by_patient.as_json(:except => [ '_id' ]).to_json))
-        results_by_measure = MONGO_DB['query_cache'].find({}).to_a
+        results_by_measure = Mongoid.default_session['query_cache'].find({}).to_a
         results_by_measure = JSON.pretty_generate(JSON.parse(results_by_measure.as_json(:except => [ '_id' ]).to_json))
         
         export_file File.join(results_path,"by_patient.json"), results_by_patient
@@ -189,7 +189,7 @@ module Measures
       end   
       
       def self.refresh_js_libraries(check_crosswalk=false)
-        MONGO_DB['system.js'].find({}).remove_all
+        Mongoid.default_session['system.js'].find({}).remove_all
         libs = library_functions(check_crosswalk)
         libs.each do |name, contents|
           HealthDataStandards::Import::Bundle::Importer.save_system_js_fn(name, contents)
