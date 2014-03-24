@@ -13,6 +13,7 @@ module Measures
                   "results_path" => "results",
                   "valuesets_path" => "value_sets",
                   "base_dir" => "./bundle",
+                  "hqmf_path" => "db/measures",
                   "enable_logging" => false,
                   "enable_rationale" =>false,
                   "effective_date" => Measure::DEFAULT_EFFECTIVE_DATE,
@@ -49,7 +50,7 @@ module Measures
            BonnieBundler.logger.debug("Rebuilding measure #{mes["cms_id"]} -  #{mes["title"]}")
             mes.populations.each_with_index do |population, index|
               measure_json = mes.measure_json(index, check_crosswalk)
-              MONGO_DB["measures"].insert(measure_json)
+              Mongoid.default_session["measures"].insert(measure_json)
             end
            # dummy_bundle.measure_ids << mes.hqmf_id
         end
@@ -123,9 +124,9 @@ module Measures
 
       def export_results
         BonnieBundler.logger.info("Exporting results")
-        results_by_patient = MONGO_DB['patient_cache'].find({}).to_a
+        results_by_patient = Mongoid.default_session['patient_cache'].find({}).to_a
         results_by_patient = JSON.pretty_generate(JSON.parse(results_by_patient.as_json(:except => [ '_id' ]).to_json))
-        results_by_measure = MONGO_DB['query_cache'].find({}).to_a
+        results_by_measure = Mongoid.default_session['query_cache'].find({}).to_a
         results_by_measure = JSON.pretty_generate(JSON.parse(results_by_measure.as_json(:except => [ '_id' ]).to_json))
         
         export_file File.join(results_path,"by_patient.json"), results_by_patient
@@ -163,21 +164,19 @@ module Measures
         source_path = config["hqmf_path"]
         BonnieBundler.logger.info("Exporting sources")
         measures.each do |measure|
-          if source_path
-            html = File.read(File.expand_path(File.join(source_path, "html", "#{measure.hqmf_id}.html"))) rescue BonnieBundler.logger.warn("\tNo source HTML for #{measure.measure_id}")
-            hqmf1 = File.read(File.expand_path(File.join(source_path, "hqmf", "#{measure.hqmf_id}.xml"))) rescue BonnieBundler.logger.warn("\tNo source HQMFv1 for #{measure.measure_id}")
-            hqmf2 = HQMF2::Generator::ModelProcessor.to_hqmf(measure.as_hqmf_model) rescue BonnieBundler.logger.warn("\tError generating HQMFv2 for #{measure.measure_id}")
-            hqmf_model = JSON.pretty_generate(measure.as_hqmf_model.to_json, max_nesting: 250)
-            metadata = JSON.pretty_generate(measure_metadata(measure))
+          html = File.read(File.expand_path(File.join(source_path, "html", "#{measure.hqmf_id}.html"))) rescue BonnieBundler.logger.warn("\tNo source HTML for #{measure.measure_id}")
+          hqmf1 = File.read(File.expand_path(File.join(source_path, "hqmf", "#{measure.hqmf_id}.xml"))) rescue BonnieBundler.logger.warn("\tNo source HQMFv1 for #{measure.measure_id}")
+          hqmf2 = HQMF2::Generator::ModelProcessor.to_hqmf(measure.as_hqmf_model) rescue BonnieBundler.logger.warn("\tError generating HQMFv2 for #{measure.measure_id}")
+          hqmf_model = JSON.pretty_generate(measure.as_hqmf_model.to_json, max_nesting: 250)
+          metadata = JSON.pretty_generate(measure_metadata(measure))
 
-            sources = {}
-            path = File.join(sources_path, measure.type, (config['use_nqf'] ? measure.measure_id : measure.hqmf_id))
-            export_file File.join(path, "#{measure.measure_id}.html"),html
-            export_file File.join(path, "hqmf1.xml"), hqmf1
-            export_file File.join(path, "hqmf2.xml"), hqmf2 if hqmf2
-            export_file File.join(path, "hqmf_model.json"), hqmf_model
-            export_file File.join(path, "measure.metadata"), metadata
-          end
+          sources = {}
+          path = File.join(sources_path, measure.type, (config['use_nqf'] ? measure.measure_id : measure.hqmf_id))
+          export_file File.join(path, "#{measure.measure_id}.html"),html
+          export_file File.join(path, "hqmf1.xml"), hqmf1
+          export_file File.join(path, "hqmf2.xml"), hqmf2 if hqmf2
+          export_file File.join(path, "hqmf_model.json"), hqmf_model
+          export_file File.join(path, "measure.metadata"), metadata
         end
       end
 
@@ -189,7 +188,7 @@ module Measures
       end   
       
       def self.refresh_js_libraries(check_crosswalk=false)
-        MONGO_DB['system.js'].find({}).remove_all
+        Mongoid.default_session['system.js'].find({}).remove_all
         libs = library_functions(check_crosswalk)
         libs.each do |name, contents|
           HealthDataStandards::Import::Bundle::Importer.save_system_js_fn(name, contents)
