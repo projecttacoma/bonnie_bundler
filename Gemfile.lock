@@ -1,23 +1,16 @@
 GIT
   remote: https://github.com/pophealth/hqmf2js.git
-  revision: 7b6c7680e01d06b723e3c21d553f98524dc61afa
-  branch: develop
+  revision: 3fbd5ddd5bc48afb18dd96cde3e0bcac93a2aa00
+  branch: master
   specs:
     hqmf2js (1.2.1)
 
 GIT
-  remote: https://github.com/pophealth/patientapi.git
-  revision: 6e5e231a6078409a4f5a7d0bafdacb0a63c2d54a
-  branch: develop
-  specs:
-    hquery-patient-api (1.0.2)
-
-GIT
   remote: https://github.com/pophealth/quality-measure-engine.git
-  revision: df69b2944d8d5daa991c9a963b76c08de199b3ee
+  revision: 495195edc3b6996f1b4dc7463f81e5c1527c13f3
   branch: mongoid_refactor
   specs:
-    quality-measure-engine (3.0.0)
+    quality-measure-engine (3.0.0.beta.2)
       delayed_job_mongoid (~> 2.0.0)
       mongoid (~> 3.1.4)
       moped (~> 1.5.1)
@@ -27,17 +20,18 @@ GIT
 
 GIT
   remote: https://github.com/projectcypress/health-data-standards.git
-  revision: 18babd3901d45e6175a1087e1f20125263c804cd
+  revision: 7a5673f90ab59b1350e22a71aefc1de5b569d98b
   branch: master
   specs:
-    health-data-standards (3.3.1)
+    health-data-standards (3.4.3)
       activesupport (~> 3.2.14)
       builder (~> 3.0.0)
       erubis (~> 2.7.0)
       log4r (~> 1.1.10)
       memoist (~> 0.9.1)
       mongoid (~> 3.1.4)
-      nokogiri (~> 1.6.0)
+      mongoid-tree (~> 1.0.4)
+      nokogiri (= 1.6.0)
       rest-client (~> 1.6.7)
       rubyzip (= 0.9.9)
       uuid (~> 2.3.7)
@@ -95,28 +89,31 @@ GEM
     erubis (2.7.0)
     execjs (2.0.2)
     hike (1.2.3)
+    hquery-patient-api (1.0.4)
     i18n (0.6.9)
     journey (1.0.4)
     json (1.8.1)
     libv8 (3.16.14.3)
     log4r (1.1.10)
-    macaddr (1.6.1)
-      systemu (~> 2.5.0)
+    macaddr (1.6.7)
+      systemu (~> 2.6.2)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     memoist (0.9.1)
     method_source (0.8.2)
     mime-types (1.25.1)
-    mini_portile (0.5.2)
+    mini_portile (0.5.3)
     minitest (4.7.5)
     mongoid (3.1.6)
       activemodel (~> 3.2)
       moped (~> 1.4)
       origin (~> 1.0)
       tzinfo (~> 0.3.29)
-    moped (1.5.1)
-    multi_json (1.8.2)
+    mongoid-tree (1.0.4)
+      mongoid (>= 3.0, <= 4.0)
+    moped (1.5.2)
+    multi_json (1.9.2)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     origin (1.1.0)
@@ -173,7 +170,7 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    systemu (2.5.2)
+    systemu (2.6.4)
     therubyracer (0.12.0)
       libv8 (~> 3.16.14.0)
       ref
@@ -184,7 +181,7 @@ GEM
       polyglot (>= 0.3.1)
     turn (0.9.6)
       ansi
-    tzinfo (0.3.38)
+    tzinfo (0.3.39)
     uuid (2.3.7)
       macaddr (~> 1.0)
 
@@ -197,7 +194,7 @@ DEPENDENCIES
   coffee-script
   health-data-standards!
   hqmf2js!
-  hquery-patient-api!
+  hquery-patient-api (= 1.0.4)
   minitest (~> 4.0)
   mongoid
   pry
