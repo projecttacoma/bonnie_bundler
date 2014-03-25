@@ -1,11 +1,4 @@
 GIT
-  remote: https://github.com/pophealth/hqmf2js.git
-  revision: 3fbd5ddd5bc48afb18dd96cde3e0bcac93a2aa00
-  branch: master
-  specs:
-    hqmf2js (1.2.1)
-
-GIT
   remote: https://github.com/pophealth/quality-measure-engine.git
   revision: 495195edc3b6996f1b4dc7463f81e5c1527c13f3
   branch: mongoid_refactor
@@ -89,6 +82,7 @@ GEM
     erubis (2.7.0)
     execjs (2.0.2)
     hike (1.2.3)
+    hqmf2js (1.3.0)
     hquery-patient-api (1.0.4)
     i18n (0.6.9)
     journey (1.0.4)
@@ -193,7 +187,7 @@ DEPENDENCIES
   bonnie_bundler!
   coffee-script
   health-data-standards!
-  hqmf2js!
+  hqmf2js (= 1.3.0)
   hquery-patient-api (= 1.0.4)
   minitest (~> 4.0)
   mongoid
