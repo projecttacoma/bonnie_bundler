@@ -1,13 +1,15 @@
 source "http://rubygems.org"
 gemspec
 
-gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git', :branch => 'master'
-gem 'quality-measure-engine', :git => 'https://github.com/pophealth/quality-measure-engine.git', :branch => 'mongoid_refactor'
-
+gem 'health-data-standards', '3.4.4'
+gem 'quality-measure-engine', '3.0.0'
 gem 'hqmf2js', '1.3.0'
-#gem 'hqmf2js', :git => 'https://github.com/pophealth/hqmf2js.git', :branch => 'master'
-
 gem 'hquery-patient-api', '1.0.4'
+
+#gem 'health-data-standards', :path => '../health-data-standards'
+#gem 'quality-measure-engine', :path => '../quality-measure-engine'
+#gem 'hqmf2js', :path => '../health-data-standards'
+#gem 'hquery-patient-api', :path => '../patientapi'
 
 gem 'rails', '3.2.14'
 gem 'rake'
