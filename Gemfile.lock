@@ -1,34 +1,3 @@
-GIT
-  remote: https://github.com/pophealth/quality-measure-engine.git
-  revision: 495195edc3b6996f1b4dc7463f81e5c1527c13f3
-  branch: mongoid_refactor
-  specs:
-    quality-measure-engine (3.0.0.beta.2)
-      delayed_job_mongoid (~> 2.0.0)
-      mongoid (~> 3.1.4)
-      moped (~> 1.5.1)
-      nokogiri (~> 1.6.0)
-      rubyXL (~> 1.2.10)
-      rubyzip (~> 0.9.9)
-
-GIT
-  remote: https://github.com/projectcypress/health-data-standards.git
-  revision: 7a5673f90ab59b1350e22a71aefc1de5b569d98b
-  branch: master
-  specs:
-    health-data-standards (3.4.3)
-      activesupport (~> 3.2.14)
-      builder (~> 3.0.0)
-      erubis (~> 2.7.0)
-      log4r (~> 1.1.10)
-      memoist (~> 0.9.1)
-      mongoid (~> 3.1.4)
-      mongoid-tree (~> 1.0.4)
-      nokogiri (= 1.6.0)
-      rest-client (~> 1.6.7)
-      rubyzip (= 0.9.9)
-      uuid (~> 2.3.7)
-
 PATH
   remote: .
   specs:
@@ -81,6 +50,18 @@ GEM
     docile (1.1.1)
     erubis (2.7.0)
     execjs (2.0.2)
+    health-data-standards (3.4.4)
+      activesupport (~> 3.2.14)
+      builder (~> 3.0.0)
+      erubis (~> 2.7.0)
+      log4r (~> 1.1.10)
+      memoist (~> 0.9.1)
+      mongoid (~> 3.1.4)
+      mongoid-tree (~> 1.0.4)
+      nokogiri (= 1.6.0)
+      rest-client (~> 1.6.7)
+      rubyzip (= 0.9.9)
+      uuid (~> 2.3.7)
     hike (1.2.3)
     hqmf2js (1.3.0)
     hquery-patient-api (1.0.4)
@@ -116,6 +97,11 @@ GEM
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
+    quality-measure-engine (3.0.0)
+      delayed_job_mongoid (~> 2.0.0)
+      mongoid (~> 3.1.4)
+      moped (~> 1.5.1)
+      rubyzip (~> 0.9.9)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -149,7 +135,6 @@ GEM
       rubyzip
       spreadsheet (> 0.6.4)
     ruby-ole (1.2.11.7)
-    rubyXL (1.2.10)
     rubyzip (0.9.9)
     simplecov (0.8.2)
       docile (~> 1.1.0)
@@ -186,13 +171,13 @@ DEPENDENCIES
   awesome_print
   bonnie_bundler!
   coffee-script
-  health-data-standards!
+  health-data-standards (= 3.4.4)
   hqmf2js (= 1.3.0)
   hquery-patient-api (= 1.0.4)
   minitest (~> 4.0)
   mongoid
   pry
-  quality-measure-engine!
+  quality-measure-engine (= 3.0.0)
   rails (= 3.2.14)
   rake
   roo
