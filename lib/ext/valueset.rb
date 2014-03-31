@@ -5,6 +5,7 @@ module HealthDataStandards
       belongs_to :user
       belongs_to :bundle, class_name: "HealthDataStandards::CQM::Bundle"
       scope :by_user, ->(user) { where({'user_id'=>(user ? user.id : nil)}) }
+      index "user_id" => 1
     end
   end
 end
