@@ -10,6 +10,14 @@ module Measures
       measure
     end
 
+    def self.mat_export?(zip_file)
+      Zip::ZipFile.open(zip_file.path) do |zip_file|
+        hqmf_entry = zip_file.glob(File.join('**','**.xml')).select {|x| x.name.match(/.*eMeasure.xml/) && !x.name.starts_with?('__MACOSX') }.first
+        xls_entry = zip_file.glob(File.join('**','**.xls')).select {|x| !x.name.starts_with?('__MACOSX') }.first
+        !hqmf_entry.nil? && !xls_entry.nil?
+      end
+    end
+
     def self.load_mat_exports(user, file, dir, measure_details)
       measure = nil
       Zip::ZipFile.open(file.path) do |zip_file|
