@@ -43,6 +43,9 @@ class Measure
 
   field :map_fns, type: Array, default: []
 
+  #make sure that the use has a bundle associated with them
+  before_save :set_continuous_variable
+
   # Cache the generated JS code, with optional options to manipulate cached result                                                            
   def map_fn(population_index, options = {})
     options.assert_valid_keys :clear_db_cache, :cache_result_in_db, :check_crosswalk
@@ -129,6 +132,11 @@ class Measure
     }
 
     HQMF2JS::Generator::Execution.logic(as_hqmf_model, population_index, options)
+  end
+
+  def set_continuous_variable
+    self.continuous_variable = populations.map {|x| x.keys}.flatten.uniq.include? HQMF::PopulationCriteria::MSRPOPL
+    true
   end
 
   def measure_json(population_index=0,check_crosswalk=false)
