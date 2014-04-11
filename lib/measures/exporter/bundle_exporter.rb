@@ -19,7 +19,7 @@ module Measures
                   "effective_date" => Measure::DEFAULT_EFFECTIVE_DATE,
                   "name" =>"bundle-#{Time.now.to_i}",
                   "check_crosswalk" => false,
-                  "use_nqf" => true,
+                  "use_cms" => false,
                   "export_filter" => ["measures", "sources","records", "valuesets", "results"]}
       
       DEFAULTS.keys.each do |k|
@@ -28,6 +28,8 @@ module Measures
 
       def initialize(user, config={})
         @user = user
+        # convert symbol keys to strings
+        config = config.inject({}) { |memo,(key,value)| memo[key.to_s] = value; memo}
         @config = DEFAULTS.merge(config)
         @measures = user.measures
         @records = user.records
@@ -153,10 +155,17 @@ module Measures
 
       def export_measures
         BonnieBundler.logger.info("Exporting measures")
-        QME::QualityMeasure.where({:hqmf_id => {"$in" => measures.pluck(:hqmf_id).uniq}}).each do |measure|
-          BonnieBundler.logger.info("Exporting measure #{measure.cms_id} - #{measure.sub_id}")
-          measure_json = JSON.pretty_generate(measure.attributes.as_json(:except => [ '_id' ]), max_nesting: 250)
-          export_file File.join(measures_path, measure.type ,"#{measure['nqf_id']}#{measure['sub_id']}.json") ,measure_json
+        measures.each do |measure|
+
+          sub_ids = ('a'..'az').to_a
+          measure.populations.each_with_index do |population, population_index|
+            sub_id = sub_ids[population_index] if measure.populations.length > 1
+            BonnieBundler.logger.info("Exporting measure #{measure.cms_id} - #{sub_id}")
+            measure_json = JSON.pretty_generate(measure.measure_json(population_index), max_nesting: 250)
+            filename = "#{(config['use_cms'] ? measure.cms_id : measure.hqmf_id)}#{sub_id}.json"
+            export_file File.join(measures_path, measure.type, filename), measure_json
+          end
+
         end
       end
 
@@ -164,16 +173,16 @@ module Measures
         source_path = config["hqmf_path"]
         BonnieBundler.logger.info("Exporting sources")
         measures.each do |measure|
-          html = File.read(File.expand_path(File.join(source_path, "html", "#{measure.hqmf_id}.html"))) rescue BonnieBundler.logger.warn("\tNo source HTML for #{measure.measure_id}")
-          hqmf1 = File.read(File.expand_path(File.join(source_path, "hqmf", "#{measure.hqmf_id}.xml"))) rescue BonnieBundler.logger.warn("\tNo source HQMFv1 for #{measure.measure_id}")
+          html = File.read(File.expand_path(File.join(source_path, "html", "#{measure.hqmf_id}.html"))) rescue begin BonnieBundler.logger.warn("\tNo source HTML for #{measure.measure_id}"); nil end
+          hqmf1 = File.read(File.expand_path(File.join(source_path, "hqmf", "#{measure.hqmf_id}.xml"))) rescue begin BonnieBundler.logger.warn("\tNo source HQMFv1 for #{measure.measure_id}"); nil end
           hqmf2 = HQMF2::Generator::ModelProcessor.to_hqmf(measure.as_hqmf_model) rescue BonnieBundler.logger.warn("\tError generating HQMFv2 for #{measure.measure_id}")
           hqmf_model = JSON.pretty_generate(measure.as_hqmf_model.to_json, max_nesting: 250)
           metadata = JSON.pretty_generate(measure_metadata(measure))
 
           sources = {}
-          path = File.join(sources_path, measure.type, (config['use_nqf'] ? measure.measure_id : measure.hqmf_id))
-          export_file File.join(path, "#{measure.measure_id}.html"),html
-          export_file File.join(path, "hqmf1.xml"), hqmf1
+          path = File.join(sources_path, measure.type, ((config['use_cms'] ? measure.cms_id : measure.hqmf_id)))
+          export_file File.join(path, "#{measure.measure_id}.html"),html if html
+          export_file File.join(path, "hqmf1.xml"), hqmf1 if hqmf1
           export_file File.join(path, "hqmf2.xml"), hqmf2 if hqmf2
           export_file File.join(path, "hqmf_model.json"), hqmf_model
           export_file File.join(path, "measure.metadata"), metadata

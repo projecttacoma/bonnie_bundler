@@ -65,7 +65,7 @@ class BundleExportTest < ActiveSupport::TestCase
     end
     
     HealthDataStandards::CQM::Measure.each do |m|
-      assert File.exists?(File.join(@exporter.base_dir,@exporter.measures_path,m.type,"#{m.nqf_id}#{m.sub_id}.json"))
+      assert File.exists?(File.join(@exporter.base_dir,@exporter.measures_path,m.type,"#{m.hqmf_id}#{m.sub_id}.json"))
     end
 
     assert File.exists?(File.join(@exporter.base_dir,@exporter.results_path,"by_patient.json"))
@@ -127,7 +127,7 @@ class BundleExportTest < ActiveSupport::TestCase
     assert !File.exists?(@exporter.base_dir)
     @exporter.export_measures
     HealthDataStandards::CQM::Measure.each do |m|
-      assert File.exists?(File.join(@exporter.base_dir,@exporter.measures_path,m.type,"#{m.nqf_id}#{m.sub_id}.json"))
+      assert File.exists?(File.join(@exporter.base_dir,@exporter.measures_path,m.type,"#{m.hqmf_id}#{m.sub_id}.json"))
     end
   end
 
