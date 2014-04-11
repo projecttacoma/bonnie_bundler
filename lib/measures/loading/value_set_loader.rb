@@ -136,13 +136,18 @@ module Measures
 
     end
 
-    def self.load_value_sets_from_vsac(value_set_oids, username, password, user=nil)
+    def self.load_value_sets_from_vsac(value_set_oids, username, password, user=nil, overwrite=false)
       value_set_models = []
       from_vsac = 0
       
       existing_value_set_map = {}
-      HealthDataStandards::SVS::ValueSet.by_user(user).each do |set|
-        existing_value_set_map[set.oid] = set
+
+      if overwrite
+        HealthDataStandards::SVS::ValueSet.by_user(user).where(oid: {'$in'=>value_set_oids}).delete_all() 
+      else
+        HealthDataStandards::SVS::ValueSet.by_user(user).each do |set|
+          existing_value_set_map[set.oid] = set
+        end
       end
       
       nlm_config = APP_CONFIG["nlm"]
@@ -151,7 +156,7 @@ module Measures
       api = HealthDataStandards::Util::VSApi.new(nlm_config["ticket_url"],nlm_config["api_url"],username, password)
       
       codeset_base_dir = Measures::Loader::VALUE_SET_PATH
-      FileUtils.mkdir_p(codeset_base_dir)
+      FileUtils.mkdir_p(codeset_base_dir) unless overwrite
 
       RestClient.proxy = ENV["http_proxy"]
       value_set_oids.each_with_index do |oid,index| 
@@ -162,14 +167,14 @@ module Measures
           
           vs_data = nil
           
-          cached_service_result = File.join(codeset_base_dir,"#{oid}.xml")
-          if (File.exists? cached_service_result)
+          cached_service_result = File.join(codeset_base_dir,"#{oid}.xml") unless overwrite
+          if (cached_service_result && File.exists?(cached_service_result))
             vs_data = File.read cached_service_result
           else
             vs_data = api.get_valueset(oid) 
             vs_data.force_encoding("utf-8") # there are some funky unicodes coming out of the vs response that are not in ASCII as the string reports to be
             from_vsac += 1
-            File.open(cached_service_result, 'w') {|f| f.write(vs_data) }
+            File.open(cached_service_result, 'w') {|f| f.write(vs_data) } unless overwrite
           end
           
           doc = Nokogiri::XML(vs_data)
