@@ -275,6 +275,7 @@ module Measures
           bundle_format: '3.0.0',
           smoking_gun_capable: true,
           version: config['version'],
+          hqmfjs_libraries_version: config['hqmfjs_libraries_version'] || '1.0.0',
           license: config['license'],
           measures: measures.pluck(:hqmf_id).uniq,
           patients: records.pluck(:medical_record_number).uniq,
