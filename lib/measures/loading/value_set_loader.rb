@@ -187,6 +187,10 @@ module Measures
             vs_element["id"] = oid
             set = HealthDataStandards::SVS::ValueSet.load_from_xml(doc)
             set.user = user
+            #bundle id for user should always be the same 1 user to 1 bundle
+            #using this to allow cat I generation without extensive modification to HDS
+            set.bundle = user.bundle if (user && user.respond_to?(:bundle))
+
             set.save!
           else
             raise "Value set not found: #{oid}"
