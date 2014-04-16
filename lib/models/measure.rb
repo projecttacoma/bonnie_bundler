@@ -17,7 +17,7 @@ class Measure
   field :title, type: String
   field :description, type: String
   field :type, type: String
-  field :category, type: String
+  field :category, type: String, default: 'uncategorized'
 
   field :episode_of_care, type: Boolean
   field :continuous_variable, type: Boolean
