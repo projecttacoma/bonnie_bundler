@@ -173,15 +173,15 @@ module Measures
         source_path = config["hqmf_path"]
         BonnieBundler.logger.info("Exporting sources")
         measures.each do |measure|
-          html = File.read(File.expand_path(File.join(source_path, "html", "#{measure.hqmf_id}.html"))) rescue begin BonnieBundler.logger.warn("\tNo source HTML for #{measure.measure_id}"); nil end
-          hqmf1 = File.read(File.expand_path(File.join(source_path, "hqmf", "#{measure.hqmf_id}.xml"))) rescue begin BonnieBundler.logger.warn("\tNo source HQMFv1 for #{measure.measure_id}"); nil end
-          hqmf2 = HQMF2::Generator::ModelProcessor.to_hqmf(measure.as_hqmf_model) rescue BonnieBundler.logger.warn("\tError generating HQMFv2 for #{measure.measure_id}")
+          html = File.read(File.expand_path(File.join(source_path, "html", "#{measure.hqmf_id}.html"))) rescue begin BonnieBundler.logger.warn("\tNo source HTML for #{measure.cms_id || measure.measure_id}"); nil end
+          hqmf1 = File.read(File.expand_path(File.join(source_path, "hqmf", "#{measure.hqmf_id}.xml"))) rescue begin BonnieBundler.logger.warn("\tNo source HQMFv1 for #{measure.cms_id || measure.measure_id}"); nil end
+          hqmf2 = HQMF2::Generator::ModelProcessor.to_hqmf(measure.as_hqmf_model) rescue BonnieBundler.logger.warn("\tError generating HQMFv2 for #{measure.cms_id || measure.measure_id}")
           hqmf_model = JSON.pretty_generate(measure.as_hqmf_model.to_json, max_nesting: 250)
           metadata = JSON.pretty_generate(measure_metadata(measure))
 
           sources = {}
           path = File.join(sources_path, measure.type, ((config['use_cms'] ? measure.cms_id : measure.hqmf_id)))
-          export_file File.join(path, "#{measure.measure_id}.html"),html if html
+          export_file File.join(path, "#{measure.cms_id || measure.measure_id}.html"),html if html
           export_file File.join(path, "hqmf1.xml"), hqmf1 if hqmf1
           export_file File.join(path, "hqmf2.xml"), hqmf2 if hqmf2
           export_file File.join(path, "hqmf_model.json"), hqmf_model

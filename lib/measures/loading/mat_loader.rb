@@ -62,7 +62,7 @@ module Measures
           end
         end
 
-        puts "measure #{measure.measure_id} successfully loaded."
+        puts "measure #{measure.cms_id || measure.measure_id} successfully loaded."
       end
       measure
     end
