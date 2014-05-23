@@ -5,35 +5,15 @@ module Measures
     SOURCE_PATH = File.join(".", "db", "measures")
     VALUE_SET_PATH = File.join(".", "db", "value_sets")
     HQMF_VS_OID_CACHE = File.join(".", "db", "hqmf_vs_oid_cache")
+    PARSERS = [HQMF::Parser::V2Parser,HQMF::Parser::V1Parser,SimpleXml::Parser::V1Parser]
     
-    def self.load(user, xml_path, value_set_models, measure_details=nil)
-      xml_contents = Nokogiri::XML(File.new xml_path).to_s
-
+    
+    def self.parse_hqmf_model(xml_path)
+      xml_contents = Nokogiri::XML(File.new xml_path)
       parser = get_parser(xml_contents)
-      version = get_version(parser)
-      measure_id = parser.parse_fields(xml_contents, version)['id']
-
-      codes_by_oid = HQMF2JS::Generator::CodesToJson.from_value_sets(value_set_models)  if value_set_models
-
-      # Parsed HQMF
-      measure = Measures::Loader.load_measure(xml_contents, user, codes_by_oid, measure_details)
-
-      measure
+      parser.parse(xml_contents)
     end
 
-
-    def self.load_measure(xml_contents, user, codes_by_oid, measure_details=nil)
-      
-      parser = get_parser(xml_contents)
-      version = get_version(parser)
-      hqmf = parser.parse(xml_contents, version, codes_by_oid)
-
-      # go into and out of json to make sure that we've converted all the symbols to strings, this will happen going to mongo anyway if persisted
-      json = JSON.parse(hqmf.to_json.to_json, max_nesting: 250)
-
-      measure_oids = codes_by_oid.keys if codes_by_oid
-      Measures::Loader.load_hqmf_model_json(json, user, measure_oids, measure_details)
-    end
 
     def self.load_hqmf_model_json(json, user, measure_oids, measure_details=nil)
 
@@ -106,6 +86,10 @@ module Measures
       FileUtils.cp(hqmf_path, File.join(hqmf_out_path, "#{measure.hqmf_id}.xml"))
     end
 
+    def self.parse(xml_contents)
+      doc = xml_contents.kind_of?(Nokogiri::XML::Document) ? xml_contents : Nokogiri::XML(xml_contents)
+      doc
+    end
     
     def self.clear_sources
       FileUtils.rm_r File.join(SOURCE_PATH, "html") if File.exist?(File.join(SOURCE_PATH, "html"))
@@ -118,19 +102,13 @@ module Measures
     end
 
     def self.get_parser(xml_contents)
-      if (SimpleXml::Parser.valid? xml_contents)
-        SimpleXml::Parser
-      else
-        HQMF::Parser
+      doc = self.parse(xml_contents)
+      PARSERS.each do |p|
+        if p.valid? doc
+          return p.new
+        end
       end
-    end
-
-    def self.get_version(parser)
-      if parser.name == 'HQMF::Parser'
-        HQMF::Parser::HQMF_VERSION_1
-      else
-        SimpleXml::Parser::SIMPLEXML_VERSION_1
-      end
+      raise "unknown document type"
     end
 
   end

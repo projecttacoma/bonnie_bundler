@@ -15,27 +15,6 @@ module Measures
       end
     end
 
-    def self.get_value_set_oids_from_hqmf(hqmf_path, cache=false)
-      hash = Digest::MD5.hexdigest(hqmf_path)
-      FileUtils.mkdir_p Measures::Loader::HQMF_VS_OID_CACHE
-      cache_file = File.join(Measures::Loader::HQMF_VS_OID_CACHE, "#{hash}.json")
-      
-      oids = nil
-      if cache && File.exists?(cache_file)
-        oids = JSON.parse(File.new(cache_file).read)
-      else
-        original_stdout = $stdout
-        $stdout = StringIO.new
-        begin
-          measure = Measures::Loader.load(nil, hqmf_path, nil)
-        ensure
-          $stdout = original_stdout
-        end
-        oids = measure.as_hqmf_model.all_code_set_oids
-        File.open(cache_file, 'w') {|f| f.write(JSON.pretty_generate(oids)) } if cache
-      end
-      oids
-    end
 
     def self.get_value_set_models(value_set_oids, user=nil)
       HealthDataStandards::SVS::ValueSet.by_user(user).in(oid: value_set_oids)
@@ -192,12 +171,14 @@ module Measures
             set.bundle = user.bundle if (user && user.respond_to?(:bundle))
 
             set.save!
+            existing_value_set_map[set.oid] = set
           else
             raise "Value set not found: #{oid}"
           end
         end
       end
       puts "\tloaded #{from_vsac} value sets from vsac" if from_vsac > 0
+      existing_value_set_map.values
     end
 
 

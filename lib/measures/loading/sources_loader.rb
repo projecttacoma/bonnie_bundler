@@ -21,8 +21,7 @@ module Measures
 
       xml_contents = File.read xml_path
       parser = Loader.get_parser(xml_contents)
-      version = Loader.get_version(parser)
-      hqmf_set_id = parser.parse_fields(xml_contents, version)['set_id']
+      hqmf_set_id = parser.parse_fields(xml_contents)['set_id']
 
       measure_details = measure_details_hash[hqmf_set_id]
 
@@ -39,25 +38,21 @@ module Measures
     end
 
     def self.load_measure_xml(xml_path, user, vsac_user, vsac_password, measure_details, overwrite_valuesets=true, cache=false)
-
       begin
-        value_set_oids = Measures::ValueSetLoader.get_value_set_oids_from_hqmf(xml_path, cache)
-      rescue Exception => e
-        raise HQMFException.new "Error Loading HQMF" 
-      end
-      begin
-        Measures::ValueSetLoader.load_value_sets_from_vsac(value_set_oids, vsac_user, vsac_password, user, overwrite_valuesets)
-      rescue Exception => e
-        raise VSACException.new "Error Loading Value Sets from VSAC: #{e.message}" 
-      end
-
-      begin
-        value_set_models = Measures::ValueSetLoader.get_value_set_models(value_set_oids,user)
-        measure = Measures::Loader.load(user, xml_path, value_set_models, measure_details)
-        
+        # Load the model from the document
+        model = Measures::Loader.parse_hqmf_model(xml_path)
+        #load the valuesets for the measure from vsac
+        value_set_models =  Measures::ValueSetLoader.load_value_sets_from_vsac( model.all_code_set_oids, vsac_user, vsac_password, user, overwrite_valuesets)
+        #backfill any characteristics from codes if needed
+        model.backfill_patient_characteristics_with_codes(HQMF2JS::Generator::CodesToJson.from_value_sets(value_set_models))
+        #load the json as a measure
+        json = model.to_json
+        json.convert_keys_to_strings
+        measure = Measures::Loader.load_hqmf_model_json(json, user, model.all_code_set_oids, measure_details)
         measure.save!
         measure
       rescue Exception => e
+        binding.pry
         raise HQMFException.new "Error Loading HQMF" 
       end
 

@@ -63,17 +63,24 @@ module Measures
       json_path = extract_entry(zip_file, measure_entry, outdir, '*.json')
       metadata_path = extract_entry(zip_file, measure_entry, outdir, '*.metadata') rescue metadata_path = nil
 
-      if measure_details_hash
-        hqmf_set_id = HQMF::Parser.parse_fields(File.read(hqmf_path),HQMF::Parser::HQMF_VERSION_1)['set_id']
-        measure_details = measure_details_hash[hqmf_set_id] 
-      end
+
 
       if (load_from_hqmf)
-        value_set_models = Measures::ValueSetLoader.get_value_set_models( Measures::ValueSetLoader.get_value_set_oids_from_hqmf(hqmf_path), user)
-        measure = Measures::Loader.load(user, hqmf_path, value_set_models, measure_details)
+        # value_set_models = Measures::ValueSetLoader.get_value_set_models( Measures::ValueSetLoader.get_value_set_oids_from_hqmf(hqmf_path), user)
+        # measure = Measures::Loader.load(user, hqmf_path, value_set_models, measure_details)
+        @@all_vs ||= HealthDataStandards::SVS::ValueSet.all 
+        model = Measures::Loader.parse_hqmf_model(hqmf_path)
+        measure_details = measure_details_hash ? measure_details_hash[model.hqmf_set_id] : nil
+        value_set_models = Measures::ValueSetLoader.get_value_set_models( model.all_code_set_oids, user)
+        model.backfill_patient_characteristics_with_codes(HQMF2JS::Generator::CodesToJson.from_value_sets(@@all_vs))
+        json = model.to_json
+        json.convert_keys_to_strings
+        measure = Measures::Loader.load_hqmf_model_json(json, user, model.all_code_set_oids, measure_details)
       else
         measure_json = JSON.parse(File.read(json_path), max_nesting: 250)
+        measure_json.convert_keys_to_strings
         hqmf_model = HQMF::Document.from_json(measure_json)
+        measure_details = measure_details_hash[hqmf_model.hqmf_set_id] 
         measure_details = JSON.parse(File.read(metadata_path)) if !measure_details && metadata_path
         measure = Measures::Loader.load_hqmf_model_json(measure_json, user, hqmf_model.all_code_set_oids, measure_details)
       end

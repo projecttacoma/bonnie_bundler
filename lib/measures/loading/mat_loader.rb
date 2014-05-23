@@ -49,9 +49,12 @@ module Measures
             end
           end
           Measures::ValueSetLoader.save_value_sets(value_set_models,user)
-
-          measure = Measures::Loader.load(user, hqmf_path, value_set_models)
-
+          model = Measures::Loader.parse_hqmf_model(hqmf_path)
+          model.backfill_patient_characteristics_with_codes(HQMF2JS::Generator::CodesToJson.from_value_sets(value_set_models))
+         
+          json = model.to_json
+          json.convert_keys_to_strings
+          measure = Measures::Loader.load_hqmf_model_json(json, user,value_set_models.collect{|vs| vs.oid})
           measure.update_attributes(measure_details)
 
         rescue Exception => e
