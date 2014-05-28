@@ -75,7 +75,7 @@ module Measures
       measure.population_criteria = json["population_criteria"]
       measure.data_criteria = json["data_criteria"]
       measure.source_data_criteria = json["source_data_criteria"]
-      puts "\tCould not find episode ids #{measure.episode_ids} in measure #{measure.measure_id}" if (measure.episode_ids && measure.episode_of_care && (measure.episode_ids - measure.source_data_criteria.keys).length > 0)
+      puts "\tCould not find episode ids #{measure.episode_ids} in measure #{measure.cms_id || measure.measure_id}" if (measure.episode_ids && measure.episode_of_care && (measure.episode_ids - measure.source_data_criteria.keys).length > 0)
       measure.measure_period = json["measure_period"]
       measure
     end

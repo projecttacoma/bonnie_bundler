@@ -11,7 +11,7 @@ module Measures
       sources_dirs.each_with_index do |measure_dir, index|
 
           measure = load_measure(measure_dir, user, vsac_user, vsac_password, measure_details_hash)
-          puts "(#{index+1}/#{sources_dirs.count}): measure #{measure.measure_id} successfully loaded."
+          puts "(#{index+1}/#{sources_dirs.count}): measure #{measure.cms_id || measure.measure_id} successfully loaded."
 
       end
 

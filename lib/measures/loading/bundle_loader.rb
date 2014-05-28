@@ -44,7 +44,7 @@ module Measures
         measure_root_entries = zip_file.glob(File.join('sources',measure_type,'*','*.json')).map {|e| File.dirname(e.name)} if measure_root_entries.empty?
         measure_root_entries.each_with_index do |measure_entry, index|
           measure = load_measure(zip_file, measure_entry, user,tmp_dir, load_from_hqmf, measure_details_hash)
-          puts "(#{index+1}/#{measure_root_entries.count}): measure #{measure.measure_id} successfully loaded from #{load_from_hqmf ? 'HQMF' : 'JSON'}"
+          puts "(#{index+1}/#{measure_root_entries.count}): measure #{measure.cms_id || measure.measure_id} successfully loaded from #{load_from_hqmf ? 'HQMF' : 'JSON'}"
         end
 
         results = extract_results(zip_file, tmp_dir)
