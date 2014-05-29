@@ -1,6 +1,13 @@
 GIT
+  remote: https://github.com/pophealth/hqmf2js.git
+  revision: 8ae054402da933c899cd0ca9ea547773703163c5
+  branch: hqmf_r2.1
+  specs:
+    hqmf2js (1.3.0)
+
+GIT
   remote: https://github.com/projectcypress/health-data-standards.git
-  revision: c3114effe42189bcdce3c41dea070aab8286c132
+  revision: f9cb5734fd61c58461de6723597a8bfefacbd9c1
   branch: hqmf_r2.1
   specs:
     health-data-standards (3.4.6)
@@ -18,7 +25,7 @@ GIT
 
 GIT
   remote: https://github.com/projecttacoma/simplexml_parser.git
-  revision: 86b62a3607f5cfa1b59c35cde5d0fa12758f6010
+  revision: 9e3891c20b747c3eee81bf5d49380537e27a2e88
   branch: master
   specs:
     simplexml_parser (1.0.0)
@@ -76,7 +83,6 @@ GEM
     erubis (2.7.0)
     execjs (2.0.2)
     hike (1.2.3)
-    hqmf2js (1.3.0)
     hquery-patient-api (1.0.4)
     i18n (0.6.9)
     journey (1.0.4)
@@ -187,7 +193,7 @@ DEPENDENCIES
   bonnie_bundler!
   coffee-script
   health-data-standards!
-  hqmf2js (= 1.3.0)
+  hqmf2js!
   hquery-patient-api (= 1.0.4)
   minitest (~> 4.0)
   mongoid
