@@ -52,7 +52,6 @@ module Measures
         measure.save!
         measure
       rescue Exception => e
-        binding.pry
         raise HQMFException.new "Error Loading HQMF" 
       end
 
