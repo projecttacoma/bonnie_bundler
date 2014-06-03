@@ -9,27 +9,25 @@ module Measures
 
       sources_dirs = Dir.glob(File.join(sources_dir,'*'))
       sources_dirs.each_with_index do |measure_dir, index|
-
-          measure = load_measure(measure_dir, user, vsac_user, vsac_password, measure_details_hash)
-          puts "(#{index+1}/#{sources_dirs.count}): measure #{measure.cms_id || measure.measure_id} successfully loaded."
-
+        measure = load_measure(measure_dir, user, vsac_user, vsac_password, measure_details_hash)
+        puts "(#{index+1}/#{sources_dirs.count}): measure #{measure.cms_id || measure.measure_id} successfully loaded."
       end
 
     end
 
     def self.load_measure(measure_dir, user, vsac_user, vsac_password, measure_details_hash)
-      hqmf_path = Dir.glob(File.join(measure_dir, '*.xml')).first
+      xml_path = Dir.glob(File.join(measure_dir, '*.xml')).first
       html_path = Dir.glob(File.join(measure_dir, '*.html')).first
 
-      hqmf_set_id = HQMF::Parser.parse_fields(File.read(hqmf_path),HQMF::Parser::HQMF_VERSION_1)['set_id']
+      xml_contents = File.read xml_path
+      parser = Loader.get_parser(xml_contents)
+      hqmf_set_id = parser.parse_fields(xml_contents)['set_id']
+
       measure_details = measure_details_hash[hqmf_set_id]
 
-      value_set_oids = Measures::ValueSetLoader.get_value_set_oids_from_hqmf(hqmf_path)
-      Measures::ValueSetLoader.load_value_sets_from_vsac(value_set_oids, vsac_user, vsac_password, user)
+      measure = load_measure_xml(xml_path, user, vsac_user, vsac_password, measure_details, false, true)
 
-      value_set_models = Measures::ValueSetLoader.get_value_set_models(value_set_oids,user)
-      measure = Measures::Loader.load(user, hqmf_path, value_set_models, measure_details)
-      Measures::Loader.save_sources(measure, hqmf_path, html_path)
+      Measures::Loader.save_sources(measure, xml_path, html_path)
 
       measure.populations.each_with_index do |population, population_index|
         measure.map_fns[population_index] = measure.as_javascript(population_index)
@@ -37,26 +35,28 @@ module Measures
 
       measure.save!
       measure
-
     end
 
-    def self.load_measure_hqmf(hqmf_path, user, vsac_user, vsac_password, measure_details)
-
+    def self.load_measure_xml(xml_path, user, vsac_user, vsac_password, measure_details, overwrite_valuesets=true, cache=false)
+      # Load the model from the document
       begin
-        value_set_oids = Measures::ValueSetLoader.get_value_set_oids_from_hqmf(hqmf_path)
+        model = Measures::Loader.parse_hqmf_model(xml_path)
       rescue Exception => e
         raise HQMFException.new "Error Loading HQMF" 
       end
+      #load the valuesets for the measure from vsac
       begin
-        Measures::ValueSetLoader.load_value_sets_from_vsac(value_set_oids, vsac_user, vsac_password, user, true)
+        value_set_models =  Measures::ValueSetLoader.load_value_sets_from_vsac( model.all_code_set_oids, vsac_user, vsac_password, user, overwrite_valuesets)
       rescue Exception => e
         raise VSACException.new "Error Loading Value Sets from VSAC: #{e.message}" 
       end
-
       begin
-        value_set_models = Measures::ValueSetLoader.get_value_set_models(value_set_oids,user)
-        measure = Measures::Loader.load(user, hqmf_path, value_set_models, measure_details)
-        
+        #backfill any characteristics from codes if needed
+        model.backfill_patient_characteristics_with_codes(HQMF2JS::Generator::CodesToJson.from_value_sets(value_set_models))
+        #load the json as a measure
+        json = model.to_json
+        json.convert_keys_to_strings
+        measure = Measures::Loader.load_hqmf_model_json(json, user, model.all_code_set_oids, measure_details)
         measure.save!
         measure
       rescue Exception => e

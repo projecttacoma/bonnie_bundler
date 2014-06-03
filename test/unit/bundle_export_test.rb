@@ -15,7 +15,7 @@ class BundleExportTest < ActiveSupport::TestCase
     end
     @user = User.new('123456789')
     Measure.each { |m| m.update_attributes user_id: @user.id }
-    HealthDataStandards::SVS::ValueSet.each { |vs| vs.update_attributes user_id: @user.id }
+    HealthDataStandards::SVS::ValueSet.each { |vs| vs.update_attributes user_id: @user.id ; vs.save }
     @exporter =  Measures::Exporter::BundleExporter.new(@user, {"base_dir"=>"./tmp", "name"=>"test_bundle"})
     FileUtils.rm_rf(@exporter.base_dir)
   end
@@ -61,7 +61,7 @@ class BundleExportTest < ActiveSupport::TestCase
     assert File.exists?(File.join(@exporter.base_dir,@exporter.records_path,record.type,"html", "#{file_name}.html"))
 
     HealthDataStandards::SVS::ValueSet.each do |vs|
-      assert assert File.exists?(File.join(@exporter.base_dir,@exporter.valuesets_path,"json","#{vs.oid}.json"))
+      assert  File.exists?(File.join(@exporter.base_dir,@exporter.valuesets_path,"json","#{vs.oid}.json"))
     end
     
     HealthDataStandards::CQM::Measure.each do |m|
@@ -118,7 +118,7 @@ class BundleExportTest < ActiveSupport::TestCase
     assert !File.exists?(@exporter.base_dir)
     @exporter.export_valuesets
     HealthDataStandards::SVS::ValueSet.each do |vs|
-      assert assert File.exists?(File.join(@exporter.base_dir,@exporter.valuesets_path,"json","#{vs.oid}.json"))
+      assert  File.exists?(File.join(@exporter.base_dir,@exporter.valuesets_path,"json","#{vs.oid}.json"))
     end
   end
 

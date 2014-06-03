@@ -13,28 +13,25 @@ module Measures
     def self.mat_export?(zip_file)
       Zip::ZipFile.open(zip_file.path) do |zip_file|
         hqmf_entry = zip_file.glob(File.join('**','**.xml')).select {|x| x.name.match(/.*eMeasure.xml/) && !x.name.starts_with?('__MACOSX') }.first
+        simplexml_entry = zip_file.glob(File.join('**','**.xml')).select {|x| x.name.match(/.*SimpleXML.xml/) && !x.name.starts_with?('__MACOSX') }.first
         xls_entry = zip_file.glob(File.join('**','**.xls')).select {|x| !x.name.starts_with?('__MACOSX') }.first
-        !hqmf_entry.nil? && !xls_entry.nil?
+        (!hqmf_entry.nil? || !simplexml_entry.nil?) && !xls_entry.nil?
       end
     end
 
-    def self.load_mat_exports(user, file, dir, measure_details)
+    def self.load_mat_exports(user, file, out_dir, measure_details)
       measure = nil
       Zip::ZipFile.open(file.path) do |zip_file|
 
         hqmf_entry = zip_file.glob(File.join('**','**.xml')).select {|x| x.name.match(/.*eMeasure.xml/) && !x.name.starts_with?('__MACOSX') }.first
+        simplexml_entry = zip_file.glob(File.join('**','**.xml')).select {|x| x.name.match(/.*SimpleXML.xml/) && !x.name.starts_with?('__MACOSX') }.first
         html_entry = zip_file.glob(File.join('**','**.html')).select {|x| x.name.match(/.*HumanReadable.html/) && !x.name.starts_with?('__MACOSX') }.first
         xls_entry = zip_file.glob(File.join('**','**.xls')).select {|x| !x.name.starts_with?('__MACOSX') }.first
 
         begin
 
-          fields = HQMF::Parser.parse_fields(hqmf_entry.get_input_stream.read, HQMF::Parser::HQMF_VERSION_1)
-          measure_id = fields['id']
-
-          out_dir=File.join(dir, measure_id)
-          FileUtils.mkdir_p(out_dir)
-
-          hqmf_path = extract(zip_file, hqmf_entry, out_dir)
+          xml_entry = hqmf_entry || simplexml_entry
+          xml_path = extract(zip_file, xml_entry, out_dir)
           html_path = extract(zip_file, html_entry, out_dir)
           xls_path = extract(zip_file, xls_entry, out_dir)
 
@@ -48,10 +45,14 @@ module Measures
               raise ValueSetException.new "Error Parsing Value Sets: #{e.message}" unless e.is_a? Measures::ValueSetException
             end
           end
+
           Measures::ValueSetLoader.save_value_sets(value_set_models,user)
+          model = Measures::Loader.parse_hqmf_model(xml_path)
+          model.backfill_patient_characteristics_with_codes(HQMF2JS::Generator::CodesToJson.from_value_sets(value_set_models))
 
-          measure = Measures::Loader.load(user, hqmf_path, value_set_models)
-
+          json = model.to_json
+          json.convert_keys_to_strings
+          measure = Measures::Loader.load_hqmf_model_json(json, user,value_set_models.collect{|vs| vs.oid})
           measure.update_attributes(measure_details)
 
         rescue Exception => e

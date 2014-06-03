@@ -5,30 +5,17 @@ module Measures
     SOURCE_PATH = File.join(".", "db", "measures")
     VALUE_SET_PATH = File.join(".", "db", "value_sets")
     HQMF_VS_OID_CACHE = File.join(".", "db", "hqmf_vs_oid_cache")
+    PARSERS = [HQMF::Parser::V2Parser,HQMF::Parser::V1Parser,SimpleXml::Parser::V1Parser]
     
-    def self.load(user, hqmf_path, value_set_models, measure_details=nil)
-      hqmf_contents = Nokogiri::XML(File.new hqmf_path).to_s
-      measure_id = HQMF::Parser.parse_fields(hqmf_contents, HQMF::Parser::HQMF_VERSION_1)['id']
-
-      codes_by_oid = HQMF2JS::Generator::CodesToJson.from_value_sets(value_set_models)  if value_set_models
-
-      # Parsed HQMF
-      measure = Measures::Loader.load_hqmf(hqmf_contents, user, codes_by_oid, measure_details)
-
-      measure
+    
+    def self.parse_hqmf_model(xml_path)
+      xml_contents = Nokogiri::XML(File.new xml_path)
+      parser = get_parser(xml_contents)
+      parser.parse(xml_contents)
     end
 
 
-    def self.load_hqmf(hqmf_contents, user, codes_by_oid, measure_details=nil)
-      hqmf = HQMF::Parser.parse(hqmf_contents, HQMF::Parser::HQMF_VERSION_1, codes_by_oid)
-      # go into and out of json to make sure that we've converted all the symbols to strings, this will happen going to mongo anyway if persisted
-      json = JSON.parse(hqmf.to_json.to_json, max_nesting: 250)
-
-      measure_oids = codes_by_oid.keys if codes_by_oid
-      Measures::Loader.load_hqmf_json(json, user, measure_oids, measure_details)
-    end
-
-    def self.load_hqmf_json(json, user, measure_oids, measure_details=nil)
+    def self.load_hqmf_model_json(json, user, measure_oids, measure_details=nil)
 
       measure = Measure.new
       measure.user = user if user
@@ -99,6 +86,10 @@ module Measures
       FileUtils.cp(hqmf_path, File.join(hqmf_out_path, "#{measure.hqmf_id}.xml"))
     end
 
+    def self.parse(xml_contents)
+      doc = xml_contents.kind_of?(Nokogiri::XML::Document) ? xml_contents : Nokogiri::XML(xml_contents)
+      doc
+    end
     
     def self.clear_sources
       FileUtils.rm_r File.join(SOURCE_PATH, "html") if File.exist?(File.join(SOURCE_PATH, "html"))
@@ -108,6 +99,16 @@ module Measures
 
     def self.parse_measures_yml(measures_yml)
       YAML.load_file(measures_yml)['measures']
+    end
+
+    def self.get_parser(xml_contents)
+      doc = self.parse(xml_contents)
+      PARSERS.each do |p|
+        if p.valid? doc
+          return p.new
+        end
+      end
+      raise "unknown document type"
     end
 
   end

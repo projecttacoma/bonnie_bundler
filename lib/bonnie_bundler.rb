@@ -7,6 +7,8 @@ require 'roo'
 require 'quality-measure-engine'
 require 'hqmf-parser'
 require 'hqmf2js'
+require 'simplexml_parser'
+require 'active_support/core_ext/hash/indifferent_access'
 
 require_relative 'models/measure.rb'
 require_relative 'measures/loading/bundle_loader.rb'
