@@ -4,7 +4,7 @@ gemspec
 #gem 'health-data-standards', '3.4.4'
 gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git', :branch => 'hqmf_r2.1'
 gem 'quality-measure-engine', '3.0.0'
-gem 'hqmf2js', :git => 'https://github.com/pophealth/hqmf2js.git', :branch => 'hqmf_r2.1'
+gem 'hqmf2js', :git => 'https://github.com/pophealth/hqmf2js.git', :branch => 'master'
 gem 'hquery-patient-api', '1.0.4'
 gem 'simplexml_parser', :git => 'https://github.com/projecttacoma/simplexml_parser.git', :branch => 'master'
 
