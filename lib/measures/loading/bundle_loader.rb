@@ -63,15 +63,10 @@ module Measures
       json_path = extract_entry(zip_file, measure_entry, outdir, '*.json')
       metadata_path = extract_entry(zip_file, measure_entry, outdir, '*.metadata') rescue metadata_path = nil
 
-
-
       if (load_from_hqmf)
-        # value_set_models = Measures::ValueSetLoader.get_value_set_models( Measures::ValueSetLoader.get_value_set_oids_from_hqmf(hqmf_path), user)
-        # measure = Measures::Loader.load(user, hqmf_path, value_set_models, measure_details)
-        @@all_vs ||= HealthDataStandards::SVS::ValueSet.all 
         model = Measures::Loader.parse_hqmf_model(hqmf_path)
         measure_details = measure_details_hash ? measure_details_hash[model.hqmf_set_id] : nil
-        value_set_models = Measures::ValueSetLoader.get_value_set_models( model.all_code_set_oids, user)
+        @@all_vs ||= HealthDataStandards::SVS::ValueSet.all
         model.backfill_patient_characteristics_with_codes(HQMF2JS::Generator::CodesToJson.from_value_sets(@@all_vs))
         json = model.to_json
         json.convert_keys_to_strings

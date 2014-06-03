@@ -15,8 +15,7 @@ class BundleExportTest < ActiveSupport::TestCase
     end
     @user = User.new('123456789')
     Measure.each { |m| m.update_attributes user_id: @user.id }
-    HealthDataStandards::SVS::ValueSet.each { |vs| vs.update_attributes user_id: @user.id 
-      vs.save}
+    HealthDataStandards::SVS::ValueSet.each { |vs| vs.update_attributes user_id: @user.id ; vs.save }
     @exporter =  Measures::Exporter::BundleExporter.new(@user, {"base_dir"=>"./tmp", "name"=>"test_bundle"})
     FileUtils.rm_rf(@exporter.base_dir)
   end
