@@ -65,9 +65,9 @@ module Measures
          HealthDataStandards::CQM::Measure.where({:hqmf_id => {"$in" => measures.pluck(:hqmf_id).uniq}}).each do |measure|  
           draft_measure = Measure.where({:hqmf_id => measure.hqmf_id}).first
           oid_dictionary = HQMF2JS::Generator::CodesToJson.from_value_sets(draft_measure.value_sets)
-          report = QME::QualityReport.find_or_create(measure.hqmf_id, measure.sub_id, {'effective_date' => effective_date, 'enable_logging' => enable_logging, "enable_rationale" =>enable_rationale})
+          report = QME::QualityReport.find_or_create(measure.hqmf_id, measure.sub_id, {'effective_date' => effective_date})
           BonnieBundler.logger.debug("Calculating measure #{measure.cms_id} - #{measure.sub_id}")
-          report.calculate({"oid_dictionary" =>oid_dictionary.to_json},false) unless report.calculated?
+          report.calculate({"oid_dictionary" =>oid_dictionary.to_json, 'enable_logging' => enable_logging, "enable_rationale" =>enable_rationale},false) unless report.calculated?
         end
       end
 

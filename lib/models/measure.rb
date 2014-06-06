@@ -1,7 +1,8 @@
 class Measure
   include Mongoid::Document
   include Mongoid::Timestamps
-
+  include Mongoid::Attributes::Dynamic
+  
   DEFAULT_EFFECTIVE_DATE = Time.gm(2012,12,31,23,59).to_i
   MP_START_DATE = Time.gm(2012,1,1,0,0).to_i
   TYPES = ["ep", "eh"]
@@ -35,7 +36,7 @@ class Measure
   field :data_criteria, type: Hash, default: {}
   field :source_data_criteria, type: Hash, default: {}
   field :measure_period, type: Hash
-  field :measure_attributes, type: Hash
+  field :measure_attributes, type: Array
   field :populations, type: Array
   field :preconditions, type: Hash
 

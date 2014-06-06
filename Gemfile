@@ -2,19 +2,20 @@ source "http://rubygems.org"
 gemspec
 
 #gem 'health-data-standards', '3.4.4'
-gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git', :branch => 'hqmf_r2.1'
-gem 'quality-measure-engine', '3.0.0'
+
+gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git', :branch => 'master'
+gem 'quality-measure-engine', :git => 'https://github.com/pophealth/quality-measure-engine.git', :branch => 'master'
 gem 'hqmf2js', :git => 'https://github.com/pophealth/hqmf2js.git', :branch => 'master'
 gem 'hquery-patient-api', '1.0.4'
 gem 'simplexml_parser', :git => 'https://github.com/projecttacoma/simplexml_parser.git', :branch => 'master'
 
-#gem 'health-data-standards', :path => '../health-data-standards'
-#gem 'quality-measure-engine', :path => '../quality-measure-engine'
-#gem 'hqmf2js', :path => '../health-data-standards'
-#gem 'hquery-patient-api', :path => '../patientapi'
+# gem 'health-data-standards', :path => '../health-data-standards'
+# gem 'quality-measure-engine', :path => '../quality-measure-engine'
+# gem 'hqmf2js', :path => '../hqmf2js'
+# #gem 'hquery-patient-api', :path => '../patientapi'
 # gem 'simplexml_parser', :path => '../simplexml_parser'
 
-gem 'rails', '3.2.14'
+gem 'rails', '>= 4.0.0'
 gem 'rake'
 gem 'pry'
 gem 'pry-nav'
