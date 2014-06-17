@@ -115,7 +115,7 @@ module Measures
 
     end
 
-    def self.load_value_sets_from_vsac(value_set_oids, username, password, user=nil, overwrite=false)
+    def self.load_value_sets_from_vsac(value_set_oids, username, password, user=nil, overwrite=false, effectiveDate=nil)
       value_set_models = []
       from_vsac = 0
       
@@ -150,7 +150,7 @@ module Measures
           if (cached_service_result && File.exists?(cached_service_result))
             vs_data = File.read cached_service_result
           else
-            vs_data = api.get_valueset(oid, nil, true) # include draft value sets
+            vs_data = api.get_valueset(oid, effectiveDate, true) # include draft value sets by default
             vs_data.force_encoding("utf-8") # there are some funky unicodes coming out of the vs response that are not in ASCII as the string reports to be
             from_vsac += 1
             File.open(cached_service_result, 'w') {|f| f.write(vs_data) } unless overwrite
