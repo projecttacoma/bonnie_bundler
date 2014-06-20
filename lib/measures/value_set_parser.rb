@@ -84,9 +84,9 @@ module HQMF
 
       def self.book_by_format(file_path)
         if file_path =~ /xls$/
-          Roo::Excel.new(file_path, nil, :ignore)
+          Roo::Excel.new(file_path, file_warning: :ignore)
         elsif file_path =~ /xlsx$/
-          Roo::Excelx.new(file_path, nil, :ignore)
+          Roo::Excelx.new(file_path, file_warning: :ignore)
         else
           raise "File: #{file_path} does not end in .xls or .xlsx"
         end
