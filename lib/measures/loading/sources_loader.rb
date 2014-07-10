@@ -42,7 +42,7 @@ module Measures
       begin
         model = Measures::Loader.parse_hqmf_model(xml_path)
       rescue Exception => e
-        raise HQMFException.new "Error Loading HQMF" 
+        raise HQMFException.new "Error Loading XML: #{e.message}" 
       end
       #load the valuesets for the measure from vsac
       begin
@@ -60,7 +60,7 @@ module Measures
         measure.save!
         measure
       rescue Exception => e
-        raise HQMFException.new "Error Loading HQMF" 
+        raise HQMFException.new "Error Loading XML: #{e.message}" 
       end
 
     end
