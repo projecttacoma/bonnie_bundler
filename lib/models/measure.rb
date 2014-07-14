@@ -160,7 +160,8 @@ class Measure
     if criteria = self.data_criteria[criteria_reference]
       if criteria['children_criteria']
         criteria['children_criteria'].each { |cc| results |= data_criteria_from_data_criteria(cc) }
-      elsif criteria['temporal_references']
+      end
+      if criteria['temporal_references']
         criteria['temporal_references'].each { |tr| results |= data_criteria_from_data_criteria(tr['reference']) }
       end
     end
