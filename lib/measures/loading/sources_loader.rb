@@ -1,3 +1,5 @@
+require 'net/http'
+
 module Measures
   
   # Utility class for loading measure definitions into the database from source files
@@ -37,6 +39,46 @@ module Measures
       measure
     end
 
+    def self.load_measure_cql(cql_path, user, vsac_user, vsac_password, measure_details, overwrite_valuesets=true, cache=false, effectiveDate=nil, includeDraft=false)
+       cql = ""
+       f = File.open(cql_path, "r")
+       f.each_line do |line|
+         cql += line
+       end
+       uri = URI('http://localhost:4567/')
+       http = Net::HTTP.new(uri.host, uri.port)
+
+       begin 
+          response = http.post(uri.path, cql) 
+       rescue Exception => e
+          puts "Could not load from server"
+          return
+       end
+
+       model = HQMF::Document.from_json(JSON.parse(response.body))
+       begin
+         value_set_models =  Measures::ValueSetLoader.load_value_sets_from_vsac( model.all_code_set_oids, vsac_user, vsac_password, user, overwrite_valuesets, effectiveDate, includeDraft)
+       rescue Exception => e
+         raise VSACException.new "Error Loading Value Sets from VSAC: #{e.message}" 
+       end
+
+       begin
+         #backfill any characteristics from codes if needed
+         model.backfill_patient_characteristics_with_codes(HQMF2JS::Generator::CodesToJson.from_value_sets(value_set_models))
+         #load the json as a measure
+         json = response.body
+         #json.convert_keys_to_strings
+         measure = Measures::Loader.load_hqmf_model_json(json, user, model.all_code_set_oids, measure_details)
+         measure.save!
+         measure
+       rescue Exception => e
+         binding.pry
+         #TODO: One of the arrays is coming out as a string, causing issues
+         #      Still not tracked down where
+         raise HQMFException.new "Error Loading XML: #{e.message}" 
+       end
+    end
+ 
     def self.load_measure_xml(xml_path, user, vsac_user, vsac_password, measure_details, overwrite_valuesets=true, cache=false, effectiveDate=nil, includeDraft=false)
       # Load the model from the document
       begin
