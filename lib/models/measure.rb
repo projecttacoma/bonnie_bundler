@@ -44,6 +44,8 @@ class Measure
 
   field :map_fns, type: Array, default: []
 
+  field :complexity, type: Hash
+
   #make sure that the use has a bundle associated with them
   before_save :set_continuous_variable
 
@@ -139,6 +141,68 @@ class Measure
     self.continuous_variable = populations.map {|x| x.keys}.flatten.uniq.include? HQMF::PopulationCriteria::MSRPOPL
     true
   end
+
+  ############################## Measure Complexity Analysis ##############################
+
+  # Given a set of preconditions, extract all the data criteria references recursively
+  def data_criteria_from_preconditions(preconditions)
+    results = []
+    preconditions.each do |p|
+      results += data_criteria_from_preconditions(p['preconditions']) if p['preconditions']
+      results += data_criteria_from_data_criteria(p['reference']) if p['reference']
+    end
+    results.uniq
+  end
+
+  # Given a data criteria reference, find the contained criteria references (including passed reference)
+  def data_criteria_from_data_criteria(criteria_reference)
+    results = [criteria_reference]
+    if criteria = self.data_criteria[criteria_reference]
+      if criteria['children_criteria']
+        criteria['children_criteria'].each { |cc| results |= data_criteria_from_data_criteria(cc) }
+      end
+      if criteria['temporal_references']
+        criteria['temporal_references'].each { |tr| results |= data_criteria_from_data_criteria(tr['reference']) }
+      end
+    end
+    results
+  end
+
+  # Given a set of preconditions, recursively calculate the complexity of those preconditions
+  # FIXME: Consider adding result calculations into the complexity calculation
+  def complexity_of_preconditions(preconditions)
+    child_score = preconditions.select { |p| p['preconditions'] }.map { |p| complexity_of_preconditions(p['preconditions']) }.sum
+    child_score + preconditions.size - 1
+  end
+
+  # Given a set of data criteria references, recursively calculate the complexity of the criteria
+  def complexity_of_data_criteria(criteria_references)
+    complexity = 0
+    criteria_references.each do |criteria_reference|
+      if criteria = self.data_criteria[criteria_reference]
+        if criteria['children_criteria']
+          complexity += criteria['children_criteria'].size - 1
+        end
+      end
+    end
+    complexity
+  end
+
+  # Calculate the complexity of the measure based on cyclomatic complexity (which for simple logical
+  # constructs as used to specify measure populations generally means counting clauses); this is called when
+  # the measure is saved so that the calculated complexity is cached in the DB
+  before_save :calculate_complexity
+  def calculate_complexity
+    self.complexity = {}
+    self.population_criteria.each do |population, criteria|
+      next unless preconditions = criteria['preconditions']
+      data_criteria = data_criteria_from_preconditions(preconditions)
+      self.complexity[population] = complexity_of_preconditions(preconditions) + complexity_of_data_criteria(data_criteria) + 1
+    end
+    self.complexity
+  end
+
+  #########################################################################################
 
   def measure_json(population_index=0,check_crosswalk=false)
     options = {
