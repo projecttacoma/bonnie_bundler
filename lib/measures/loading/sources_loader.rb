@@ -54,8 +54,7 @@ module Measures
           puts "Could not load from server"
           return
        end
-
-       model = HQMF::Document.from_json(JSON.parse(response.body))
+       model = HQMF::Document.from_json(JSON.parse(response.body, {max_nesting: 100}))
        begin
          value_set_models =  Measures::ValueSetLoader.load_value_sets_from_vsac( model.all_code_set_oids, vsac_user, vsac_password, user, overwrite_valuesets, effectiveDate, includeDraft)
        rescue Exception => e
@@ -66,8 +65,8 @@ module Measures
          #backfill any characteristics from codes if needed
          model.backfill_patient_characteristics_with_codes(HQMF2JS::Generator::CodesToJson.from_value_sets(value_set_models))
          #load the json as a measure
-         json = response.body
-         #json.convert_keys_to_strings
+         json = model.to_json
+         json.convert_keys_to_strings
          measure = Measures::Loader.load_hqmf_model_json(json, user, model.all_code_set_oids, measure_details)
          measure.save!
          measure
