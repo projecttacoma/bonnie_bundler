@@ -126,7 +126,6 @@ module Measures
         if overwrite
           backup_vs = get_existing_vs(user, value_set_oids).to_a
           delete_existing_vs(user, value_set_oids) 
-          binding.pry
         else
           HealthDataStandards::SVS::ValueSet.by_user(user).each do |set|
             existing_value_set_map[set.oid] = set
