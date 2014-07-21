@@ -121,66 +121,84 @@ module Measures
       
       existing_value_set_map = {}
 
-      if overwrite
-        HealthDataStandards::SVS::ValueSet.by_user(user).where(oid: {'$in'=>value_set_oids}).delete_all() 
-      else
-        HealthDataStandards::SVS::ValueSet.by_user(user).each do |set|
-          existing_value_set_map[set.oid] = set
-        end
-      end
-      
-      nlm_config = APP_CONFIG["nlm"]
-
-      errors = {}
-      api = HealthDataStandards::Util::VSApi.new(nlm_config["ticket_url"],nlm_config["api_url"],username, password)
-      
-      codeset_base_dir = Measures::Loader::VALUE_SET_PATH
-      FileUtils.mkdir_p(codeset_base_dir) unless overwrite
-
-      RestClient.proxy = ENV["http_proxy"]
-      value_set_oids.each_with_index do |oid,index| 
-
-        set = existing_value_set_map[oid]
-        
-        if (set.nil?)
-          
-          vs_data = nil
-          
-          cached_service_result = File.join(codeset_base_dir,"#{oid}.xml") unless overwrite
-          if (cached_service_result && File.exists?(cached_service_result))
-            vs_data = File.read cached_service_result
-          else
-            vs_data = api.get_valueset(oid, effectiveDate, includeDraft)
-            vs_data.force_encoding("utf-8") # there are some funky unicodes coming out of the vs response that are not in ASCII as the string reports to be
-            from_vsac += 1
-            File.open(cached_service_result, 'w') {|f| f.write(vs_data) } unless overwrite
-          end
-          
-          doc = Nokogiri::XML(vs_data)
-
-          doc.root.add_namespace_definition("vs","urn:ihe:iti:svs:2008")
-          
-          vs_element = doc.at_xpath("/vs:RetrieveValueSetResponse/vs:ValueSet")
-
-          if vs_element && vs_element["ID"] == oid
-            vs_element["id"] = oid
-            set = HealthDataStandards::SVS::ValueSet.load_from_xml(doc)
-            set.user = user
-            #bundle id for user should always be the same 1 user to 1 bundle
-            #using this to allow cat I generation without extensive modification to HDS
-            set.bundle = user.bundle if (user && user.respond_to?(:bundle))
-
-            set.save!
+      begin
+        backup_vs = []
+        if overwrite
+          backup_vs = get_existing_vs(user, value_set_oids).to_a
+          delete_existing_vs(user, value_set_oids) 
+          binding.pry
+        else
+          HealthDataStandards::SVS::ValueSet.by_user(user).each do |set|
             existing_value_set_map[set.oid] = set
-          else
-            raise "Value set not found: #{oid}"
           end
         end
+        
+        nlm_config = APP_CONFIG["nlm"]
+
+        errors = {}
+        api = HealthDataStandards::Util::VSApi.new(nlm_config["ticket_url"],nlm_config["api_url"],username, password)
+        
+        codeset_base_dir = Measures::Loader::VALUE_SET_PATH
+        FileUtils.mkdir_p(codeset_base_dir) unless overwrite
+
+        RestClient.proxy = ENV["http_proxy"]
+        value_set_oids.each_with_index do |oid,index| 
+
+          set = existing_value_set_map[oid]
+          
+          if (set.nil?)
+            
+            vs_data = nil
+            
+            cached_service_result = File.join(codeset_base_dir,"#{oid}.xml") unless overwrite
+            if (cached_service_result && File.exists?(cached_service_result))
+              vs_data = File.read cached_service_result
+            else
+              vs_data = api.get_valueset(oid, effectiveDate, includeDraft)
+              vs_data.force_encoding("utf-8") # there are some funky unicodes coming out of the vs response that are not in ASCII as the string reports to be
+              from_vsac += 1
+              File.open(cached_service_result, 'w') {|f| f.write(vs_data) } unless overwrite
+            end
+            
+            doc = Nokogiri::XML(vs_data)
+
+            doc.root.add_namespace_definition("vs","urn:ihe:iti:svs:2008")
+            
+            vs_element = doc.at_xpath("/vs:RetrieveValueSetResponse/vs:ValueSet")
+
+            if vs_element && vs_element["ID"] == oid
+              vs_element["id"] = oid
+              set = HealthDataStandards::SVS::ValueSet.load_from_xml(doc)
+              set.user = user
+              #bundle id for user should always be the same 1 user to 1 bundle
+              #using this to allow cat I generation without extensive modification to HDS
+              set.bundle = user.bundle if (user && user.respond_to?(:bundle))
+
+              set.save!
+              existing_value_set_map[set.oid] = set
+            else
+              raise "Value set not found: #{oid}"
+            end
+          end
+        end
+      rescue Exception => e
+        if (overwrite)
+          delete_existing_vs(user, value_set_oids)
+          backup_vs.each {|vs| HealthDataStandards::SVS::ValueSet.new(vs.attributes).save }
+        end
+        raise VSACException.new "Error Loading Value Sets from VSAC: #{e.message}" 
       end
+
       puts "\tloaded #{from_vsac} value sets from vsac" if from_vsac > 0
       existing_value_set_map.values
     end
 
+    def self.get_existing_vs(user, value_set_oids)
+      HealthDataStandards::SVS::ValueSet.by_user(user).where(oid: {'$in'=>value_set_oids})
+    end
+    def self.delete_existing_vs(user, value_set_oids)
+      get_existing_vs(user, value_set_oids).delete_all()
+    end
 
   end
 end
