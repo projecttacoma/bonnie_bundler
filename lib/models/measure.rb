@@ -119,7 +119,7 @@ class Measure
   end
 
   def value_sets
-    @value_sets ||= HealthDataStandards::SVS::ValueSet.in(oid: value_set_oids)
+    @value_sets ||= HealthDataStandards::SVS::ValueSet.in(oid: value_set_oids, user_id: user.id)
     @value_sets
   end
 
