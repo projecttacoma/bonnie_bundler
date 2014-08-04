@@ -119,7 +119,11 @@ class Measure
   end
 
   def value_sets
-    @value_sets ||= HealthDataStandards::SVS::ValueSet.in(oid: value_set_oids)
+    if user? # check for user before scoping value sets -- needed for bundler tests
+      @value_sets ||= HealthDataStandards::SVS::ValueSet.in(oid: value_set_oids, user_id: user.id)
+    else
+      @value_sets ||= HealthDataStandards::SVS::ValueSet.in(oid: value_set_oids)
+    end
     @value_sets
   end
 
