@@ -110,6 +110,7 @@ module Measures
           safe_first_name = patient.first.gsub("'", "")
           safe_last_name = patient.last.gsub("'", "")
           filename =  "#{safe_first_name}_#{safe_last_name}"
+          patient.medical_record_assigner = "2.16.840.1.113883.3.1257"
           
           patient_hash = patient.as_json(except: [ '_id', 'measure_id' ], methods: ['_type'])
           patient_hash['measure_ids'] = patient_hash['measure_ids'].uniq if patient_hash['measure_ids']
