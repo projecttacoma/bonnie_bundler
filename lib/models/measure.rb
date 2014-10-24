@@ -146,60 +146,57 @@ class Measure
 
   ############################## Measure Complexity Analysis ##############################
 
-  # Given a set of preconditions, extract all the data criteria references recursively
-  def data_criteria_from_preconditions(preconditions)
-    results = []
-    preconditions.each do |p|
-      results += data_criteria_from_preconditions(p['preconditions']) if p['preconditions']
-      results += data_criteria_from_data_criteria(p['reference']) if p['reference']
+  def precondition_complexity(precondition)
+    # We want to calculate the number of branching paths; we can do that by simply counting the leaf nodes.
+    # Any children of this particular node can appear either through child preconditions or by reference to a
+    # data criteria. ASSERTION: a precondition can never both have child preconditions and a data criteria.
+    if precondition['preconditions'] && precondition['preconditions'].size > 0
+      precondition['preconditions'].map { |p| precondition_complexity(p) }.sum
+    elsif precondition['reference']
+      data_criteria_complexity(precondition['reference'])
+    else
+      1
     end
-    results.uniq
   end
 
-  # Given a data criteria reference, find the contained criteria references (including passed reference)
-  def data_criteria_from_data_criteria(criteria_reference)
-    results = [criteria_reference]
+  def data_criteria_complexity(criteria_reference, options = {})
+    options.reverse_merge! calculating_variable: false
+    # We want to calculate the number of branching paths, which we can normally do by counting leaf nodes.
+    # This is more complicated for data criteria because, in addition to direct children, the criteria can
+    # also have temporal references, which can themselves branch. Our approach is to calculate an initial
+    # number of leaf nodes through looking at direct children and then seeing if any additional leaves are
+    # added through temporal references. A temporal reference that doesn't branch doesn't add a leaf node.
+    # Finally, this reference may be a variable, in which case we consider this a leaf node *unless* we are
+    # explicitly calculating the complexity of the variable itself
     if criteria = self.data_criteria[criteria_reference]
-      if criteria['children_criteria']
-        criteria['children_criteria'].each { |cc| results |= data_criteria_from_data_criteria(cc) }
-      end
-      if criteria['temporal_references']
-        criteria['temporal_references'].each { |tr| results |= data_criteria_from_data_criteria(tr['reference']) }
-      end
+      complexity = if criteria['children_criteria'] && (!criteria['variable'] || options[:calculating_variable])
+                     criteria['children_criteria'].map { |c| data_criteria_complexity(c) }.sum
+                   else
+                     1
+                   end
+      complexity + if criteria['temporal_references']
+                     criteria['temporal_references'].map { |tr| data_criteria_complexity(tr['reference']) - 1 }.sum
+                   else
+                     0
+                   end
+    else
+      1
     end
-    results
-  end
-
-  # Given a set of preconditions, recursively calculate the complexity of those preconditions
-  # FIXME: Consider adding result calculations into the complexity calculation
-  def complexity_of_preconditions(preconditions)
-    child_score = preconditions.select { |p| p['preconditions'] }.map { |p| complexity_of_preconditions(p['preconditions']) }.sum
-    child_score + preconditions.size - 1
-  end
-
-  # Given a set of data criteria references, recursively calculate the complexity of the criteria
-  def complexity_of_data_criteria(criteria_references)
-    complexity = 0
-    criteria_references.each do |criteria_reference|
-      if criteria = self.data_criteria[criteria_reference]
-        if criteria['children_criteria']
-          complexity += criteria['children_criteria'].size - 1
-        end
-      end
-    end
-    complexity
   end
 
   # Calculate the complexity of the measure based on cyclomatic complexity (which for simple logical
-  # constructs as used to specify measure populations generally means counting clauses); this is called when
-  # the measure is saved so that the calculated complexity is cached in the DB
+  # constructs as used to specify measure populations generally means counting clauses); we calculate
+  # the complexity separately for populations and individual variables; this is called when the
+  # measure is saved so that the calculated complexity is cached in the DB
   before_save :calculate_complexity
   def calculate_complexity
-    self.complexity = {}
-    self.population_criteria.each do |population, criteria|
-      next unless preconditions = criteria['preconditions']
-      data_criteria = data_criteria_from_preconditions(preconditions)
-      self.complexity[population] = complexity_of_preconditions(preconditions) + complexity_of_data_criteria(data_criteria) + 1
+    self.complexity = { populations: {}, variables: {} }
+    self.population_criteria.each do |name, precondition|
+      self.complexity[:populations][name] = precondition_complexity(precondition)
+    end
+    self.source_data_criteria.each do |reference, criteria|
+      next unless criteria['variable']
+      self.complexity[:variables][criteria['description']] = data_criteria_complexity(reference, calculating_variable: true)
     end
     self.complexity
   end
