@@ -11,8 +11,8 @@ class MeasureComplexityTest < ActiveSupport::TestCase
   # Just a regression test
   test "calculate complexity" do
     Measure.count.must_equal 2
-    Measure.first.complexity[:populations].must_equal({ "DENEX"=>2, "NUMER"=>2, "DENOM"=>1, "IPP"=>8})
-    Measure.last.complexity[:populations].must_equal({ "DENEX"=>1, "NUMER"=>2, "NUMER_1"=>6, "DENOM"=>1, "IPP"=>10, "IPP_1"=>11, "IPP_2"=>10 })
+    Measure.first.complexity[:populations].must_equal([{"name"=>"DENEX", "complexity"=>2}, {"name"=>"NUMER", "complexity"=>2}, {"name"=>"DENOM", "complexity"=>1}, {"name"=>"IPP", "complexity"=>8}])
+    Measure.last.complexity[:populations].must_equal([{"name"=>"DENEX", "complexity"=>1}, {"name"=>"NUMER", "complexity"=>2}, {"name"=>"NUMER_1", "complexity"=>6}, {"name"=>"DENOM", "complexity"=>1}, {"name"=>"IPP", "complexity"=>10}, {"name"=>"IPP_1", "complexity"=>11}, {"name"=>"IPP_2", "complexity"=>10}])
   end
 
 end
