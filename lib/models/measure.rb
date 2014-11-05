@@ -190,13 +190,16 @@ class Measure
   # measure is saved so that the calculated complexity is cached in the DB
   before_save :calculate_complexity
   def calculate_complexity
-    self.complexity = { populations: {}, variables: {} }
+    self.complexity = { populations: [], variables: [] }
     self.population_criteria.each do |name, precondition|
-      self.complexity[:populations][name] = precondition_complexity(precondition)
+      complexity = precondition_complexity(precondition)
+      self.complexity[:populations] << { name: name, complexity: complexity }
     end
     self.source_data_criteria.each do |reference, criteria|
       next unless criteria['variable']
-      self.complexity[:variables][criteria['description']] = data_criteria_complexity(reference, calculating_variable: true)
+      name = criteria['description']
+      complexity = data_criteria_complexity(reference, calculating_variable: true)
+      self.complexity[:variables] << { name: name, complexity: complexity }
     end
     self.complexity
   end
