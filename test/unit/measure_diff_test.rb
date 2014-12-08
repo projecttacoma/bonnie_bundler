@@ -26,7 +26,7 @@ class MeasureDiffTest < ActiveSupport::TestCase
     measure.population_criteria.keys.count.must_equal 5
   end
 
-  test "loading w previous against updated" do
+  test "loading previous against updated" do
     dump_db
     @previous_measure = File.new File.join('test','fixtures','05_DischargedonAntithromboticThe_Artifacts_DEMO.zip')
     Measures::MATLoader.load(@previous_measure, nil, {})
@@ -36,6 +36,7 @@ class MeasureDiffTest < ActiveSupport::TestCase
     Measures::MATLoader.load(@updated_measure, nil, {})
     Measure.all.count.must_equal 2
     updated = Measure.all.last
+    previous.diff(updated)
     assert !updated.latest_diff.blank?
   end
 
