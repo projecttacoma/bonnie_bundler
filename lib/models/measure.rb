@@ -45,6 +45,8 @@ class Measure
   field :map_fns, type: Array, default: []
 
   field :complexity, type: Hash
+  field :latest_diff, type: Hash
+  field :measure_logic, type: Array
 
   #make sure that the use has a bundle associated with them
   before_save :set_continuous_variable
@@ -202,6 +204,25 @@ class Measure
       self.complexity[:variables] << { name: name, complexity: complexity }
     end
     self.complexity
+  end
+
+  #########################################################################################
+
+  ############################## Measure Change Analysis ##############################
+
+  # Extract the measure logic text; this is also cached in the DB
+  before_save :extract_measure_logic
+  def extract_measure_logic
+    self.latest_diff ||= {}
+    self.measure_logic = []
+    self.measure_logic.concat HQMF::Measure::LogicExtractor.new().population_logic(self)
+    self.measure_logic
+  end
+
+  # Compute a simplified diff hash for Complexity Dashboard usage; stored within measure.latest_diff
+  def diff(other)
+    other.latest_diff = HQMF::Measure::LogicExtractor.get_measure_logic_diff(self,other,true)
+    other.latest_diff
   end
 
   #########################################################################################

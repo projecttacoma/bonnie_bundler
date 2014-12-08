@@ -3,6 +3,7 @@ require 'test/unit'
 require 'turn'
 require 'rails'
 require 'hquery-patient-api'
+require 'diffy'
 APP_CONFIG = {'nlm'=>{'ticket_url'=>'foo', 'api_url'=>'bar'}}
 
 PROJECT_ROOT = File.expand_path("../../", __FILE__)
