@@ -108,19 +108,44 @@ module Measures
         exporter=HealthDataStandards::Export::HTML.new
         records.each do |patient|
 
-          # puts "Exporting patient: #{patient.first}#{patient.last}"
-          entries = Record::Sections.reduce([]) {|entries, section| entries.concat(patient[section.to_s] || []); entries }
-          # puts "\tEntry Count != Source Data Criteria Count" if patient.source_data_criteria && entries.length != patient.source_data_criteria.length
           safe_first_name = patient.first.gsub("'", "")
           safe_last_name = patient.last.gsub("'", "")
           filename =  "#{safe_first_name}_#{safe_last_name}"
+          BonnieBundler.logger.info("Exporting patient #{filename}")
+
+          sub_ids = ('a'..'az').to_a
+          if patient.expected_values
+            patient.expected_values.each do |val|
+              measure_hqmf_id = HealthDataStandards::CQM::Measure.where({hqmf_set_id: val['measure_id']}).first.hqmf_id
+              if val['population_index'] > 0
+                sub_id = sub_ids[val['population_index']]
+              else
+                sub_id = nil
+              end
+
+              cache = Mongoid.default_session['patient_cache'].where({"value.patient_id" => patient.id, "value.measure_id" => measure_hqmf_id, "value.sub_id" => sub_id}).first
+              if cache
+                cache = cache['value']
+                val.except('measure_id', 'population_index', 'OBSERV_UNIT').each do |k, v|
+                  k = 'values' if k == 'OBSERV'
+                  if cache[k] != v
+                    binding.pry
+                    BonnieBundler.logger.error("\tExpected value #{v} for key #{k} for measure #{mes.cms_id}-#{sub_ids[val['population_index']]} does not match calculated value #{cache[k]}")
+                  end
+                end
+              end
+
+            end
+          end
+
+          entries = Record::Sections.reduce([]) {|entries, section| entries.concat(patient[section.to_s] || []); entries }
+
           patient.medical_record_assigner = "2.16.840.1.113883.3.1257"
           
           patient_hash = patient.as_json(except: [ '_id', 'measure_id' ], methods: ['_type'])
           patient_hash['measure_ids'] = patient_hash['measure_ids'].uniq if patient_hash['measure_ids']
           json = JSON.pretty_generate(JSON.parse(patient_hash.remove_nils.to_json))
           html = exporter.export(patient)
-          BonnieBundler.logger.info("Exporting patient #{filename}")
           patient_type = patient.type || Measure.for_patient(patient).first.try(:type)
           path = File.join(records_path, patient_type.to_s)
           export_file File.join(path, "json", "#{filename}.json"), json
