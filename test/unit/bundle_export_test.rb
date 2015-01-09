@@ -58,7 +58,6 @@ class BundleExportTest < ActiveSupport::TestCase
     
     file_name = "a_b"
     assert File.exists?(File.join(@exporter.base_dir,@exporter.records_path,record.type,"json","#{file_name}.json"))
-    assert File.exists?(File.join(@exporter.base_dir,@exporter.records_path,record.type,"html", "#{file_name}.html"))
 
     HealthDataStandards::SVS::ValueSet.each do |vs|
       assert  File.exists?(File.join(@exporter.base_dir,@exporter.valuesets_path,"json","#{vs.oid}.json"))
@@ -85,7 +84,6 @@ class BundleExportTest < ActiveSupport::TestCase
       end
     end
     assert file_names.include? File.join(@exporter.records_path, record.type, "json", "a_b.json")
-    assert file_names.include? File.join(@exporter.records_path, record.type, "html", "a_b.html")
     assert file_names.include? File.join(@exporter.results_path, "by_patient.json")
     assert file_names.include? File.join(@exporter.results_path, "by_measure.json")
   end
@@ -99,7 +97,6 @@ class BundleExportTest < ActiveSupport::TestCase
     @exporter.export_patients
     file_name = "a_b"
     assert File.exists?(File.join(@exporter.base_dir,@exporter.records_path,record.type,"json","#{file_name}.json"))
-    assert File.exists?(File.join(@exporter.base_dir,@exporter.records_path,record.type,"html", "#{file_name}.html"))
 
   end
 

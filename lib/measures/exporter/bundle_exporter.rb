@@ -120,8 +120,6 @@ module Measures
           patient_type = patient.type || Measure.for_patient(patient).first.try(:type)
           path = File.join(records_path, patient_type.to_s)
           export_file File.join(path, "json", "#{filename}.json"), json
-          export_file File.join(path, "html", "#{filename}.html"), html
-
         end
       end
 
