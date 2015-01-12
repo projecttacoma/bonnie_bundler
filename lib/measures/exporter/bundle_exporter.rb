@@ -16,6 +16,7 @@ module Measures
                   "hqmf_path" => "db/measures",
                   "enable_logging" => false,
                   "enable_rationale" =>false,
+                  "short_circuit"=>false,
                   "effective_date" => Measure::DEFAULT_EFFECTIVE_DATE,
                   "name" =>"bundle-#{Time.now.to_i}",
                   "check_crosswalk" => false,
@@ -40,7 +41,6 @@ module Measures
 
       def rebuild_measures
         BonnieBundler.logger.info("rebuilding measures")
-        HealthDataStandards::CQM::Bundle.where({}).destroy
         HealthDataStandards::CQM::QueryCache.where({}).destroy
         HealthDataStandards::CQM::PatientCache.where({}).destroy
         #clear bundles
@@ -65,9 +65,13 @@ module Measures
          HealthDataStandards::CQM::Measure.where({:hqmf_id => {"$in" => measures.pluck(:hqmf_id).uniq}}).each do |measure|  
           draft_measure = Measure.where({:hqmf_id => measure.hqmf_id}).first
           oid_dictionary = HQMF2JS::Generator::CodesToJson.from_value_sets(draft_measure.value_sets)
-          report = QME::QualityReport.find_or_create(measure.hqmf_id, measure.sub_id, {'effective_date' => effective_date})
+          report = QME::QualityReport.find_or_create(measure.hqmf_id, measure.sub_id, {'effective_date' => effective_date, 'filters' =>nil})
           BonnieBundler.logger.debug("Calculating measure #{measure.cms_id} - #{measure.sub_id}")
-          report.calculate({"oid_dictionary" =>oid_dictionary.to_json, 'enable_logging' => enable_logging, "enable_rationale" =>enable_rationale},false) unless report.calculated?
+          report.calculate({"oid_dictionary" =>oid_dictionary.to_json,
+                          'enable_logging' => enable_logging,
+                          "enable_rationale" =>enable_rationale,
+                          "short_circuit" => short_circuit,
+                          "test_id" => nil}, false) unless report.calculated?
         end
       end
 
