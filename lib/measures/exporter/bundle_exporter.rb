@@ -196,19 +196,32 @@ module Measures
 
       def validate_expected_values(patient)
         sub_ids = ('a'..'az').to_a
-        sub_ids[0] = nil
         if patient.expected_values
           patient.expected_values.each do |val|
-            measure_hqmf_id = HealthDataStandards::CQM::Measure.where({hqmf_set_id: val['measure_id']}).first.hqmf_id
-            sub_id = sub_ids[val['population_index']]
+            mes = HealthDataStandards::CQM::Measure.where({hqmf_set_id: val['measure_id']}).first
+            if val['population_index'] > 0
+              sub_id = sub_ids[val['population_index']]
+            else
+              sub_id = nil
+            end
 
-            cache = Mongoid.default_session['patient_cache'].where({"value.patient_id" => patient.id, "value.measure_id" => measure_hqmf_id, "value.sub_id" => sub_id}).first
+            cache = Mongoid.default_session['patient_cache'].where({"value.patient_id" => patient.id, "value.measure_id" => mes.hqmf_id, "value.sub_id" => sub_id}).first
+            if !cache && !sub_id
+              cache = Mongoid.default_session['patient_cache'].where({"value.patient_id" => patient.id, "value.measure_id" => mes.hqmf_id, "value.sub_id" => 'a'}).first
+            end
+
             if cache
               cache = cache['value']
               val.except('measure_id', 'population_index', 'OBSERV_UNIT').each do |k, v|
                 k = 'values' if k == 'OBSERV'
                 if cache[k] != v
-                  BonnieBundler.logger.error("\tExpected value #{v} for key #{k} for measure #{mes.cms_id}-#{sub_ids[val['population_index']]} does not match calculated value #{cache[k]}")
+                  BonnieBundler.logger.error("\tExpected value #{v} for key #{k} for measure #{mes.cms_id}-#{sub_id} does not match calculated value #{cache[k]}")
+                end
+              end
+            else
+              val.except('measure_id', 'population_index', 'OBSERV_UNIT', 'STRAT').each do |k, v|
+                if v != 0
+                  BonnieBundler.logger.error("\tExpected value #{v} for key #{k} for measure #{mes.cms_id}-#{sub_id} does not have a calculated value")
                 end
               end
             end
