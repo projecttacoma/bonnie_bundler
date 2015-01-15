@@ -30,9 +30,8 @@ module Measures
 
         begin
 
-          xml_entry = hqmf_entry || simplexml_entry
-          xml_entry = simplexml_entry if hqmf_entry && hqmf_entry.size == 0
-          xml_path = extract(zip_file, xml_entry, out_dir)
+          hqmf_path = extract(zip_file, hqmf_entry, out_dir) if hqmf_entry && hqmf_entry.size > 0
+          simplexml_path = extract(zip_file, simplexml_entry, out_dir) if simplexml_entry && simplexml_entry.size > 0
           html_path = extract(zip_file, html_entry, out_dir)
           xls_path = extract(zip_file, xls_entry, out_dir)
 
@@ -48,7 +47,13 @@ module Measures
           end
 
           Measures::ValueSetLoader.save_value_sets(value_set_models,user)
-          model = Measures::Loader.parse_hqmf_model(xml_path)
+
+          begin
+            model = Measures::Loader.parse_hqmf_model(hqmf_path)
+          rescue Exception => e
+            model = Measures::Loader.parse_hqmf_model(simplexml_path)
+          end
+
           model.backfill_patient_characteristics_with_codes(HQMF2JS::Generator::CodesToJson.from_value_sets(value_set_models))
 
           json = model.to_json
