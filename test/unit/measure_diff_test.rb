@@ -36,8 +36,7 @@ class MeasureDiffTest < ActiveSupport::TestCase
     Measures::MATLoader.load(@updated_measure, nil, {})
     Measure.all.count.must_equal 2
     updated = Measure.all.last
-    previous.diff(updated)
-    assert !updated.latest_diff.blank?
+    assert !previous.diff(updated).blank?
   end
 
 end
