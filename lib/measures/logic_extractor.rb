@@ -459,7 +459,7 @@ module HQMF
           lines = ''
           measure.measure_logic.each do |population|
             population[:lines].each do |line|
-              lines << "#{line}#{"\n" unless line.ends_with?("\n")||''}"
+              lines << "#{line}#{"\n" unless line.ends_with?("\n")}"
             end
           end
           lines
@@ -469,7 +469,7 @@ module HQMF
             measure_logic = {:code => population[:code], :lines => []}
             lines = ''
             population[:lines].each do |line|
-              lines << "#{line}#{"\n" unless line.ends_with?("\n")||''}"
+              lines << "#{line}#{"\n" unless line.ends_with?("\n")}"
             end
             measure_logic[:lines] = lines
             measure_logic_text << measure_logic
@@ -490,8 +490,8 @@ module HQMF
           diff = {:cms_id => measure.cms_id, :populations => [], :totals => {}}
           measure_text.each_with_index do |population, index|
             population_totals = {:total => 0, :deletions => 0, :insertions => 0, :unchanged => 0}
-            first = population[:lines] rescue binding.pry
-            second = other_text.at(index)[:lines] rescue binding.pry
+            first = population[:lines]
+            second = other_text.at(index)[:lines]
             diff[:populations] << compute_diff(first, second, population_totals, population[:code])
             measure_totals[:total] += population_totals[:total]
             measure_totals[:deletions] += population_totals[:deletions]
