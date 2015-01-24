@@ -361,7 +361,7 @@ module HQMF
       def population_logic(measure)
         results = []
         @measure = measure
-        populations = HQMF::PopulationCriteria::ALL_POPULATION_CODES & @measure.population_criteria.keys
+        populations = @measure.population_criteria.keys
 
         populations.each do |population|
           population_results = {:code => population, :lines => []}
@@ -396,7 +396,11 @@ module HQMF
       end
 
       def translate_population(code)
-        POPULATION_MAP[code]
+        if match = code.match(/(.*)_(\d+)/)
+          "#{POPULATION_MAP[match[1]]} #{match[2].to_i + 1}"
+        else
+          POPULATION_MAP[code]
+        end
       end
 
       def translate_aggregator(code)
@@ -526,20 +530,23 @@ module HQMF
         results.merge! totals
       end
 
+      # Make sure we have the same populations in the same order for both measures
       def self.verify_populations(measure_text, other_text)
         measure_codes = measure_text.map { |p| p[:code] }
         other_codes = other_text.map { |p| p[:code] }
-        index = 0
-        HQMF::PopulationCriteria::ALL_POPULATION_CODES.each do |code|
-          overlap = measure_codes | other_codes
-          next if !overlap.include?(code)
-          if !measure_codes.include?(code)
-            measure_text.insert(index, {:code => code, :lines => []})
-          elsif !other_codes.include?(code)
-            other_text.insert(index, {:code => code, :lines => []})
+        # First add any missing codes to each
+        (measure_codes - other_codes).each { |code| other_text << { code: code, lines: [] } }
+        (other_codes - measure_codes).each { |code| measure_text << { code: code, lines: [] } }
+        # Then sort each canonically, allowing for NUMER, NUMER_1, etc
+        sorter = proc do |p|
+          if match = p[:code].match(/(.*)_(\d+)/)
+            [HQMF::PopulationCriteria::ALL_POPULATION_CODES.index(match[1]), match[2].to_i]
+          else
+            [HQMF::PopulationCriteria::ALL_POPULATION_CODES.index(p[:code]), 0]
           end
-          index += 1
         end
+        measure_text.sort_by!(&sorter)
+        other_text.sort_by!(&sorter)
       end
 
     end
