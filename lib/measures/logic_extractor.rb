@@ -540,9 +540,9 @@ module HQMF
         # Then sort each canonically, allowing for NUMER, NUMER_1, etc
         sorter = proc do |p|
           if match = p[:code].match(/(.*)_(\d+)/)
-            [HQMF::PopulationCriteria::ALL_POPULATION_CODES.index(match[1]), match[2].to_i]
+            [HQMF::PopulationCriteria::ALL_POPULATION_CODES.index(match[1]) || Float::INFINITY, match[2].to_i]
           else
-            [HQMF::PopulationCriteria::ALL_POPULATION_CODES.index(p[:code]), 0]
+            [HQMF::PopulationCriteria::ALL_POPULATION_CODES.index(p[:code]) || Float::INFINITY, 0]
           end
         end
         measure_text.sort_by!(&sorter)
