@@ -170,12 +170,12 @@ class Measure
     # Finally, this reference may be a variable, in which case we consider this a leaf node *unless* we are
     # explicitly calculating the complexity of the variable itself
     if criteria = self.data_criteria[criteria_reference]
-      complexity = if criteria['children_criteria'] && (!criteria['variable'] || options[:calculating_variable])
+      complexity = if criteria['children_criteria'].present? && (!criteria['variable'] || options[:calculating_variable])
                      criteria['children_criteria'].map { |c| data_criteria_complexity(c) }.sum
                    else
                      1
                    end
-      complexity + if criteria['temporal_references']
+      complexity + if criteria['temporal_references'].present?
                      criteria['temporal_references'].map { |tr| data_criteria_complexity(tr['reference']) - 1 }.sum
                    else
                      0
