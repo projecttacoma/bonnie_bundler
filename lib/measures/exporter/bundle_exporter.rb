@@ -119,7 +119,7 @@ module Measures
 
           patient.medical_record_assigner = "2.16.840.1.113883.3.1257"
           
-          patient_hash = patient.as_json(except: [ '_id', 'measure_id' ], methods: ['_type'])
+          patient_hash = patient.as_json(except: [ '_id', 'measure_id', 'user_id' ], methods: ['_type'])
           patient_hash['measure_ids'] = patient_hash['measure_ids'].uniq if patient_hash['measure_ids']
           json = JSON.pretty_generate(JSON.parse(patient_hash.remove_nils.to_json))
           html = exporter.export(patient)
@@ -132,9 +132,9 @@ module Measures
       def export_results
         BonnieBundler.logger.info("Exporting results")
         results_by_patient = Mongoid.default_session['patient_cache'].find({}).to_a
-        results_by_patient = JSON.pretty_generate(JSON.parse(results_by_patient.as_json(:except => [ '_id' ]).to_json))
+        results_by_patient = JSON.pretty_generate(JSON.parse(results_by_patient.as_json(:except => [ '_id', 'user_id' ]).to_json))
         results_by_measure = Mongoid.default_session['query_cache'].find({}).to_a
-        results_by_measure = JSON.pretty_generate(JSON.parse(results_by_measure.as_json(:except => [ '_id' ]).to_json))
+        results_by_measure = JSON.pretty_generate(JSON.parse(results_by_measure.as_json(:except => [ '_id', 'user_id' ]).to_json))
         
         export_file File.join(results_path,"by_patient.json"), results_by_patient
         export_file File.join(results_path,"by_measure.json") ,results_by_measure
@@ -154,7 +154,7 @@ module Measures
           end
         end
         HealthDataStandards::SVS::ValueSet.where(oid: {'$in'=>value_sets}, user_id: @user.id).to_a.each do |vs|
-          export_file File.join(valuesets_path,"json", "#{vs.oid}.json"), JSON.pretty_generate(vs.as_json(:except => [ '_id' ]), max_nesting: 250)
+          export_file File.join(valuesets_path,"json", "#{vs.oid}.json"), JSON.pretty_generate(vs.as_json(:except => [ '_id', 'user_id' ]), max_nesting: 250)
         end
       end
 
