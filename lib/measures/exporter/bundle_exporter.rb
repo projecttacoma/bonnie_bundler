@@ -162,7 +162,6 @@ module Measures
         BonnieBundler.logger.info("Exporting measures")
         measures.each do |measure|
           sub_ids = ('a'..'az').to_a
-          binding.pry
           if @config[measure.hqmf_set_id]
             measure.category = @config[measure.hqmf_set_id]['category']
             measure.measure_id = @config[measure.hqmf_set_id]['nqf_id']
