@@ -161,8 +161,11 @@ module Measures
       def export_measures
         BonnieBundler.logger.info("Exporting measures")
         measures.each do |measure|
-
           sub_ids = ('a'..'az').to_a
+          if @config[measure.hqmf_set_id]
+            measure.category = @config[measure.hqmf_set_id]['category']
+            measure.measure_id = @config[measure.hqmf_set_id]['nqf_id']
+          end
           measure.populations.each_with_index do |population, population_index|
             sub_id = sub_ids[population_index] if measure.populations.length > 1
             BonnieBundler.logger.info("Exporting measure #{measure.cms_id} - #{sub_id}")

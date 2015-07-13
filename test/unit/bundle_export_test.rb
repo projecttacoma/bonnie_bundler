@@ -16,7 +16,14 @@ class BundleExportTest < ActiveSupport::TestCase
     @user = User.new('123456789')
     Measure.each { |m| m.update_attributes user_id: @user.id }
     HealthDataStandards::SVS::ValueSet.each { |vs| vs.update_attributes user_id: @user.id ; vs.save }
-    @exporter =  Measures::Exporter::BundleExporter.new(@user, {"base_dir"=>"./tmp", "name"=>"test_bundle"})
+
+
+    measure_config = APP_CONFIG.merge! YAML.load_file(File.join('config','measures', 'measures_2_4_0.yml'))["measures"]
+    config = APP_CONFIG.merge(measure_config)
+    config["base_dir"] ||= "./tmp"
+    config["name"] ||= "test_bundle"
+
+    @exporter =  Measures::Exporter::BundleExporter.new(@user, config)
     FileUtils.rm_rf(@exporter.base_dir)
   end
 
@@ -125,6 +132,15 @@ class BundleExportTest < ActiveSupport::TestCase
     @exporter.export_measures
     HealthDataStandards::CQM::Measure.each do |m|
       assert File.exists?(File.join(@exporter.base_dir,@exporter.measures_path,m.type,"#{m.hqmf_id}#{m.sub_id}.json"))
+    end
+  end
+
+  test "export_measures_with_nqf" do
+    @exporter.rebuild_measures
+    assert !File.exists?(@exporter.base_dir)
+    @exporter.export_measures
+    HealthDataStandards::CQM::Measure.each do |m|
+      assert m.nqf_id
     end
   end
 
