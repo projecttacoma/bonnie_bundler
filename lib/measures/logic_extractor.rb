@@ -304,7 +304,7 @@ module HQMF
           if data_criteria['field_values']
             line << " ( "
             data_criteria['field_values'].each do |field, fv|
-              line << fv['key_title']
+              line << fv['key_title'] if fv['key_title']
               line << "#{value_logic(fv)[0]}" if fv['type'] != 'ANYNonNull'
             end
             line << " )"
