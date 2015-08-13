@@ -213,7 +213,13 @@ class Measure
   before_save :extract_measure_logic
   def extract_measure_logic
     self.measure_logic = []
-    self.measure_logic.concat HQMF::Measure::LogicExtractor.new().population_logic(self)
+    # There are occasional issues extracting measure logic; while we want to fix them we also don't want logic
+    # extraction issues to hold up loading or updating a measure
+    begin
+      self.measure_logic.concat HQMF::Measure::LogicExtractor.new().population_logic(self)
+    rescue => e
+      self.measure_logic << "Error parsing measure logic: #{e.message}"
+    end
     self.measure_logic
   end
 
