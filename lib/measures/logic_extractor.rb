@@ -337,9 +337,7 @@ module HQMF
         root_precondition = population['preconditions'][0] if population['preconditions']
         aggregator = population['aggregator']
         ( comments = root_precondition.try(:[],'comments') || [] ) | ( population['comments'] || [] )
-        comments ||= []
-
-        comments.each {|c| results.concat c}
+        results.concat comments if comments
         unless root_precondition.blank?
           if root_precondition['preconditions']
             root_precondition['preconditions'].each do |precondition|
