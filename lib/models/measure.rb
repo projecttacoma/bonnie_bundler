@@ -126,6 +126,9 @@ class Measure
     @value_sets
   end
 
+  def all_data_criteria
+    as_hqmf_model.all_data_criteria
+  end
 
   def as_javascript(population_index, check_crosswalk=false)
     options = {
