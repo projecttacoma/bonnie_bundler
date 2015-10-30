@@ -38,6 +38,27 @@ module HQMF
       VERSION_INDEX = 5
       CODE_INDEX = 6
       DESCRIPTION_INDEX = 7
+
+      DEFAULT_SHEET = 0
+      SUPPLEMENTAL_SHEET = 1
+
+      def self.get_display_name(row)
+        display_name = row[CONCEPT_INDEX].titleize
+      end
+
+    end
+
+    # Version 3 adds version and expansion identifier columns to Version 2
+    class Version3
+      ORGANIZATION_INDEX = 0
+      OID_INDEX = 1
+      CONCEPT_INDEX = 3
+      CODE_SET_INDEX = 4
+      VERSION_INDEX = 5
+      CODE_INDEX = 6
+      VERSION_IDENTIFIER_INDEX = 7
+      EXPANSION_IDENTIFIER_INDEX = 8
+      DESCRIPTION_INDEX = 9
  
       DEFAULT_SHEET = 0
       SUPPLEMENTAL_SHEET = 1
@@ -74,7 +95,13 @@ module HQMF
         @value_set_models = {}
 
         book = HQMF::ValueSet::Parser.book_by_format(file)
-        @constants = (book.sheets.count < 3) ? Version2.new.class : Version1.new.class 
+        @constants = if book.sheets.count > 2
+                       Version1.new.class
+                     elsif book.sheet(0).row(1).size < 10
+                       Version2.new.class
+                     else
+                       Version3.new.class
+                     end
 
         extract_value_sets(book, @constants::DEFAULT_SHEET)
         book = HQMF::ValueSet::Parser.book_by_format(file)
