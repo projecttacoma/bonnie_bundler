@@ -148,6 +148,43 @@ class Measure
     true
   end
 
+  ############################## Measure Criteria Keys ##############################
+
+  # Given a data criteria, return the list of all data criteria keys referenced within, either through
+  # children criteria or temporal references; this includes the passed in criteria reference
+  def data_criteria_criteria_keys(criteria_reference)
+    criteria_keys = [criteria_reference]
+    if criteria = self.data_criteria[criteria_reference]
+      if criteria['children_criteria'].present?
+        criteria_keys.concat(criteria['children_criteria'].map { |c| data_criteria_criteria_keys(c) }.flatten)
+      end
+      if criteria['temporal_references'].present?
+        criteria_keys.concat(criteria['temporal_references'].map { |tr| data_criteria_criteria_keys(tr['reference']) }.flatten)
+      end
+    end
+    criteria_keys
+  end
+
+  # Given a precondition, return the list of all data criteria keys referenced within
+  def precondition_criteria_keys(precondition)
+    if precondition['preconditions'] && precondition['preconditions'].size > 0
+      precondition['preconditions'].map { |p| precondition_criteria_keys(p) }.flatten
+    elsif precondition['reference']
+      data_criteria_criteria_keys(precondition['reference'])
+    else
+      []
+    end
+  end
+
+  # Return the list of all data criteria keys in this measure, indexed by population code
+  def criteria_keys_by_population
+    criteria_keys_by_population = {}
+    population_criteria.each do |name, precondition|
+      criteria_keys_by_population[name] = precondition_criteria_keys(precondition).reject { |ck| ck == 'MeasurePeriod' }
+    end
+    criteria_keys_by_population
+  end
+
   ############################## Measure Complexity Analysis ##############################
 
   def precondition_complexity(precondition)
