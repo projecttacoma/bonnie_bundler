@@ -115,7 +115,7 @@ module Measures
 
     end
 
-    def self.load_value_sets_from_vsac(value_set_oids, username, password, user=nil, overwrite=false, effectiveDate=nil, includeDraft=false)
+    def self.load_value_sets_from_vsac(value_set_oids, username, password, user=nil, overwrite=false, effectiveDate=nil, includeDraft=false, ticket_granting_ticket=nil)
       value_set_models = []
       from_vsac = 0
       
@@ -135,7 +135,7 @@ module Measures
         nlm_config = APP_CONFIG["nlm"]
 
         errors = {}
-        api = HealthDataStandards::Util::VSApiV2.new(nlm_config["ticket_url"],nlm_config["api_url"],username, password)
+        api = HealthDataStandards::Util::VSApiV2.new(nlm_config["ticket_url"],nlm_config["api_url"],username, password, ticket_granting_ticket)
         
         codeset_base_dir = Measures::Loader::VALUE_SET_PATH
         FileUtils.mkdir_p(codeset_base_dir) unless overwrite
