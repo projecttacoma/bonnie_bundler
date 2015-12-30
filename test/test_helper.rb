@@ -1,6 +1,6 @@
 require_relative "./simplecov"
-require 'test/unit'
-require 'turn'
+require 'minitest/autorun'
+require "minitest/reporters"
 require 'rails'
 require 'hquery-patient-api'
 require 'diffy'
