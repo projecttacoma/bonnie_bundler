@@ -135,7 +135,7 @@ module Measures
         nlm_config = APP_CONFIG["nlm"]
 
         errors = {}
-        api = HealthDataStandards::Util::VSApi.new(nlm_config["ticket_url"],nlm_config["api_url"],username, password)
+        api = HealthDataStandards::Util::VSApiV2.new(nlm_config["ticket_url"],nlm_config["api_url"],username, password)
         
         codeset_base_dir = Measures::Loader::VALUE_SET_PATH
         FileUtils.mkdir_p(codeset_base_dir) unless overwrite
@@ -153,7 +153,7 @@ module Measures
             if (cached_service_result && File.exists?(cached_service_result))
               vs_data = File.read cached_service_result
             else
-              vs_data = api.get_valueset(oid, effectiveDate, includeDraft)
+              vs_data = api.get_valueset(oid, effective_date: effectiveDate, include_draft: includeDraft)
               vs_data.force_encoding("utf-8") # there are some funky unicodes coming out of the vs response that are not in ASCII as the string reports to be
               from_vsac += 1
               File.open(cached_service_result, 'w') {|f| f.write(vs_data) } unless overwrite
@@ -163,7 +163,7 @@ module Measures
 
             doc.root.add_namespace_definition("vs","urn:ihe:iti:svs:2008")
             
-            vs_element = doc.at_xpath("/vs:RetrieveValueSetResponse/vs:ValueSet")
+            vs_element = doc.at_xpath("/vs:RetrieveValueSetResponse/vs:ValueSet|/vs:RetrieveMultipleValueSetsResponse/vs:DescribedValueSet")
 
             if vs_element && vs_element["ID"] == oid
               vs_element["id"] = oid

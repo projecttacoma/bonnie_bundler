@@ -1,7 +1,8 @@
+ENV["RAILS_ENV"] = "test"
 require_relative "./simplecov"
-require 'test/unit'
-require 'turn'
+require 'minitest/autorun'
 require 'rails'
+require 'rails/test_help'
 require 'hquery-patient-api'
 require 'diffy'
 APP_CONFIG = {'nlm'=>{'ticket_url'=>'foo', 'api_url'=>'bar'}}

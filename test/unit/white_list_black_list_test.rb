@@ -16,8 +16,8 @@ class WhiteListBlackListTest < ActiveSupport::TestCase
     white = vs.concepts.select {|c| c.white_list}
     black = vs.concepts.select {|c| c.black_list}
 
-    white.count.must_equal 3
-    black.count.must_equal 2
+    assert_equal 3, white.count
+    assert_equal 2, black.count
 
     Measures::ValueSetLoader.clear_white_black_list
 
@@ -26,8 +26,8 @@ class WhiteListBlackListTest < ActiveSupport::TestCase
     white = vs.concepts.select {|c| c.white_list}
     black = vs.concepts.select {|c| c.black_list}
 
-    white.count.must_equal 0
-    black.count.must_equal 0
+    assert_equal 0, white.count
+    assert_equal 0, black.count
 
     Measures::ValueSetLoader.load_white_list(@white_list_path)
     Measures::ValueSetLoader.load_black_list(@black_list_path)
@@ -37,8 +37,8 @@ class WhiteListBlackListTest < ActiveSupport::TestCase
     white = vs.concepts.select {|c| c.white_list}
     black = vs.concepts.select {|c| c.black_list}
 
-    white.count.must_equal 3
-    black.count.must_equal 2
+    assert_equal 3, white.count
+    assert_equal 2, black.count
 
   end
 
