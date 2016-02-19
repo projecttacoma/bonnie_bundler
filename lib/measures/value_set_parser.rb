@@ -50,16 +50,37 @@ module HQMF
 
     # Version 3 adds version and expansion identifier columns to Version 2
     class Version3
-      ORGANIZATION_INDEX = 0
-      OID_INDEX = 1
-      CONCEPT_INDEX = 3
-      CODE_SET_INDEX = 4
-      VERSION_INDEX = 5
-      CODE_INDEX = 6
-      VERSION_IDENTIFIER_INDEX = 7
-      EXPANSION_IDENTIFIER_INDEX = 8
-      DESCRIPTION_INDEX = 9
+      ORGANIZATION_INDEX = 0 # Value Set Developer
+      OID_INDEX = 1 # Value Set OID
+      CONCEPT_INDEX = 3 # Value Set Name
+      CODE_SET_INDEX = 4 # Code System
+      VERSION_INDEX = 5 # Code System Version
+      CODE_INDEX = 6 # Code
+      VERSION_IDENTIFIER_INDEX = 7 # Version
+      EXPANSION_IDENTIFIER_INDEX = 8 # Expansion Identifier
+      DESCRIPTION_INDEX = 9 # Descriptor
  
+      DEFAULT_SHEET = 0
+      SUPPLEMENTAL_SHEET = 1
+
+      def self.get_display_name(row)
+        display_name = row[CONCEPT_INDEX].titleize
+      end
+
+    end
+
+    # Version 4 just shuffles some fields around
+    class Version4
+      ORGANIZATION_INDEX = 0 # Value Set Developer
+      OID_INDEX = 1 # Value Set OID
+      VERSION_IDENTIFIER_INDEX = 2 # Version
+      EXPANSION_IDENTIFIER_INDEX = 3 # Expansion Identifier
+      CONCEPT_INDEX = 5 # Value Set Name
+      CODE_SET_INDEX = 6 # Code System
+      VERSION_INDEX = 7 # Code System Version
+      CODE_INDEX = 8 # Code
+      DESCRIPTION_INDEX = 9 # Descriptor
+
       DEFAULT_SHEET = 0
       SUPPLEMENTAL_SHEET = 1
 
@@ -99,8 +120,10 @@ module HQMF
                        Version1.new.class
                      elsif book.sheet(0).row(1).size < 10
                        Version2.new.class
-                     else
+                     elsif book.sheet(0).row(1)[3] == 'Value Set Name'
                        Version3.new.class
+                     else
+                       Version4.new.class
                      end
 
         extract_value_sets(book, @constants::DEFAULT_SHEET)
