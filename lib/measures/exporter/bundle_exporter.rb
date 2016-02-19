@@ -105,7 +105,6 @@ module Measures
 
       def export_patients
         BonnieBundler.logger.info("Exporting patients")
-        exporter=HealthDataStandards::Export::HTML.new
         records.each do |patient|
 
           safe_first_name = patient.first.gsub("'", "")
@@ -122,7 +121,6 @@ module Measures
           patient_hash = patient.as_json(except: [ '_id', 'measure_id', 'user_id' ], methods: ['_type'])
           patient_hash['measure_ids'] = patient_hash['measure_ids'].uniq if patient_hash['measure_ids']
           json = JSON.pretty_generate(JSON.parse(patient_hash.remove_nils.to_json))
-          html = exporter.export(patient)
           patient_type = patient.type || Measure.for_patient(patient).first.try(:type)
           path = File.join(records_path, patient_type.to_s)
           export_file File.join(path, "json", "#{filename}.json"), json
