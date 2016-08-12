@@ -1,5 +1,4 @@
 module Measures
-
   # Utility class for loading value sets
   class ValueSetLoader
 
@@ -9,7 +8,7 @@ module Measures
         #bundle id for user should always be the same 1 user to 1 bundle
         #using this to allow cat I generation without extensive modification to HDS
         vsm.bonnie_version_hash = HealthDataStandards::SVS::ValueSet.generate_bonnie_hash(vsm)
-        if (HealthDataStandards::SVS::ValueSet.where(bonnie_version_hash: vsm.bonnie_version_hash).first.nil?)
+        unless HealthDataStandards::SVS::ValueSet.where(bonnie_version_hash: vsm.bonnie_version_hash).exists?
           vsm.save!
         end
       end
@@ -155,7 +154,7 @@ module Measures
             set = HealthDataStandards::SVS::ValueSet.load_from_xml(doc)
             #bundle id for user should always be the same 1 user to 1 bundle
             #using this to allow cat I generation without extensive modification to HDS
-            set.bundle = user.bundle if (user && user.respond_to?(:bundle))
+            set.bundle << user.bundle if (user && user.respond_to?(:bundle))
             set.bonnie_version_hash = HealthDataStandards::SVS::ValueSet.generate_bonnie_hash(set)
             to_save.push(set)
           else
