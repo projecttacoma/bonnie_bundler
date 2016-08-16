@@ -153,7 +153,7 @@ module Measures
         end
         bonnie_version_hashes = measures.map(&:bonnie_hashes).flatten.uniq
         HealthDataStandards::SVS::ValueSet.where(bonnie_version_hash: {'$in'=>bonnie_version_hashes}).to_a.each do |vs|
-          export_file File.join(valuesets_path,"json", "#{vs.oid}.json"), JSON.pretty_generate(vs.as_json(:except => [ '_id', 'user_id' ]), max_nesting: 250)
+          export_file File.join(valuesets_path,"json", "#{vs.oid}.json"), JSON.pretty_generate(vs.as_json(:except => [ '_id', 'bundle' ]), max_nesting: 250)
         end
       end
 
