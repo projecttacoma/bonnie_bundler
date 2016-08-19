@@ -63,7 +63,7 @@ module Measures
           json.convert_keys_to_strings
           measure = Measures::Loader.load_hqmf_model_json(json, user,value_set_models.collect{|vs| vs.oid})
           measure.update_attributes(measure_details)
-          measure.bonnie_hashes = value_set_models.collect{|vs| vs.bonnie_version_hash}
+          measure.update_attributes(bonnie_hashes: value_set_models.collect{|vs| vs.bonnie_version_hash})
 
         rescue Exception => e
           if e.is_a? Measures::ValueSetException
