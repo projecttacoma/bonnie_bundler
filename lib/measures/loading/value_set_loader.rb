@@ -5,8 +5,6 @@ module Measures
     def self.save_value_sets(value_set_models)
       #loaded_value_sets = HealthDataStandards::SVS::ValueSet.all.map(&:oid)
       value_set_models.each do |vsm|
-        #bundle id for user should always be the same 1 user to 1 bundle
-        #using this to allow cat I generation without extensive modification to HDS
         vsm.bonnie_version_hash = HealthDataStandards::SVS::ValueSet.generate_bonnie_hash(vsm)
         unless HealthDataStandards::SVS::ValueSet.where(bonnie_version_hash: vsm.bonnie_version_hash).exists?
           vsm.save!
@@ -22,9 +20,6 @@ module Measures
     def self.load_value_sets_from_xls(value_set_path)
       value_set_parser = HQMF::ValueSet::Parser.new()
       value_sets = value_set_parser.parse(value_set_path)
-      value_sets.each do |vs|
-        vs.bonnie_version_hash = HealthDataStandards::SVS::ValueSet.generate_bonnie_hash(vs)
-      end
       raise ValueSetException.new "No ValueSets found" if value_sets.length == 0
       value_sets
     end
@@ -151,12 +146,10 @@ module Measures
           vs_element = doc.at_xpath("/vs:RetrieveValueSetResponse/vs:ValueSet|/vs:RetrieveMultipleValueSetsResponse/vs:DescribedValueSet")
           if vs_element && vs_element["ID"] == oid
             vs_element["id"] = oid
-            set = HealthDataStandards::SVS::ValueSet.load_from_xml(doc)
-            #bundle id for user should always be the same 1 user to 1 bundle
-            #using this to allow cat I generation without extensive modification to HDS
-            set.bundle << user.bundle if (user && user.respond_to?(:bundle))
-            set.bonnie_version_hash = HealthDataStandards::SVS::ValueSet.generate_bonnie_hash(set)
-            to_save.push(set)
+            value_set = HealthDataStandards::SVS::ValueSet.load_from_xml(doc)
+            value_set.bundle << user.bundle if (user && user.respond_to?(:bundle))
+            value_set.bonnie_version_hash = HealthDataStandards::SVS::ValueSet.generate_bonnie_hash(value_set)
+            to_save.push(value_set)
           else
             raise "Value set not found: #{oid}"
           end
@@ -169,23 +162,14 @@ module Measures
       bonnie_version_hashes = to_save.map { |vs| vs.bonnie_version_hash}.flatten
       backup_value_sets = get_existing_vs(bonnie_version_hashes)        
       begin
-        if (overwrite)
-          delete_existing_vs(bonnie_version_hashes)
-          backup_value_sets.each do |vs|
-            existing_value_set_map[vs.bonnie_version_hash] = HealthDataStandards::SVS::ValueSet.new(vs.attributes)
-          end
-          to_save.each do |vs|
-            existing_value_set_map[vs.bonnie_version_hash] = vs
-          end
-        else
-          to_save.each do |vs|
-            existing_value_set_map[vs.bonnie_version_hash] = vs
-          end
-          backup_value_sets.each do |vs|
-            existing_value_set_map[vs.bonnie_version_hash] = vs
-          end
+        to_save.each do |vs|
+          existing_value_set_map[vs.bonnie_version_hash] = vs
+        end
+        backup_value_sets.each do |vs|
+          existing_value_set_map[vs.bonnie_version_hash] = vs
         end
         existing_value_set_map.each do |key, vs|
+          vs.bundle << user.bundle if (user && user.respond_to?(:bundle))
           vs.save!
         end
       rescue Exception => e
