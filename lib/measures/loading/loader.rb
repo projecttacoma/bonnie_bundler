@@ -5,7 +5,7 @@ module Measures
     SOURCE_PATH = File.join(".", "db", "measures")
     VALUE_SET_PATH = File.join(".", "db", "value_sets")
     HQMF_VS_OID_CACHE = File.join(".", "db", "hqmf_vs_oid_cache")
-    PARSERS = [HQMF::Parser::V2Parser,HQMF::Parser::V1Parser,SimpleXml::Parser::V1Parser]
+    PARSERS = [CQL::Parser::V1Parser,HQMF::Parser::V2Parser,HQMF::Parser::V1Parser,SimpleXml::Parser::V1Parser]
     
     
     def self.parse_hqmf_model(xml_path)

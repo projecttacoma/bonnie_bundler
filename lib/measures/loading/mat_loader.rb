@@ -12,9 +12,15 @@ module Measures
 
     def self.mat_export?(zip_file)
       Zip::ZipFile.open(zip_file.path) do |zip_file|
+        # Check for HQMF file
         hqmf_entry = zip_file.glob(File.join('**','**.xml')).select {|x| x.name.match(/.*eMeasure.xml/) && !x.name.starts_with?('__MACOSX') }.first
+
+        # Check for SimpleXML file
         simplexml_entry = zip_file.glob(File.join('**','**.xml')).select {|x| x.name.match(/.*SimpleXML.xml/) && !x.name.starts_with?('__MACOSX') }.first
+
+        # Check for excel value set file
         xls_entry = zip_file.glob(File.join('**','**.xls')).select {|x| !x.name.starts_with?('__MACOSX') }.first
+
         (!hqmf_entry.nil? || !simplexml_entry.nil?) && !xls_entry.nil?
       end
     end
