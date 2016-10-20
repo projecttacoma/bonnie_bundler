@@ -5,9 +5,9 @@ module Measures
     SOURCE_PATH = File.join(".", "db", "measures")
     VALUE_SET_PATH = File.join(".", "db", "value_sets")
     HQMF_VS_OID_CACHE = File.join(".", "db", "hqmf_vs_oid_cache")
-    PARSERS = [CQL::Parser::V1Parser,HQMF::Parser::V2Parser,HQMF::Parser::V1Parser,SimpleXml::Parser::V1Parser]
-    
-    
+    PARSERS = [HQMF::Parser::V2CQLParser, HQMF::Parser::V2Parser,HQMF::Parser::V1Parser,SimpleXml::Parser::V1Parser]
+
+
     def self.parse_hqmf_model(xml_path)
       xml_contents = Nokogiri::XML(File.new xml_path)
       parser = get_parser(xml_contents)
@@ -66,7 +66,7 @@ module Measures
       measure.measure_period = json["measure_period"]
       measure
     end
-    
+
     def self.save_sources(measure, hqmf_path, html_path, xls_path=nil)
       # Save original files
       if (html_path)
@@ -74,13 +74,13 @@ module Measures
         FileUtils.mkdir_p html_out_path
         FileUtils.cp(html_path, File.join(html_out_path,"#{measure.hqmf_id}.html"))
       end
-      
+
       if (xls_path)
         value_set_out_path = File.join(SOURCE_PATH, "value_sets")
         FileUtils.mkdir_p value_set_out_path
         FileUtils.cp(xls_path, File.join(value_set_out_path,"#{measure.hqmf_id}.xls"))
       end
-      
+
       hqmf_out_path = File.join(SOURCE_PATH, "hqmf")
       FileUtils.mkdir_p hqmf_out_path
       FileUtils.cp(hqmf_path, File.join(hqmf_out_path, "#{measure.hqmf_id}.xml"))
@@ -90,7 +90,7 @@ module Measures
       doc = xml_contents.kind_of?(Nokogiri::XML::Document) ? xml_contents : Nokogiri::XML(xml_contents)
       doc
     end
-    
+
     def self.clear_sources
       FileUtils.rm_r File.join(SOURCE_PATH, "html") if File.exist?(File.join(SOURCE_PATH, "html"))
       FileUtils.rm_r File.join(SOURCE_PATH, "value_sets") if File.exist?(File.join(SOURCE_PATH, "value_sets"))

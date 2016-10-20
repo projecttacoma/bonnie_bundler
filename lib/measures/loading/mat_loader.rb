@@ -30,18 +30,12 @@ module Measures
         # Check for excel value set file
         xls_entry = zip_file.glob(File.join('**','**.xls')).select {|x| !x.name.starts_with?('__MACOSX') }.first
       end
-      if cql_entry.nil?
+      if !cql_entry.nil?
         measure = Measures::CqlLoader.load_mat_cql_exports(user, file, out_dir, measure_details)
-      elsif (hqmf_entry.nil? || simplexml_entry.nil?) && xls_entry.nil?
+      elsif !((hqmf_entry.nil? || simplexml_entry.nil?) && xls_entry.nil?)
         measure = Measures::HqmfLoader.load_mat_hqmf_exports(user, file, out_dir, measure_details)
-
+      end
       measure
-    end
-
-    def self.extract(zip_file, entry, out_dir)
-      out_file = File.join(out_dir,Pathname.new(entry.name).basename.to_s)
-      zip_file.extract(entry, out_file)
-      out_file
     end
 
   end
