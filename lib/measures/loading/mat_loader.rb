@@ -30,7 +30,7 @@ module Measures
         # Check for excel value set file
         xls_entry = zip_file.glob(File.join('**','**.xls')).select {|x| !x.name.starts_with?('__MACOSX') }.first
       end
-      if !cql_entry.nil?
+      if !(cql_entry.nil? && hqmf_entry.nil?)
         measure = Measures::CqlLoader.load_mat_cql_exports(user, file, out_dir, measure_details)
       elsif !((hqmf_entry.nil? || simplexml_entry.nil?) && xls_entry.nil?)
         measure = Measures::HqmfLoader.load_mat_hqmf_exports(user, file, out_dir, measure_details)

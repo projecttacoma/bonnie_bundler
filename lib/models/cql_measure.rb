@@ -11,7 +11,11 @@ class CqlMeasure
   field :description, type: String, default: ""
   field :hqmf_id, type: String
   field :hqmf_set_id, type: String
-  field :populations, type: Array, default: []
+  field :hqmf_version_number, type: Integer
+
+  field :measure_attributes, type: Array
+  field :measure_period, type: Hash
+  field :population_criteria, type: Hash
 
   # Store the original CQL as a string
   field :cql, type: String

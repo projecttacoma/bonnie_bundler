@@ -6,7 +6,8 @@ module Measures
       Zip::ZipFile.open(zip_file.path) do |zip_file|
         # Check for CQL and ELM
         cql_entry = zip_file.glob(File.join('**','**.cql')).select {|x| x.name.match(/.*CQL.cql/) && !x.name.starts_with?('__MACOSX') }.first
-        !cql_entry.nil?
+        hqmf_entry = zip_file.glob(File.join('**','**.xml')).select {|x| x.name.match(/.*eMeasure.xml/) && !x.name.starts_with?('__MACOSX') }.first
+        !(cql_entry.nil? && hqmf_entry.nil?)
       end
     end
 
@@ -22,22 +23,8 @@ module Measures
           hqmf_path = extract(zip_file, hqmf_entry, out_dir) if hqmf_entry && hqmf_entry.size > 0
           xls_path = extract(zip_file, xls_entry, out_dir)
 
-          # # handle value sets
-          # begin
-          #   debugger
-          #   value_set_models = Measures::ValueSetLoader.load_value_sets_from_xls(xls_path)
-          # rescue Exception => e
-          #   if e.is_a? Measures::ValueSetException
-          #     raise e
-          #   else
-          #     raise ValueSetException.new "Error Parsing Value Sets: #{e.message}" unless e.is_a? Measures::ValueSetException
-          #   end
-          # end
-          #
-          # Measures::ValueSetLoader.save_value_sets(value_set_models,user)
-
-          ####
           cql = open(cql_path).read
+          elm = ''
           begin
             elm = RestClient.post('http://localhost:8080/cql/translator', cql, content_type: 'application/cql', accept: 'application/elm+json')
           rescue RestClient::BadRequest => e
@@ -50,11 +37,22 @@ module Measures
             return
           end
 
+          # Load hqmf into HQMF Parser
           model = Measures::Loader.parse_hqmf_model(hqmf_path)
+
+          # Get Value Sets
+          begin
+            value_set_models =  Measures::ValueSetLoader.load_value_sets_from_vsac(model.all_code_set_oids, "", "", user, true, nil, false)
+          rescue Exception => e
+            raise VSACException.new "Error Loading Value Sets from VSAC: #{e.message}"
+          end
+
+          # Create CQL Measure
+          model.backfill_patient_characteristics_with_codes(HQMF2JS::Generator::CodesToJson.from_value_sets(value_set_models))
           json = model.to_json
           json.convert_keys_to_strings
-        #  measure = load_hqmf_cql_model_json(model, user, value_set_models.collect{|vs| vs.oid}, JSON.parse(elm), cql,)
-          measure = load_hqmf_cql_model_json(json, user, JSON.parse(elm), cql)
+
+          measure = load_hqmf_cql_model_json(json, user, value_set_models.collect{|vs| vs.oid}, JSON.parse(elm), cql)
         rescue Exception => e
           raise MeasureLoadingException.new "Error Parsing Measure Logic: #{e.message}"
         end
@@ -65,7 +63,7 @@ module Measures
       measure
     end
 
-    def self.load_hqmf_cql_model_json(json, user, elm, cql)
+    def self.load_hqmf_cql_model_json(json, user, measure_oids, elm, cql)
       measure = CqlMeasure.new
       measure.user = user if user
       measure.cql = cql
@@ -73,17 +71,19 @@ module Measures
 
       measure.hqmf_id = json["hqmf_id"]
       measure.hqmf_set_id = json["hqmf_set_id"]
-  #    measure.hqmf_version_number = json["hqmf_version_number"]
+      measure.hqmf_version_number = json["hqmf_version_number"]
       measure.cms_id = json["cms_id"]
       measure.title = json["title"]
       measure.description = json["description"]
-#      measure.measure_attributes = json["attributes"]
-    #  measure.value_set_oids = measure_oids
+      measure.measure_attributes = json["attributes"]
+      measure.value_set_oids = measure_oids
 
       measure.data_criteria = json["data_criteria"]
       measure.source_data_criteria = json["source_data_criteria"]
-  #    puts "\tCould not find episode ids #{measure.episode_ids} in measure #{measure.cms_id || measure.measure_id}" if (measure.episode_ids && measure.episode_of_care && (measure.episode_ids - measure.source_data_criteria.keys).length > 0)
-  #    measure.measure_period = json["measure_period"]
+      measure.populations = json['populations']
+    #  puts "\tCould not find episode ids #{measure.episode_ids} in measure #{measure.cms_id || measure.measure_id}" if (measure.episode_ids && measure.episode_of_care && (measure.episode_ids - measure.source_data_criteria.keys).length > 0)
+      measure.measure_period = json["measure_period"]
+      measure.population_criteria = json["population_criteria"]
 
       measure
     end
