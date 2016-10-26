@@ -16,6 +16,8 @@ class CqlMeasure
   field :measure_attributes, type: Array
   field :measure_period, type: Hash
   field :population_criteria, type: Hash
+  field :populations, type: Array
+  field :populations_map, type: Hash
 
   # Store the original CQL as a string
   field :cql, type: String
@@ -46,20 +48,6 @@ class CqlMeasure
 
   # Allow selection of measures by user
   scope :by_user, ->(user) { where user_id: user.id }
-
-  # When saving extract some metadata
-  before_save :extract_metadata
-  def extract_metadata
-    if identifier = self.elm.try(:[], 'library').try(:[], 'identifier')
-      self.cms_id = "#{identifier['id']}v#{identifier['version']}"
-      # TODO: these are all placeholders, which may get filled in once we have real HQMF with our CQL
-      self.title = self.cms_id
-      self.description = self.cms_id
-      self.hqmf_id = self.cms_id
-      self.hqmf_set_id = identifier['id']
-      self.populations << {} if self.populations.empty?
-    end
-  end
 
   # When saving calculate the cyclomatic complexity of the measure
   # TODO: Do we want to consider a measure other than "cyclomatic complexity" for CQL?

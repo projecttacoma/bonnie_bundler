@@ -27,6 +27,7 @@ module Measures
           elm = ''
           begin
             elm = RestClient.post('http://localhost:8080/cql/translator', cql, content_type: 'application/cql', accept: 'application/elm+json')
+            elm.gsub! 'urn:oid:', ''
           rescue RestClient::BadRequest => e
             errors = JSON.parse(e.response)['library']['annotation'].map { |a| "Line #{a['startLine']}: #{a['message']}" }
             flash[:error] = {
@@ -69,6 +70,7 @@ module Measures
       measure.cql = cql
       measure.elm = elm
 
+      # Add metadata
       measure.hqmf_id = json["hqmf_id"]
       measure.hqmf_set_id = json["hqmf_set_id"]
       measure.hqmf_version_number = json["hqmf_version_number"]
@@ -84,6 +86,7 @@ module Measures
     #  puts "\tCould not find episode ids #{measure.episode_ids} in measure #{measure.cms_id || measure.measure_id}" if (measure.episode_ids && measure.episode_of_care && (measure.episode_ids - measure.source_data_criteria.keys).length > 0)
       measure.measure_period = json["measure_period"]
       measure.population_criteria = json["population_criteria"]
+      measure.populations_map = {IPP: "Initial Pop", DENOM: "Denom", DENEX: "Denom Excl", NUMER: "Num"}
 
       measure
     end
