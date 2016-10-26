@@ -43,7 +43,7 @@ module Measures
 
           # Get Value Sets
           begin
-            value_set_models =  Measures::ValueSetLoader.load_value_sets_from_vsac(model.all_code_set_oids, "", "", user, true, nil, false)
+            value_set_models =  Measures::ValueSetLoader.load_value_sets_from_vsac(model.all_code_set_oids, "", "", user, true, nil, true)
           rescue Exception => e
             raise VSACException.new "Error Loading Value Sets from VSAC: #{e.message}"
           end
