@@ -11,8 +11,13 @@ module Measures
       end
     end
 
-    def self.load_mat_cql_exports(user, file, out_dir, measure_details)
+    def self.load_mat_cql_exports(user, file, out_dir, measure_details, vsac_user, vsac_password, overwrite_valuesets=true, cache=false, effectiveDate=nil, includeDraft=false, ticket_granting_ticket=nil)
       measure = nil
+      cql = nil
+      hqmf_path = nil
+      elm = ''
+
+      # Open the zip and grab the
       Zip::ZipFile.open(file.path) do |zip_file|
         cql_entry = zip_file.glob(File.join('**','**.cql')).select {|x| x.name.match(/.*CQL.cql/) && !x.name.starts_with?('__MACOSX') }.first
         hqmf_entry = zip_file.glob(File.join('**','**.xml')).select {|x| x.name.match(/.*eMeasure.xml/) && !x.name.starts_with?('__MACOSX') }.first
@@ -24,43 +29,41 @@ module Measures
           xls_path = extract(zip_file, xls_entry, out_dir)
 
           cql = open(cql_path).read
-          elm = ''
-          begin
-            elm = RestClient.post('http://localhost:8080/cql/translator', cql, content_type: 'application/cql', accept: 'application/elm+json')
-            elm.gsub! 'urn:oid:', ''
-          rescue RestClient::BadRequest => e
-            errors = JSON.parse(e.response)['library']['annotation'].map { |a| "Line #{a['startLine']}: #{a['message']}" }
-            flash[:error] = {
-              title: "Error Loading Measure",
-              summary: "Error converting CQL measure into ELM.",
-              body: errors.join("<br>")
-            }
-            return
-          end
-
-          # Load hqmf into HQMF Parser
-          model = Measures::Loader.parse_hqmf_model(hqmf_path)
-
-          # Get Value Sets
-          begin
-            value_set_models =  Measures::ValueSetLoader.load_value_sets_from_vsac(model.all_code_set_oids, "", "", user, true, nil, true)
-          rescue Exception => e
-            raise VSACException.new "Error Loading Value Sets from VSAC: #{e.message}"
-          end
-
-          # Create CQL Measure
-          model.backfill_patient_characteristics_with_codes(HQMF2JS::Generator::CodesToJson.from_value_sets(value_set_models))
-          json = model.to_json
-          json.convert_keys_to_strings
-
-          measure = load_hqmf_cql_model_json(json, user, value_set_models.collect{|vs| vs.oid}, JSON.parse(elm), cql)
         rescue Exception => e
           raise MeasureLoadingException.new "Error Parsing Measure Logic: #{e.message}"
         end
-
-        puts "measure #{measure.cms_id || measure.measure_id} successfully loaded."
       end
 
+      begin
+        elm = RestClient.post('http://localhost:8080/cql/translator', cql, content_type: 'application/cql', accept: 'application/elm+json', timeout: 10)
+        elm.gsub! 'urn:oid:', '' # Removes 'urn:oid:' from ELM for Bonnie
+      rescue RestClient::BadRequest => e
+        errors = JSON.parse(e.response)['library']['annotation'].map { |a| "Line #{a['startLine']}: #{a['message']}" }
+        flash[:error] = {
+          title: "Error Loading Measure",
+          summary: "Error converting CQL measure into ELM.",
+          body: errors.join("<br>")
+        }
+        return
+      end
+
+      # Load hqmf into HQMF Parser
+      model = Measures::Loader.parse_hqmf_model(hqmf_path)
+
+      # Get Value Sets
+      begin
+        value_set_models =  Measures::ValueSetLoader.load_value_sets_from_vsac(model.all_code_set_oids, vsac_user, vsac_password, user, overwrite_valuesets, effectiveDate, includeDraft, ticket_granting_ticket)
+      rescue Exception => e
+        raise VSACException.new "Error Loading Value Sets from VSAC: #{e.message}"
+      end
+
+      # Create CQL Measure
+      model.backfill_patient_characteristics_with_codes(HQMF2JS::Generator::CodesToJson.from_value_sets(value_set_models))
+      json = model.to_json
+      json.convert_keys_to_strings
+      measure = load_hqmf_cql_model_json(json, user, value_set_models.collect{|vs| vs.oid}, JSON.parse(elm), cql)
+
+      puts "measure #{measure.cms_id || measure.measure_id} successfully loaded."
       measure
     end
 
@@ -86,7 +89,7 @@ module Measures
     #  puts "\tCould not find episode ids #{measure.episode_ids} in measure #{measure.cms_id || measure.measure_id}" if (measure.episode_ids && measure.episode_of_care && (measure.episode_ids - measure.source_data_criteria.keys).length > 0)
       measure.measure_period = json["measure_period"]
       measure.population_criteria = json["population_criteria"]
-      measure.populations_map = {IPP: "Initial Pop", DENOM: "Denom", DENEX: "Denom Excl", NUMER: "Num"}
+      measure.populations_cql_map = json["populations_cql_map"]
 
       measure
     end

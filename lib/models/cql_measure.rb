@@ -17,7 +17,7 @@ class CqlMeasure
   field :measure_period, type: Hash
   field :population_criteria, type: Hash
   field :populations, type: Array
-  field :populations_map, type: Hash
+  field :populations_cql_map, type: Hash
 
   # Store the original CQL as a string
   field :cql, type: String
