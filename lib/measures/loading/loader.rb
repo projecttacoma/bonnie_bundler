@@ -7,13 +7,11 @@ module Measures
     HQMF_VS_OID_CACHE = File.join(".", "db", "hqmf_vs_oid_cache")
     PARSERS = [HQMF::Parser::V2CQLParser, HQMF::Parser::V2Parser,HQMF::Parser::V1Parser,SimpleXml::Parser::V1Parser]
 
-
     def self.parse_hqmf_model(xml_path)
       xml_contents = Nokogiri::XML(File.new xml_path)
       parser = get_parser(xml_contents)
       parser.parse(xml_contents)
     end
-
 
     def self.load_hqmf_model_json(json, user, measure_oids, measure_details=nil)
 
@@ -64,6 +62,33 @@ module Measures
       measure.source_data_criteria = json["source_data_criteria"]
       puts "\tCould not find episode ids #{measure.episode_ids} in measure #{measure.cms_id || measure.measure_id}" if (measure.episode_ids && measure.episode_of_care && (measure.episode_ids - measure.source_data_criteria.keys).length > 0)
       measure.measure_period = json["measure_period"]
+      measure
+    end
+
+    def self.load_hqmf_cql_model_json(json, user, measure_oids, elm, cql)
+      measure = CqlMeasure.new
+      measure.user = user if user
+      measure.cql = cql
+      measure.elm = elm
+
+      # Add metadata
+      measure.hqmf_id = json["hqmf_id"]
+      measure.hqmf_set_id = json["hqmf_set_id"]
+      measure.hqmf_version_number = json["hqmf_version_number"]
+      measure.cms_id = json["cms_id"]
+      measure.title = json["title"]
+      measure.description = json["description"]
+      measure.measure_attributes = json["attributes"]
+      measure.value_set_oids = measure_oids
+
+      measure.data_criteria = json["data_criteria"]
+      measure.source_data_criteria = json["source_data_criteria"]
+      measure.populations = json['populations']
+    #  puts "\tCould not find episode ids #{measure.episode_ids} in measure #{measure.cms_id || measure.measure_id}" if (measure.episode_ids && measure.episode_of_care && (measure.episode_ids - measure.source_data_criteria.keys).length > 0)
+      measure.measure_period = json["measure_period"]
+      measure.population_criteria = json["population_criteria"]
+      measure.populations_cql_map = json["populations_cql_map"]
+
       measure
     end
 

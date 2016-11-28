@@ -1,6 +1,6 @@
 module Measures
   # Utility class for loading measure definitions into the database from the MAT export zip
-  class HQMFLoader
+  class HQMFLoader < BaseLoaderDefinition
 
     def self.mat_hqmf_export?(zip_file)
       Zip::ZipFile.open(zip_file.path) do |zip_file|
@@ -73,13 +73,5 @@ module Measures
       measure
     end
 
-    # TODO pull out into some base class (Also in CQL_loader)
-    def self.extract(zip_file, entry, out_dir)
-      out_file = File.join(out_dir,Pathname.new(entry.name).basename.to_s)
-      zip_file.extract(entry, out_file)
-      out_file
-    end
-
   end
-
 end
