@@ -35,4 +35,3 @@ group :test do
   gem 'minitest', "~> 5.0"
   gem 'awesome_print', :require => 'ap'
 end
-
