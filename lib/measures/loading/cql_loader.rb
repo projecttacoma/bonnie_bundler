@@ -22,7 +22,7 @@ module Measures
 
       # Translate the cql to elm
       elm = translate_cql_to_elm(cql)
-      
+
       # Load hqmf into HQMF Parser
       model = Measures::Loader.parse_hqmf_model(hqmf_path)
 
@@ -38,7 +38,7 @@ module Measures
       json = model.to_json
       json.convert_keys_to_strings
       measure = Measures::Loader.load_hqmf_cql_model_json(json, user, value_set_models.collect{|vs| vs.oid}, JSON.parse(elm), cql)
-      
+
       puts "measure #{measure.cms_id || measure.measure_id} successfully loaded."
       measure
     end
@@ -48,12 +48,10 @@ module Measures
       Zip::ZipFile.open(file.path) do |zip_file|
         cql_entry = zip_file.glob(File.join('**','**.cql')).select {|x| x.name.match(/.*CQL.cql/) && !x.name.starts_with?('__MACOSX') }.first
         hqmf_entry = zip_file.glob(File.join('**','**.xml')).select {|x| x.name.match(/.*eMeasure.xml/) && !x.name.starts_with?('__MACOSX') }.first
-        xls_entry = zip_file.glob(File.join('**','**.xls')).select {|x| !x.name.starts_with?('__MACOSX') }.first
 
         begin
           cql_path = extract(zip_file, cql_entry, out_dir) if cql_entry && cql_entry.size > 0
           hqmf_path = extract(zip_file, hqmf_entry, out_dir) if hqmf_entry && hqmf_entry.size > 0
-          xls_path = extract(zip_file, xls_entry, out_dir)
 
           cql = open(cql_path).read
           return cql, hqmf_path
