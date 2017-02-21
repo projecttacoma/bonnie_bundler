@@ -101,7 +101,7 @@ http_interactions:
       Content-Type:
       - application/elm+json
       Date:
-      - Mon, 28 Nov 2016 19:55:38 GMT
+      - Fri, 17 Feb 2017 17:03:49 GMT
       Transfer-Encoding:
       - chunked
     body:
@@ -1013,8 +1013,8 @@ http_interactions:
               }
            }
         }
-    http_version: 
-  recorded_at: Mon, 28 Nov 2016 19:55:38 GMT
+    http_version:
+  recorded_at: Fri, 17 Feb 2017 17:03:49 GMT
 - request:
     method: post
     uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket
@@ -1040,32 +1040,42 @@ http_interactions:
       Server:
       - Apache-Coyote/1.1
       Strict-Transport-Security:
-      - max-age=31536000
+      - max-age=31536000 ; includeSubDomains
       X-Frame-Options:
+      - SAMEORIGIN
       - SAMEORIGIN
       X-Content-Type-Options:
       - nosniff
+      - nosniff
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
       Content-Type:
       - text/plain;charset=utf-8
       Content-Length:
       - '65'
       Date:
-      - Mon, 28 Nov 2016 19:55:38 GMT
+      - Fri, 17 Feb 2017 17:03:50 GMT
       Set-Cookie:
-      - BIGipServervsacweb_p=!c7JU8GVts0/q2QY6YOSiNeNE5Dh0/1LneBgY4lKBL8srK922dgysamINkf+UnPFsAzviOs8ukX0CVIE=;secure;
-        expires=Mon, 28-Nov-2016 21:55:38 GMT; path=/
+      - BIGipServervsacweb_p=!5C8RvVVB9DbCOxTLMWjf8K3rTDmEEgXgvSU7QqT2lZtx2wyv94sSzDrxGYtubdTDR5eTPkjJX2gVdpU=;
+        expires=Fri, 17-Feb-2017 19:03:50 GMT; path=/; Httponly; Secure
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.114 8080"
+      - "/Common/vsacweb_p 10.1.5.112 8080"
     body:
       encoding: UTF-8
-      string: TGT-378413-ZVueiWFsN9kdHdphJ0EhRiiT2jJUwhu9Vh7HlJuabRUQqoYxhK-cas
-    http_version: 
-  recorded_at: Mon, 28 Nov 2016 19:55:38 GMT
+      string: TGT-137568-DRQ7Kp6e2nt2P9beAVDkgqKKYrnqTBQNHSFyKPjiEbEW40Us77-cas
+    http_version:
+  recorded_at: Fri, 17 Feb 2017 17:03:49 GMT
 - request:
     method: post
-    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-378413-ZVueiWFsN9kdHdphJ0EhRiiT2jJUwhu9Vh7HlJuabRUQqoYxhK-cas
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-137568-DRQ7Kp6e2nt2P9beAVDkgqKKYrnqTBQNHSFyKPjiEbEW40Us77-cas
     body:
       encoding: US-ASCII
       string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
@@ -1088,835 +1098,42 @@ http_interactions:
       Server:
       - Apache-Coyote/1.1
       Strict-Transport-Security:
-      - max-age=31536000
+      - max-age=31536000 ; includeSubDomains
       X-Frame-Options:
+      - SAMEORIGIN
       - SAMEORIGIN
       X-Content-Type-Options:
       - nosniff
+      - nosniff
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
       Content-Type:
       - text/plain;charset=utf-8
       Content-Length:
-      - '35'
+      - '34'
       Date:
-      - Mon, 28 Nov 2016 19:55:38 GMT
+      - Fri, 17 Feb 2017 17:03:50 GMT
       Set-Cookie:
-      - BIGipServervsacweb_p=!wItgDPGq7ELrlpA6YOSiNeNE5Dh0/3lh0oUN//IKJP43gy/e4jWwKbaxzD6UMOcTpHDaMuDNmSYwQzw=;secure;
-        expires=Mon, 28-Nov-2016 21:55:38 GMT; path=/
-      X-Vip-Info:
-      - 130.14.16.40:443
-      X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.112 8080"
-    body:
-      encoding: UTF-8
-      string: ST-1139468-9ZSxrgIFjy3DQbHVUAyB-cas
-    http_version: 
-  recorded_at: Mon, 28 Nov 2016 19:55:38 GMT
-- request:
-    method: get
-    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.464.1003.108.12.1018&ticket=ST-1139468-9ZSxrgIFjy3DQbHVUAyB-cas
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - "*/*; q=0.5, application/xml"
-      Accept-Encoding:
-      - gzip, deflate
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - Apache-Coyote/1.1
-      Strict-Transport-Security:
-      - max-age=31536000
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Content-Type-Options:
-      - nosniff
-      Set-Cookie:
-      - BIGipServervsacweb_p=!QsZ2KncjGA6NJlE6YOSiNeNE5Dh0/4YtBFPgoYJcOGWUGxRoq4YMeoFNEoeE1W0XwEAxhUzsjrr/irQ=;secure;
-        expires=Mon, 28-Nov-2016 21:55:39 GMT; path=/
-      - JSESSIONID=CC066BE67B7B4935551FDE8B4B6BB210; Path=/vsac/; Secure; HttpOnly
-      Content-Type:
-      - text/xml;charset=utf-8
-      Content-Length:
-      - '16348'
-      Date:
-      - Mon, 28 Nov 2016 19:55:38 GMT
-      X-Vip-Info:
-      - 130.14.16.40:443
-      X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.112 8080"
-    body:
-      encoding: UTF-8
-      string: |
-        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-        <ns0:RetrieveMultipleValueSetsResponse xmlns:ns0="urn:ihe:iti:svs:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <ns0:DescribedValueSet ID="2.16.840.1.113883.3.464.1003.108.12.1018" displayName="Mammogram" version="20160817">
-                <ns0:ConceptList>
-                    <ns0:Concept code="24604-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast Mammogram diagnostic limited"/>
-                    <ns0:Concept code="24605-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast Mammogram diagnostic"/>
-                    <ns0:Concept code="24606-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast Mammogram screening"/>
-                    <ns0:Concept code="24610-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast Mammogram limited"/>
-                    <ns0:Concept code="26175-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram screening"/>
-                    <ns0:Concept code="26176-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left Mammogram screening"/>
-                    <ns0:Concept code="26177-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - right Mammogram screening"/>
-                    <ns0:Concept code="26287-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram limited"/>
-                    <ns0:Concept code="26289-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left Mammogram limited"/>
-                    <ns0:Concept code="26291-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - right Mammogram limited"/>
-                    <ns0:Concept code="26346-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram diagnostic"/>
-                    <ns0:Concept code="26347-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left Mammogram diagnostic"/>
-                    <ns0:Concept code="26348-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - right Mammogram diagnostic"/>
-                    <ns0:Concept code="26349-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram diagnostic limited"/>
-                    <ns0:Concept code="26350-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left Mammogram diagnostic limited"/>
-                    <ns0:Concept code="26351-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - right Mammogram diagnostic limited"/>
-                    <ns0:Concept code="36319-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast Mammogram 4 views"/>
-                    <ns0:Concept code="36625-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast Mammogram"/>
-                    <ns0:Concept code="36626-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram"/>
-                    <ns0:Concept code="36627-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left Mammogram"/>
-                    <ns0:Concept code="36642-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left Mammogram 2 views"/>
-                    <ns0:Concept code="36962-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast Mammogram axillary"/>
-                    <ns0:Concept code="37005-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left Mammogram magnification"/>
-                    <ns0:Concept code="37006-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram MLO"/>
-                    <ns0:Concept code="37016-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram roll"/>
-                    <ns0:Concept code="37017-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left Mammogram roll"/>
-                    <ns0:Concept code="37028-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast Mammogram tangential"/>
-                    <ns0:Concept code="37029-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram tangential"/>
-                    <ns0:Concept code="37030-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left Mammogram tangential"/>
-                    <ns0:Concept code="37037-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast Mammogram true lateral"/>
-                    <ns0:Concept code="37038-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram true lateral"/>
-                    <ns0:Concept code="37052-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram XCCL"/>
-                    <ns0:Concept code="37053-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left Mammogram XCCL"/>
-                    <ns0:Concept code="37539-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast Mammogram grid"/>
-                    <ns0:Concept code="37542-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast Mammogram magnification"/>
-                    <ns0:Concept code="37543-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram magnification"/>
-                    <ns0:Concept code="37551-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast Mammogram spot"/>
-                    <ns0:Concept code="37552-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram spot"/>
-                    <ns0:Concept code="37553-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left Mammogram spot compression"/>
-                    <ns0:Concept code="37554-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram magnification and spot"/>
-                    <ns0:Concept code="37768-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - right Mammogram 2 views"/>
-                    <ns0:Concept code="37769-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - right Mammogram magnification and spot"/>
-                    <ns0:Concept code="37770-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - right Mammogram tangential"/>
-                    <ns0:Concept code="37771-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - right Mammogram true lateral"/>
-                    <ns0:Concept code="37772-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - right Mammogram XCCL"/>
-                    <ns0:Concept code="37773-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - right Mammogram magnification"/>
-                    <ns0:Concept code="37774-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - right Mammogram"/>
-                    <ns0:Concept code="37775-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - right Mammogram roll"/>
-                    <ns0:Concept code="38067-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram nipple profile"/>
-                    <ns0:Concept code="38070-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast implant Mammogram"/>
-                    <ns0:Concept code="38071-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast implant - bilateral Mammogram"/>
-                    <ns0:Concept code="38072-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast implant - left Mammogram"/>
-                    <ns0:Concept code="38090-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram W air"/>
-                    <ns0:Concept code="38091-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left Mammogram W air"/>
-                    <ns0:Concept code="38807-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - right Mammogram spot"/>
-                    <ns0:Concept code="38820-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast implant - right Mammogram"/>
-                    <ns0:Concept code="38854-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left Mammogram magnification and spot"/>
-                    <ns0:Concept code="38855-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left Mammogram true lateral"/>
-                    <ns0:Concept code="39150-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast FFD mammogram Post Localization"/>
-                    <ns0:Concept code="39152-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast FFD mammogram diagnostic"/>
-                    <ns0:Concept code="39153-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast FFD mammogram screening"/>
-                    <ns0:Concept code="39154-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral FFD mammogram diagnostic"/>
-                    <ns0:Concept code="42168-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - right FFD mammogram diagnostic"/>
-                    <ns0:Concept code="42169-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left FFD mammogram diagnostic"/>
-                    <ns0:Concept code="42174-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral FFD mammogram screening"/>
-                    <ns0:Concept code="42415-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram Post Wire Placement"/>
-                    <ns0:Concept code="42416-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left Mammogram Post Wire Placement"/>
-                    <ns0:Concept code="46335-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram Single view"/>
-                    <ns0:Concept code="46336-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left Mammogram Single view"/>
-                    <ns0:Concept code="46337-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - right Mammogram Single view"/>
-                    <ns0:Concept code="46338-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - unilateral Mammogram Single view"/>
-                    <ns0:Concept code="46339-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - unilateral Mammogram"/>
-                    <ns0:Concept code="46342-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast FFD mammogram"/>
-                    <ns0:Concept code="46350-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - unilateral Mammogram diagnostic"/>
-                    <ns0:Concept code="46351-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast implant - bilateral Mammogram displacement"/>
-                    <ns0:Concept code="46354-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - right FFD mammogram screening"/>
-                    <ns0:Concept code="46355-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left FFD mammogram screening"/>
-                    <ns0:Concept code="46356-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - unilateral Mammogram screening"/>
-                    <ns0:Concept code="46380-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast Implant - unilateral Mammogram"/>
-                    <ns0:Concept code="48475-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast implant - bilateral Mammogram diagnostic"/>
-                    <ns0:Concept code="48492-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast implant - bilateral Mammogram screening"/>
-                    <ns0:Concept code="69150-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast implant - left Mammogram diagnostic"/>
-                    <ns0:Concept code="69251-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast Mammogram Post Wire Placement"/>
-                    <ns0:Concept code="69259-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast implant - right Mammogram diagnostic"/>
-                    <ns0:Concept code="G0202" codeSystem="2.16.840.1.113883.6.285" codeSystemName="HCPCS" codeSystemVersion="2016" displayName="Screening mammography, producing direct digital image, bilateral, all views"/>
-                    <ns0:Concept code="G0204" codeSystem="2.16.840.1.113883.6.285" codeSystemName="HCPCS" codeSystemVersion="2016" displayName="Diagnostic mammography, producing direct 2-d digital image, bilateral, all views"/>
-                    <ns0:Concept code="G0206" codeSystem="2.16.840.1.113883.6.285" codeSystemName="HCPCS" codeSystemVersion="2016" displayName="Diagnostic mammography, producing direct 2-d digital image, unilateral, all views"/>
-                </ns0:ConceptList>
-                <ns0:Source>National Committee for Quality Assurance</ns0:Source>
-                <ns0:Purpose>(Clinical Focus: Under Development),(Data Element Scope: Under Development),(Inclusion Criteria: Under Development),(Exclusion Criteria: Under Development)</ns0:Purpose>
-                <ns0:Definition>(2.16.840.1.113883.3.464.1003.108.11.1046:Mammogram),(2.16.840.1.113883.3.464.1003.108.11.1047:Mammogram)</ns0:Definition>
-                <ns0:Type>Grouping</ns0:Type>
-                <ns0:Binding>Dynamic</ns0:Binding>
-                <ns0:Status>Active</ns0:Status>
-                <ns0:RevisionDate>2016-03-31</ns0:RevisionDate>
-            </ns0:DescribedValueSet>
-        </ns0:RetrieveMultipleValueSetsResponse>
-    http_version: 
-  recorded_at: Mon, 28 Nov 2016 19:55:39 GMT
-- request:
-    method: post
-    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-378413-ZVueiWFsN9kdHdphJ0EhRiiT2jJUwhu9Vh7HlJuabRUQqoYxhK-cas
-    body:
-      encoding: US-ASCII
-      string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
-    headers:
-      Accept:
-      - "*/*; q=0.5, application/xml"
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Length:
-      - '39'
-      Content-Type:
-      - application/x-www-form-urlencoded
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - Apache-Coyote/1.1
-      Strict-Transport-Security:
-      - max-age=31536000
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Content-Type-Options:
-      - nosniff
-      Content-Type:
-      - text/plain;charset=utf-8
-      Content-Length:
-      - '35'
-      Date:
-      - Mon, 28 Nov 2016 19:55:39 GMT
-      Set-Cookie:
-      - BIGipServervsacweb_p=!heDOWJheb5Y9oVE6YOSiNeNE5Dh0/7CEP3uQL7eXdjVPdEoGTUn4ag6NNVDqkcgnitgdvBKwpEBCuBU=;secure;
-        expires=Mon, 28-Nov-2016 21:55:39 GMT; path=/
-      X-Vip-Info:
-      - 130.14.16.40:443
-      X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.112 8080"
-    body:
-      encoding: UTF-8
-      string: ST-1139469-kdboiSP3UfrRGMk3jrof-cas
-    http_version: 
-  recorded_at: Mon, 28 Nov 2016 19:55:39 GMT
-- request:
-    method: get
-    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.464.1003.101.12.1048&ticket=ST-1139469-kdboiSP3UfrRGMk3jrof-cas
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - "*/*; q=0.5, application/xml"
-      Accept-Encoding:
-      - gzip, deflate
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - Apache-Coyote/1.1
-      Strict-Transport-Security:
-      - max-age=31536000
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Content-Type-Options:
-      - nosniff
-      Set-Cookie:
-      - BIGipServervsacweb_p=!Q0DQc6rhVjXZiig6YOSiNeNE5Dh0/5e/+0JnpJpaB8Qe5beIUix6DLLBpyRT3N0WFOqEZ5AYFU1/hWE=;secure;
-        expires=Mon, 28-Nov-2016 21:55:40 GMT; path=/
-      - JSESSIONID=20603B914A993EEAB522818516EC5B23; Path=/vsac/; Secure; HttpOnly
-      Content-Type:
-      - text/xml;charset=utf-8
-      Content-Length:
-      - '4199'
-      Date:
-      - Mon, 28 Nov 2016 19:55:39 GMT
-      X-Vip-Info:
-      - 130.14.16.40:443
-      X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.112 8080"
-    body:
-      encoding: UTF-8
-      string: |
-        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-        <ns0:RetrieveMultipleValueSetsResponse xmlns:ns0="urn:ihe:iti:svs:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <ns0:DescribedValueSet ID="2.16.840.1.113883.3.464.1003.101.12.1048" displayName="Face-to-Face Interaction" version="20160929">
-                <ns0:ConceptList>
-                    <ns0:Concept code="12843005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Subsequent hospital visit by physician (procedure)"/>
-                    <ns0:Concept code="18170008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Subsequent nursing facility visit (procedure)"/>
-                    <ns0:Concept code="185349003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Encounter for check up (procedure)"/>
-                    <ns0:Concept code="185463005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Visit out of hours (procedure)"/>
-                    <ns0:Concept code="185465003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Weekend visit (procedure)"/>
-                    <ns0:Concept code="19681004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Nursing evaluation of patient and report (procedure)"/>
-                    <ns0:Concept code="207195004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="History and physical examination with evaluation and management of nursing facility patient (procedure)"/>
-                    <ns0:Concept code="270427003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Patient-initiated encounter (procedure)"/>
-                    <ns0:Concept code="270430005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Provider-initiated encounter (procedure)"/>
-                    <ns0:Concept code="308335008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Patient encounter procedure (procedure)"/>
-                    <ns0:Concept code="390906007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Follow-up encounter (procedure)"/>
-                    <ns0:Concept code="406547006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Urgent follow-up (procedure)"/>
-                    <ns0:Concept code="439708006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Home visit (procedure)"/>
-                    <ns0:Concept code="87790002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Follow-up inpatient consultation visit (procedure)"/>
-                    <ns0:Concept code="90526000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Initial evaluation and management of healthy individual (procedure)"/>
-                </ns0:ConceptList>
-                <ns0:Source>National Committee for Quality Assurance</ns0:Source>
-                <ns0:Purpose>(Clinical Focus: This value set indentifies patients who have had a face-to-face interaction with a member of their medical care team.),(Data Element Scope: This value set was intended to map to the QDM data type of encounter.),(Inclusion Criteria: Includes both initial and follow up visits. Includes home visits, inpatient and outpatient visits, and nursing facility visits.),(Exclusion Criteria: Excludes visits that are not performed in-person, including telehealth services.)</ns0:Purpose>
-                <ns0:Definition>(2.16.840.1.113883.3.464.1003.101.11.1216:Face-to-Face Interaction)</ns0:Definition>
-                <ns0:Type>Grouping</ns0:Type>
-                <ns0:Binding>Dynamic</ns0:Binding>
-                <ns0:Status>Active</ns0:Status>
-                <ns0:RevisionDate>2016-03-31</ns0:RevisionDate>
-            </ns0:DescribedValueSet>
-        </ns0:RetrieveMultipleValueSetsResponse>
-    http_version: 
-  recorded_at: Mon, 28 Nov 2016 19:55:40 GMT
-- request:
-    method: post
-    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-378413-ZVueiWFsN9kdHdphJ0EhRiiT2jJUwhu9Vh7HlJuabRUQqoYxhK-cas
-    body:
-      encoding: US-ASCII
-      string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
-    headers:
-      Accept:
-      - "*/*; q=0.5, application/xml"
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Length:
-      - '39'
-      Content-Type:
-      - application/x-www-form-urlencoded
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - Apache-Coyote/1.1
-      Strict-Transport-Security:
-      - max-age=31536000
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Content-Type-Options:
-      - nosniff
-      Content-Type:
-      - text/plain;charset=utf-8
-      Content-Length:
-      - '35'
-      Date:
-      - Mon, 28 Nov 2016 19:55:39 GMT
-      Set-Cookie:
-      - BIGipServervsacweb_p=!DVm4CndCGDBNFB86YOSiNeNE5Dh0/5Ewj7EtQBQ2Qw4NyU63NJvCG34qkZPpWYUjNv9bg7IuggKHBG8=;secure;
-        expires=Mon, 28-Nov-2016 21:55:40 GMT; path=/
-      X-Vip-Info:
-      - 130.14.16.40:443
-      X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.112 8080"
-    body:
-      encoding: UTF-8
-      string: ST-1139470-9epTcD9VUMJAtgZYy5es-cas
-    http_version: 
-  recorded_at: Mon, 28 Nov 2016 19:55:40 GMT
-- request:
-    method: get
-    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.464.1003.101.12.1016&ticket=ST-1139470-9epTcD9VUMJAtgZYy5es-cas
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - "*/*; q=0.5, application/xml"
-      Accept-Encoding:
-      - gzip, deflate
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - Apache-Coyote/1.1
-      Strict-Transport-Security:
-      - max-age=31536000
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Content-Type-Options:
-      - nosniff
-      Set-Cookie:
-      - BIGipServervsacweb_p=!Z3pPrMX3mRUUH9A6YOSiNeNE5Dh0/50q1mx2LsdATFffVE71tHcQMDJ6pOmioUOVSGnvibiXf51hkYc=;secure;
-        expires=Mon, 28-Nov-2016 21:55:40 GMT; path=/
-      - JSESSIONID=A21FDC39250D599AFB314C1E50EA4886; Path=/vsac/; Secure; HttpOnly
-      Content-Type:
-      - text/xml;charset=utf-8
-      Content-Length:
-      - '7592'
-      Date:
-      - Mon, 28 Nov 2016 19:55:39 GMT
-      X-Vip-Info:
-      - 130.14.16.40:443
-      X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.112 8080"
-    body:
-      encoding: UTF-8
-      string: |
-        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-        <ns0:RetrieveMultipleValueSetsResponse xmlns:ns0="urn:ihe:iti:svs:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <ns0:DescribedValueSet ID="2.16.840.1.113883.3.464.1003.101.12.1016" displayName="Home Healthcare Services" version="20160331">
-                <ns0:ConceptList>
-                    <ns0:Concept code="99341" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Home visit for the evaluation and management of a new patient, which requires these 3 key components: A problem focused history; A problem focused examination; and Straightforward medical decision making. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of low severity. Typically, 20 minutes are spent face-to-face with the patient and/or family."/>
-                    <ns0:Concept code="99342" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Home visit for the evaluation and management of a new patient, which requires these 3 key components: An expanded problem focused history; An expanded problem focused examination; and Medical decision making of low complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of moderate severity. Typically, 30 minutes are spent face-to-face with the patient and/or family."/>
-                    <ns0:Concept code="99343" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Home visit for the evaluation and management of a new patient, which requires these 3 key components: A detailed history; A detailed examination; and Medical decision making of moderate complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of moderate to high severity. Typically, 45 minutes are spent face-to-face with the patient and/or family."/>
-                    <ns0:Concept code="99344" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Home visit for the evaluation and management of a new patient, which requires these 3 key components: A comprehensive history; A comprehensive examination; and Medical decision making of moderate complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of high severity. Typically, 60 minutes are spent face-to-face with the patient and/or family."/>
-                    <ns0:Concept code="99345" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Home visit for the evaluation and management of a new patient, which requires these 3 key components: A comprehensive history; A comprehensive examination; and Medical decision making of high complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the patient is unstable or has developed a significant new problem requiring immediate physician attention. Typically, 75 minutes are spent face-to-face with the patient and/or family."/>
-                    <ns0:Concept code="99347" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Home visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: A problem focused interval history; A problem focused examination; Straightforward medical decision making. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are self limited or minor. Typically, 15 minutes are spent face-to-face with the patient and/or family."/>
-                    <ns0:Concept code="99348" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Home visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: An expanded problem focused interval history; An expanded problem focused examination; Medical decision making of low complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of low to moderate severity. Typically, 25 minutes are spent face-to-face with the patient and/or family."/>
-                    <ns0:Concept code="99349" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Home visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: A detailed interval history; A detailed examination; Medical decision making of moderate complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are moderate to high severity. Typically, 40 minutes are spent face-to-face with the patient and/or family."/>
-                    <ns0:Concept code="99350" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Home visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: A comprehensive interval history; A comprehensive examination; Medical decision making of moderate to high complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of moderate to high severity. The patient may be unstable or may have developed a significant new problem requiring immediate physician attention. Typically, 60 minutes are spent face-to-face with the patient and/or family."/>
-                </ns0:ConceptList>
-                <ns0:Source>National Committee for Quality Assurance</ns0:Source>
-                <ns0:Purpose>(Clinical Focus: Under Development),(Data Element Scope: Under Development),(Inclusion Criteria: Under Development),(Exclusion Criteria: Under Development)</ns0:Purpose>
-                <ns0:Definition>(2.16.840.1.113883.3.464.1003.101.11.1080:Home Healthcare Services)</ns0:Definition>
-                <ns0:Type>Grouping</ns0:Type>
-                <ns0:Binding>Dynamic</ns0:Binding>
-                <ns0:Status>Active</ns0:Status>
-                <ns0:RevisionDate>2016-03-31</ns0:RevisionDate>
-            </ns0:DescribedValueSet>
-        </ns0:RetrieveMultipleValueSetsResponse>
-    http_version: 
-  recorded_at: Mon, 28 Nov 2016 19:55:40 GMT
-- request:
-    method: post
-    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-378413-ZVueiWFsN9kdHdphJ0EhRiiT2jJUwhu9Vh7HlJuabRUQqoYxhK-cas
-    body:
-      encoding: US-ASCII
-      string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
-    headers:
-      Accept:
-      - "*/*; q=0.5, application/xml"
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Length:
-      - '39'
-      Content-Type:
-      - application/x-www-form-urlencoded
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - Apache-Coyote/1.1
-      Strict-Transport-Security:
-      - max-age=31536000
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Content-Type-Options:
-      - nosniff
-      Content-Type:
-      - text/plain;charset=utf-8
-      Content-Length:
-      - '35'
-      Date:
-      - Mon, 28 Nov 2016 19:55:40 GMT
-      Set-Cookie:
-      - BIGipServervsacweb_p=!9CchP1f/vDQJYeI6YOSiNeNE5Dh0/5+4Ray5sg2l6udkpsm+R9amIesdhmBtGi1AFiCIyfnE/wuiRvo=;secure;
-        expires=Mon, 28-Nov-2016 21:55:40 GMT; path=/
-      X-Vip-Info:
-      - 130.14.16.40:443
-      X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.110 8080"
-    body:
-      encoding: UTF-8
-      string: ST-1139471-9v7PFnHkbnxGIDFuLKB6-cas
-    http_version: 
-  recorded_at: Mon, 28 Nov 2016 19:55:40 GMT
-- request:
-    method: get
-    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.464.1003.101.12.1001&ticket=ST-1139471-9v7PFnHkbnxGIDFuLKB6-cas
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - "*/*; q=0.5, application/xml"
-      Accept-Encoding:
-      - gzip, deflate
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - Apache-Coyote/1.1
-      Strict-Transport-Security:
-      - max-age=31536000
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Content-Type-Options:
-      - nosniff
-      Set-Cookie:
-      - BIGipServervsacweb_p=!R1POoVlkGE+gA5c6YOSiNeNE5Dh0/y6mFrMvZdRPuOPTERoiARPlWgSPYA2KezttvLKqBeHjvIXx7i4=;secure;
-        expires=Mon, 28-Nov-2016 21:55:41 GMT; path=/
-      - JSESSIONID=B749B1C56C52243A52C100EA951403E0; Path=/vsac/; Secure; HttpOnly
-      Content-Type:
-      - text/xml;charset=utf-8
-      Content-Length:
-      - '7867'
-      Date:
-      - Mon, 28 Nov 2016 19:55:41 GMT
-      X-Vip-Info:
-      - 130.14.16.40:443
-      X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.112 8080"
-    body:
-      encoding: UTF-8
-      string: |
-        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-        <ns0:RetrieveMultipleValueSetsResponse xmlns:ns0="urn:ihe:iti:svs:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <ns0:DescribedValueSet ID="2.16.840.1.113883.3.464.1003.101.12.1001" displayName="Office Visit" version="20160331">
-                <ns0:ConceptList>
-                    <ns0:Concept code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Office or other outpatient visit for the evaluation and management of a new patient, which requires these 3 key components: A problem focused history; A problem focused examination; Straightforward medical decision making. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are self limited or minor. Typically, 10 minutes are spent face-to-face with the patient and/or family."/>
-                    <ns0:Concept code="99202" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Office or other outpatient visit for the evaluation and management of a new patient, which requires these 3 key components: An expanded problem focused history; An expanded problem focused examination; Straightforward medical decision making. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of low to moderate severity. Typically, 20 minutes are spent face-to-face with the patient and/or family."/>
-                    <ns0:Concept code="99203" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Office or other outpatient visit for the evaluation and management of a new patient, which requires these 3 key components: A detailed history; A detailed examination; Medical decision making of low complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of moderate severity. Typically, 30 minutes are spent face-to-face with the patient and/or family."/>
-                    <ns0:Concept code="99204" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Office or other outpatient visit for the evaluation and management of a new patient, which requires these 3 key components: A comprehensive history; A comprehensive examination; Medical decision making of moderate complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of moderate to high severity. Typically, 45 minutes are spent face-to-face with the patient and/or family."/>
-                    <ns0:Concept code="99205" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Office or other outpatient visit for the evaluation and management of a new patient, which requires these 3 key components: A comprehensive history; A comprehensive examination; Medical decision making of high complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of moderate to high severity. Typically, 60 minutes are spent face-to-face with the patient and/or family."/>
-                    <ns0:Concept code="99212" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Office or other outpatient visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: A problem focused history; A problem focused examination; Straightforward medical decision making. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are self limited or minor. Typically, 10 minutes are spent face-to-face with the patient and/or family."/>
-                    <ns0:Concept code="99213" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Office or other outpatient visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: An expanded problem focused history; An expanded problem focused examination; Medical decision making of low complexity. Counseling and coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of low to moderate severity. Typically, 15 minutes are spent face-to-face with the patient and/or family."/>
-                    <ns0:Concept code="99214" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Office or other outpatient visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: A detailed history; A detailed examination; Medical decision making of moderate complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of moderate to high severity. Typically, 25 minutes are spent face-to-face with the patient and/or family."/>
-                    <ns0:Concept code="99215" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Office or other outpatient visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: A comprehensive history; A comprehensive examination; Medical decision making of high complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of moderate to high severity. Typically, 40 minutes are spent face-to-face with the patient and/or family."/>
-                </ns0:ConceptList>
-                <ns0:Source>National Committee for Quality Assurance</ns0:Source>
-                <ns0:Purpose>(Clinical Focus: This value set identifies patients who have had an office or other outpatient visit.),(Data Element Scope: This value set was intended to map to the QDM data type of encounter.),(Inclusion Criteria: Includes comprehensive history, evaluation, and management of a patient in an office or outpatient facility. Patient can be presenting with problems that are minor to high severity.),(Exclusion Criteria: Excludes non-office visits, including telehealth services.)</ns0:Purpose>
-                <ns0:Definition>(2.16.840.1.113883.3.464.1003.101.11.1005:Office Visit)</ns0:Definition>
-                <ns0:Type>Grouping</ns0:Type>
-                <ns0:Binding>Dynamic</ns0:Binding>
-                <ns0:Status>Active</ns0:Status>
-                <ns0:RevisionDate>2016-03-31</ns0:RevisionDate>
-            </ns0:DescribedValueSet>
-        </ns0:RetrieveMultipleValueSetsResponse>
-    http_version: 
-  recorded_at: Mon, 28 Nov 2016 19:55:41 GMT
-- request:
-    method: post
-    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-378413-ZVueiWFsN9kdHdphJ0EhRiiT2jJUwhu9Vh7HlJuabRUQqoYxhK-cas
-    body:
-      encoding: US-ASCII
-      string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
-    headers:
-      Accept:
-      - "*/*; q=0.5, application/xml"
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Length:
-      - '39'
-      Content-Type:
-      - application/x-www-form-urlencoded
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - Apache-Coyote/1.1
-      Strict-Transport-Security:
-      - max-age=31536000
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Content-Type-Options:
-      - nosniff
-      Content-Type:
-      - text/plain;charset=utf-8
-      Content-Length:
-      - '35'
-      Date:
-      - Mon, 28 Nov 2016 19:55:41 GMT
-      Set-Cookie:
-      - BIGipServervsacweb_p=!2CjIp7m6K44WF206YOSiNeNE5Dh0/4CFh8+jORLxbXmhw5BalQw7yK50KbOP1v28VK5G/rNMo+J4Xj8=;secure;
-        expires=Mon, 28-Nov-2016 21:55:41 GMT; path=/
-      X-Vip-Info:
-      - 130.14.16.40:443
-      X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.112 8080"
-    body:
-      encoding: UTF-8
-      string: ST-1139472-Yj5nxRpkF2qEHEa5eCgJ-cas
-    http_version: 
-  recorded_at: Mon, 28 Nov 2016 19:55:41 GMT
-- request:
-    method: get
-    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.464.1003.198.12.1005&ticket=ST-1139472-Yj5nxRpkF2qEHEa5eCgJ-cas
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - "*/*; q=0.5, application/xml"
-      Accept-Encoding:
-      - gzip, deflate
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - Apache-Coyote/1.1
-      Strict-Transport-Security:
-      - max-age=31536000
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Content-Type-Options:
-      - nosniff
-      Set-Cookie:
-      - BIGipServervsacweb_p=!Il3eITun3XQJito6YOSiNeNE5Dh0/zYfs2bFHj1S526CTSskzq+lABReilNv7Fgb3DPJcUfBIOhsiPY=;secure;
-        expires=Mon, 28-Nov-2016 21:55:42 GMT; path=/
-      - JSESSIONID=64C945E2684359306E8DD8FE9EB9928F; Path=/vsac/; Secure; HttpOnly
-      Content-Type:
-      - text/xml;charset=utf-8
-      Content-Length:
-      - '2767'
-      Date:
-      - Mon, 28 Nov 2016 19:55:42 GMT
-      X-Vip-Info:
-      - 130.14.16.40:443
-      X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.114 8080"
-    body:
-      encoding: UTF-8
-      string: |
-        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-        <ns0:RetrieveMultipleValueSetsResponse xmlns:ns0="urn:ihe:iti:svs:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <ns0:DescribedValueSet ID="2.16.840.1.113883.3.464.1003.198.12.1005" displayName="Bilateral Mastectomy" version="20160929">
-                <ns0:ConceptList>
-                    <ns0:Concept code="14693006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Bilateral subcutaneous mammectomy (procedure)"/>
-                    <ns0:Concept code="14714006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Bilateral mastectomy with excision of bilateral regional lymph nodes (procedure)"/>
-                    <ns0:Concept code="17086001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Modified radical mastectomy, bilateral (procedure)"/>
-                    <ns0:Concept code="22418005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Bilateral simple mastectomy (procedure)"/>
-                    <ns0:Concept code="27865001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Bilateral mastectomy (procedure)"/>
-                    <ns0:Concept code="456903003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Bilateral extended radical mastectomy (procedure)"/>
-                    <ns0:Concept code="52314009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Bilateral mastectomy extended simple (procedure)"/>
-                    <ns0:Concept code="60633004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Bilateral subcutaneous mammectomy with synchronous implant (procedure)"/>
-                    <ns0:Concept code="76468001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Bilateral radical mastectomy (procedure)"/>
-                </ns0:ConceptList>
-                <ns0:Source>National Committee for Quality Assurance</ns0:Source>
-                <ns0:Purpose>(Clinical Focus: Under Development),(Data Element Scope: Under Development),(Inclusion Criteria: Under Development),(Exclusion Criteria: Under Development)</ns0:Purpose>
-                <ns0:Definition>(2.16.840.1.113883.3.464.1003.198.11.1005:Bilateral Mastectomy)</ns0:Definition>
-                <ns0:Type>Grouping</ns0:Type>
-                <ns0:Binding>Dynamic</ns0:Binding>
-                <ns0:Status>Active</ns0:Status>
-                <ns0:RevisionDate>2016-03-31</ns0:RevisionDate>
-            </ns0:DescribedValueSet>
-        </ns0:RetrieveMultipleValueSetsResponse>
-    http_version: 
-  recorded_at: Mon, 28 Nov 2016 19:55:42 GMT
-- request:
-    method: post
-    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-378413-ZVueiWFsN9kdHdphJ0EhRiiT2jJUwhu9Vh7HlJuabRUQqoYxhK-cas
-    body:
-      encoding: US-ASCII
-      string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
-    headers:
-      Accept:
-      - "*/*; q=0.5, application/xml"
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Length:
-      - '39'
-      Content-Type:
-      - application/x-www-form-urlencoded
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - Apache-Coyote/1.1
-      Strict-Transport-Security:
-      - max-age=31536000
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Content-Type-Options:
-      - nosniff
-      Content-Type:
-      - text/plain;charset=utf-8
-      Content-Length:
-      - '35'
-      Date:
-      - Mon, 28 Nov 2016 19:55:41 GMT
-      Set-Cookie:
-      - BIGipServervsacweb_p=!8zLmbd4sLQkuA+w6YOSiNeNE5Dh0/+Rtdsz6dWcfqvIRHNmHLqCpKT3E5F5HsH9e7jHBBV0Po8jI/4k=;secure;
-        expires=Mon, 28-Nov-2016 21:55:42 GMT; path=/
-      X-Vip-Info:
-      - 130.14.16.40:443
-      X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.112 8080"
-    body:
-      encoding: UTF-8
-      string: ST-1139473-KPhzvykvN1HtZkkQBFhv-cas
-    http_version: 
-  recorded_at: Mon, 28 Nov 2016 19:55:42 GMT
-- request:
-    method: get
-    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.464.1003.198.12.1020&ticket=ST-1139473-KPhzvykvN1HtZkkQBFhv-cas
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - "*/*; q=0.5, application/xml"
-      Accept-Encoding:
-      - gzip, deflate
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - Apache-Coyote/1.1
-      Strict-Transport-Security:
-      - max-age=31536000
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Content-Type-Options:
-      - nosniff
-      Set-Cookie:
-      - BIGipServervsacweb_p=!SdheCzo4sQcPUuM6YOSiNeNE5Dh0/5T5Zn6WKUWmIRAKuFAHouxJh2cvExtXqMQg3rB1YakGPbxhFKU=;secure;
-        expires=Mon, 28-Nov-2016 21:55:42 GMT; path=/
-      - JSESSIONID=6297425859F5B88154769BA1D886E7D6; Path=/vsac/; Secure; HttpOnly
-      Content-Type:
-      - text/xml;charset=utf-8
-      Content-Length:
-      - '7600'
-      Date:
-      - Mon, 28 Nov 2016 19:55:42 GMT
+      - BIGipServervsacweb_p=!omlG2eD/NnKE53XLMWjf8K3rTDmEEl8l86zkBkdifVqCausqGmkfbcOmfcjyY49UY+gLlN3si4C6eAo=;
+        expires=Fri, 17-Feb-2017 19:03:50 GMT; path=/; Httponly; Secure
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
       - "/Common/vsacweb_p 10.1.5.111 8080"
     body:
       encoding: UTF-8
-      string: |
-        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-        <ns0:RetrieveMultipleValueSetsResponse xmlns:ns0="urn:ihe:iti:svs:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <ns0:DescribedValueSet ID="2.16.840.1.113883.3.464.1003.198.12.1020" displayName="Unilateral Mastectomy" version="20160929">
-                <ns0:ConceptList>
-                    <ns0:Concept code="172043006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Simple mastectomy (procedure)"/>
-                    <ns0:Concept code="19180" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2006" displayName="Mastectomy, simple, complete"/>
-                    <ns0:Concept code="19200" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2006" displayName="Mastectomy, radical, including pectoral muscles, axillary lymph nodes"/>
-                    <ns0:Concept code="19220" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2006" displayName="Mastectomy, radical, including pectoral muscles, axillary and internal mammary lymph nodes (Urban type operation)"/>
-                    <ns0:Concept code="19240" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2006" displayName="Mastectomy, modified radical, including axillary lymph nodes, with or without pectoralis minor muscle, but excluding pectoralis major muscle"/>
-                    <ns0:Concept code="19303" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Mastectomy, simple, complete"/>
-                    <ns0:Concept code="19304" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Mastectomy, subcutaneous"/>
-                    <ns0:Concept code="19305" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Mastectomy, radical, including pectoral muscles, axillary lymph nodes"/>
-                    <ns0:Concept code="19306" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Mastectomy, radical, including pectoral muscles, axillary and internal mammary lymph nodes (Urban type operation)"/>
-                    <ns0:Concept code="19307" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Mastectomy, modified radical, including axillary lymph nodes, with or without pectoralis minor muscle, but excluding pectoralis major muscle"/>
-                    <ns0:Concept code="237367009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Total mastectomy and division of pectoralis minor muscle (procedure)"/>
-                    <ns0:Concept code="237368004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Total mastectomy and excision of part of pectoral muscles and chest wall (procedure)"/>
-                    <ns0:Concept code="274957008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Radical mastectomy including axillary lymph nodes (procedure)"/>
-                    <ns0:Concept code="287653007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Subcutaneous mastectomy and prosthetic implant (procedure)"/>
-                    <ns0:Concept code="287654001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Extended simple mastectomy (procedure)"/>
-                    <ns0:Concept code="318190001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Mastectomy with preservation of skin and nipple with synchronous implant (procedure)"/>
-                    <ns0:Concept code="359728003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Radical mastectomy including pectoral muscles and axillary lymph nodes (procedure)"/>
-                    <ns0:Concept code="359731002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Urban operation, extended radical mastectomy (procedure)"/>
-                    <ns0:Concept code="359734005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Halsted mastectomy (procedure)"/>
-                    <ns0:Concept code="359740003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Extended radical mastectomy (procedure)"/>
-                    <ns0:Concept code="384723003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Radical mastectomy (procedure)"/>
-                    <ns0:Concept code="395702000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Patey total mastectomy (procedure)"/>
-                    <ns0:Concept code="406505007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Modified radical mastectomy (procedure)"/>
-                    <ns0:Concept code="428564008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Skin sparing mastectomy (procedure)"/>
-                    <ns0:Concept code="428571003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Mastectomy of left breast (procedure)"/>
-                    <ns0:Concept code="429400009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Mastectomy of right breast (procedure)"/>
-                    <ns0:Concept code="446109005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Simple mastectomy with excision of axillary lymph nodes (procedure)"/>
-                    <ns0:Concept code="446420001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Simple mastectomy with complete axillary lymphadenectomy (procedure)"/>
-                    <ns0:Concept code="447135002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Simple mastectomy with axillary lymph node sampling (procedure)"/>
-                    <ns0:Concept code="447421006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Prophylactic mastectomy (procedure)"/>
-                    <ns0:Concept code="66398006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Mastectomy with excision of regional lymph nodes (procedure)"/>
-                    <ns0:Concept code="70183006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Subcutaneous mastectomy (procedure)"/>
-                </ns0:ConceptList>
-                <ns0:Source>National Committee for Quality Assurance</ns0:Source>
-                <ns0:Purpose>(Clinical Focus: Under Development),(Data Element Scope: Under Development),(Inclusion Criteria: Under Development),(Exclusion Criteria: Under Development)</ns0:Purpose>
-                <ns0:Definition>(2.16.840.1.113883.3.464.1003.198.11.1037:Unilateral Mastectomy),(2.16.840.1.113883.3.464.1003.198.11.1038:Unilateral Mastectomy)</ns0:Definition>
-                <ns0:Type>Grouping</ns0:Type>
-                <ns0:Binding>Dynamic</ns0:Binding>
-                <ns0:Status>Active</ns0:Status>
-                <ns0:RevisionDate>2016-03-31</ns0:RevisionDate>
-            </ns0:DescribedValueSet>
-        </ns0:RetrieveMultipleValueSetsResponse>
-    http_version: 
-  recorded_at: Mon, 28 Nov 2016 19:55:42 GMT
-- request:
-    method: post
-    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-378413-ZVueiWFsN9kdHdphJ0EhRiiT2jJUwhu9Vh7HlJuabRUQqoYxhK-cas
-    body:
-      encoding: US-ASCII
-      string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
-    headers:
-      Accept:
-      - "*/*; q=0.5, application/xml"
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Length:
-      - '39'
-      Content-Type:
-      - application/x-www-form-urlencoded
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - Apache-Coyote/1.1
-      Strict-Transport-Security:
-      - max-age=31536000
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Content-Type-Options:
-      - nosniff
-      Content-Type:
-      - text/plain;charset=utf-8
-      Content-Length:
-      - '35'
-      Date:
-      - Mon, 28 Nov 2016 19:55:42 GMT
-      Set-Cookie:
-      - BIGipServervsacweb_p=!lg+Kl5kXOvGw+wM6YOSiNeNE5Dh0/zyaCuAZ30u+qYJvNFNFmitZSCxDrDqNxMBgcq8cwxZAdF3r8JI=;secure;
-        expires=Mon, 28-Nov-2016 21:55:42 GMT; path=/
-      X-Vip-Info:
-      - 130.14.16.40:443
-      X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.110 8080"
-    body:
-      encoding: UTF-8
-      string: ST-1139474-Zq19XSbFn6FlywqzJpe0-cas
-    http_version: 
-  recorded_at: Mon, 28 Nov 2016 19:55:42 GMT
+      string: ST-591782-YTnacRI7scJtuhITAjwI-cas
+    http_version:
+  recorded_at: Fri, 17 Feb 2017 17:03:49 GMT
 - request:
     method: get
-    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113762.1.4.1&ticket=ST-1139474-Zq19XSbFn6FlywqzJpe0-cas
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113762.1.4.1&ticket=ST-591782-YTnacRI7scJtuhITAjwI-cas
     body:
       encoding: US-ASCII
       string: ''
@@ -1935,34 +1152,44 @@ http_interactions:
       Server:
       - Apache-Coyote/1.1
       Strict-Transport-Security:
-      - max-age=31536000
+      - max-age=31536000 ; includeSubDomains
       X-Frame-Options:
+      - SAMEORIGIN
       - SAMEORIGIN
       X-Content-Type-Options:
       - nosniff
+      - nosniff
       Set-Cookie:
-      - BIGipServervsacweb_p=!cz9N165gJ0cQ1mQ6YOSiNeNE5Dh0/7k+QmrT0VEGOcCYCyQf2zl6ChQ0EzCQS9sGnPp4AgiFwf5ENyk=;secure;
-        expires=Mon, 28-Nov-2016 21:55:42 GMT; path=/
-      - JSESSIONID=8D578E66F758F561F41A8693E14313C8; Path=/vsac/; Secure; HttpOnly
+      - BIGipServervsacweb_p=!gHH3Ln240EId2PjLMWjf8K3rTDmEEtLDmpd5Bg9/bxnV2q2zrAiZVH0dnOxPKKfjKXAYd0dVUFkv9TI=;
+        expires=Fri, 17-Feb-2017 19:03:50 GMT; path=/; Httponly; Secure
+      - JSESSIONID=A300AFA62A7B78AEB7EF377D65C3B84E; Path=/vsac/; Secure; HttpOnly
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
       Content-Type:
       - text/xml;charset=utf-8
       Content-Length:
       - '1361'
       Date:
-      - Mon, 28 Nov 2016 19:55:42 GMT
+      - Fri, 17 Feb 2017 17:03:50 GMT
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.114 8080"
+      - "/Common/vsacweb_p 10.1.5.110 8080"
     body:
       encoding: UTF-8
       string: |
         <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <ns0:RetrieveMultipleValueSetsResponse xmlns:ns0="urn:ihe:iti:svs:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <ns0:DescribedValueSet ID="2.16.840.1.113762.1.4.1" displayName="ONC Administrative Sex" version="20160620">
+            <ns0:DescribedValueSet ID="2.16.840.1.113762.1.4.1" displayName="ONC Administrative Sex" version="20170202">
                 <ns0:ConceptList>
-                    <ns0:Concept code="F" codeSystem="2.16.840.1.113883.5.1" codeSystemName="AdministrativeGender" codeSystemVersion="HL7V3.0_2015-07" displayName="Female"/>
-                    <ns0:Concept code="M" codeSystem="2.16.840.1.113883.5.1" codeSystemName="AdministrativeGender" codeSystemVersion="HL7V3.0_2015-07" displayName="Male"/>
+                    <ns0:Concept code="F" codeSystem="2.16.840.1.113883.5.1" codeSystemName="AdministrativeGender" codeSystemVersion="HL7V3.0_2016-07" displayName="Female"/>
+                    <ns0:Concept code="M" codeSystem="2.16.840.1.113883.5.1" codeSystemName="AdministrativeGender" codeSystemVersion="HL7V3.0_2016-07" displayName="Male"/>
                 </ns0:ConceptList>
                 <ns0:Source>Office of the National Coordinator for Health Information Technology</ns0:Source>
                 <ns0:Purpose>(Clinical Focus: Gender identity restricted to only Male and Female used in administrative situations requiring a restriction to these two categories.),(Data Element Scope: Gender),(Inclusion Criteria: Male and Female only.),(Exclusion Criteria: Any gender identity that is not male or female.)</ns0:Purpose>
@@ -1972,11 +1199,11 @@ http_interactions:
                 <ns0:RevisionDate>2015-03-31</ns0:RevisionDate>
             </ns0:DescribedValueSet>
         </ns0:RetrieveMultipleValueSetsResponse>
-    http_version: 
-  recorded_at: Mon, 28 Nov 2016 19:55:42 GMT
+    http_version:
+  recorded_at: Fri, 17 Feb 2017 17:03:49 GMT
 - request:
     method: post
-    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-378413-ZVueiWFsN9kdHdphJ0EhRiiT2jJUwhu9Vh7HlJuabRUQqoYxhK-cas
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-137568-DRQ7Kp6e2nt2P9beAVDkgqKKYrnqTBQNHSFyKPjiEbEW40Us77-cas
     body:
       encoding: US-ASCII
       string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
@@ -1999,32 +1226,42 @@ http_interactions:
       Server:
       - Apache-Coyote/1.1
       Strict-Transport-Security:
-      - max-age=31536000
+      - max-age=31536000 ; includeSubDomains
       X-Frame-Options:
+      - SAMEORIGIN
       - SAMEORIGIN
       X-Content-Type-Options:
       - nosniff
+      - nosniff
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
       Content-Type:
       - text/plain;charset=utf-8
       Content-Length:
-      - '35'
+      - '34'
       Date:
-      - Mon, 28 Nov 2016 19:55:43 GMT
+      - Fri, 17 Feb 2017 17:03:50 GMT
       Set-Cookie:
-      - BIGipServervsacweb_p=!MFqhYU1WsNGVhgI6YOSiNeNE5Dh0/1QUIoAGGv2NDp0eOBCK8U36KTYD8TaHOpgxX/fpqr0Bro2pceM=;secure;
-        expires=Mon, 28-Nov-2016 21:55:43 GMT; path=/
+      - BIGipServervsacweb_p=!YpFtEFvWaEfLcI7LMWjf8K3rTDmEEmDC9ilMw4A/UppRH1i25EODK6zvGgsIfd6Pw2+7t7z3ssnH7BI=;
+        expires=Fri, 17-Feb-2017 19:03:51 GMT; path=/; Httponly; Secure
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
       - "/Common/vsacweb_p 10.1.5.112 8080"
     body:
       encoding: UTF-8
-      string: ST-1139475-HbHX1YfiX3l024bze9VW-cas
-    http_version: 
-  recorded_at: Mon, 28 Nov 2016 19:55:43 GMT
+      string: ST-591783-davikUKdlbsao65dMxDQ-cas
+    http_version:
+  recorded_at: Fri, 17 Feb 2017 17:03:50 GMT
 - request:
     method: get
-    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.560.100.2&ticket=ST-1139475-HbHX1YfiX3l024bze9VW-cas
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.114222.4.11.836&ticket=ST-591783-davikUKdlbsao65dMxDQ-cas
     body:
       encoding: US-ASCII
       string: ''
@@ -2043,132 +1280,35 @@ http_interactions:
       Server:
       - Apache-Coyote/1.1
       Strict-Transport-Security:
-      - max-age=31536000
+      - max-age=31536000 ; includeSubDomains
       X-Frame-Options:
+      - SAMEORIGIN
       - SAMEORIGIN
       X-Content-Type-Options:
       - nosniff
-      Set-Cookie:
-      - BIGipServervsacweb_p=!IkY0+dw2dQ7ZGfY6YOSiNeNE5Dh0/wvWA6OHh739Ab1VdzD1KjuRE5QEWTQrLrIFQ1YWQ7kHvMYC8JY=;secure;
-        expires=Mon, 28-Nov-2016 21:55:43 GMT; path=/
-      - JSESSIONID=13F66EF4924C901F07A4858B876CDF81; Path=/vsac/; Secure; HttpOnly
-      Content-Type:
-      - text/xml;charset=utf-8
-      Content-Length:
-      - '1115'
-      Date:
-      - Mon, 28 Nov 2016 19:55:42 GMT
-      X-Vip-Info:
-      - 130.14.16.40:443
-      X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.111 8080"
-    body:
-      encoding: UTF-8
-      string: |
-        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-        <ns0:RetrieveMultipleValueSetsResponse xmlns:ns0="urn:ihe:iti:svs:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <ns0:DescribedValueSet ID="2.16.840.1.113883.3.560.100.2" displayName="Female" version="20160620">
-                <ns0:ConceptList>
-                    <ns0:Concept code="F" codeSystem="2.16.840.1.113883.5.1" codeSystemName="AdministrativeGender" codeSystemVersion="HL7V3.0_2015-07" displayName="Female"/>
-                </ns0:ConceptList>
-                <ns0:Source>Office of the National Coordinator for Health Information Technology</ns0:Source>
-                <ns0:Purpose>(Clinical Focus: Concepts that represent Female when assessing quality measures),(Data Element Scope: Gender),(Inclusion Criteria: Appropriate female gender concepts),(Exclusion Criteria: Concepts representing Male gender)</ns0:Purpose>
-                <ns0:Type>Extensional</ns0:Type>
-                <ns0:Binding>Dynamic</ns0:Binding>
-                <ns0:Status>Active</ns0:Status>
-                <ns0:RevisionDate>2016-03-31</ns0:RevisionDate>
-            </ns0:DescribedValueSet>
-        </ns0:RetrieveMultipleValueSetsResponse>
-    http_version: 
-  recorded_at: Mon, 28 Nov 2016 19:55:43 GMT
-- request:
-    method: post
-    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-378413-ZVueiWFsN9kdHdphJ0EhRiiT2jJUwhu9Vh7HlJuabRUQqoYxhK-cas
-    body:
-      encoding: US-ASCII
-      string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
-    headers:
-      Accept:
-      - "*/*; q=0.5, application/xml"
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Length:
-      - '39'
-      Content-Type:
-      - application/x-www-form-urlencoded
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - Apache-Coyote/1.1
-      Strict-Transport-Security:
-      - max-age=31536000
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Content-Type-Options:
-      - nosniff
-      Content-Type:
-      - text/plain;charset=utf-8
-      Content-Length:
-      - '35'
-      Date:
-      - Mon, 28 Nov 2016 19:55:43 GMT
-      Set-Cookie:
-      - BIGipServervsacweb_p=!kStI44639unQOCs6YOSiNeNE5Dh0/5bFHEq3M/p+KuYUprAvVXFtGsbKzijzmPqlEuEFJlKJzFLks5M=;secure;
-        expires=Mon, 28-Nov-2016 21:55:43 GMT; path=/
-      X-Vip-Info:
-      - 130.14.16.40:443
-      X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.114 8080"
-    body:
-      encoding: UTF-8
-      string: ST-1139476-Hg159r6Dh7isrOuwcMye-cas
-    http_version: 
-  recorded_at: Mon, 28 Nov 2016 19:55:43 GMT
-- request:
-    method: get
-    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.114222.4.11.836&ticket=ST-1139476-Hg159r6Dh7isrOuwcMye-cas
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - "*/*; q=0.5, application/xml"
-      Accept-Encoding:
-      - gzip, deflate
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - Apache-Coyote/1.1
-      Strict-Transport-Security:
-      - max-age=31536000
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Content-Type-Options:
       - nosniff
       Set-Cookie:
-      - BIGipServervsacweb_p=!XtXsSF8N7w90DXY6YOSiNeNE5Dh0/zd9NBGed1HrHliYWvCWAwjf8/211z22UBmyxpIe/jEIK8IKZug=;secure;
-        expires=Mon, 28-Nov-2016 21:55:43 GMT; path=/
-      - JSESSIONID=66BACCA9C856F528E579941EB621E9F5; Path=/vsac/; Secure; HttpOnly
+      - BIGipServervsacweb_p=!Z8b57HfWi0+lACHLMWjf8K3rTDmEEgh7dStJ/F9v4gB2Wc3UVilLqwoWPZ2cGgecUeAMN4PBkE0e4Zs=;
+        expires=Fri, 17-Feb-2017 19:03:51 GMT; path=/; Httponly; Secure
+      - JSESSIONID=BAA841C0C640A9F89C2BB5DA457E30E8; Path=/vsac/; Secure; HttpOnly
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
       Content-Type:
       - text/xml;charset=utf-8
       Content-Length:
       - '1770'
       Date:
-      - Mon, 28 Nov 2016 19:55:43 GMT
+      - Fri, 17 Feb 2017 17:03:50 GMT
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.112 8080"
+      - "/Common/vsacweb_p 10.1.5.110 8080"
     body:
       encoding: UTF-8
       string: |
@@ -2191,11 +1331,11 @@ http_interactions:
                 <ns0:RevisionDate>2012-10-25</ns0:RevisionDate>
             </ns0:DescribedValueSet>
         </ns0:RetrieveMultipleValueSetsResponse>
-    http_version: 
-  recorded_at: Mon, 28 Nov 2016 19:55:43 GMT
+    http_version:
+  recorded_at: Fri, 17 Feb 2017 17:03:50 GMT
 - request:
     method: post
-    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-378413-ZVueiWFsN9kdHdphJ0EhRiiT2jJUwhu9Vh7HlJuabRUQqoYxhK-cas
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-137568-DRQ7Kp6e2nt2P9beAVDkgqKKYrnqTBQNHSFyKPjiEbEW40Us77-cas
     body:
       encoding: US-ASCII
       string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
@@ -2218,32 +1358,42 @@ http_interactions:
       Server:
       - Apache-Coyote/1.1
       Strict-Transport-Security:
-      - max-age=31536000
+      - max-age=31536000 ; includeSubDomains
       X-Frame-Options:
+      - SAMEORIGIN
       - SAMEORIGIN
       X-Content-Type-Options:
       - nosniff
+      - nosniff
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
       Content-Type:
       - text/plain;charset=utf-8
       Content-Length:
-      - '35'
+      - '34'
       Date:
-      - Mon, 28 Nov 2016 19:55:43 GMT
+      - Fri, 17 Feb 2017 17:03:51 GMT
       Set-Cookie:
-      - BIGipServervsacweb_p=!4bvxoUEdBDpH2vI6YOSiNeNE5Dh0/xPmb9/ytCPY4hQxNHkp4/3/joIGQJiZFKP8JOID/t8tKVyBoL4=;secure;
-        expires=Mon, 28-Nov-2016 21:55:43 GMT; path=/
+      - BIGipServervsacweb_p=!yUucIfxjj7iudnXLMWjf8K3rTDmEEv9ZM8VFou5ZCuaVgT8G9QDg1TcN/pKrHCPLBuPk8+uVqJutOn4=;
+        expires=Fri, 17-Feb-2017 19:03:51 GMT; path=/; Httponly; Secure
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.110 8080"
+      - "/Common/vsacweb_p 10.1.5.112 8080"
     body:
       encoding: UTF-8
-      string: ST-1139477-CP2TkxeWFrQDuRQexFfm-cas
-    http_version: 
-  recorded_at: Mon, 28 Nov 2016 19:55:43 GMT
+      string: ST-591784-WwLSAQgXcZ3RrfdqCK92-cas
+    http_version:
+  recorded_at: Fri, 17 Feb 2017 17:03:50 GMT
 - request:
     method: get
-    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.114222.4.11.837&ticket=ST-1139477-CP2TkxeWFrQDuRQexFfm-cas
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.114222.4.11.837&ticket=ST-591784-WwLSAQgXcZ3RrfdqCK92-cas
     body:
       encoding: US-ASCII
       string: ''
@@ -2262,21 +1412,31 @@ http_interactions:
       Server:
       - Apache-Coyote/1.1
       Strict-Transport-Security:
-      - max-age=31536000
+      - max-age=31536000 ; includeSubDomains
       X-Frame-Options:
+      - SAMEORIGIN
       - SAMEORIGIN
       X-Content-Type-Options:
       - nosniff
+      - nosniff
       Set-Cookie:
-      - BIGipServervsacweb_p=!esreA88XTmvHWII6YOSiNeNE5Dh0/4Mkr6D5690A8CLM1UfZN7tn6ZugpLwQwMELNo/rQ6rV3TmspYs=;secure;
-        expires=Mon, 28-Nov-2016 21:55:44 GMT; path=/
-      - JSESSIONID=2AB5AB74F75B3E3DCCC26E0AFC3638B2; Path=/vsac/; Secure; HttpOnly
+      - BIGipServervsacweb_p=!AKyYJswbCoCm7qzLMWjf8K3rTDmEEvoblg0I9V/Iu4Va/nZhQb/TJfTZYerZmITYUUc81Q5Bxl7pz+I=;
+        expires=Fri, 17-Feb-2017 19:03:52 GMT; path=/; Httponly; Secure
+      - JSESSIONID=43F5B83E51050C4983AD23AE150B83A8; Path=/vsac/; Secure; HttpOnly
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
       Content-Type:
       - text/xml;charset=utf-8
       Content-Length:
       - '1133'
       Date:
-      - Mon, 28 Nov 2016 19:55:44 GMT
+      - Fri, 17 Feb 2017 17:03:52 GMT
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
@@ -2299,11 +1459,11 @@ http_interactions:
                 <ns0:RevisionDate>2012-10-25</ns0:RevisionDate>
             </ns0:DescribedValueSet>
         </ns0:RetrieveMultipleValueSetsResponse>
-    http_version: 
-  recorded_at: Mon, 28 Nov 2016 19:55:44 GMT
+    http_version:
+  recorded_at: Fri, 17 Feb 2017 17:03:51 GMT
 - request:
     method: post
-    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-378413-ZVueiWFsN9kdHdphJ0EhRiiT2jJUwhu9Vh7HlJuabRUQqoYxhK-cas
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-137568-DRQ7Kp6e2nt2P9beAVDkgqKKYrnqTBQNHSFyKPjiEbEW40Us77-cas
     body:
       encoding: US-ASCII
       string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
@@ -2326,32 +1486,42 @@ http_interactions:
       Server:
       - Apache-Coyote/1.1
       Strict-Transport-Security:
-      - max-age=31536000
+      - max-age=31536000 ; includeSubDomains
       X-Frame-Options:
+      - SAMEORIGIN
       - SAMEORIGIN
       X-Content-Type-Options:
       - nosniff
+      - nosniff
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
       Content-Type:
       - text/plain;charset=utf-8
       Content-Length:
-      - '35'
+      - '34'
       Date:
-      - Mon, 28 Nov 2016 19:55:44 GMT
+      - Fri, 17 Feb 2017 17:03:51 GMT
       Set-Cookie:
-      - BIGipServervsacweb_p=!+/2wUsAzKD3gLOU6YOSiNeNE5Dh0/3fh3dRmU6TkBiRgLZWEr5i9UYx6qMiTIlBXeAFX7nvlCVJPGa0=;secure;
-        expires=Mon, 28-Nov-2016 21:55:44 GMT; path=/
+      - BIGipServervsacweb_p=!qxGhphWd9s8G45HLMWjf8K3rTDmEEtASm/cMv8RKQtqtxspkWUI4cZDc6vsWeuXoh5d9piGhsGgDLmA=;
+        expires=Fri, 17-Feb-2017 19:03:52 GMT; path=/; Httponly; Secure
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
       - "/Common/vsacweb_p 10.1.5.112 8080"
     body:
       encoding: UTF-8
-      string: ST-1139478-owD10Eg0E9eerzyiVQlF-cas
-    http_version: 
-  recorded_at: Mon, 28 Nov 2016 19:55:44 GMT
+      string: ST-591787-yuwbWdEATWldVfe17UOK-cas
+    http_version:
+  recorded_at: Fri, 17 Feb 2017 17:03:51 GMT
 - request:
     method: get
-    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.114222.4.11.3591&ticket=ST-1139478-owD10Eg0E9eerzyiVQlF-cas
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.114222.4.11.3591&ticket=ST-591787-yuwbWdEATWldVfe17UOK-cas
     body:
       encoding: US-ASCII
       string: ''
@@ -2370,25 +1540,35 @@ http_interactions:
       Server:
       - Apache-Coyote/1.1
       Strict-Transport-Security:
-      - max-age=31536000
+      - max-age=31536000 ; includeSubDomains
       X-Frame-Options:
+      - SAMEORIGIN
       - SAMEORIGIN
       X-Content-Type-Options:
       - nosniff
+      - nosniff
       Set-Cookie:
-      - BIGipServervsacweb_p=!DbsyQ5pl+MgGa+I6YOSiNeNE5Dh0//eHzdNTAhytqXHNyMCOTfpqIgKqbPJo4f2fhc/LAocCVz7npwQ=;secure;
-        expires=Mon, 28-Nov-2016 21:55:44 GMT; path=/
-      - JSESSIONID=5D203B17EB39B811BCB3EAA6B195ACD9; Path=/vsac/; Secure; HttpOnly
+      - BIGipServervsacweb_p=!sxHSWYmzgTuJ+ObLMWjf8K3rTDmEEgj1bhAQApNGFpwfWpNlvPdDUe7CRlqhosB2jnPEgA8D6EIQVps=;
+        expires=Fri, 17-Feb-2017 19:03:52 GMT; path=/; Httponly; Secure
+      - JSESSIONID=53AC6938F7250A805A7979B43EE231B7; Path=/vsac/; Secure; HttpOnly
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
       Content-Type:
       - text/xml;charset=utf-8
       Content-Length:
       - '26516'
       Date:
-      - Mon, 28 Nov 2016 19:55:44 GMT
+      - Fri, 17 Feb 2017 17:03:52 GMT
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.112 8080"
+      - "/Common/vsacweb_p 10.1.5.110 8080"
     body:
       encoding: UTF-8
       string: |
@@ -2560,6 +1740,1056 @@ http_interactions:
                 <ns0:RevisionDate>2016-11-08</ns0:RevisionDate>
             </ns0:DescribedValueSet>
         </ns0:RetrieveMultipleValueSetsResponse>
-    http_version: 
-  recorded_at: Mon, 28 Nov 2016 19:55:44 GMT
+    http_version:
+  recorded_at: Fri, 17 Feb 2017 17:03:51 GMT
+- request:
+    method: post
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-137568-DRQ7Kp6e2nt2P9beAVDkgqKKYrnqTBQNHSFyKPjiEbEW40Us77-cas
+    body:
+      encoding: US-ASCII
+      string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Length:
+      - '39'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      Strict-Transport-Security:
+      - max-age=31536000 ; includeSubDomains
+      X-Frame-Options:
+      - SAMEORIGIN
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Type:
+      - text/plain;charset=utf-8
+      Content-Length:
+      - '34'
+      Date:
+      - Fri, 17 Feb 2017 17:03:51 GMT
+      Set-Cookie:
+      - BIGipServervsacweb_p=!m7DjmShKSQP0ZWjLMWjf8K3rTDmEElhUcCSxNNSRtrzD7awQ3BZNt0tLaP+IkMXFiOCSeuIqg59b15c=;
+        expires=Fri, 17-Feb-2017 19:03:52 GMT; path=/; Httponly; Secure
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.112 8080"
+    body:
+      encoding: UTF-8
+      string: ST-591793-OLPC0ugG2gMfYcRdP1ww-cas
+    http_version:
+  recorded_at: Fri, 17 Feb 2017 17:03:51 GMT
+- request:
+    method: get
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.464.1003.108.12.1018&ticket=ST-591793-OLPC0ugG2gMfYcRdP1ww-cas
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      Strict-Transport-Security:
+      - max-age=31536000 ; includeSubDomains
+      X-Frame-Options:
+      - SAMEORIGIN
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+      Set-Cookie:
+      - BIGipServervsacweb_p=!OLvIEVH6LkbtpznLMWjf8K3rTDmEEm3bfaQn6smRMh7jBQf0FTL7QzNKMrEo6CmtadaJSHQXnAlFLfk=;
+        expires=Fri, 17-Feb-2017 19:03:52 GMT; path=/; Httponly; Secure
+      - JSESSIONID=4BE88B0B01CF81208CE811350670D174; Path=/vsac/; Secure; HttpOnly
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Type:
+      - text/xml;charset=utf-8
+      Content-Length:
+      - '16348'
+      Date:
+      - Fri, 17 Feb 2017 17:03:52 GMT
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.111 8080"
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <ns0:RetrieveMultipleValueSetsResponse xmlns:ns0="urn:ihe:iti:svs:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <ns0:DescribedValueSet ID="2.16.840.1.113883.3.464.1003.108.12.1018" displayName="Mammogram" version="20161209">
+                <ns0:ConceptList>
+                    <ns0:Concept code="24604-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast Mammogram diagnostic limited"/>
+                    <ns0:Concept code="24605-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast Mammogram diagnostic"/>
+                    <ns0:Concept code="24606-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast Mammogram screening"/>
+                    <ns0:Concept code="24610-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast Mammogram limited"/>
+                    <ns0:Concept code="26175-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram screening"/>
+                    <ns0:Concept code="26176-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left Mammogram screening"/>
+                    <ns0:Concept code="26177-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - right Mammogram screening"/>
+                    <ns0:Concept code="26287-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram limited"/>
+                    <ns0:Concept code="26289-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left Mammogram limited"/>
+                    <ns0:Concept code="26291-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - right Mammogram limited"/>
+                    <ns0:Concept code="26346-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram diagnostic"/>
+                    <ns0:Concept code="26347-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left Mammogram diagnostic"/>
+                    <ns0:Concept code="26348-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - right Mammogram diagnostic"/>
+                    <ns0:Concept code="26349-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram diagnostic limited"/>
+                    <ns0:Concept code="26350-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left Mammogram diagnostic limited"/>
+                    <ns0:Concept code="26351-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - right Mammogram diagnostic limited"/>
+                    <ns0:Concept code="36319-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast Mammogram 4 views"/>
+                    <ns0:Concept code="36625-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast Mammogram"/>
+                    <ns0:Concept code="36626-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram"/>
+                    <ns0:Concept code="36627-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left Mammogram"/>
+                    <ns0:Concept code="36642-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left Mammogram 2 views"/>
+                    <ns0:Concept code="36962-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast Mammogram axillary"/>
+                    <ns0:Concept code="37005-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left Mammogram magnification"/>
+                    <ns0:Concept code="37006-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram MLO"/>
+                    <ns0:Concept code="37016-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram roll"/>
+                    <ns0:Concept code="37017-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left Mammogram roll"/>
+                    <ns0:Concept code="37028-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast Mammogram tangential"/>
+                    <ns0:Concept code="37029-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram tangential"/>
+                    <ns0:Concept code="37030-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left Mammogram tangential"/>
+                    <ns0:Concept code="37037-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast Mammogram true lateral"/>
+                    <ns0:Concept code="37038-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram true lateral"/>
+                    <ns0:Concept code="37052-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram XCCL"/>
+                    <ns0:Concept code="37053-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left Mammogram XCCL"/>
+                    <ns0:Concept code="37539-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast Mammogram grid"/>
+                    <ns0:Concept code="37542-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast Mammogram magnification"/>
+                    <ns0:Concept code="37543-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram magnification"/>
+                    <ns0:Concept code="37551-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast Mammogram spot"/>
+                    <ns0:Concept code="37552-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram spot"/>
+                    <ns0:Concept code="37553-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left Mammogram spot compression"/>
+                    <ns0:Concept code="37554-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram magnification and spot"/>
+                    <ns0:Concept code="37768-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - right Mammogram 2 views"/>
+                    <ns0:Concept code="37769-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - right Mammogram magnification and spot"/>
+                    <ns0:Concept code="37770-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - right Mammogram tangential"/>
+                    <ns0:Concept code="37771-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - right Mammogram true lateral"/>
+                    <ns0:Concept code="37772-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - right Mammogram XCCL"/>
+                    <ns0:Concept code="37773-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - right Mammogram magnification"/>
+                    <ns0:Concept code="37774-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - right Mammogram"/>
+                    <ns0:Concept code="37775-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - right Mammogram roll"/>
+                    <ns0:Concept code="38067-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram nipple profile"/>
+                    <ns0:Concept code="38070-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast implant Mammogram"/>
+                    <ns0:Concept code="38071-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast implant - bilateral Mammogram"/>
+                    <ns0:Concept code="38072-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast implant - left Mammogram"/>
+                    <ns0:Concept code="38090-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram W air"/>
+                    <ns0:Concept code="38091-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left Mammogram W air"/>
+                    <ns0:Concept code="38807-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - right Mammogram spot"/>
+                    <ns0:Concept code="38820-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast implant - right Mammogram"/>
+                    <ns0:Concept code="38854-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left Mammogram magnification and spot"/>
+                    <ns0:Concept code="38855-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left Mammogram true lateral"/>
+                    <ns0:Concept code="39150-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast FFD mammogram Post Localization"/>
+                    <ns0:Concept code="39152-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast FFD mammogram diagnostic"/>
+                    <ns0:Concept code="39153-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast FFD mammogram screening"/>
+                    <ns0:Concept code="39154-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral FFD mammogram diagnostic"/>
+                    <ns0:Concept code="42168-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - right FFD mammogram diagnostic"/>
+                    <ns0:Concept code="42169-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left FFD mammogram diagnostic"/>
+                    <ns0:Concept code="42174-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral FFD mammogram screening"/>
+                    <ns0:Concept code="42415-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram Post Wire Placement"/>
+                    <ns0:Concept code="42416-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left Mammogram Post Wire Placement"/>
+                    <ns0:Concept code="46335-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - bilateral Mammogram Single view"/>
+                    <ns0:Concept code="46336-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left Mammogram Single view"/>
+                    <ns0:Concept code="46337-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - right Mammogram Single view"/>
+                    <ns0:Concept code="46338-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - unilateral Mammogram Single view"/>
+                    <ns0:Concept code="46339-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - unilateral Mammogram"/>
+                    <ns0:Concept code="46342-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast FFD mammogram"/>
+                    <ns0:Concept code="46350-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - unilateral Mammogram diagnostic"/>
+                    <ns0:Concept code="46351-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast implant - bilateral Mammogram displacement"/>
+                    <ns0:Concept code="46354-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - right FFD mammogram screening"/>
+                    <ns0:Concept code="46355-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - left FFD mammogram screening"/>
+                    <ns0:Concept code="46356-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast - unilateral Mammogram screening"/>
+                    <ns0:Concept code="46380-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast Implant - unilateral Mammogram"/>
+                    <ns0:Concept code="48475-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast implant - bilateral Mammogram diagnostic"/>
+                    <ns0:Concept code="48492-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast implant - bilateral Mammogram screening"/>
+                    <ns0:Concept code="69150-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast implant - left Mammogram diagnostic"/>
+                    <ns0:Concept code="69251-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast Mammogram Post Wire Placement"/>
+                    <ns0:Concept code="69259-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.56" displayName="Breast implant - right Mammogram diagnostic"/>
+                    <ns0:Concept code="G0202" codeSystem="2.16.840.1.113883.6.285" codeSystemName="HCPCS" codeSystemVersion="2016" displayName="Screening mammography, producing direct digital image, bilateral, all views"/>
+                    <ns0:Concept code="G0204" codeSystem="2.16.840.1.113883.6.285" codeSystemName="HCPCS" codeSystemVersion="2016" displayName="Diagnostic mammography, producing direct 2-d digital image, bilateral, all views"/>
+                    <ns0:Concept code="G0206" codeSystem="2.16.840.1.113883.6.285" codeSystemName="HCPCS" codeSystemVersion="2016" displayName="Diagnostic mammography, producing direct 2-d digital image, unilateral, all views"/>
+                </ns0:ConceptList>
+                <ns0:Source>National Committee for Quality Assurance</ns0:Source>
+                <ns0:Purpose>(Clinical Focus: Under Development),(Data Element Scope: Under Development),(Inclusion Criteria: Under Development),(Exclusion Criteria: Under Development)</ns0:Purpose>
+                <ns0:Definition>(2.16.840.1.113883.3.464.1003.108.11.1046:Mammogram),(2.16.840.1.113883.3.464.1003.108.11.1047:Mammogram)</ns0:Definition>
+                <ns0:Type>Grouping</ns0:Type>
+                <ns0:Binding>Dynamic</ns0:Binding>
+                <ns0:Status>Active</ns0:Status>
+                <ns0:RevisionDate>2016-03-31</ns0:RevisionDate>
+            </ns0:DescribedValueSet>
+        </ns0:RetrieveMultipleValueSetsResponse>
+    http_version:
+  recorded_at: Fri, 17 Feb 2017 17:03:51 GMT
+- request:
+    method: post
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-137568-DRQ7Kp6e2nt2P9beAVDkgqKKYrnqTBQNHSFyKPjiEbEW40Us77-cas
+    body:
+      encoding: US-ASCII
+      string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Length:
+      - '39'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      Strict-Transport-Security:
+      - max-age=31536000 ; includeSubDomains
+      X-Frame-Options:
+      - SAMEORIGIN
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Type:
+      - text/plain;charset=utf-8
+      Content-Length:
+      - '34'
+      Date:
+      - Fri, 17 Feb 2017 17:03:52 GMT
+      Set-Cookie:
+      - BIGipServervsacweb_p=!ZnwC1SxEOIFdq8vLMWjf8K3rTDmEEtIVBXyCqyUp0FULUAU0XEB8+gFZnGjripb5oMMO3UudEIJEzrI=;
+        expires=Fri, 17-Feb-2017 19:03:53 GMT; path=/; Httponly; Secure
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.110 8080"
+    body:
+      encoding: UTF-8
+      string: ST-591799-gXlbR54No3Ek7Nr9K9Kr-cas
+    http_version:
+  recorded_at: Fri, 17 Feb 2017 17:03:52 GMT
+- request:
+    method: get
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.464.1003.101.12.1048&ticket=ST-591799-gXlbR54No3Ek7Nr9K9Kr-cas
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      Strict-Transport-Security:
+      - max-age=31536000 ; includeSubDomains
+      X-Frame-Options:
+      - SAMEORIGIN
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+      Set-Cookie:
+      - BIGipServervsacweb_p=!NRJ3M76A6sTULG3LMWjf8K3rTDmEEnUccjTjAxpFYBFzRcOC9jsSUa5LntJzj2sWjv38C3/zi72h/Dk=;
+        expires=Fri, 17-Feb-2017 19:03:53 GMT; path=/; Httponly; Secure
+      - JSESSIONID=B7D932B97AF73CD40518B490D1AFEBA5; Path=/vsac/; Secure; HttpOnly
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Type:
+      - text/xml;charset=utf-8
+      Content-Length:
+      - '4199'
+      Date:
+      - Fri, 17 Feb 2017 17:03:53 GMT
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.111 8080"
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <ns0:RetrieveMultipleValueSetsResponse xmlns:ns0="urn:ihe:iti:svs:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <ns0:DescribedValueSet ID="2.16.840.1.113883.3.464.1003.101.12.1048" displayName="Face-to-Face Interaction" version="20160929">
+                <ns0:ConceptList>
+                    <ns0:Concept code="12843005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Subsequent hospital visit by physician (procedure)"/>
+                    <ns0:Concept code="18170008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Subsequent nursing facility visit (procedure)"/>
+                    <ns0:Concept code="185349003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Encounter for check up (procedure)"/>
+                    <ns0:Concept code="185463005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Visit out of hours (procedure)"/>
+                    <ns0:Concept code="185465003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Weekend visit (procedure)"/>
+                    <ns0:Concept code="19681004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Nursing evaluation of patient and report (procedure)"/>
+                    <ns0:Concept code="207195004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="History and physical examination with evaluation and management of nursing facility patient (procedure)"/>
+                    <ns0:Concept code="270427003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Patient-initiated encounter (procedure)"/>
+                    <ns0:Concept code="270430005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Provider-initiated encounter (procedure)"/>
+                    <ns0:Concept code="308335008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Patient encounter procedure (procedure)"/>
+                    <ns0:Concept code="390906007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Follow-up encounter (procedure)"/>
+                    <ns0:Concept code="406547006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Urgent follow-up (procedure)"/>
+                    <ns0:Concept code="439708006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Home visit (procedure)"/>
+                    <ns0:Concept code="87790002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Follow-up inpatient consultation visit (procedure)"/>
+                    <ns0:Concept code="90526000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Initial evaluation and management of healthy individual (procedure)"/>
+                </ns0:ConceptList>
+                <ns0:Source>National Committee for Quality Assurance</ns0:Source>
+                <ns0:Purpose>(Clinical Focus: This value set indentifies patients who have had a face-to-face interaction with a member of their medical care team.),(Data Element Scope: This value set was intended to map to the QDM data type of encounter.),(Inclusion Criteria: Includes both initial and follow up visits. Includes home visits, inpatient and outpatient visits, and nursing facility visits.),(Exclusion Criteria: Excludes visits that are not performed in-person, including telehealth services.)</ns0:Purpose>
+                <ns0:Definition>(2.16.840.1.113883.3.464.1003.101.11.1216:Face-to-Face Interaction)</ns0:Definition>
+                <ns0:Type>Grouping</ns0:Type>
+                <ns0:Binding>Dynamic</ns0:Binding>
+                <ns0:Status>Active</ns0:Status>
+                <ns0:RevisionDate>2016-03-31</ns0:RevisionDate>
+            </ns0:DescribedValueSet>
+        </ns0:RetrieveMultipleValueSetsResponse>
+    http_version:
+  recorded_at: Fri, 17 Feb 2017 17:03:52 GMT
+- request:
+    method: post
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-137568-DRQ7Kp6e2nt2P9beAVDkgqKKYrnqTBQNHSFyKPjiEbEW40Us77-cas
+    body:
+      encoding: US-ASCII
+      string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Length:
+      - '39'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      Strict-Transport-Security:
+      - max-age=31536000 ; includeSubDomains
+      X-Frame-Options:
+      - SAMEORIGIN
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Type:
+      - text/plain;charset=utf-8
+      Content-Length:
+      - '34'
+      Date:
+      - Fri, 17 Feb 2017 17:03:53 GMT
+      Set-Cookie:
+      - BIGipServervsacweb_p=!/J3bfoOmbSRPr6XLMWjf8K3rTDmEEntTH1J/mtkYk6i3Wt+YNWlniCYYjVCmgn0z3/FDVGSbeyCl3xg=;
+        expires=Fri, 17-Feb-2017 19:03:53 GMT; path=/; Httponly; Secure
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.110 8080"
+    body:
+      encoding: UTF-8
+      string: ST-591805-cvbRh3IuWBMeoSd2KtUS-cas
+    http_version:
+  recorded_at: Fri, 17 Feb 2017 17:03:52 GMT
+- request:
+    method: get
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.464.1003.101.12.1016&ticket=ST-591805-cvbRh3IuWBMeoSd2KtUS-cas
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      Strict-Transport-Security:
+      - max-age=31536000 ; includeSubDomains
+      X-Frame-Options:
+      - SAMEORIGIN
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+      Set-Cookie:
+      - BIGipServervsacweb_p=!vgURDcjUr+ngofPLMWjf8K3rTDmEEoVuNuWUWb+tQFq89VllrmkJsFa6FXkGBIi6Gy1WZK3iQwf47GU=;
+        expires=Fri, 17-Feb-2017 19:03:53 GMT; path=/; Httponly; Secure
+      - JSESSIONID=D4F6ACCB660468A438F8C4BD24BA24B4; Path=/vsac/; Secure; HttpOnly
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Type:
+      - text/xml;charset=utf-8
+      Content-Length:
+      - '7592'
+      Date:
+      - Fri, 17 Feb 2017 17:03:53 GMT
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.111 8080"
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <ns0:RetrieveMultipleValueSetsResponse xmlns:ns0="urn:ihe:iti:svs:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <ns0:DescribedValueSet ID="2.16.840.1.113883.3.464.1003.101.12.1016" displayName="Home Healthcare Services" version="20160331">
+                <ns0:ConceptList>
+                    <ns0:Concept code="99341" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Home visit for the evaluation and management of a new patient, which requires these 3 key components: A problem focused history; A problem focused examination; and Straightforward medical decision making. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of low severity. Typically, 20 minutes are spent face-to-face with the patient and/or family."/>
+                    <ns0:Concept code="99342" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Home visit for the evaluation and management of a new patient, which requires these 3 key components: An expanded problem focused history; An expanded problem focused examination; and Medical decision making of low complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of moderate severity. Typically, 30 minutes are spent face-to-face with the patient and/or family."/>
+                    <ns0:Concept code="99343" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Home visit for the evaluation and management of a new patient, which requires these 3 key components: A detailed history; A detailed examination; and Medical decision making of moderate complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of moderate to high severity. Typically, 45 minutes are spent face-to-face with the patient and/or family."/>
+                    <ns0:Concept code="99344" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Home visit for the evaluation and management of a new patient, which requires these 3 key components: A comprehensive history; A comprehensive examination; and Medical decision making of moderate complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of high severity. Typically, 60 minutes are spent face-to-face with the patient and/or family."/>
+                    <ns0:Concept code="99345" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Home visit for the evaluation and management of a new patient, which requires these 3 key components: A comprehensive history; A comprehensive examination; and Medical decision making of high complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the patient is unstable or has developed a significant new problem requiring immediate physician attention. Typically, 75 minutes are spent face-to-face with the patient and/or family."/>
+                    <ns0:Concept code="99347" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Home visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: A problem focused interval history; A problem focused examination; Straightforward medical decision making. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are self limited or minor. Typically, 15 minutes are spent face-to-face with the patient and/or family."/>
+                    <ns0:Concept code="99348" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Home visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: An expanded problem focused interval history; An expanded problem focused examination; Medical decision making of low complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of low to moderate severity. Typically, 25 minutes are spent face-to-face with the patient and/or family."/>
+                    <ns0:Concept code="99349" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Home visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: A detailed interval history; A detailed examination; Medical decision making of moderate complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are moderate to high severity. Typically, 40 minutes are spent face-to-face with the patient and/or family."/>
+                    <ns0:Concept code="99350" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Home visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: A comprehensive interval history; A comprehensive examination; Medical decision making of moderate to high complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of moderate to high severity. The patient may be unstable or may have developed a significant new problem requiring immediate physician attention. Typically, 60 minutes are spent face-to-face with the patient and/or family."/>
+                </ns0:ConceptList>
+                <ns0:Source>National Committee for Quality Assurance</ns0:Source>
+                <ns0:Purpose>(Clinical Focus: Under Development),(Data Element Scope: Under Development),(Inclusion Criteria: Under Development),(Exclusion Criteria: Under Development)</ns0:Purpose>
+                <ns0:Definition>(2.16.840.1.113883.3.464.1003.101.11.1080:Home Healthcare Services)</ns0:Definition>
+                <ns0:Type>Grouping</ns0:Type>
+                <ns0:Binding>Dynamic</ns0:Binding>
+                <ns0:Status>Active</ns0:Status>
+                <ns0:RevisionDate>2016-03-31</ns0:RevisionDate>
+            </ns0:DescribedValueSet>
+        </ns0:RetrieveMultipleValueSetsResponse>
+    http_version:
+  recorded_at: Fri, 17 Feb 2017 17:03:52 GMT
+- request:
+    method: post
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-137568-DRQ7Kp6e2nt2P9beAVDkgqKKYrnqTBQNHSFyKPjiEbEW40Us77-cas
+    body:
+      encoding: US-ASCII
+      string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Length:
+      - '39'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      Strict-Transport-Security:
+      - max-age=31536000 ; includeSubDomains
+      X-Frame-Options:
+      - SAMEORIGIN
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Type:
+      - text/plain;charset=utf-8
+      Content-Length:
+      - '34'
+      Date:
+      - Fri, 17 Feb 2017 17:03:53 GMT
+      Set-Cookie:
+      - BIGipServervsacweb_p=!osnMf5qoO9tytzbLMWjf8K3rTDmEEtRF7Y0rIYGY6RJfJ6itH4p8JTbko9acGbROWXpb3a+SRy2oO80=;
+        expires=Fri, 17-Feb-2017 19:03:53 GMT; path=/; Httponly; Secure
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.112 8080"
+    body:
+      encoding: UTF-8
+      string: ST-591811-a6Y341zSWch2Ojictdca-cas
+    http_version:
+  recorded_at: Fri, 17 Feb 2017 17:03:52 GMT
+- request:
+    method: get
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.464.1003.101.12.1001&ticket=ST-591811-a6Y341zSWch2Ojictdca-cas
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      Strict-Transport-Security:
+      - max-age=31536000 ; includeSubDomains
+      X-Frame-Options:
+      - SAMEORIGIN
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+      Set-Cookie:
+      - BIGipServervsacweb_p=!L2nAPTWXr+3dBcnLMWjf8K3rTDmEElFMvFBMdY4pTVTP/9kFU8iEr72dpkO1SUH4fuW7g5lc5nNf3xA=;
+        expires=Fri, 17-Feb-2017 19:03:54 GMT; path=/; Httponly; Secure
+      - JSESSIONID=B2284951C8BC95C73083B27B451A2A56; Path=/vsac/; Secure; HttpOnly
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Type:
+      - text/xml;charset=utf-8
+      Content-Length:
+      - '7867'
+      Date:
+      - Fri, 17 Feb 2017 17:03:53 GMT
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.112 8080"
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <ns0:RetrieveMultipleValueSetsResponse xmlns:ns0="urn:ihe:iti:svs:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <ns0:DescribedValueSet ID="2.16.840.1.113883.3.464.1003.101.12.1001" displayName="Office Visit" version="20160331">
+                <ns0:ConceptList>
+                    <ns0:Concept code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Office or other outpatient visit for the evaluation and management of a new patient, which requires these 3 key components: A problem focused history; A problem focused examination; Straightforward medical decision making. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are self limited or minor. Typically, 10 minutes are spent face-to-face with the patient and/or family."/>
+                    <ns0:Concept code="99202" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Office or other outpatient visit for the evaluation and management of a new patient, which requires these 3 key components: An expanded problem focused history; An expanded problem focused examination; Straightforward medical decision making. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of low to moderate severity. Typically, 20 minutes are spent face-to-face with the patient and/or family."/>
+                    <ns0:Concept code="99203" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Office or other outpatient visit for the evaluation and management of a new patient, which requires these 3 key components: A detailed history; A detailed examination; Medical decision making of low complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of moderate severity. Typically, 30 minutes are spent face-to-face with the patient and/or family."/>
+                    <ns0:Concept code="99204" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Office or other outpatient visit for the evaluation and management of a new patient, which requires these 3 key components: A comprehensive history; A comprehensive examination; Medical decision making of moderate complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of moderate to high severity. Typically, 45 minutes are spent face-to-face with the patient and/or family."/>
+                    <ns0:Concept code="99205" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Office or other outpatient visit for the evaluation and management of a new patient, which requires these 3 key components: A comprehensive history; A comprehensive examination; Medical decision making of high complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of moderate to high severity. Typically, 60 minutes are spent face-to-face with the patient and/or family."/>
+                    <ns0:Concept code="99212" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Office or other outpatient visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: A problem focused history; A problem focused examination; Straightforward medical decision making. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are self limited or minor. Typically, 10 minutes are spent face-to-face with the patient and/or family."/>
+                    <ns0:Concept code="99213" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Office or other outpatient visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: An expanded problem focused history; An expanded problem focused examination; Medical decision making of low complexity. Counseling and coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of low to moderate severity. Typically, 15 minutes are spent face-to-face with the patient and/or family."/>
+                    <ns0:Concept code="99214" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Office or other outpatient visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: A detailed history; A detailed examination; Medical decision making of moderate complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of moderate to high severity. Typically, 25 minutes are spent face-to-face with the patient and/or family."/>
+                    <ns0:Concept code="99215" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Office or other outpatient visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: A comprehensive history; A comprehensive examination; Medical decision making of high complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of moderate to high severity. Typically, 40 minutes are spent face-to-face with the patient and/or family."/>
+                </ns0:ConceptList>
+                <ns0:Source>National Committee for Quality Assurance</ns0:Source>
+                <ns0:Purpose>(Clinical Focus: This value set identifies patients who have had an office or other outpatient visit.),(Data Element Scope: This value set was intended to map to the QDM data type of encounter.),(Inclusion Criteria: Includes comprehensive history, evaluation, and management of a patient in an office or outpatient facility. Patient can be presenting with problems that are minor to high severity.),(Exclusion Criteria: Excludes non-office visits, including telehealth services.)</ns0:Purpose>
+                <ns0:Definition>(2.16.840.1.113883.3.464.1003.101.11.1005:Office Visit)</ns0:Definition>
+                <ns0:Type>Grouping</ns0:Type>
+                <ns0:Binding>Dynamic</ns0:Binding>
+                <ns0:Status>Active</ns0:Status>
+                <ns0:RevisionDate>2016-03-31</ns0:RevisionDate>
+            </ns0:DescribedValueSet>
+        </ns0:RetrieveMultipleValueSetsResponse>
+    http_version:
+  recorded_at: Fri, 17 Feb 2017 17:03:53 GMT
+- request:
+    method: post
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-137568-DRQ7Kp6e2nt2P9beAVDkgqKKYrnqTBQNHSFyKPjiEbEW40Us77-cas
+    body:
+      encoding: US-ASCII
+      string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Length:
+      - '39'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      Strict-Transport-Security:
+      - max-age=31536000 ; includeSubDomains
+      X-Frame-Options:
+      - SAMEORIGIN
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Type:
+      - text/plain;charset=utf-8
+      Content-Length:
+      - '34'
+      Date:
+      - Fri, 17 Feb 2017 17:03:54 GMT
+      Set-Cookie:
+      - BIGipServervsacweb_p=!ECOckHzdws6BJoHLMWjf8K3rTDmEEnyLt1Wb+uaNDMiv+LcbKe3xv++c/yf1RKl3e+u8hKdUd/XJHNU=;
+        expires=Fri, 17-Feb-2017 19:03:54 GMT; path=/; Httponly; Secure
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.111 8080"
+    body:
+      encoding: UTF-8
+      string: ST-591818-LKLff4wTmieBkveTKzr5-cas
+    http_version:
+  recorded_at: Fri, 17 Feb 2017 17:03:53 GMT
+- request:
+    method: get
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.464.1003.198.12.1005&ticket=ST-591818-LKLff4wTmieBkveTKzr5-cas
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      Strict-Transport-Security:
+      - max-age=31536000 ; includeSubDomains
+      X-Frame-Options:
+      - SAMEORIGIN
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+      Set-Cookie:
+      - BIGipServervsacweb_p=!zA8s9N2b+ZNWUAPLMWjf8K3rTDmEErMV1hoOGhCiOQUDuz3e2LEzigoa3FAbSzVrDvhp2i9oZ5nkYn4=;
+        expires=Fri, 17-Feb-2017 19:03:54 GMT; path=/; Httponly; Secure
+      - JSESSIONID=56CA1D4D5BD8373F37D3509FCBE34A49; Path=/vsac/; Secure; HttpOnly
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Type:
+      - text/xml;charset=utf-8
+      Content-Length:
+      - '2767'
+      Date:
+      - Fri, 17 Feb 2017 17:03:54 GMT
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.110 8080"
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <ns0:RetrieveMultipleValueSetsResponse xmlns:ns0="urn:ihe:iti:svs:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <ns0:DescribedValueSet ID="2.16.840.1.113883.3.464.1003.198.12.1005" displayName="Bilateral Mastectomy" version="20160929">
+                <ns0:ConceptList>
+                    <ns0:Concept code="14693006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Bilateral subcutaneous mammectomy (procedure)"/>
+                    <ns0:Concept code="14714006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Bilateral mastectomy with excision of bilateral regional lymph nodes (procedure)"/>
+                    <ns0:Concept code="17086001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Modified radical mastectomy, bilateral (procedure)"/>
+                    <ns0:Concept code="22418005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Bilateral simple mastectomy (procedure)"/>
+                    <ns0:Concept code="27865001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Bilateral mastectomy (procedure)"/>
+                    <ns0:Concept code="456903003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Bilateral extended radical mastectomy (procedure)"/>
+                    <ns0:Concept code="52314009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Bilateral mastectomy extended simple (procedure)"/>
+                    <ns0:Concept code="60633004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Bilateral subcutaneous mammectomy with synchronous implant (procedure)"/>
+                    <ns0:Concept code="76468001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Bilateral radical mastectomy (procedure)"/>
+                </ns0:ConceptList>
+                <ns0:Source>National Committee for Quality Assurance</ns0:Source>
+                <ns0:Purpose>(Clinical Focus: Under Development),(Data Element Scope: Under Development),(Inclusion Criteria: Under Development),(Exclusion Criteria: Under Development)</ns0:Purpose>
+                <ns0:Definition>(2.16.840.1.113883.3.464.1003.198.11.1005:Bilateral Mastectomy)</ns0:Definition>
+                <ns0:Type>Grouping</ns0:Type>
+                <ns0:Binding>Dynamic</ns0:Binding>
+                <ns0:Status>Active</ns0:Status>
+                <ns0:RevisionDate>2016-03-31</ns0:RevisionDate>
+            </ns0:DescribedValueSet>
+        </ns0:RetrieveMultipleValueSetsResponse>
+    http_version:
+  recorded_at: Fri, 17 Feb 2017 17:03:53 GMT
+- request:
+    method: post
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-137568-DRQ7Kp6e2nt2P9beAVDkgqKKYrnqTBQNHSFyKPjiEbEW40Us77-cas
+    body:
+      encoding: US-ASCII
+      string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Length:
+      - '39'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      Strict-Transport-Security:
+      - max-age=31536000 ; includeSubDomains
+      X-Frame-Options:
+      - SAMEORIGIN
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Type:
+      - text/plain;charset=utf-8
+      Content-Length:
+      - '34'
+      Date:
+      - Fri, 17 Feb 2017 17:03:54 GMT
+      Set-Cookie:
+      - BIGipServervsacweb_p=!1rL/Vt5A04o1VmDLMWjf8K3rTDmEEnSolqx+mooD76QVJQFPXUbhJMSdJ92uzBrCLjY/YmTJVoTkGfw=;
+        expires=Fri, 17-Feb-2017 19:03:54 GMT; path=/; Httponly; Secure
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.110 8080"
+    body:
+      encoding: UTF-8
+      string: ST-591823-fG7gYld7ftU7Y55mkn4H-cas
+    http_version:
+  recorded_at: Fri, 17 Feb 2017 17:03:53 GMT
+- request:
+    method: get
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.464.1003.198.12.1020&ticket=ST-591823-fG7gYld7ftU7Y55mkn4H-cas
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      Strict-Transport-Security:
+      - max-age=31536000 ; includeSubDomains
+      X-Frame-Options:
+      - SAMEORIGIN
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+      Set-Cookie:
+      - BIGipServervsacweb_p=!VG3cBp2/YONys5bLMWjf8K3rTDmEEg4G0kuOegp+T97MnmFFINK4idatV7VCpG3Tek+27aEUsknH7rw=;
+        expires=Fri, 17-Feb-2017 19:03:55 GMT; path=/; Httponly; Secure
+      - JSESSIONID=98FA441F7E5BC011CA8223FD12564542; Path=/vsac/; Secure; HttpOnly
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Type:
+      - text/xml;charset=utf-8
+      Content-Length:
+      - '7600'
+      Date:
+      - Fri, 17 Feb 2017 17:03:55 GMT
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.112 8080"
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <ns0:RetrieveMultipleValueSetsResponse xmlns:ns0="urn:ihe:iti:svs:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <ns0:DescribedValueSet ID="2.16.840.1.113883.3.464.1003.198.12.1020" displayName="Unilateral Mastectomy" version="20160929">
+                <ns0:ConceptList>
+                    <ns0:Concept code="172043006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Simple mastectomy (procedure)"/>
+                    <ns0:Concept code="19180" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2006" displayName="Mastectomy, simple, complete"/>
+                    <ns0:Concept code="19200" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2006" displayName="Mastectomy, radical, including pectoral muscles, axillary lymph nodes"/>
+                    <ns0:Concept code="19220" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2006" displayName="Mastectomy, radical, including pectoral muscles, axillary and internal mammary lymph nodes (Urban type operation)"/>
+                    <ns0:Concept code="19240" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2006" displayName="Mastectomy, modified radical, including axillary lymph nodes, with or without pectoralis minor muscle, but excluding pectoralis major muscle"/>
+                    <ns0:Concept code="19303" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Mastectomy, simple, complete"/>
+                    <ns0:Concept code="19304" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Mastectomy, subcutaneous"/>
+                    <ns0:Concept code="19305" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Mastectomy, radical, including pectoral muscles, axillary lymph nodes"/>
+                    <ns0:Concept code="19306" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Mastectomy, radical, including pectoral muscles, axillary and internal mammary lymph nodes (Urban type operation)"/>
+                    <ns0:Concept code="19307" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Mastectomy, modified radical, including axillary lymph nodes, with or without pectoralis minor muscle, but excluding pectoralis major muscle"/>
+                    <ns0:Concept code="237367009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Total mastectomy and division of pectoralis minor muscle (procedure)"/>
+                    <ns0:Concept code="237368004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Total mastectomy and excision of part of pectoral muscles and chest wall (procedure)"/>
+                    <ns0:Concept code="274957008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Radical mastectomy including axillary lymph nodes (procedure)"/>
+                    <ns0:Concept code="287653007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Subcutaneous mastectomy and prosthetic implant (procedure)"/>
+                    <ns0:Concept code="287654001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Extended simple mastectomy (procedure)"/>
+                    <ns0:Concept code="318190001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Mastectomy with preservation of skin and nipple with synchronous implant (procedure)"/>
+                    <ns0:Concept code="359728003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Radical mastectomy including pectoral muscles and axillary lymph nodes (procedure)"/>
+                    <ns0:Concept code="359731002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Urban operation, extended radical mastectomy (procedure)"/>
+                    <ns0:Concept code="359734005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Halsted mastectomy (procedure)"/>
+                    <ns0:Concept code="359740003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Extended radical mastectomy (procedure)"/>
+                    <ns0:Concept code="384723003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Radical mastectomy (procedure)"/>
+                    <ns0:Concept code="395702000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Patey total mastectomy (procedure)"/>
+                    <ns0:Concept code="406505007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Modified radical mastectomy (procedure)"/>
+                    <ns0:Concept code="428564008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Skin sparing mastectomy (procedure)"/>
+                    <ns0:Concept code="428571003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Mastectomy of left breast (procedure)"/>
+                    <ns0:Concept code="429400009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Mastectomy of right breast (procedure)"/>
+                    <ns0:Concept code="446109005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Simple mastectomy with excision of axillary lymph nodes (procedure)"/>
+                    <ns0:Concept code="446420001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Simple mastectomy with complete axillary lymphadenectomy (procedure)"/>
+                    <ns0:Concept code="447135002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Simple mastectomy with axillary lymph node sampling (procedure)"/>
+                    <ns0:Concept code="447421006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Prophylactic mastectomy (procedure)"/>
+                    <ns0:Concept code="66398006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Mastectomy with excision of regional lymph nodes (procedure)"/>
+                    <ns0:Concept code="70183006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2016-09" displayName="Subcutaneous mastectomy (procedure)"/>
+                </ns0:ConceptList>
+                <ns0:Source>National Committee for Quality Assurance</ns0:Source>
+                <ns0:Purpose>(Clinical Focus: Under Development),(Data Element Scope: Under Development),(Inclusion Criteria: Under Development),(Exclusion Criteria: Under Development)</ns0:Purpose>
+                <ns0:Definition>(2.16.840.1.113883.3.464.1003.198.11.1037:Unilateral Mastectomy),(2.16.840.1.113883.3.464.1003.198.11.1038:Unilateral Mastectomy)</ns0:Definition>
+                <ns0:Type>Grouping</ns0:Type>
+                <ns0:Binding>Dynamic</ns0:Binding>
+                <ns0:Status>Active</ns0:Status>
+                <ns0:RevisionDate>2016-03-31</ns0:RevisionDate>
+            </ns0:DescribedValueSet>
+        </ns0:RetrieveMultipleValueSetsResponse>
+    http_version:
+  recorded_at: Fri, 17 Feb 2017 17:03:54 GMT
+- request:
+    method: post
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-137568-DRQ7Kp6e2nt2P9beAVDkgqKKYrnqTBQNHSFyKPjiEbEW40Us77-cas
+    body:
+      encoding: US-ASCII
+      string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Length:
+      - '39'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      Strict-Transport-Security:
+      - max-age=31536000 ; includeSubDomains
+      X-Frame-Options:
+      - SAMEORIGIN
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Type:
+      - text/plain;charset=utf-8
+      Content-Length:
+      - '34'
+      Date:
+      - Fri, 17 Feb 2017 17:03:55 GMT
+      Set-Cookie:
+      - BIGipServervsacweb_p=!ZWgo++9Iznd3GkrLMWjf8K3rTDmEErzKTtHYM+xwpaBW+xcp3KCq782UcU1FfE462sStAZMA8mavct0=;
+        expires=Fri, 17-Feb-2017 19:03:55 GMT; path=/; Httponly; Secure
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.112 8080"
+    body:
+      encoding: UTF-8
+      string: ST-591831-9tlHPZiMZ9fGSjvOfHke-cas
+    http_version:
+  recorded_at: Fri, 17 Feb 2017 17:03:54 GMT
+- request:
+    method: get
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.560.100.2&ticket=ST-591831-9tlHPZiMZ9fGSjvOfHke-cas
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      Strict-Transport-Security:
+      - max-age=31536000 ; includeSubDomains
+      X-Frame-Options:
+      - SAMEORIGIN
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+      Set-Cookie:
+      - BIGipServervsacweb_p=!qjc4UqCwh5c8kPbLMWjf8K3rTDmEEuX/yrh3+zBMIVQiEmDAxXYC+GgJvGZvdwXGDWTm1ZzAs/GJ+dg=;
+        expires=Fri, 17-Feb-2017 19:03:55 GMT; path=/; Httponly; Secure
+      - JSESSIONID=F14F90FB9343D3895DA0157C0E01884B; Path=/vsac/; Secure; HttpOnly
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Type:
+      - text/xml;charset=utf-8
+      Content-Length:
+      - '1115'
+      Date:
+      - Fri, 17 Feb 2017 17:03:55 GMT
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.114 8080"
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <ns0:RetrieveMultipleValueSetsResponse xmlns:ns0="urn:ihe:iti:svs:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <ns0:DescribedValueSet ID="2.16.840.1.113883.3.560.100.2" displayName="Female" version="20170202">
+                <ns0:ConceptList>
+                    <ns0:Concept code="F" codeSystem="2.16.840.1.113883.5.1" codeSystemName="AdministrativeGender" codeSystemVersion="HL7V3.0_2016-07" displayName="Female"/>
+                </ns0:ConceptList>
+                <ns0:Source>Office of the National Coordinator for Health Information Technology</ns0:Source>
+                <ns0:Purpose>(Clinical Focus: Concepts that represent Female when assessing quality measures),(Data Element Scope: Gender),(Inclusion Criteria: Appropriate female gender concepts),(Exclusion Criteria: Concepts representing Male gender)</ns0:Purpose>
+                <ns0:Type>Extensional</ns0:Type>
+                <ns0:Binding>Dynamic</ns0:Binding>
+                <ns0:Status>Active</ns0:Status>
+                <ns0:RevisionDate>2016-03-31</ns0:RevisionDate>
+            </ns0:DescribedValueSet>
+        </ns0:RetrieveMultipleValueSetsResponse>
+    http_version:
+  recorded_at: Fri, 17 Feb 2017 17:03:54 GMT
 recorded_with: VCR 3.0.3

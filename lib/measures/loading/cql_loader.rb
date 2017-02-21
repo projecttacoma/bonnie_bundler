@@ -23,12 +23,21 @@ module Measures
       # Translate the cql to elm
       elm = translate_cql_to_elm(cql)
 
+      # Parse the elm into json
+      parsed_elm = JSON.parse(elm)
+
       # Load hqmf into HQMF Parser
       model = Measures::Loader.parse_hqmf_model(hqmf_path)
 
+      # Grab the value sets from the elm
+      elm_value_sets = []
+      parsed_elm['library']['valueSets']['def'].each do |value_set|
+        elm_value_sets << value_set['id']
+      end
+
       # Get Value Sets
       begin
-        value_set_models =  Measures::ValueSetLoader.load_value_sets_from_vsac(model.all_code_set_oids, vsac_user, vsac_password, user, overwrite_valuesets, effectiveDate, includeDraft, ticket_granting_ticket)
+        value_set_models =  Measures::ValueSetLoader.load_value_sets_from_vsac(elm_value_sets, vsac_user, vsac_password, user, overwrite_valuesets, effectiveDate, includeDraft, ticket_granting_ticket)
       rescue Exception => e
         raise VSACException.new "Error Loading Value Sets from VSAC: #{e.message}"
       end
@@ -37,7 +46,7 @@ module Measures
       model.backfill_patient_characteristics_with_codes(HQMF2JS::Generator::CodesToJson.from_value_sets(value_set_models))
       json = model.to_json
       json.convert_keys_to_strings
-      measure = Measures::Loader.load_hqmf_cql_model_json(json, user, value_set_models.collect{|vs| vs.oid}, JSON.parse(elm), cql)
+      measure = Measures::Loader.load_hqmf_cql_model_json(json, user, value_set_models.collect{|vs| vs.oid}, parsed_elm, cql)
       measure['episode_of_care'] = measure_details['episode_of_care']
       measure
     end
