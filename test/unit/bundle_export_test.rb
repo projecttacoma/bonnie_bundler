@@ -52,31 +52,31 @@ class BundleExportTest < ActiveSupport::TestCase
                birthdate: 0,
                user_id: @user.id,
                gender:"M",
-               encounters: [{codes:{'SNOMED-CT':["417005"]},
+               encounters: [{codes:{'SNOMED-CT'=>["417005"]},
                              description:"Encounter, Performed: Inpatient Encounter",
                              dischargeTime:1334823300,
                              end_time:1334823300,
                              mood_code:"EVN",
                              oid:"2.16.840.1.113883.3.560.1.79",
                              start_time:1334822400,
-                             status_code:{'HL7 ActStatus':["performed"]}
+                             status_code:{'HL7 ActStatus'=>["performed"]}
                              }],
-               conditions: [{codes:{'SNOMED-CT':["433601000124106"], 'ICD-9-CM':["765.29"]},
+               conditions: [{codes:{'SNOMED-CT'=>["433601000124106"], 'ICD-9-CM'=>["765.29"]},
                              description:"Diagnosis, Active: Gestational Age >= 37 Weeks",
                              end_time:1334823300,
                              mood_code:"EVN",
                              oid:"2.16.840.1.113883.3.560.1.2",
                              start_time:1334822400,
-                             status_code:{'HL7 ActStatus':["active"], 'SNOMED-CT':["55561003"]}
+                             status_code:{'HL7 ActStatus'=>["active"], 'SNOMED-CT'=>["55561003"]}
                             },
                             {
-                             codes:{'ICD-10-CM':["Z38.00"], 'ICD-9-CM':["V30.00"]},
+                             codes:{'ICD-10-CM'=>["Z38.00"], 'ICD-9-CM'=>["V30.00"]},
                              description:"Diagnosis, Active: Single Liveborn Newborn Born In Hospital",
                              end_time:1334823300,
                              mood_code:"EVN",
                              oid:"2.16.840.1.113883.3.560.1.2",
                              start_time:1334822400,
-                             status_code:{'HL7 ActStatus':["active"], 'SNOMED-CT':["55561003"]}
+                             status_code:{'HL7 ActStatus'=>["active"], 'SNOMED-CT'=>["55561003"]}
                             }]
               }
     Record.new(patient).save
