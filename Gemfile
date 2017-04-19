@@ -3,10 +3,10 @@ gemspec
 
 #gem 'health-data-standards', '3.4.4'
 
-gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git', :branch => 'staging_experimental_cql'
-gem 'quality-measure-engine', :git => 'https://github.com/pophealth/quality-measure-engine.git', :branch => 'master'
-gem 'hqmf2js', :git => 'https://github.com/pophealth/hqmf2js.git', :branch => 'master'
-gem 'hquery-patient-api', '1.0.4'
+gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git', :branch => 'cql4bonnie'
+gem 'quality-measure-engine', :git => 'https://github.com/projectcypress/quality-measure-engine.git', :branch => 'master'
+gem 'hqmf2js', :git => 'https://github.com/projecttacoma/hqmf2js.git', :branch => 'master'
+gem 'hquery-patient-api', :git => 'https://github.com/projecttacoma/patientapi.git', :branch => 'QDM_5-0'
 gem 'simplexml_parser', :git => 'https://github.com/projecttacoma/simplexml_parser.git', :branch => 'master'
 
 # gem 'health-data-standards', :path => '../health-data-standards'
@@ -37,4 +37,3 @@ group :test do
   gem 'vcr'
   gem 'webmock'
 end
-
