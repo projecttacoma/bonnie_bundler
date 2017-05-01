@@ -5,7 +5,7 @@ module Measures
     def self.mat_cql_export?(zip_file)
       Zip::ZipFile.open(zip_file.path) do |zip_file|
         # Check for CQL and ELM
-        cql_entry = zip_file.glob(File.join('**','**.cql')).select {|x| x.name.match(/.*CQL.cql/) && !x.name.starts_with?('__MACOSX') }.first
+        cql_entry = zip_file.glob(File.join('**','**.cql')).select {|x| !x.name.starts_with?('__MACOSX') }.first
         hqmf_entry = zip_file.glob(File.join('**','**.xml')).select {|x| x.name.match(/.*eMeasure.xml/) && !x.name.starts_with?('__MACOSX') }.first
         !cql_entry.nil? && !hqmf_entry.nil?
       end
@@ -54,7 +54,7 @@ module Measures
     # Opens the zip and grabs the cql file contents and hqmf_path. Returns both items.
     def self.get_files_from_zip(file, out_dir)
       Zip::ZipFile.open(file.path) do |zip_file|
-        cql_entry = zip_file.glob(File.join('**','**.cql')).select {|x| x.name.match(/.*CQL.cql/) && !x.name.starts_with?('__MACOSX') }.first
+        cql_entry = zip_file.glob(File.join('**','**.cql')).select {|x| !x.name.starts_with?('__MACOSX') }.first
         hqmf_entry = zip_file.glob(File.join('**','**.xml')).select {|x| x.name.match(/.*eMeasure.xml/) && !x.name.starts_with?('__MACOSX') }.first
 
         begin

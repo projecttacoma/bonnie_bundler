@@ -22,7 +22,7 @@ module Measures
       xls_entry = nil
       Zip::ZipFile.open(file.path) do |zip_file|
         # Check for CQL file
-        cql_entry = zip_file.glob(File.join('**','**.cql')).select {|x| x.name.match(/.*CQL.cql/) && !x.name.starts_with?('__MACOSX') }.first
+        cql_entry = zip_file.glob(File.join('**','**.cql')).select {|x| !x.name.starts_with?('__MACOSX') }.first
         # Check for HQMF file
         hqmf_entry = zip_file.glob(File.join('**','**.xml')).select {|x| x.name.match(/.*eMeasure.xml/) && !x.name.starts_with?('__MACOSX') }.first
         # Check for SimpleXML file
