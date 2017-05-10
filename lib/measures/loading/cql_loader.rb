@@ -78,12 +78,14 @@ module Measures
         return elm
       rescue RestClient::BadRequest => e
         begin
-          # If there are translation error details, include them; else show generic message returned from REST client
-          cqlErrorLocation = JSON.parse(e.response.body)["library"]["annotation"][0]["startLine"]
-          errorMsg = "Error in CQL near line " + cqlErrorLocation.to_s
+          # If there is a response, include it in the error else just include the error message
+          cqlError = JSON.parse(e.response)
+          errorMsg = cqlError.to_s
         rescue
           errorMsg = e.message
         end
+        # The error text will be written to a load_error file and will not be displayed in the error dialog displayed to the user since
+        # measures_controller.rb does not handle this type of exception
         raise MeasureLoadingException.new "Error Translating CQL to ELM: " + errorMsg
       end
     end
