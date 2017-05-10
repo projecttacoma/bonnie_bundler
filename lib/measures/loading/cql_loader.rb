@@ -77,7 +77,14 @@ module Measures
         elm.gsub! 'urn:oid:', '' # Removes 'urn:oid:' from ELM for Bonnie
         return elm
       rescue RestClient::BadRequest => e
-        raise MeasureLoadingException.new "Error Translating CQL to ELM: #{e.message}"
+        begin
+          # If there are translation error details, include them; else show generic message returned from REST client
+          cqlErrorLocation = JSON.parse(e.response.body)["library"]["annotation"][0]["startLine"]
+          errorMsg = "Error in CQL near line " + cqlErrorLocation.to_s
+        rescue
+          errorMsg = e.message
+        end
+        raise MeasureLoadingException.new "Error Translating CQL to ELM: " + errorMsg
       end
     end
 
