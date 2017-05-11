@@ -80,7 +80,7 @@ module Measures
         begin
           # If there is a response, include it in the error else just include the error message
           cqlError = JSON.parse(e.response)
-          errorMsg = cqlError.to_s
+          errorMsg = JSON.pretty_generate(cqlError).to_s
         rescue
           errorMsg = e.message
         end
