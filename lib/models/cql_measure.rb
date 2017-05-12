@@ -1,56 +1,93 @@
 class CqlMeasure
-
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Attributes::Dynamic
 
-  # Metadata fields
-  # TODO: Some of these are currently here for backwards compatibility, and may or not actually be available
-  # once we're getting CQL packaged with HQMF
-  field :cms_id, type: String
-  field :title, type: String, default: ""
-  field :description, type: String, default: ""
+  DEFAULT_EFFECTIVE_DATE = Time.gm(2012,12,31,23,59).to_i
+  MP_START_DATE = Time.gm(2012,1,1,0,0).to_i
+  TYPES = ["ep", "eh"]
+
+  field :id, type: String
+  field :measure_id, type: String
   field :hqmf_id, type: String
   field :hqmf_set_id, type: String
   field :hqmf_version_number, type: Integer
+  field :cms_id, type: String
+  field :title, type: String, default: ""
+  field :description, type: String, default: ""
+  field :type, type: String
+  field :category, type: String, default: 'uncategorized'
 
-  field :measure_attributes, type: Array
-  field :measure_period, type: Hash
+  field :episode_of_care, type: Boolean
+  field :continuous_variable, type: Boolean
+  field :episode_ids, type: Array
+
+  field :needs_finalize, type: Boolean, default: false
+
+  field :published, type: Boolean
+  field :publish_date, type: Date
+  field :version, type: Integer
+
+  field :cql, type: String
+  field :elm, type: Hash
+
   field :population_criteria, type: Hash
+  field :data_criteria, type: Hash
+  field :source_data_criteria, type: Hash
+  field :measure_period, type: Hash
+  field :measure_attributes, type: Array
   field :populations, type: Array
   field :populations_cql_map, type: Hash
 
-  field :episode_of_care, type: Boolean
-  field :needs_finalize, type: Boolean, default: false # if true it indicates that the measure needs to have its episodes or submeasure titles defined
-
-  # Store the original CQL as a string
-  field :cql, type: String
-
-  # Store the derived ELM as a simple hash
-  # TODO: some simple documentation on the formatting of ELM (or pointers to main doc)
-  field :elm, type: Hash
-
-  # TEMPORARY: store the XML for comparison
-  field :xml, type: String
-
-  # Store the data criteria found in the measure; these are extracted before save, and we store them in both
-  # the data_criteria and source_data_criteria fields to enable some simple usage of CQL measures in the same
-  # contexts as we've used QDM+HQMF measures
-  # TODO: determine if both are needed
-  field :source_data_criteria, type: Hash
-  field :data_criteria, type: Hash
-
-  # Store a list OIDS of all value sets referenced by the measure
   field :value_set_oids, type: Array, default: []
 
-  # Store the calculated cyclomatic complexity as a simple Hash
-  # TODO: some better documentation on the formatting
   field :complexity, type: Hash
 
-  # A measure belongs to a user
   belongs_to :user
+  belongs_to :bundle, class_name: "HealthDataStandards::CQM::Bundle"
+  has_and_belongs_to_many :records, :inverse_of => nil
 
-  # Allow selection of measures by user
+  scope :by_measure_id, ->(id) { where({'measure_id'=>id }) }
+  scope :by_type, ->(type) { where({'type'=>type}) }
   scope :by_user, ->(user) { where user_id: user.id }
+
+  index "user_id" => 1
+  # Find the measures matching a patient
+  def self.for_patient(record)
+    where user_id: record.user_id, hqmf_set_id: { '$in' => record.measure_ids }
+  end
+
+  def value_sets
+    options = { oid: value_set_oids }
+    options[:user_id] = user.id if user?
+    @value_sets ||= HealthDataStandards::SVS::ValueSet.in(options)
+    @value_sets
+  end
+
+  # Returns the hqmf-parser's ruby implementation of an HQMF document.
+  # Rebuild from population_criteria, data_criteria, and measure_period JSON
+  def as_hqmf_model
+    json = {
+      "id" => self.measure_id,
+      "title" => self.title,
+      "description" => self.description,
+      "population_criteria" => self.population_criteria,
+      "data_criteria" => self.data_criteria,
+      "source_data_criteria" => self.source_data_criteria,
+      "measure_period" => self.measure_period,
+      "attributes" => self.measure_attributes,
+      "populations" => self.populations,
+      "hqmf_id" => self.hqmf_id,
+      "hqmf_set_id" => self.hqmf_set_id,
+      "hqmf_version_number" => self.hqmf_version_number,
+      "cms_id" => self.cms_id
+    }
+    HQMF::Document.from_json(json)
+  end
+
+  def all_data_criteria
+    as_hqmf_model.all_data_criteria
+  end
 
   # When saving calculate the cyclomatic complexity of the measure
   # TODO: Do we want to consider a measure other than "cyclomatic complexity" for CQL?
@@ -90,9 +127,6 @@ class CqlMeasure
         self.complexity[:variables] << { name: statement['name'], complexity: count_expression_logical_branches(statement['expression']) }
       end
     end
-
     self.complexity
-
   end
-
 end

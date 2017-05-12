@@ -65,13 +65,13 @@ module Measures
       measure
     end
 
-    def self.load_hqmf_cql_model_json(json, user, measure_oids, elm, cql)
+    def self.load_hqmf_cql_model_json(json, user, measure_oids, elm, cql, measure_details=nil)
       measure = CqlMeasure.new
-      measure.user = user if user
-      measure.cql = cql
-      measure.elm = elm
 
-      # Add metadata
+      # Set primary measure attributes
+      measure.user = user if user
+      measure.bundle = user.bundle if (user && user.respond_to?(:bundle))
+      measure.measure_id = json["id"]
       measure.hqmf_id = json["hqmf_id"]
       measure.hqmf_set_id = json["hqmf_set_id"]
       measure.hqmf_version_number = json["hqmf_version_number"]
@@ -79,12 +79,44 @@ module Measures
       measure.title = json["title"]
       measure.description = json["description"]
       measure.measure_attributes = json["attributes"]
+      measure.populations = json['populations']
       measure.value_set_oids = measure_oids
 
+      # Set CQL specific information
+      measure.cql = cql
+      measure.elm = elm
+
+      # Add metadata
+      metadata = measure_details
+      if metadata
+        measure.measure_id = metadata["nqf_id"]
+        measure.type = metadata["type"]
+        measure.category = metadata["category"]
+        measure.episode_of_care = metadata["episode_of_care"]
+        measure.continuous_variable = metadata["continuous_variable"]
+        measure.episode_ids = metadata["episode_ids"]
+        puts "\tWARNING: Episode of care does not align with episode ids existance" if ((!measure.episode_ids.nil? && measure.episode_ids.length > 0) ^ measure.episode_of_care)
+        if (measure.populations.count > 1)
+          sub_ids = ('a'..'az').to_a
+          measure.populations.each_with_index do |population, population_index|
+            sub_id = sub_ids[population_index]
+            population_title = metadata['subtitles'][sub_id] if metadata['subtitles']
+            measure.populations[population_index]['title'] = population_title if population_title
+          end
+        end
+      else
+        measure.type = "unknown"
+        measure.category = "Miscellaneous"
+        measure.episode_of_care = false
+        measure.continuous_variable = false
+        puts "\tWARNING: Could not find metadata for measure: #{measure.hqmf_set_id}"
+      end
+
+      # Set measure population information
+      measure.population_criteria = json["population_criteria"]
       measure.data_criteria = json["data_criteria"]
       measure.source_data_criteria = json["source_data_criteria"]
-      measure.populations = json['populations']
-    #  puts "\tCould not find episode ids #{measure.episode_ids} in measure #{measure.cms_id || measure.measure_id}" if (measure.episode_ids && measure.episode_of_care && (measure.episode_ids - measure.source_data_criteria.keys).length > 0)
+      puts "\tCould not find episode ids #{measure.episode_ids} in measure #{measure.cms_id || measure.measure_id}" if (measure.episode_ids && measure.episode_of_care && (measure.episode_ids - measure.source_data_criteria.keys).length > 0)
       measure.measure_period = json["measure_period"]
       measure.population_criteria = json["population_criteria"]
       measure.populations_cql_map = json["populations_cql_map"]
