@@ -77,7 +77,16 @@ module Measures
         elm.gsub! 'urn:oid:', '' # Removes 'urn:oid:' from ELM for Bonnie
         return elm
       rescue RestClient::BadRequest => e
-        raise MeasureLoadingException.new "Error Translating CQL to ELM: #{e.message}"
+        begin
+          # If there is a response, include it in the error else just include the error message
+          cqlError = JSON.parse(e.response)
+          errorMsg = JSON.pretty_generate(cqlError).to_s
+        rescue
+          errorMsg = e.message
+        end
+        # The error text will be written to a load_error file and will not be displayed in the error dialog displayed to the user since
+        # measures_controller.rb does not handle this type of exception
+        raise MeasureLoadingException.new "Error Translating CQL to ELM: " + errorMsg
       end
     end
 
