@@ -15,47 +15,34 @@ module Measures
       measure = nil
       cql = nil
       hqmf_path = nil
-      elm = ''
-
+      
       # Grabs the cql file contents and the hqmf file path
-      cql, hqmf_path = get_files_from_zip(file, out_dir)
+      cql_libraries, hqmf_path = get_files_from_zip(file, out_dir)
 
       # Load hqmf into HQMF Parser
       model = Measures::Loader.parse_hqmf_model(hqmf_path)
 
-      # Adjust the names of all CQL functions so that they execute properly
-      # as JavaScript functions.
-      cql.scan(/define function (".*?")/).flatten.each do |func_name|
-        # Generate a replacement function name by transliterating to ASCII, and
-        # remove any spaces.
-        repl_name = ActiveSupport::Inflector.transliterate(func_name.delete('"')).gsub(/[[:space:]]/, '')
+      # Get main measure from hqmf parser
+      main_cql_library = model.cql_measure_library
 
-        # If necessary, prepend a '_' in order to thwart function names that
-        # could potentially be reserved JavaScript keywords.
-        repl_name = '_' + repl_name if is_javascript_keyword(repl_name)
-
-        # Avoid potential name collisions.
-        repl_name = '_' + repl_name while cql.include?(repl_name) && func_name != repl_name
-
-        # Replace the function name in CQL
-        cql.gsub!(func_name, '"' + repl_name + '"')
-
-        # Replace the function name in measure observations
-        model.observations.each do |obs|
-          obs[:function_name] = repl_name if obs[:function_name] == func_name[1..-2] # Ignore quotes
-        end
-      end
+      # Remove spaces in functions in all libraries, including observations.
+      cql_libraries, model = remove_spaces_in_functions(cql_libraries, model)
 
       # Translate the cql to elm
-      elm = translate_cql_to_elm(cql)
-
-      # Parse the elm into json
-      parsed_elm = JSON.parse(elm)
+      elms = translate_cql_to_elm(cql_libraries)
+      
+      # Hash of which define statements are used for the measure.
+      cql_definition_dependency_structure = populate_cql_definition_dependency_structure(main_cql_library, elms, model.populations_cql_map)
 
       # Grab the value sets from the elm
       elm_value_sets = []
-      parsed_elm['library']['valueSets']['def'].each do |value_set|
-        elm_value_sets << value_set['id']
+      elms.each do | elm |
+        # Confirm the library has value sets
+        if elm['library'] && elm['library']['valueSets'] && elm['library']['valueSets']['def']
+          elm['library']['valueSets']['def'].each do |value_set|
+            elm_value_sets << value_set['id']
+          end
+        end
       end
 
       # Get Value Sets
@@ -69,7 +56,7 @@ module Measures
       model.backfill_patient_characteristics_with_codes(HQMF2JS::Generator::CodesToJson.from_value_sets(value_set_models))
       json = model.to_json
       json.convert_keys_to_strings
-      measure = Measures::Loader.load_hqmf_cql_model_json(json, user, value_set_models.collect{|vs| vs.oid}, parsed_elm, cql)
+      measure = Measures::Loader.load_hqmf_cql_model_json(json, user, value_set_models.collect{|vs| vs.oid}, main_cql_library, cql_definition_dependency_structure, elms, cql_libraries)
       measure['episode_of_care'] = measure_details['episode_of_care']
       measure
     end
@@ -77,15 +64,21 @@ module Measures
     # Opens the zip and grabs the cql file contents and hqmf_path. Returns both items.
     def self.get_files_from_zip(file, out_dir)
       Zip::ZipFile.open(file.path) do |zip_file|
-        cql_entry = zip_file.glob(File.join('**','**.cql')).select {|x| !x.name.starts_with?('__MACOSX') }.first
+        cql_entries = zip_file.glob(File.join('**','**.cql')).select {|x| !x.name.starts_with?('__MACOSX') }
         hqmf_entry = zip_file.glob(File.join('**','**.xml')).select {|x| x.name.match(/.*eMeasure.xml/) && !x.name.starts_with?('__MACOSX') }.first
 
         begin
-          cql_path = extract(zip_file, cql_entry, out_dir) if cql_entry && cql_entry.size > 0
+          cql_paths = []
+          cql_entries.each do |cql_file|
+            cql_paths << extract(zip_file, cql_file, out_dir) if cql_file.size > 0
+          end
           hqmf_path = extract(zip_file, hqmf_entry, out_dir) if hqmf_entry && hqmf_entry.size > 0
 
-          cql = open(cql_path).read
-          return cql, hqmf_path
+          cql_contents = []
+          cql_paths.each do |cql_path|
+            cql_contents << open(cql_path).read
+          end
+          return cql_contents, hqmf_path
         rescue Exception => e
           raise MeasureLoadingException.new "Error Parsing Measure Logic: #{e.message}"
         end
@@ -93,12 +86,23 @@ module Measures
     end
 
     # Translates the cql to elm json using a post request to CQLTranslation Jar.
+    # Returns an array of ELM.
     def self.translate_cql_to_elm(cql)
       elm = ''
       begin
-        elm = RestClient.post('http://localhost:8080/cql/translator', cql, content_type: 'application/cql', accept: 'application/elm+json', timeout: 10)
+        request = RestClient::Request.new(
+          :method => :post,
+          :accept => :json,
+          :content_type => :json,
+          :url => 'http://localhost:8080/cql/translator',
+          :payload => {
+            :multipart => true,
+            :file => cql
+          }
+        )
+        elm = request.execute
         elm.gsub! 'urn:oid:', '' # Removes 'urn:oid:' from ELM for Bonnie
-        return elm
+        return parse_elm_response(elm)
       rescue RestClient::BadRequest => e
         begin
           # If there is a response, include it in the error else just include the error message
@@ -114,11 +118,139 @@ module Measures
     end
 
     private
+    
+    # Parses CQL to remove spaces in functions and all references to those functions in other libraries
+    def self.remove_spaces_in_functions(cql_libraries, model)
+      # Track original and new function names
+      function_name_changes = {}
+
+      # Adjust the names of all CQL functions so that they execute properly
+      # as JavaScript functions.
+      cql_libraries.each do |cql| 
+        cql.scan(/define function (".*?")/).flatten.each do |func_name|
+          # Generate a replacement function name by transliterating to ASCII, and
+          # remove any spaces.
+          repl_name = ActiveSupport::Inflector.transliterate(func_name.delete('"')).gsub(/[[:space:]]/, '')
+
+          # If necessary, prepend a '_' in order to thwart function names that
+          # could potentially be reserved JavaScript keywords.
+          repl_name = '_' + repl_name if is_javascript_keyword(repl_name)
+
+          # Avoid potential name collisions.
+          repl_name = '_' + repl_name while cql.include?(repl_name) && func_name[1..-2] != repl_name
+
+          # Store the original function name and the new name
+          function_name_changes[func_name] = repl_name
+
+          # Replace the function name in CQL
+          cql.gsub!(func_name, '"' + repl_name + '"')
+
+          # Replace the function name in measure observations
+          model.observations.each do |obs|
+            obs[:function_name] = repl_name if obs[:function_name] == func_name[1..-2] # Ignore quotes
+          end
+        end
+      end
+      
+      # Iterate over cql_libraries to replace the function references in other librariers.
+      function_name_changes.each do |original_name, new_name|
+        cql_libraries.each do |cql|
+          cql.scan(/#{original_name}/).flatten.each do |func_name|
+            cql.gsub!(func_name, '"' + new_name + '"')
+          end
+        end
+      end
+      return cql_libraries, model
+    end
 
     # Checks if the given string is a reserved keyword in JavaScript. Useful
     # for sanitizing potential user input from imported CQL code.
     def self.is_javascript_keyword(string)
       ['do', 'if', 'in', 'for', 'let', 'new', 'try', 'var', 'case', 'else', 'enum', 'eval', 'false', 'null', 'this', 'true', 'void', 'with', 'break', 'catch', 'class', 'const', 'super', 'throw', 'while', 'yield', 'delete', 'export', 'import', 'public', 'return', 'static', 'switch', 'typeof', 'default', 'extends', 'finally', 'package', 'private', 'continue', 'debugger', 'function', 'arguments', 'interface', 'protected', 'implements', 'instanceof'].include? string
     end
+
+    # Parse the JSON response into an array of json objects (one for each library)
+    def self.parse_elm_response(response)
+      # Not the same delimiter in the response as we specify ourselves in the request,
+      # so we have to extract it.
+      delimiter = response.split("\r\n")[0].strip
+      parts = response.split(delimiter)
+      # The first part will always be an empty string. Just remove it.
+      parts.shift
+      # The last part will be the "--". Just remove it.
+      parts.pop
+      # Collects the response body as json. Grabs everything from the first '{' to the last '}'
+      results = parts.map{ |part| JSON.parse(part.match(/{.+}/m).to_s)}
+      results
+    end
+
+    # Loops over the populations and retrieves the define statements that are nested within it.
+    def self.populate_cql_definition_dependency_structure(main_cql_library, elms, populations_cql_map)
+      cql_population_statement_map = {}
+      main_library_elm = elms.find { |elm| elm['library']['identifier']['id'] == main_cql_library }
+      # populations_cql_map structure is: { 'IPP' => ['Initial Population'] }
+      # Loop over the populations finding the starting statements for each.
+      populations_cql_map.each do | population, cql_population_name |
+        # Get statement that matches the cql_population_name
+        population_statement = main_library_elm['library']['statements']['def'].find { |statement| statement['name'] == cql_population_name.first }
+        # Recursive function that returns a list of statements, including duplicates
+        cql_population_statement_map[population] = retrieve_all_statements_in_population(population_statement, elms)
+      end
+      cql_population_statement_map
+    end
+
+    # Given a starting define statement, a starting library and all of the libraries,
+    # this will return an array of all nested define statements.
+    def self.retrieve_all_statements_in_population(statement, elms)
+      all_results = []
+      sub_statement_names = retrieve_expressions_from_statement(statement)
+      # Currently if sub_statement_name is another Population we do not remove it.
+      if sub_statement_names.length > 0
+        sub_statement_names.each do |sub_statement_name|
+          # Check if the statement is not a built in expression 
+          sub_statement = retrieve_sub_statement_for_expression_name(sub_statement_name, elms)    
+          if sub_statement
+            all_results << sub_statement_name
+            # Call this function with the sub_statement to further drill down.
+            all_results.concat(retrieve_all_statements_in_population(sub_statement, elms))
+          end
+        end
+      else
+        all_results << statement['name']
+      end
+      all_results
+    end
+
+    # Finds which library the given define statement exists in.
+    # Returns the JSON statement that contains the given name.
+    # If given statement name is a built in expression, return nil.
+    def self.retrieve_sub_statement_for_expression_name(name, elms)
+      elms.each do | parsed_elm |
+        parsed_elm['library']['statements']['def'].each do |statement|
+          return statement if statement['name'] == name
+        end
+      end
+      nil
+    end
+
+    # Traverses the given statement and returns all of the potential additional statements.
+    def self.retrieve_expressions_from_statement(statement)
+      expressions = []
+      statement.each do |k, v|
+        # If v is nil, an array is being iterated and the value is k.
+        # If v is not nil, a hash is being iterated and the value is v.
+        value = v || k
+        if value.is_a?(Hash) || value.is_a?(Array)
+          expressions.concat(retrieve_expressions_from_statement(value))
+        else
+          if k == 'type' && (v == 'ExpressionRef' || v == 'FunctionRef')
+            # We ignore the Patient expression because it isn't an actual define statment in the cql
+            expressions << statement['name'] unless statement['name'] == 'Patient'
+          end
+        end
+      end
+      expressions
+    end
+
   end
 end

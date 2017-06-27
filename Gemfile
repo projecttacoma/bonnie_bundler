@@ -12,7 +12,7 @@ gem 'simplexml_parser', :git => 'https://github.com/projecttacoma/simplexml_pars
 # gem 'health-data-standards', :path => '../health-data-standards'
 # gem 'quality-measure-engine', :path => '../quality-measure-engine'
 # gem 'hqmf2js', :path => '../hqmf2js'
-# #gem 'hquery-patient-api', :path => '../patientapi'
+# gem 'hquery-patient-api', :path => '../patientapi'
 # gem 'simplexml_parser', :path => '../simplexml_parser'
 
 gem 'rails', '>= 4.0.0'
