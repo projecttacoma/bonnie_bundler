@@ -15,7 +15,7 @@ module Measures
       measure = nil
       cql = nil
       hqmf_path = nil
-      
+
       # Grabs the cql file contents and the hqmf file path
       cql_libraries, hqmf_path = get_files_from_zip(file, out_dir)
 
@@ -29,10 +29,12 @@ module Measures
       cql_libraries, model = remove_spaces_in_functions(cql_libraries, model)
 
       # Translate the cql to elm
-      elms = translate_cql_to_elm(cql_libraries)
-      
-      # Hash of which define statements are used for the measure.
-      cql_definition_dependency_structure = populate_cql_definition_dependency_structure(main_cql_library, elms, model.populations_cql_map)
+      elms, elm_annotations = translate_cql_to_elm(cql_libraries)
+
+      # Hash of define statements to which define statements they use.
+      cql_definition_dependency_structure = populate_cql_definition_dependency_structure(main_cql_library, elms)
+      # Go back for the library statements
+      cql_definition_dependency_structure = populate_used_library_dependencies(cql_definition_dependency_structure, main_cql_library, elms)
 
       # Grab the value sets from the elm
       elm_value_sets = []
@@ -51,12 +53,11 @@ module Measures
       rescue Exception => e
         raise VSACException.new "Error Loading Value Sets from VSAC: #{e.message}"
       end
-
       # Create CQL Measure
       model.backfill_patient_characteristics_with_codes(HQMF2JS::Generator::CodesToJson.from_value_sets(value_set_models))
       json = model.to_json
       json.convert_keys_to_strings
-      measure = Measures::Loader.load_hqmf_cql_model_json(json, user, value_set_models.collect{|vs| vs.oid}, main_cql_library, cql_definition_dependency_structure, elms, cql_libraries)
+      measure = Measures::Loader.load_hqmf_cql_model_json(json, user, value_set_models.collect{|vs| vs.oid}, main_cql_library, cql_definition_dependency_structure, elms, elm_annotations, cql_libraries)
       measure['episode_of_care'] = measure_details['episode_of_care']
       measure
     end
@@ -88,7 +89,6 @@ module Measures
     # Translates the cql to elm json using a post request to CQLTranslation Jar.
     # Returns an array of ELM.
     def self.translate_cql_to_elm(cql)
-      elm = ''
       begin
         request = RestClient::Request.new(
           :method => :post,
@@ -100,9 +100,28 @@ module Measures
             :file => cql
           }
         )
-        elm = request.execute
-        elm.gsub! 'urn:oid:', '' # Removes 'urn:oid:' from ELM for Bonnie
-        return parse_elm_response(elm)
+
+        elm_json = request.execute
+        elm_json.gsub! 'urn:oid:', '' # Removes 'urn:oid:' from ELM for Bonnie
+        
+        # now get the XML ELM
+        request = RestClient::Request.new(
+          :method => :post,
+          :headers => {
+            :accept => 'multipart/form-data',
+            'X-TargetFormat' => 'application/elm+xml'
+          },
+          :content_type => 'multipart/form-data',
+          :url => 'http://localhost:8080/cql/translator',
+          :payload => {
+            :multipart => true,
+            :file => cql
+          }
+        )
+        elm_xmls = request.execute
+        elm_annotations = parse_elm_annotations_response(elm_xmls)
+
+        return parse_elm_response(elm_json), elm_annotations
       rescue RestClient::BadRequest => e
         begin
           # If there is a response, include it in the error else just include the error message
@@ -184,39 +203,72 @@ module Measures
       results
     end
 
-    # Loops over the populations and retrieves the define statements that are nested within it.
-    def self.populate_cql_definition_dependency_structure(main_cql_library, elms, populations_cql_map)
-      cql_population_statement_map = {}
-      main_library_elm = elms.find { |elm| elm['library']['identifier']['id'] == main_cql_library }
-      # populations_cql_map structure is: { 'IPP' => ['Initial Population'] }
-      # Loop over the populations finding the starting statements for each.
-      populations_cql_map.each do | population, cql_population_name |
-        # Get statement that matches the cql_population_name
-        population_statement = main_library_elm['library']['statements']['def'].find { |statement| statement['name'] == cql_population_name.first }
-        # Recursive function that returns a list of statements, including duplicates
-        cql_population_statement_map[population] = retrieve_all_statements_in_population(population_statement, elms)
+    def self.parse_elm_annotations_response(response)
+      xmls = parse_multipart_response(response)
+      elm_annotations = {}
+      xmls.each do |xml_lib|
+        lib_annotations = CqlElm::Parser.parse(xml_lib)
+        elm_annotations[lib_annotations[:identifier][:id]] = lib_annotations
       end
-      cql_population_statement_map
+      elm_annotations
+    end
+
+    def self.parse_multipart_response(response)
+      # Not the same delimiter in the response as we specify ourselves in the request,
+      # so we have to extract it.
+      delimiter = response.split("\r\n")[0].strip
+      parts = response.split(delimiter)
+      # The first part will always be an empty string. Just remove it.
+      parts.shift
+      # The last part will be the "--". Just remove it.
+      parts.pop
+
+      parsed_parts = []
+      parts.each do |part|
+        lines = part.split("\r\n")
+        # The first line will always be empty string
+        lines.shift
+
+        # find the end of the http headers
+        headerEndIndex = lines.find_index { |line| line == '' }
+
+        # Remove the headers and reassemble
+        lines.shift(headerEndIndex+1)
+        parsed_parts << lines.join("\r\n")
+      end
+
+      parsed_parts
+    end
+
+    # Loops over the populations and retrieves the define statements that are nested within it.
+    def self.populate_cql_definition_dependency_structure(main_cql_library, elms)
+      cql_statement_depencency_map = {}
+      main_library_elm = elms.find { |elm| elm['library']['identifier']['id'] == main_cql_library }
+
+      cql_statement_depencency_map[main_cql_library] = {}
+      main_library_elm['library']['statements']['def'].each { |statement|
+        cql_statement_depencency_map[main_cql_library][statement['name']] = retrieve_all_statements_in_population(statement, elms)
+      }
+      cql_statement_depencency_map
     end
 
     # Given a starting define statement, a starting library and all of the libraries,
     # this will return an array of all nested define statements.
     def self.retrieve_all_statements_in_population(statement, elms)
       all_results = []
+      if statement.is_a? String
+        statement = retrieve_sub_statement_for_expression_name(statement, elms)
+      end      
       sub_statement_names = retrieve_expressions_from_statement(statement)
       # Currently if sub_statement_name is another Population we do not remove it.
       if sub_statement_names.length > 0
         sub_statement_names.each do |sub_statement_name|
           # Check if the statement is not a built in expression 
-          sub_statement = retrieve_sub_statement_for_expression_name(sub_statement_name, elms)    
+          sub_library_name, sub_statement = retrieve_sub_statement_for_expression_name(sub_statement_name, elms)
           if sub_statement
-            all_results << sub_statement_name
-            # Call this function with the sub_statement to further drill down.
-            all_results.concat(retrieve_all_statements_in_population(sub_statement, elms))
+            all_results << { library_name: sub_library_name, statement_name: sub_statement_name }
           end
         end
-      else
-        all_results << statement['name']
       end
       all_results
     end
@@ -227,7 +279,7 @@ module Measures
     def self.retrieve_sub_statement_for_expression_name(name, elms)
       elms.each do | parsed_elm |
         parsed_elm['library']['statements']['def'].each do |statement|
-          return statement if statement['name'] == name
+          return [parsed_elm['library']['identifier']['id'], statement] if statement['name'] == name
         end
       end
       nil
@@ -252,5 +304,40 @@ module Measures
       expressions
     end
 
+    # Loops over keys of the given hash and loops over the list of statements 
+    # Original structure of hash is {IPP => ["In Demographics", Measurement Period Encounters"], NUMER => ["Tonsillitis"]}
+    def self.populate_used_library_dependencies(starting_hash, main_cql_library, elms)
+      # Starting_hash gets updated with the create_hash_for_all call. 
+      starting_hash[main_cql_library].keys.each do |key|
+        starting_hash[main_cql_library][key].each do |statement|
+          create_hash_for_all(starting_hash, statement, elms)
+        end
+      end
+      starting_hash
+    end
+
+    # Traverse list, create keys and drill down for each key.
+    # If key is already in place, skip.
+    def self.create_hash_for_all(starting_hash, key_statement, elms)
+      # If key already exists, return hash
+      if (starting_hash.has_key?(key_statement[:library_name]) && 
+        starting_hash[key_statement[:library_name]].has_key?(key_statement[:statement_name]))
+        return starting_hash
+      # Create new hash key and retrieve all sub statements
+      else
+        # create library hash key if needed
+        if !starting_hash.has_key?(key_statement[:library_name])
+          starting_hash[key_statement[:library_name]] = {}
+        end
+        starting_hash[key_statement[:library_name]][key_statement[:statement_name]] = retrieve_all_statements_in_population(key_statement[:statement_name], elms).uniq
+        # If there are no statements return hash
+        return starting_hash if starting_hash[key_statement[:library_name]][key_statement[:statement_name]].empty?
+        # Loop over array of sub statements and build out hash keys for each.
+        starting_hash[key_statement[:library_name]][key_statement[:statement_name]].each do |statement|
+          starting_hash.merge!(create_hash_for_all(starting_hash, statement, elms))
+        end
+      end
+      starting_hash
+    end
   end
 end
