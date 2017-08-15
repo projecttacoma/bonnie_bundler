@@ -36,13 +36,16 @@ module Measures
       # Go back for the library statements
       cql_definition_dependency_structure = populate_used_library_dependencies(cql_definition_dependency_structure, main_cql_library, elms)
 
+      # Depening on the value of the value set version, change it to null, strip out a substring or leave it alone.
+      modify_value_set_versions(elms)
+
       # Grab the value sets from the elm
       elm_value_sets = []
       elms.each do | elm |
         # Confirm the library has value sets
         if elm['library'] && elm['library']['valueSets'] && elm['library']['valueSets']['def']
           elm['library']['valueSets']['def'].each do |value_set|
-            elm_value_sets << value_set['id']
+            elm_value_sets << {oid: value_set['id'], version: value_set['version']}
           end
         end
       end
@@ -115,6 +118,23 @@ module Measures
             code_name = HealthDataStandards::Util::CodeSystemHelper.code_system_for(code_system['id'])
             # if the helper returns "Unknown" then keep what was there
             code_system['id'] = code_name unless code_name == "Unknown"
+          end
+        end
+      end
+    end
+
+    # Adjusting value set version data. If version is profile, set the version to nil
+    def self.modify_value_set_versions(elms)
+      elms.each do |elm|
+        if elm['library']['valueSets'] && elm['library']['valueSets']['def']
+          elm['library']['valueSets']['def'].each do |value_set|
+            # If value set has a version and it starts with 'urn:hl7:profile:' then set to nil
+            if value_set['version'] && value_set['version'].include?('urn:hl7:profile:')
+              value_set['version'] = nil
+            # If value has a version and it starts with 'urn:hl7:version:' then strip that and keep the actual version value.
+            elsif value_set['version'] && value_set['version'].include?('urn:hl7:version:')
+              value_set['version'] = URI.decode(value_set['version'].split('urn:hl7:version:').last)
+            end
           end
         end
       end
