@@ -11,8 +11,8 @@ GIT
 
 GIT
   remote: https://github.com/projectcypress/health-data-standards.git
-  revision: eca68194ba13710b09725b22fb1069aa57581eef
-  branch: cql4bonnie
+  revision: bfbdc11d47f0aa3321730c2e70ccb8f73dcb4178
+  branch: cql4bonnie-QDM5_3
   specs:
     health-data-standards (3.6.1)
       activesupport (~> 4.1.1)
@@ -38,8 +38,8 @@ GIT
 
 GIT
   remote: https://github.com/projecttacoma/patientapi.git
-  revision: 5ea68b4e87d8d88385084efcb9d25ecc210fec0b
-  branch: QDM_5-0
+  revision: f56ba28452ab4b2ef4f2f6dbc585cd4e7f64f045
+  branch: master
   specs:
     hquery-patient-api (1.0.4)
 
