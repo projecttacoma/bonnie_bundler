@@ -21,7 +21,7 @@ module Measures
       end
     end
      
-    def self.load_mat_cql_exports(user, zip_file, out_dir, measure_details, vsac_user, vsac_password, overwrite_valuesets=false, cache=false, effectiveDate=nil, includeDraft=false, ticket_granting_ticket=nil)
+    def self.load_mat_cql_exports(user, zip_file, out_dir, measure_details, vsac_user, vsac_password, overwrite_valuesets=false, cache=false, includeDraft=false, ticket_granting_ticket=nil)
       measure = nil
       cql = nil
       hqmf_path = nil
@@ -37,8 +37,7 @@ module Measures
 
       # Remove spaces in functions in all libraries, including observations.
       cql_libraries, hqmf_model = remove_spaces_in_functions(cql_libraries, hqmf_model)
-
-      cql_artifacts = process_cql(cql_libraries, main_cql_library, user, vsac_user, vsac_password, overwrite_valuesets, cache, effectiveDate, includeDraft, ticket_granting_ticket)
+      cql_artifacts = process_cql(cql_libraries, main_cql_library, user, vsac_user, vsac_password, overwrite_valuesets, cache, includeDraft, ticket_granting_ticket)
 
       # Create CQL Measure
       hqmf_model.backfill_patient_characteristics_with_codes(cql_artifacts[:all_codes_and_code_names])
@@ -77,7 +76,7 @@ module Measures
     end
 
     # Manages all of the CQL processing that is not related to the HQMF.
-    def self.process_cql(cql_libraries, main_cql_library, user, vsac_user=nil, vsac_password=nil, overwrite_valuesets=nil, cache=nil, effectiveDate=nil, includeDraft=nil, ticket_granting_ticket=nil)
+    def self.process_cql(cql_libraries, main_cql_library, user, vsac_user=nil, vsac_password=nil, overwrite_valuesets=nil, cache=nil, includeDraft=nil, ticket_granting_ticket=nil)
       # Translate the cql to elm
       elms, elm_annotations = translate_cql_to_elm(cql_libraries)
 
@@ -95,16 +94,15 @@ module Measures
         # Confirm the library has value sets
         if elm['library'] && elm['library']['valueSets'] && elm['library']['valueSets']['def']
           elm['library']['valueSets']['def'].each do |value_set|
-            elm_value_sets << {oid: value_set['id'], version: value_set['version']}
+            elm_value_sets << {oid: value_set['id'], version: value_set['version'], profile: value_set['profile']}
           end
         end
       end
-
       # Get Value Sets
       value_set_models = []
       if (vsac_user && vsac_password) || ticket_granting_ticket
         begin
-          value_set_models =  Measures::ValueSetLoader.load_value_sets_from_vsac(elm_value_sets, vsac_user, vsac_password, user, overwrite_valuesets, effectiveDate, includeDraft, ticket_granting_ticket)
+          value_set_models =  Measures::ValueSetLoader.load_value_sets_from_vsac(elm_value_sets, vsac_user, vsac_password, user, overwrite_valuesets, includeDraft, ticket_granting_ticket)
         rescue Exception => e
           raise VSACException.new "Error Loading Value Sets from VSAC: #{e.message}"
         end
@@ -112,7 +110,15 @@ module Measures
         # if VSAC credentials aren't provided, find the value sets in the database
         elm_value_sets.each do |elm_value_set|
           version = elm_value_set[:version] || "N/A" # 'N/A' is what is stored in the DB for value sets without versions
-          value_set = HealthDataStandards::SVS::ValueSet.where({user_id: user.id, oid: elm_value_set[:oid], version: version}).first()
+          query_params = {user_id: user.id, oid: elm_value_set[:oid]}
+          
+          if (elm_value_set[:profile])
+            query_params[:profile] = elm_value_set[:profile]
+          else 
+            query_params[:version] = version
+          end
+          
+          value_set = HealthDataStandards::SVS::ValueSet.where(query_params).first()
           if value_set
             value_set_models << value_set
           elsif version == "N/A"
@@ -124,6 +130,7 @@ module Measures
           end
         end
       end
+
 
       # Get code systems and codes for all value sets in the elm.
       all_codes_and_code_names = HQMF2JS::Generator::CodesToJson.from_value_sets(value_set_models)
@@ -192,6 +199,7 @@ module Measures
           elm['library']['valueSets']['def'].each do |value_set|
             # If value set has a version and it starts with 'urn:hl7:profile:' then set to nil
             if value_set['version'] && value_set['version'].include?('urn:hl7:profile:')
+              value_set['profile'] = URI.decode(value_set['version'].split('urn:hl7:profile:').last)
               value_set['version'] = nil
             # If value has a version and it starts with 'urn:hl7:version:' then strip that and keep the actual version value.
             elsif value_set['version'] && value_set['version'].include?('urn:hl7:version:')
@@ -201,7 +209,6 @@ module Measures
         end
       end
     end
-
     # Add single code references by finding the codes from the elm and creating new ValueSet objects
     # With a generated GUID as a fake oid.
     def self.generate_single_code_references(elms, all_codes_and_code_names, user)
