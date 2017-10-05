@@ -115,7 +115,7 @@ module Measures
 
     end
 
-    def self.load_value_sets_from_vsac(value_sets, username, password, user=nil, overwrite=false, includeDraft=false, ticket_granting_ticket=nil, use_cache=false)
+    def self.load_value_sets_from_vsac(value_sets, username, password, user=nil, overwrite=false, includeDraft=false, ticket_granting_ticket=nil, use_cache=false, measure_id=nil)
       # Get a list of just the oids
       value_set_oids = value_sets.map {|value_set| value_set[:oid]}
       value_set_models = []
@@ -145,14 +145,21 @@ module Measures
           #However, a value_set can have a version and profile that are identical, as such the versions that are profiles are denoted as such.
           value_set_profile = (value_set[:profile] && !includeDraft) ? value_set[:profile] : nlm_config["profile"]
           value_set_profile = "Profile:#{value_set_profile}"
+          
           query_version = ""
-          if value_set[:profile]
+          if includeDraft
+            query_version = "Draft-#{measure_id}"
+          elsif value_set[:profile]
             query_version = value_set_profile
           else
             query_version = value_set_version
           end
           # only access the database if we don't intend on using cached values
           set = HealthDataStandards::SVS::ValueSet.where({user_id: user.id, oid: value_set[:oid], version: query_version}).first() unless use_cache
+          if (includeDraft && set)
+            set.delete
+            set = nil
+          end
           if (set)
             existing_value_set_map[set.oid] = set
           else
@@ -163,20 +170,16 @@ module Measures
             if (cached_service_result && File.exists?(cached_service_result))
               vs_data = File.read cached_service_result
             else
-              # If value set has a specified version, pass it in to the API call.
-              # Cannot include draft when looking for a specific version
-              if value_set[:version]
-                # TODO: When modifying this so that we pay attention to "include_draft", we need to store the "include_draft" state and use
-                # this in our rebuild elm rake task so that we retrieve the appropriate value sets.
-                # It is currently not an issue because we ignore include_draft when a version is specified and when a version is not specified,
-                # it is set to "N/A" and continues to be referenced in that way.
-                # Future rake task will also need to be able to distinguish between versions and profile versions.
-                vs_data = api.get_valueset(value_set[:oid], version: value_set[:version])
-              elsif value_set[:profile] && !includeDraft
-                vs_data = api.get_valueset(value_set[:oid], include_draft: false, profile: value_set[:profile])
-              else
-                # If no value set version exists, just pass in the oid.
+              # If includeDraft is true the latest vs are required, so the latest profile should be used.
+              if includeDraft
                 vs_data = api.get_valueset(value_set[:oid], include_draft: includeDraft, profile: nlm_config["profile"])
+              elsif value_set[:version]
+                vs_data = api.get_valueset(value_set[:oid], version: value_set[:version])
+              else
+                # If no version, call with profile.
+                # If a profile is specified, use it.  Otherwise, use default.
+                profile = value_set[:profile] ? value_set[:profile] : nlm_config["profile"]
+                vs_data = api.get_valueset(value_set[:oid], profile: profile)
               end
             end
             vs_data.force_encoding("utf-8") # there are some funky unicodes coming out of the vs response that are not in ASCII as the string reports to be
@@ -199,9 +202,7 @@ module Measures
               set.bundle = user.bundle if (user && user.respond_to?(:bundle))
               # As of t9/7/2017, when valuesets are retrieved from VSAC via profile, their version defaults to N/A
               # As such, we set the version to the profile with an indicator.
-              if value_set[:profile]
-                set.version = value_set_profile
-              end
+              set.version = query_version
               set.save!
               existing_value_set_map[set.oid] = set
             else
