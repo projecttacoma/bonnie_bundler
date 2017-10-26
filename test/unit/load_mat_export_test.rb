@@ -35,6 +35,25 @@ class LoadMATExportTest < ActiveSupport::TestCase
     end
   end
 
+  test "Using the cql-to-elm helper translation service" do
+    dump_db
+    user = User.new
+    user.save
+
+    VCR.use_cassette("valid_vsac_response") do
+      measure_details = { 'episode_of_care'=> false }
+      Measures::CqlLoader.load(@cql_mat_export, user, measure_details, ENV['VSAC_USERNAME'], ENV['VSAC_PASSWORD']).save
+      assert_equal 1, CqlMeasure.all.count
+    end
+
+    VCR.use_cassette("valid_translation_response") do
+      measure = CqlMeasure.first
+      elm_json, elm_xml = CqlElm::CqlToElmHelper.translate_cql_to_elm(measure[:cql])
+      assert_equal 1, elm_json.count
+      assert_equal 1, elm_xml.count
+    end
+  end
+
   test "Loading a CQL Mat export zip file, with VSAC credentials" do
     VCR.use_cassette("valid_vsac_response") do
       dump_db
@@ -67,6 +86,42 @@ class LoadMATExportTest < ActiveSupport::TestCase
       assert_equal 1, measure.populations.size
       assert_equal 4, measure.population_criteria.keys.count
       assert_equal 1, measure.elm.size
+    end
+  end
+
+  test "Loading a MAT 5.4 CQL export zip file with VSAC credentials, confirming cql measure package is stored" do
+    VCR.use_cassette("valid_vsac_response_158") do
+      dump_db
+      user = User.new
+      user.save
+
+      measure_details = { 'episode_of_care'=> false }
+      Measures::CqlLoader.load(@cql_mat_5_4_export, user, measure_details, ENV['VSAC_USERNAME'], ENV['VSAC_PASSWORD']).save
+      assert_equal 1, CqlMeasure.all.count
+      measure = CqlMeasure.all.first
+      assert_equal "Test 158", measure.title
+
+      assert_equal 1, CqlMeasurePackage.all.count
+      measure_package = CqlMeasurePackage.all.first
+      assert_equal measure.id, measure_package.measure_id
+    end
+  end
+
+  test "Loading a MAT 5.4 CQL export zip file with VSAC credentials, deleting measure and confirming measure package is also deleted" do
+    VCR.use_cassette("valid_vsac_response_158") do
+      dump_db
+      user = User.new
+      user.save
+
+      measure_details = { 'episode_of_care'=> false }
+      Measures::CqlLoader.load(@cql_mat_5_4_export, user, measure_details, ENV['VSAC_USERNAME'], ENV['VSAC_PASSWORD']).save
+      assert_equal 1, CqlMeasure.all.count
+      measure = CqlMeasure.all.first
+      assert_equal 1, CqlMeasurePackage.all.count
+
+      measure.delete
+      assert_equal 0, CqlMeasure.all.count
+      assert_equal 0, CqlMeasurePackage.all.count
     end
   end
 
