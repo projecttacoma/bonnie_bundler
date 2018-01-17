@@ -42,10 +42,26 @@ module Measures
       json = hqmf_model.to_json
       json.convert_keys_to_strings
 
+      # Set the code list ids of data criteria and source data criteria that use direct reference codes to GUIDS.
+      json['source_data_criteria'], json['data_criteria'] = set_data_criteria_code_list_ids(json, cql_artifacts)
+
+      # Create CQL Measure
+      measure = Measures::Loader.load_hqmf_cql_model_json(json, user, cql_artifacts[:all_value_set_oids], main_cql_library, cql_artifacts[:cql_definition_dependency_structure],
+                                                          cql_artifacts[:elms], cql_artifacts[:elm_annotations], files[:CQL], nil, cql_artifacts[:value_set_oid_version_objects])
+      measure['episode_of_care'] = measure_details['episode_of_care']
+      measure['type'] = measure_details['type']
+
+      # Create, associate and save the measure package.
+      measure.package = CqlMeasurePackage.new(file: BSON::Binary.new(zip_file.read()))
+      measure.package.save
+
+      measure
+    end
+
+    def self.set_data_criteria_code_list_ids(json, cql_artifacts)
       # Loop over data criteria to search for data criteria that is using a single reference code.
       # Once found set the Data Criteria's 'code_list_id' to our fake oid. Do the same for source data criteria.
       json['data_criteria'].each do |data_criteria_name, data_criteria|
-        # We do not want to replace an existing code_list_id. Skip.
         unless data_criteria['code_list_id']
           if data_criteria['inline_code_list']
             # Check to see if inline_code_list contains the correct code_system and code for a direct reference code.
@@ -64,18 +80,7 @@ module Measures
           end
         end
       end
-
-      # Create CQL Measure
-      measure = Measures::Loader.load_hqmf_cql_model_json(json, user, cql_artifacts[:all_value_set_oids], main_cql_library, cql_artifacts[:cql_definition_dependency_structure], 
-                                                          cql_artifacts[:elms], cql_artifacts[:elm_annotations], files[:CQL], nil, cql_artifacts[:value_set_oid_version_objects])
-      measure['episode_of_care'] = measure_details['episode_of_care']
-      measure['type'] = measure_details['type']
-
-      # Create, associate and save the measure package.
-      measure.package = CqlMeasurePackage.new(file: BSON::Binary.new(zip_file.read()))
-      measure.package.save
-
-      measure
+      return json['source_data_criteria'], json['data_criteria']
     end
 
     def self.load(file, user, measure_details, vsac_user=nil, vsac_password=nil, overwrite_valuesets=false, cache=false, includeDraft=false, ticket_granting_ticket=nil)
@@ -245,17 +250,18 @@ module Measures
 
             code_sets[code_system_name] ||= []
             code_sets[code_system_name] << code_reference['id']
-            # Generate a unique number as our fake "oid"
-            code_guid = SecureRandom.uuid
-            # Keep a list of generated_guids and a hash of guids with code system names and codes.
-            single_code_references << { guid: code_guid, code_system_name: code_system_name, code: code_reference['id'] }
-
-            all_codes_and_code_names[code_guid] = code_sets
-            # Create a new "ValueSet" and "Concept" object and save.
-            valueSet = HealthDataStandards::SVS::ValueSet.new({oid: code_guid, display_name: code_reference['name'], version: '' ,concepts: [], user_id: user.id})
-            concept = HealthDataStandards::SVS::Concept.new({code: code_reference['id'], code_system_name: code_system_name, code_system_version: code_system_version, display_name: code_reference['name']})
-            valueSet.concepts << concept
-            valueSet.save!
+            # Generate a unique number as our fake "oid" based on parameters that identify the DRC
+            code_hash = "drc-" + Digest::SHA2.hexdigest("#{code_system_name} #{code_reference['id']} #{code_reference['name']} #{code_system_version}")            # Keep a list of generated_guids and a hash of guids with code system names and codes.
+            single_code_references << { guid: code_hash, code_system_name: code_system_name, code: code_reference['id'] }
+            all_codes_and_code_names[code_hash] = code_sets
+            # code_hashs are unique hashes, there's no sense in adding duplicates to the ValueSet collection
+            if !HealthDataStandards::SVS::ValueSet.all().where(oid: code_hash, user_id: user.id).first()
+              # Create a new "ValueSet" and "Concept" object and save.
+              valueSet = HealthDataStandards::SVS::ValueSet.new({oid: code_hash, display_name: code_reference['name'], version: '' ,concepts: [], user_id: user.id})
+              concept = HealthDataStandards::SVS::Concept.new({code: code_reference['id'], code_system_name: code_system_name, code_system_version: code_system_version, display_name: code_reference['name']})
+              valueSet.concepts << concept
+              valueSet.save!
+            end
           end
         end
       end
