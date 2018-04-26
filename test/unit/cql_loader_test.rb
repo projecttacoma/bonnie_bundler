@@ -14,7 +14,7 @@ class CQLLoaderTest < ActiveSupport::TestCase
       user.save
 
       measure_details = { 'episode_of_care'=> false }
-      Measures::CqlLoader.load(@cql_mat_export, user, measure_details, ENV['VSAC_USERNAME'], ENV['VSAC_PASSWORD']).save
+      Measures::CqlLoader.load(@cql_mat_export, user, measure_details, { profile: APP_CONFIG['vsac']['default_profile'] }, get_ticket_granting_ticket).save
       assert_equal 1, CqlMeasure.all.count
       measure = CqlMeasure.all.first
       assert_equal 'Diabetes: Medical Attention for Nephropathy', measure.title
@@ -28,27 +28,54 @@ class CQLLoaderTest < ActiveSupport::TestCase
 
   test 'Loading a measure with a direct reference code handles the creation of code_list_id hash properly' do
     direct_reference_mat_export = File.new File.join('test', 'fixtures', 'CMS158_v5_4_Artifacts_Update.zip')
+
+    dump_db
+    user = User.new
+    user.save
+
+    measure_details = { 'episode_of_care'=> false }
+
+    # do first load
     VCR.use_cassette('valid_vsac_response_158_update') do
+      Measures::CqlLoader.load(direct_reference_mat_export, user, measure_details, { profile: APP_CONFIG['vsac']['default_profile'] }, get_ticket_granting_ticket).save
+    end
+    assert_equal 1, CqlMeasure.all.count
+    measure = CqlMeasure.all.first
+
+    # Confirm that the source data criteria with the direct reference code is equal to the expected hash
+    assert_equal measure['source_data_criteria']['prefix_5195_3_LaboratoryTestPerformed_70C9F083_14BD_4331_99D7_201F8589059D_source']['code_list_id'], "drc-986ea3d52eddc4927e63b3769b5efbaf38b76b35a9164e447fcde2e4dfd31a0c"
+    assert_equal measure['data_criteria']['prefix_5195_3_LaboratoryTestPerformed_70C9F083_14BD_4331_99D7_201F8589059D']['code_list_id'], "drc-986ea3d52eddc4927e63b3769b5efbaf38b76b35a9164e447fcde2e4dfd31a0c"
+
+    # Re-load the Measure
+    VCR.use_cassette('valid_vsac_response_158_update') do
+      Measures::CqlLoader.load(direct_reference_mat_export, user, measure_details, { profile: APP_CONFIG['vsac']['default_profile'] }, get_ticket_granting_ticket).save
+    end
+
+    assert_equal 2, CqlMeasure.all.count
+    measures = CqlMeasure.all
+    # Confirm that the Direct Reference Code, code_list_id hash has not changed between Uploads.
+    assert_equal measures[0]['source_data_criteria']['prefix_5195_3_LaboratoryTestPerformed_70C9F083_14BD_4331_99D7_201F8589059D_source']['code_list_id'], measures[1]['source_data_criteria']['prefix_5195_3_LaboratoryTestPerformed_70C9F083_14BD_4331_99D7_201F8589059D_source']['code_list_id']
+    assert_equal measures[0]['data_criteria']['prefix_5195_3_LaboratoryTestPerformed_70C9F083_14BD_4331_99D7_201F8589059D']['code_list_id'], measures[1]['data_criteria']['prefix_5195_3_LaboratoryTestPerformed_70C9F083_14BD_4331_99D7_201F8589059D']['code_list_id']
+
+  end
+
+
+  test 'Loading a measure with support libraries that dont have their define definitions used are still included in the dependencty structure as empty hashes' do
+    unused_library_mat_export = File.new File.join('test', 'fixtures', 'PVC2_v5_4_Unused_Support_Libraries.zip')
+    VCR.use_cassette('valid_vsac_response_pvc_unused_libraries') do
       dump_db
       user = User.new
       user.save
 
-      measure_details = { 'episode_of_care'=> false }
-      Measures::CqlLoader.load(direct_reference_mat_export, user, measure_details, ENV['VSAC_USERNAME'], ENV['VSAC_PASSWORD']).save
+      measure_details = { 'episode_of_care' => false }
+      Measures::CqlLoader.load(unused_library_mat_export, user, measure_details, { include_draft: true, profile: APP_CONFIG['vsac']['default_profile'] }, get_ticket_granting_ticket).save
       assert_equal 1, CqlMeasure.all.count
       measure = CqlMeasure.all.first
-  
-      # Confirm that the source data criteria with the direct reference code is equal to the expected hash
-      assert_equal measure['source_data_criteria']['prefix_5195_3_LaboratoryTestPerformed_70C9F083_14BD_4331_99D7_201F8589059D_source']['code_list_id'], "drc-986ea3d52eddc4927e63b3769b5efbaf38b76b35a9164e447fcde2e4dfd31a0c"
-      assert_equal measure['data_criteria']['prefix_5195_3_LaboratoryTestPerformed_70C9F083_14BD_4331_99D7_201F8589059D']['code_list_id'], "drc-986ea3d52eddc4927e63b3769b5efbaf38b76b35a9164e447fcde2e4dfd31a0c"
 
-      # Re-load the Measure
-      Measures::CqlLoader.load(direct_reference_mat_export, user, measure_details, ENV['VSAC_USERNAME'], ENV['VSAC_PASSWORD']).save
-      assert_equal 2, CqlMeasure.all.count
-      measures = CqlMeasure.all
-      # Confirm that the Direct Reference Code, code_list_id hash has not changed between Uploads.
-      assert_equal measures[0]['source_data_criteria']['prefix_5195_3_LaboratoryTestPerformed_70C9F083_14BD_4331_99D7_201F8589059D_source']['code_list_id'], measures[1]['source_data_criteria']['prefix_5195_3_LaboratoryTestPerformed_70C9F083_14BD_4331_99D7_201F8589059D_source']['code_list_id']
-      assert_equal measures[0]['data_criteria']['prefix_5195_3_LaboratoryTestPerformed_70C9F083_14BD_4331_99D7_201F8589059D']['code_list_id'], measures[1]['data_criteria']['prefix_5195_3_LaboratoryTestPerformed_70C9F083_14BD_4331_99D7_201F8589059D']['code_list_id']
+      # Confirm that the cql dependency structure has the same number of keys (libraries) as items in the elm array
+      assert_equal measure.cql_statement_dependencies.count, measure.elm.count
+      # Confirm the support library is an empty hash
+      assert measure.cql_statement_dependencies['Hospice'].empty?
     end
   end
 
@@ -60,7 +87,7 @@ class CQLLoaderTest < ActiveSupport::TestCase
       user.save
 
       measure_details = { 'episode_of_care'=> false }
-      Measures::CqlLoader.load(direct_reference_mat_export, user, measure_details, ENV['VSAC_USERNAME'], ENV['VSAC_PASSWORD']).save
+      Measures::CqlLoader.load(direct_reference_mat_export, user, measure_details, { profile: APP_CONFIG['vsac']['default_profile'] }, get_ticket_granting_ticket).save
       assert_equal 1, CqlMeasure.all.count
       measure = CqlMeasure.all.first
       before_value_sets = measure.value_set_oids
