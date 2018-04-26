@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/projectcypress/health-data-standards.git
-  revision: 32dd47c4a34237826854d2809d8a9fcae25990c8
-  branch: bonnie-v2.1
+  revision: 8afa4ba276a47f08ad46a941c167a5115b1627f1
+  branch: master_bonnie
   specs:
     health-data-standards (4.0.3)
       activesupport (~> 4.2.0)
