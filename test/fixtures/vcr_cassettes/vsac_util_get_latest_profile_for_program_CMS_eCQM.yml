@@ -1,0 +1,54 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://vsac.nlm.nih.gov/vsac/program/CMS%20eCQM/latest%20profile
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '72'
+      Date:
+      - Thu, 17 May 2018 13:39:30 GMT
+      Set-Cookie:
+      - BIGipServervsacweb_p=!gjgpljECCT0SWr7NtNHn4GsLooFbUxOwIRTnyLmMPPLqsyPnSfkFr/NITt4Yh4Jaw1OR1Rih8Ghnp6c=;
+        expires=Thu, 17-May-2018 15:39:30 GMT; path=/; Httponly; Secure
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.114 8080"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"name":"eCQM Update 2018-05-04","requestTime":"2018-05-17 09:39:30
+        AM"}'
+    http_version: 
+  recorded_at: Thu, 17 May 2018 13:39:30 GMT
+recorded_with: VCR 3.0.3
