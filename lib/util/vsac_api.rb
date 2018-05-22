@@ -172,7 +172,12 @@ module Util
       end
 
       ##
-      # Gets the latest profile for a program
+      # Gets the latest profile for a program. This is a separate call from the program details call. It returns JSON
+      # with only the name of the latest profile and the timestamp of the request. ex:
+      #   {
+      #     "name": "eCQM Update 2018-05-04",
+      #     "requestTime": "2018-05-21 03:39:04 PM"
+      #   }
       #
       # Optional parameter program is the program to request from the API. If it is not provided it will look for
       # a :program in the config passed in during construction. If there is no :program in the config it will use 
