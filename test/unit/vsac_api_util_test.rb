@@ -136,4 +136,26 @@ class VSACAPIUtilTest < ActiveSupport::TestCase
       end
     end
   end
+
+  test 'get_latest_profile_for_program for valid program' do
+    VCR.use_cassette("vsac_util_get_latest_profile_for_program_CMS_eCQM") do
+      latest_profile = @api.get_latest_profile_for_program('CMS eCQM')
+      assert_equal "eCQM Update 2018-05-04", latest_profile
+    end
+  end
+
+  test 'get_latest_profile_for_program for default program' do
+    VCR.use_cassette("vsac_util_get_latest_profile_for_program_CMS_eCQM") do
+      latest_profile = @api.get_latest_profile_for_program
+      assert_equal "eCQM Update 2018-05-04", latest_profile
+    end
+  end
+
+  test 'get_latest_profile_for_program for invalid program' do
+    VCR.use_cassette("vsac_util_get_latest_profile_for_program_invalid") do
+      assert_raise Util::VSAC::VSACProgramNotFoundError do
+        @api.get_latest_profile_for_program('Fake Program')
+      end
+    end
+  end
 end

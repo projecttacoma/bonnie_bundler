@@ -172,6 +172,43 @@ module Util
       end
 
       ##
+      # Gets the latest profile for a program. This is a separate call from the program details call. It returns JSON
+      # with only the name of the latest profile and the timestamp of the request. ex:
+      #   {
+      #     "name": "eCQM Update 2018-05-04",
+      #     "requestTime": "2018-05-21 03:39:04 PM"
+      #   }
+      #
+      # Optional parameter program is the program to request from the API. If it is not provided it will look for
+      # a :program in the config passed in during construction. If there is no :program in the config it will use 
+      # the DEFAULT_PROGRAM constant for the program.
+      #
+      # Returns the name of the latest profile for the given program.
+      def get_latest_profile_for_program(program = nil)
+        # if no program was provided use the one in the config or default in constant
+        if program.nil?
+          program = @config.fetch(:program, DEFAULT_PROGRAM)
+        end
+
+        begin
+          # parse json response and return it
+          parsedResponse = JSON.parse(RestClient.get("#{@config[:utility_url]}/program/#{ERB::Util.url_encode(program)}/latest%20profile"))
+
+          # As of 5/17/18 VSAC does not return 404 when an invalid profile is provided. It just doesnt fill the name
+          # attribute in the 200 response. We need to check this.
+          if !parsedResponse['name'].nil?
+            return parsedResponse['name']
+          else
+            raise VSACProgramNotFoundError.new(program)
+          end
+
+        # keeping this rescue block in case the API is changed to return 404 for invalid profile
+        rescue RestClient::ResourceNotFound
+          raise VSACProgramNotFoundError.new(program)
+        end
+      end
+
+      ##
       # Gets the releases for a program. This may be used without credentials.
       #
       # Optional parameter program is the program to request from the API. If it is not provided it will look for
