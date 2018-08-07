@@ -1,8 +1,6 @@
 source "https://rubygems.org"
 gemspec
 
-#gem 'health-data-standards', '3.4.4'
-
 gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git', :branch => 'mongoid5'
 gem 'quality-measure-engine', :git => 'https://github.com/projectcypress/quality-measure-engine.git', :branch => 'bump_mongoid'
 gem 'hqmf2js', :git => 'https://github.com/projecttacoma/hqmf2js.git', :branch => 'bonnie-prior'
@@ -12,7 +10,7 @@ gem 'simplexml_parser', :git => 'https://github.com/projecttacoma/simplexml_pars
 # gem 'health-data-standards', :path => '../health-data-standards'
 # gem 'quality-measure-engine', :path => '../quality-measure-engine'
 # gem 'hqmf2js', :path => '../hqmf2js'
-# #gem 'hquery-patient-api', :path => '../patientapi'
+# gem 'hquery-patient-api', :path => '../patientapi'
 # gem 'simplexml_parser', :path => '../simplexml_parser'
 
 gem 'rails', '~> 4.2.7'
