@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/projectcypress/health-data-standards.git
-  revision: 2fd52c84270e60531b3dafa6fccf814c7bfb38bb
+  revision: 36aef810281348baa298cf645ecdeb0f3e5389f4
   branch: bonnie-v3.0
   specs:
-    health-data-standards (4.2.0)
+    health-data-standards (4.3.0)
       activesupport (~> 4.2.0)
       builder (~> 3.1)
       erubis (~> 2.7.0)
@@ -25,7 +25,7 @@ PATH
   specs:
     bonnie_bundler (2.2.1)
       diffy (~> 3.0.0)
-      health-data-standards (~> 4.2)
+      health-data-standards (~> 4.3.0)
       hqmf2js (~> 1.4)
       hquery-patient-api (~> 1.1)
       mongoid (~> 5.0)
