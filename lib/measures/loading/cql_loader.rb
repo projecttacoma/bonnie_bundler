@@ -2,7 +2,55 @@ module Measures
   # Utility class for loading CQL measure definitions into the database from the MAT export zip
   class CqlLoader < BaseLoaderDefinition
 
+    #Returns true if ths uploaded measure zip file is a composite measure
+    def self.composite_measure?(zip_file)
+      #extract contents of zip file while retaining the directory structure
+      f_path = "."
+      
+      Zip::ZipFile.open(zip_file.path) do |zip_file|
+        zip_file.each do |f|
+          binding.pry
+          f_path = File.join(f_path, f.name)
+          zip_file.extract(f, f_path) unless File.exist?(f_path)
+        end
+      end
+      #step into folder containing extracted zip contents
+      Dir.chdir(f_path)
+      #detect if the root is a single directory (ignore hidden files)
+      if Dir.glob("#{directory}/*").count < 3
+        #if there is a single root directory, step into it
+        Dir.glob("#{directory}/*").each do |file|
+          if File.directory?(file.name)
+            Dir.chdir(FILE.join(f_path, file.name)) 
+            break
+          end
+        end
+      end
+      #Look through all xml file at current directory level and find QDM one
+      files = Dir.glob(File.join('**.xml')).select {|x| !x.name.starts_with?('__MACOSX') }
+      begin
+        # Iterate over all files passed in, extract file to temporary directory.
+        files.each do |xml_file|
+          if xml_file && xml_file.size > 0
+            # Open up xml file and read contents.
+            doc = Nokogiri::XML.parse(File.read(xml_file_path))
+            # Check if root node in xml file matches either the HQMF file or ELM file.
+            if doc.root.name == 'QualityMeasureDocument' # Root node for HQMF XML
+              #Xpath to determine if it is a composite or not
+              !doc.at_xpath('//cda:measureAttribute[cda:code[@code="MSRTYPE"]][cda:value[@code="COMPOSITE"]]').nil?
+            end
+          end
+        end     
+      rescue Exception => e
+        raise MeasureLoadingException.new "Error Checking MAT Export: #{e.message}"
+      end
+      false
+    end
+
     def self.mat_cql_export?(zip_file)
+      #check if it is a composite measure
+    
+      res = composite_measure?(zip_file)
       # Open the zip file and iterate over each of the files.
       Zip::ZipFile.open(zip_file.path) do |zip_file|
         # Check for CQL, HQMF, ELM and Human Readable
@@ -271,6 +319,7 @@ module Measures
     # Opens the zip and grabs the cql file contents, the ELM contents (XML and JSON) and hqmf_path.
     def self.get_files_from_zip(zip_file, out_dir)
       Zip::ZipFile.open(zip_file.path) do |file|
+        binding.pry
         cql_entries = file.glob(File.join('**','**.cql')).select {|x| !x.name.starts_with?('__MACOSX') }
         zip_xml_files = file.glob(File.join('**','**.xml')).select {|x| !x.name.starts_with?('__MACOSX') }
         elm_json_entries = file.glob(File.join('**','**.json')).select {|x| !x.name.starts_with?('__MACOSX') }
