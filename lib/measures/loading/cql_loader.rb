@@ -14,32 +14,30 @@ module Measures
             f.extract(f_path)            
           end
         end
-        #step into folder containing extracted zip contents
-        Dir.chdir(dir)
+      
+        current_directory = dir
         #detect if the root is a single directory (ignore hidden files)
-        if Dir.glob("#{dir}/*").count < 3
+        if Dir.glob("#{current_directory}/*").count < 3
           #if there is a single root directory, step into it
-          Dir.glob("#{dir}/*").each do |file|
+          Dir.glob("#{current_directory}/*").each do |file|
             if File.directory?(file)
-              Dir.chdir(file) 
+              current_directory = file
               break
             end
           end
         end
         #Look through all xml files at current directory level and find QDM 
-        files = Dir.glob('**.xml').select #{|x| !x.name.starts_with?('__MACOSX') }
+        files = Dir.glob("#{current_directory}/**.xml").select #{|x| !x.name.starts_with?('__MACOSX') }
         begin
           # Iterate over all files passed in, extract file to temporary directory.
           files.each do |xml_file|
             if xml_file && xml_file.size > 0
-              # binding.pry
               # Open up xml file and read contents.
-              doc = Nokogiri::XML.parse(File.read(File.join(Dir.pwd, xml_file)))
+              doc = Nokogiri::XML.parse(File.read(xml_file))
               # Check if root node in xml file matches either the HQMF file or ELM file.
               if doc.root.name == 'QualityMeasureDocument' # Root node for HQMF XML
                 #Xpath to determine if it is a composite or not
                 doc.root.add_namespace_definition('cda', 'urn:hl7-org:v3')
-                Dir.chdir(original)
                 return !doc.at_xpath('//cda:measureAttribute[cda:code[@code="MSRTYPE"]][cda:value[@code="COMPOSITE"]]').nil?
               end
             end
@@ -53,7 +51,7 @@ module Measures
 
     def self.mat_cql_export?(zip_file)
       #~~TODO: check if it is a composite measure 
-      #res = composite_measure?(zip_file)
+      #is_composite = composite_measure?(zip_file)
       # Open the zip file and iterate over each of the files.
       Zip::ZipFile.open(zip_file.path) do |zip_file|
         # Check for CQL, HQMF, ELM and Human Readable
