@@ -49,25 +49,80 @@ module Measures
       end
     end
 
+    #Works for both regular & composite measures
     def self.mat_cql_export?(zip_file)
-      #~~TODO: check if it is a composite measure 
-      #is_composite = composite_measure?(zip_file)
-      # Open the zip file and iterate over each of the files.
-      Zip::ZipFile.open(zip_file.path) do |zip_file|
-        # Check for CQL, HQMF, ELM and Human Readable
-        cql_entry = zip_file.glob(File.join('**','**.cql')).select {|x| !x.name.starts_with?('__MACOSX') }.first
-        elm_json = zip_file.glob(File.join('**','**.json')).select {|x| !x.name.starts_with?('__MACOSX') }.first
-        human_readable_entry = zip_file.glob(File.join('**','**.html')).select { |x| !x.name.starts_with?('__MACOSX') }.first
-
-        # Grab all xml files in the zip.
-        zip_xml_files = zip_file.glob(File.join('**','**.xml')).select {|x| !x.name.starts_with?('__MACOSX') }
-
-        if zip_xml_files.count > 0
-          xml_files_hash = extract_xml_files(zip_file, zip_xml_files)
-          !cql_entry.nil? && !elm_json.nil? && !human_readable_entry.nil? && !xml_files_hash[:HQMF_XML].nil? && !xml_files_hash[:ELM_XML].nil?
-        else
-          false
+      #extract contents of zip file while retaining the directory structure
+      original = Dir.pwd
+      Dir.mktmpdir do |dir|
+        Zip::ZipFile.open(zip_file.path) do |zip_file|
+          zip_file.each do |f|  
+            f_path = File.join(dir, f.name)
+            FileUtils.mkdir_p(File.dirname(f_path))
+            f.extract(f_path)            
+          end
         end
+        current_directory = dir
+        #detect the root is a single directory (ignore hidden files)
+        if Dir.glob("#{current_directory}/*").count < 3
+          #there is a single root directory, step into it
+          Dir.glob("#{current_directory}/*").each do |file|
+            if File.directory?(file)
+              current_directory = file
+              break
+            end
+          end
+        end
+        #check if measure contents are valid
+        if !valid_composite_contents?(current_directory)
+          return false
+        end
+        #If it's a composite measure, verify that each of the components are valid
+        #!TODO: Need to generate error message specifying which if any of the component verifications failed
+        Dir.glob("#{current_directory}/*").each do |file|
+          if File.directory?(file)
+            if !valid_composite_contents?(file)
+              return false
+            end
+          end
+        end
+      end
+      true  
+    end
+
+    #Verifies contents of each individual component measures
+    def self.valid_composite_contents?(f_path)
+      #grab all cql, elm & human readable docs from measure
+      cql_entry = Dir.glob(File.join(f_path,'**.cql')).select 
+      elm_json = Dir.glob(File.join(f_path,'**.json')).select 
+      human_readable_entry = Dir.glob(File.join(f_path,'**.html')).select 
+
+      # Grab all xml files in the measure.
+      xml_files = Dir.glob(File.join(f_path,'**.xml')).select 
+
+      #find key value pair for HQMF and ELM xml files.
+      if xml_files.count > 0
+        xml_files_hash = {}
+        xml_files_hash[:ELM_XML] = []
+        begin
+          # Iterate over all files passed in, extract file to temporary directory.
+          xml_files.each do |xml_file|
+            if xml_file && xml_file.size > 0
+              # Open up xml file and read contents.
+              doc = Nokogiri::XML.parse(File.read(xml_file))
+              # Check if root node in xml file matches either the HQMF file or ELM file.
+              if doc.root.name == 'QualityMeasureDocument' # Root node for HQMF XML
+                xml_files_hash[:HQMF_XML] = xml_file
+              elsif doc.root.name == 'library' # Root node for ELM XML
+                xml_files_hash[:ELM_XML] << xml_file
+              end
+            end
+          end     
+        rescue Exception => e
+          raise MeasureLoadingException.new "Error Checking MAT Export: #{e.message}"
+        end
+        !cql_entry.nil? && !elm_json.nil? && !human_readable_entry.nil? && !xml_files_hash[:HQMF_XML].nil? && !xml_files_hash[:ELM_XML].nil?
+      else
+        false
       end
     end
 
@@ -320,7 +375,6 @@ module Measures
     # Opens the zip and grabs the cql file contents, the ELM contents (XML and JSON) and hqmf_path.
     def self.get_files_from_zip(zip_file, out_dir)
       Zip::ZipFile.open(zip_file.path) do |file|
-        # binding.pry
         cql_entries = file.glob(File.join('**','**.cql')).select {|x| !x.name.starts_with?('__MACOSX') }
         zip_xml_files = file.glob(File.join('**','**.xml')).select {|x| !x.name.starts_with?('__MACOSX') }
         elm_json_entries = file.glob(File.join('**','**.json')).select {|x| !x.name.starts_with?('__MACOSX') }
