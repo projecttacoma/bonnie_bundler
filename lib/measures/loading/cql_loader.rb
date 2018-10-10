@@ -130,10 +130,10 @@ module Measures
 
     # Returns an array of measures
     # Single measure returned into the array if it is a non-composite measure
-    def self.extract_measures(params, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket, is_update)
+    def self.extract_measures(measure_zip, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket)
       # Unzip measure contents while retaining the directory structure
       Dir.mktmpdir do |dir|
-        Zip::ZipFile.open(params[:measure_file].path) do |zip_file|
+        Zip::ZipFile.open(measure_zip.path) do |zip_file|
           zip_file.each do |f|  
             f_path = File.join(dir, f.name)
             FileUtils.mkdir_p(File.dirname(f_path))
@@ -153,19 +153,19 @@ module Measures
         end
         measures = []
         # Load in regular/composite measure measure
-        measures << create_measure(current_directory, params, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket, is_update)
+        measures << create_measure(current_directory, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket)
         # If it is a composite measure, load in each of the components
         if measures[0].composite
-          create_component_measures(measures, current_directory, params, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket, is_update)
+          create_component_measures(measures, current_directory, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket)
         end
       end # End of temporary directory usage 
     end
 
-    def self.create_component_measures(measures, current_directory, params, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket, is_update)
+    def self.create_component_measures(measures, current_directory, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket)
       composite_measure = measures[0]
       Dir.glob("#{current_directory}/*").each do |file|
         if File.directory?(file)
-          component_measure = create_measure(file, params, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket, is_update)
+          component_measure = create_measure(file, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket)
           # Update the component's hqmf_set_id
           component_measure.hqmf_set_id = composite_measure.hqmf_set_id + '&' + component_measure.hqmf_set_id 
           # Associate each component with the composite
@@ -179,8 +179,7 @@ module Measures
 
     def self.create_measure(measure_dir, user, measure_details, vsac_options, vsac_ticket_granting_ticket)
       measure = nil
-      cql = nil
-      hqmf_path = nil
+
       # Grabs the cql file contents, the elm_xml contents, elm_json contents and the hqmf file path
       files = get_files_from_directory(measure_dir)
 
@@ -201,7 +200,7 @@ module Measures
       json['source_data_criteria'], json['data_criteria'] = set_data_criteria_code_list_ids(json, cql_artifacts)
 
       # Create CQL Measure
-      measure_details["composite"] = is_composite?(measure_dir)
+      measure_details["composite"] = composite_measure?(measure_dir)
       measure = Measures::Loader.load_hqmf_cql_model_json(json, user, cql_artifacts[:all_value_set_oids], main_cql_library, cql_artifacts[:cql_definition_dependency_structure],
                                                           cql_artifacts[:elms], cql_artifacts[:elm_annotations], files[:CQL], measure_details, cql_artifacts[:value_set_oid_version_objects])
 
