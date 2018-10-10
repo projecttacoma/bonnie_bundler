@@ -168,6 +168,8 @@ class CqlMeasure
     self.complexity
   end
 
+  # Component measure hqmf_set_id is formatted as follows:
+  #   <composite_hqmf_set_id>&<component_hqmf_set_id>
   def is_component
     if self.hqmf_set_id.count("&") > 0
       return true
@@ -175,8 +177,10 @@ class CqlMeasure
     false 
   end
 
-  #returns the composite measure's hqmf_set_id for this component
-  def get_composite
+  # Returns the composite measure's hqmf_set_id for this component
+  # Component measure hqmf_set_id is formatted as follows:
+  #   <composite_hqmf_set_id>&<component_hqmf_set_id>
+  def composite_hqmf_set_id
     self.hqmf_set_id.split("&")[0]
   end
 end

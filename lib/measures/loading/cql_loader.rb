@@ -1,6 +1,6 @@
 module Measures
   # Utility class for loading CQL measure definitions into the database from the MAT export zip
-  class CqlLoader < BaseLoaderDefinition
+  class CqlLoader
 
     # Returns true if ths uploaded measure zip file is a composite measure
     def self.composite_measure?(measure_dir)
@@ -128,7 +128,56 @@ module Measures
       return json['source_data_criteria'], json['data_criteria']
     end
 
-    def self.load(measure_dir, user, measure_details, vsac_options, vsac_ticket_granting_ticket)
+    # Returns an array of measures
+    # Single measure returned into the array if it is a non-composite measure
+    def self.extract_measures(params, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket, is_update)
+      # Unzip measure contents while retaining the directory structure
+      Dir.mktmpdir do |dir|
+        Zip::ZipFile.open(params[:measure_file].path) do |zip_file|
+          zip_file.each do |f|  
+            f_path = File.join(dir, f.name)
+            FileUtils.mkdir_p(File.dirname(f_path))
+            f.extract(f_path)            
+          end
+        end
+        current_directory = dir
+        # Detect if the root is a single directory (ignore hidden files)
+        if Dir.glob("#{current_directory}/*").count < 3
+          # When there is a single root directory, step into it
+          Dir.glob("#{current_directory}/*").each do |file|
+            if File.directory?(file)
+              current_directory = file
+              break
+            end
+          end
+        end
+        measures = []
+        # Load in regular/composite measure measure
+        measures << create_measure(current_directory, params, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket, is_update)
+        # If it is a composite measure, load in each of the components
+        if measures[0].composite
+          create_component_measures(measures, current_directory, params, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket, is_update)
+        end
+      end # End of temporary directory usage 
+    end
+
+    def self.create_component_measures(measures, current_directory, params, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket, is_update)
+      composite_measure = measures[0]
+      Dir.glob("#{current_directory}/*").each do |file|
+        if File.directory?(file)
+          component_measure = create_measure(file, params, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket, is_update)
+          # Update the component's hqmf_set_id
+          component_measure.hqmf_set_id = composite_measure.hqmf_set_id + '&' + component_measure.hqmf_set_id 
+          # Associate each component with the composite
+          composite_measure.components.push(component_measure.hqmf_set_id)
+          measures << component_measure
+        end
+      end
+      # Save all measures
+      measures.map { |measure| measure.save! }
+    end
+
+    def self.create_measure(measure_dir, user, measure_details, vsac_options, vsac_ticket_granting_ticket)
       measure = nil
       cql = nil
       hqmf_path = nil
@@ -164,37 +213,38 @@ module Measures
     end
 
     def self.get_files_from_directory(dir)
-      cql_entries = file.glob(File.join("#{dir}/**.cql")).select 
-      zip_xml_files = file.glob(File.join("#{dir}/**.xml")).select 
-      elm_json_entries = file.glob(File.join("#{dir}/**.json")).select 
+      cql_paths = Dir.glob(File.join("#{dir}/**.cql")).select 
+      xml_paths = Dir.glob(File.join("#{dir}/**.xml")).select 
+      elm_json_paths = Dir.glob(File.join("#{dir}/**.json")).select 
       
+      # COME_BACK: These extract() methods are incorrect since we are no longer using the zip file here, must change the "file" variable
       begin
-        cql_paths = []
-        cql_entries.each do |cql_file|
-          cql_paths << extract(file, cql_file, dir) if cql_file.size > 0
-        end
+        # cql_paths = []
+        # cql_entries.each do |cql_file|
+        #  cql_paths << extract(file, cql_file, dir) if cql_file.size > 0
+        # end
         cql_contents = []
         cql_paths.each do |cql_path|
           cql_contents << open(cql_path).read
         end
 
-        elm_json_paths = []
-        elm_json_entries.each do |json_file|
-          elm_json_paths << extract(file, json_file, dir) if json_file.size > 0
-        end
+        # elm_json_paths = []
+        # elm_json_entries.each do |json_file|
+        #  elm_json_paths << extract(file, json_file, dir) if json_file.size > 0
+        # end
         elm_json = []
         elm_json_paths.each do |elm_json_path|
           elm_json << open(elm_json_path).read
         end
         
-        xml_file_paths = extract_xml_files(file, zip_xml_files, dir)
-        elm_xml_paths = xml_file_paths[:ELM_XML]
+        xml_file_hash = retrieve_elm_and_hqmf(xml_paths)
+        elm_xml_paths = xml_file_hash[:ELM_XML]
         elm_xml = []
         elm_xml_paths.each do |elm_xml_path|
           elm_xml << open(elm_xml_path).read
         end
 
-        files = { :HQMF_XML_PATH => xml_file_paths[:HQMF_XML],
+        files = { :HQMF_XML_PATH => xml_file_hash[:HQMF_XML],
                   :ELM_JSON => elm_json,
                   :CQL => cql_contents,
                   :ELM_XML => elm_xml }
@@ -202,6 +252,29 @@ module Measures
       rescue Exception => e
         raise MeasureLoadingException.new "Error Parsing Measure Logic: #{e.message}"
       end
+    end
+
+    # Takes in array of xml files and returns hash with keys HQMF_XML and ELM_XML
+    def self.retrieve_elm_and_hqmf(files)
+      file_paths_hash = {}
+      file_paths_hash[:ELM_XML] = []
+      begin
+        files.each do |xml_file_path|
+          if xml_file_path && xml_file_path.size > 0
+            # Open up xml file and read contents.
+            doc = Nokogiri::XML.parse(File.read(xml_file_path))
+            # Check if root node in xml file matches either the HQMF file or ELM file.
+            if doc.root.name == 'QualityMeasureDocument' # Root node for HQMF XML
+              file_paths_hash[:HQMF_XML] = xml_file_path
+            elsif doc.root.name == 'library' # Root node for ELM XML
+              file_paths_hash[:ELM_XML] << xml_file_path
+            end
+          end
+        end     
+      rescue Exception => e
+        raise MeasureLoadingException.new "Error Checking MAT Export: #{e.message}"
+      end
+      file_paths_hash
     end
 
     # Manages all of the CQL processing that is not related to the HQMF.
