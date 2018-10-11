@@ -1,3 +1,5 @@
+require 'pry'
+
 module Measures
   # Utility class for loading CQL measure definitions into the database from the MAT export zip
   class CqlLoader
@@ -131,6 +133,7 @@ module Measures
     # Returns an array of measures
     # Single measure returned into the array if it is a non-composite measure
     def self.extract_measures(measure_zip, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket)
+      measures = []
       # Unzip measure contents while retaining the directory structure
       Dir.mktmpdir do |dir|
         Zip::ZipFile.open(measure_zip.path) do |zip_file|
@@ -144,30 +147,38 @@ module Measures
         # Detect if the root is a single directory (ignore hidden files)
         if Dir.glob("#{current_directory}/*").count < 3
           # When there is a single root directory, step into it
-          Dir.glob("#{current_directory}/*").each do |file|
-            if File.directory?(file)
+          Dir.glob("#{current_directory}/*").select.each do |file| 
+            if !file.end_with?('__MACOSX') && File.directory?(file)
               current_directory = file
               break
             end
           end
         end
-        measures = []
         # Load in regular/composite measure measure
         measures << create_measure(current_directory, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket)
+
+        # Create, associate and save the measure package.
+        measure_package = CqlMeasurePackage.new(file: BSON::Binary.new(measure_zip.read()))
+        measures[0].package = measure_package
+        measures[0].package.save
+
         # If it is a composite measure, load in each of the components
         if measures[0].composite
-          create_component_measures(measures, current_directory, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket)
+          create_component_measures(measures, measure_package, current_directory, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket)
         end
       end # End of temporary directory usage 
+      return measures
     end
 
-    def self.create_component_measures(measures, current_directory, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket)
+    def self.create_component_measures(measures, measure_package, current_directory, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket)
       composite_measure = measures[0]
       Dir.glob("#{current_directory}/*").each do |file|
         if File.directory?(file)
           component_measure = create_measure(file, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket)
           # Update the component's hqmf_set_id
           component_measure.hqmf_set_id = composite_measure.hqmf_set_id + '&' + component_measure.hqmf_set_id 
+          # Associate parent measure package with component package
+          component_measure.package = measure_package
           # Associate each component with the composite
           composite_measure.components.push(component_measure.hqmf_set_id)
           measures << component_measure
@@ -203,10 +214,6 @@ module Measures
       measure_details["composite"] = composite_measure?(measure_dir)
       measure = Measures::Loader.load_hqmf_cql_model_json(json, user, cql_artifacts[:all_value_set_oids], main_cql_library, cql_artifacts[:cql_definition_dependency_structure],
                                                           cql_artifacts[:elms], cql_artifacts[:elm_annotations], files[:CQL], measure_details, cql_artifacts[:value_set_oid_version_objects])
-
-      # Create, associate and save the measure package.
-      measure.package = CqlMeasurePackage.new(file: BSON::Binary.new(zip_file.read()))
-      measure.package.save
 
       measure
     end
