@@ -12,7 +12,7 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       Content-Length:
-      - '38'
+      - '37'
       Content-Type:
       - application/x-www-form-urlencoded
       User-Agent:
@@ -37,12 +37,12 @@ http_interactions:
       Content-Type:
       - text/plain;charset=utf-8
       Content-Length:
-      - '65'
+      - '66'
       Date:
-      - Tue, 03 Oct 2017 14:44:01 GMT
+      - Fri, 12 Oct 2018 15:52:22 GMT
       Set-Cookie:
-      - BIGipServervsacweb_p=!n+sWoUUwL//RhFbLMWjf8K3rTDmEEgHwSTv/tEZ7zkB1U4yERZunnVr9z2/9M8KNhyC+HyXPxnFz/WU=;
-        expires=Tue, 03-Oct-2017 16:44:01 GMT; path=/; Httponly; Secure
+      - BIGipServervsacweb_p=!5Ji5PnF2RpDjDMvm9OGvBt4MxRMcjooL62ErDIsqq9J1EbRE47ynG1UPkoM82OOnfgAzW35x619Xryk=;
+        expires=Fri, 12-Oct-2018 17:52:22 GMT; path=/; Httponly; Secure
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
@@ -51,12 +51,12 @@ http_interactions:
       - max-age=31536000; includeSubDomains; preload
     body:
       encoding: UTF-8
-      string: TGT-271332-1X6Cj3cRG2j2hpWvddLpXXM9Xz2db3MLMPNz3pNbAfhYALcMdX-cas
+      string: TGT-1741567-dwVMfhNBzGo0yiyCIlnRsprXzrGg6U1ej2MQsxE5O3nHFe0h3U-cas
     http_version: 
-  recorded_at: Tue, 03 Oct 2017 14:44:01 GMT
+  recorded_at: Fri, 12 Oct 2018 15:52:22 GMT
 - request:
     method: post
-    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-271332-1X6Cj3cRG2j2hpWvddLpXXM9Xz2db3MLMPNz3pNbAfhYALcMdX-cas
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-1741567-dwVMfhNBzGo0yiyCIlnRsprXzrGg6U1ej2MQsxE5O3nHFe0h3U-cas
     body:
       encoding: UTF-8
       string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
@@ -93,24 +93,24 @@ http_interactions:
       Content-Length:
       - '35'
       Date:
-      - Tue, 03 Oct 2017 14:44:01 GMT
+      - Fri, 12 Oct 2018 15:52:21 GMT
       Set-Cookie:
-      - BIGipServervsacweb_p=!X5+JASPUhMg8ej7LMWjf8K3rTDmEEnge9zF66gjbyfhjZxNlCJssAfzYyv4emf332RVzZgowpoNW/8s=;
-        expires=Tue, 03-Oct-2017 16:44:01 GMT; path=/; Httponly; Secure
+      - BIGipServervsacweb_p=!77wKY8oVki85gx/NtNHn4GsLooFbU5S8XAauPxJaqrVE5+T8O09TrVgaM8NDiSO6HjTvCYHzKOIel6w=;
+        expires=Fri, 12-Oct-2018 17:52:22 GMT; path=/; Httponly; Secure
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.111 8080"
+      - "/Common/vsacweb_p 10.1.5.110 8080"
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
     body:
       encoding: UTF-8
-      string: ST-1145565-hlcPjlm3ToHRrHnrNaYF-cas
+      string: ST-6244982-yE5Kebq5bCfnef3cZ0yh-cas
     http_version: 
-  recorded_at: Tue, 03 Oct 2017 14:44:01 GMT
+  recorded_at: Fri, 12 Oct 2018 15:52:22 GMT
 - request:
     method: get
-    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.600.1.1502&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-1145565-hlcPjlm3ToHRrHnrNaYF-cas
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.600.1.1502&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-6244982-yE5Kebq5bCfnef3cZ0yh-cas
     body:
       encoding: US-ASCII
       string: ''
@@ -139,19 +139,19 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Set-Cookie:
-      - BIGipServervsacweb_p=!YRYoA2sR+rxLd77LMWjf8K3rTDmEEh5QOlWvLXNT6GMHgynS7tDnBuToEGVcHvt67alzY9hXEy1byCo=;
-        expires=Tue, 03-Oct-2017 16:44:02 GMT; path=/; Httponly; Secure
-      - JSESSIONID=BD2469DEC81747791BF9267E64F0DDC4;path=/vsac;HttpOnly;Secure
+      - BIGipServervsacweb_p=!LwzdWB4KQ5j2sZPm9OGvBt4MxRMcjrRZ13f9308XNfvnlg3TIwDcQ5z2jAFPiSZG3p/idumXrM/wRJI=;
+        expires=Fri, 12-Oct-2018 17:52:23 GMT; path=/; Httponly; Secure
+      - JSESSIONID=D3563A167D14341A490E80DD5227EA8F;path=/vsac;HttpOnly;Secure
       Content-Type:
       - text/xml;charset=utf-8
       Content-Length:
       - '1724'
       Date:
-      - Tue, 03 Oct 2017 14:44:02 GMT
+      - Fri, 12 Oct 2018 15:52:22 GMT
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.114 8080"
+      - "/Common/vsacweb_p 10.1.5.111 8080"
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
     body:
@@ -171,14 +171,14 @@ http_interactions:
                 <ns0:Type>Extensional</ns0:Type>
                 <ns0:Binding>Dynamic</ns0:Binding>
                 <ns0:Status>Active</ns0:Status>
-                <ns0:RevisionDate>2017-10-03</ns0:RevisionDate>
+                <ns0:RevisionDate>2018-10-12</ns0:RevisionDate>
             </ns0:DescribedValueSet>
         </ns0:RetrieveMultipleValueSetsResponse>
     http_version: 
-  recorded_at: Tue, 03 Oct 2017 14:44:02 GMT
+  recorded_at: Fri, 12 Oct 2018 15:52:23 GMT
 - request:
     method: post
-    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-271332-1X6Cj3cRG2j2hpWvddLpXXM9Xz2db3MLMPNz3pNbAfhYALcMdX-cas
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-1741567-dwVMfhNBzGo0yiyCIlnRsprXzrGg6U1ej2MQsxE5O3nHFe0h3U-cas
     body:
       encoding: UTF-8
       string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
@@ -215,24 +215,24 @@ http_interactions:
       Content-Length:
       - '35'
       Date:
-      - Tue, 03 Oct 2017 14:44:02 GMT
+      - Fri, 12 Oct 2018 15:52:23 GMT
       Set-Cookie:
-      - BIGipServervsacweb_p=!KtNmVSEvAYTB1DrLMWjf8K3rTDmEEkNqQzusPXqiOHhdEW+7BHM9j5oiiBly5fyIejEwKr6MlMA6yws=;
-        expires=Tue, 03-Oct-2017 16:44:02 GMT; path=/; Httponly; Secure
+      - BIGipServervsacweb_p=!DUd0ny57z5HgXaTNtNHn4GsLooFbUwiyso/Eb6KJDHJPCU9PA/M3VgPS5MlK4Ru4KXdBL1yZkzD5iQ0=;
+        expires=Fri, 12-Oct-2018 17:52:23 GMT; path=/; Httponly; Secure
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.114 8080"
+      - "/Common/vsacweb_p 10.1.5.111 8080"
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
     body:
       encoding: UTF-8
-      string: ST-1145568-RTeddkYSQJ4jQHbtO5lU-cas
+      string: ST-6244984-LR4FHuyQss1X6bazf4d0-cas
     http_version: 
-  recorded_at: Tue, 03 Oct 2017 14:44:02 GMT
+  recorded_at: Fri, 12 Oct 2018 15:52:23 GMT
 - request:
     method: get
-    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.600.1.1834&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-1145568-RTeddkYSQJ4jQHbtO5lU-cas
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.600.1.1834&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-6244984-LR4FHuyQss1X6bazf4d0-cas
     body:
       encoding: US-ASCII
       string: ''
@@ -261,15 +261,15 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Set-Cookie:
-      - BIGipServervsacweb_p=!rtiGqlz++CuqYjzLMWjf8K3rTDmEEu25eSIeTBnYNupJAgaedN0kQt0pG6WGLrN1HjUUGFRxsb9Vrx8=;
-        expires=Tue, 03-Oct-2017 16:44:03 GMT; path=/; Httponly; Secure
-      - JSESSIONID=8842BD9240BF36DB87D427C63344B4E0;path=/vsac;HttpOnly;Secure
+      - BIGipServervsacweb_p=!KHumsei2TQx/8yDNtNHn4GsLooFbUyvA/hd/Zd59NnJ/qSpLSHq2QL0z8P50wg681mgh+Xsp3aLeY7s=;
+        expires=Fri, 12-Oct-2018 17:52:24 GMT; path=/; Httponly; Secure
+      - JSESSIONID=53F26BFFFC154589D19A574CBF6C7B03;path=/vsac;HttpOnly;Secure
       Content-Type:
       - text/xml;charset=utf-8
       Content-Length:
-      - '56368'
+      - '64847'
       Date:
-      - Tue, 03 Oct 2017 14:44:02 GMT
+      - Fri, 12 Oct 2018 15:52:23 GMT
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
@@ -380,14 +380,12 @@ http_interactions:
                     <ns0:Concept code="96150" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Health and behavior assessment (eg, health-focused clinical interview, behavioral observations, psychophysiological monitoring, health-oriented questionnaires), each 15 minutes face-to-face with the patient; initial assessment"/>
                     <ns0:Concept code="96151" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Health and behavior assessment (eg, health-focused clinical interview, behavioral observations, psychophysiological monitoring, health-oriented questionnaires), each 15 minutes face-to-face with the patient; re-assessment"/>
                     <ns0:Concept code="96152" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Health and behavior intervention, each 15 minutes, face-to-face; individual"/>
-                    <ns0:Concept code="97532" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Development of cognitive skills to improve attention, memory, problem solving (includes compensatory training), direct (one-on-one) patient contact, each 15 minutes"/>
                     <ns0:Concept code="97802" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Medical nutrition therapy; initial assessment and intervention, individual, face-to-face with the patient, each 15 minutes"/>
                     <ns0:Concept code="97803" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Medical nutrition therapy; re-assessment and intervention, individual, face-to-face with the patient, each 15 minutes"/>
                     <ns0:Concept code="97804" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Medical nutrition therapy; group (2 or more individual(s)), each 30 minutes"/>
                     <ns0:Concept code="98960" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Education and training for patient self-management by a qualified, nonphysician health care professional using a standardized curriculum, face-to-face with the patient (could include caregiver/family) each 30 minutes; individual patient"/>
                     <ns0:Concept code="98961" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Education and training for patient self-management by a qualified, nonphysician health care professional using a standardized curriculum, face-to-face with the patient (could include caregiver/family) each 30 minutes; 2-4 patients"/>
                     <ns0:Concept code="98962" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Education and training for patient self-management by a qualified, nonphysician health care professional using a standardized curriculum, face-to-face with the patient (could include caregiver/family) each 30 minutes; 5-8 patients"/>
-                    <ns0:Concept code="99024" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Postoperative follow-up visit, normally included in the surgical package, to indicate that an evaluation and management service was performed during a postoperative period for a reason(s) related to the original procedure"/>
                     <ns0:Concept code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Office or other outpatient visit for the evaluation and management of a new patient, which requires these 3 key components: A problem focused history; A problem focused examination; Straightforward medical decision making. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are self limited or minor. Typically, 10 minutes are spent face-to-face with the patient and/or family."/>
                     <ns0:Concept code="99202" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Office or other outpatient visit for the evaluation and management of a new patient, which requires these 3 key components: An expanded problem focused history; An expanded problem focused examination; Straightforward medical decision making. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of low to moderate severity. Typically, 20 minutes are spent face-to-face with the patient and/or family."/>
                     <ns0:Concept code="99203" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Office or other outpatient visit for the evaluation and management of a new patient, which requires these 3 key components: A detailed history; A detailed examination; Medical decision making of low complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of moderate severity. Typically, 30 minutes are spent face-to-face with the patient and/or family."/>
@@ -400,11 +398,22 @@ http_interactions:
                     <ns0:Concept code="99221" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Initial hospital care, per day, for the evaluation and management of a patient, which requires these 3 key components: A detailed or comprehensive history; A detailed or comprehensive examination; and Medical decision making that is straightforward or of low complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the problem(s) requiring admission are of low severity. Typically, 30 minutes are spent at the bedside and on the patient's hospital floor or unit."/>
                     <ns0:Concept code="99222" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Initial hospital care, per day, for the evaluation and management of a patient, which requires these 3 key components: A comprehensive history; A comprehensive examination; and Medical decision making of moderate complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the problem(s) requiring admission are of moderate severity. Typically, 50 minutes are spent at the bedside and on the patient's hospital floor or unit."/>
                     <ns0:Concept code="99223" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Initial hospital care, per day, for the evaluation and management of a patient, which requires these 3 key components: A comprehensive history; A comprehensive examination; and Medical decision making of high complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the problem(s) requiring admission are of high severity. Typically, 70 minutes are spent at the bedside and on the patient's hospital floor or unit."/>
+                    <ns0:Concept code="99236" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Observation or inpatient hospital care, for the evaluation and management of a patient including admission and discharge on the same date, which requires these 3 key components: A comprehensive history; A comprehensive examination; and Medical decision making of high complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually the presenting problem(s) requiring admission are of high severity. Typically, 55 minutes are spent at the bedside and on the patient's hospital floor or unit."/>
                     <ns0:Concept code="99281" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Emergency department visit for the evaluation and management of a patient, which requires these 3 key components: A problem focused history; A problem focused examination; and Straightforward medical decision making. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are self limited or minor."/>
                     <ns0:Concept code="99282" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Emergency department visit for the evaluation and management of a patient, which requires these 3 key components: An expanded problem focused history; An expanded problem focused examination; and Medical decision making of low complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of low to moderate severity."/>
                     <ns0:Concept code="99283" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Emergency department visit for the evaluation and management of a patient, which requires these 3 key components: An expanded problem focused history; An expanded problem focused examination; and Medical decision making of moderate complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of moderate severity."/>
                     <ns0:Concept code="99284" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Emergency department visit for the evaluation and management of a patient, which requires these 3 key components: A detailed history; A detailed examination; and Medical decision making of moderate complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of high severity, and require urgent evaluation by the physician, or other qualified health care professionals but do not pose an immediate significant threat to life or physiologic function."/>
                     <ns0:Concept code="99285" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Emergency department visit for the evaluation and management of a patient, which requires these 3 key components within the constraints imposed by the urgency of the patient's clinical condition and/or mental status: A comprehensive history; A comprehensive examination; and Medical decision making of high complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of high severity and pose an immediate significant threat to life or physiologic function."/>
+                    <ns0:Concept code="99304" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Initial nursing facility care, per day, for the evaluation and management of a patient, which requires these 3 key components: A detailed or comprehensive history; A detailed or comprehensive examination; and Medical decision making that is straightforward or of low complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the problem(s) requiring admission are of low severity. Typically, 25 minutes are spent at the bedside and on the patient's facility floor or unit."/>
+                    <ns0:Concept code="99305" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Initial nursing facility care, per day, for the evaluation and management of a patient, which requires these 3 key components: A comprehensive history; A comprehensive examination; and Medical decision making of moderate complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the problem(s) requiring admission are of moderate severity. Typically, 35 minutes are spent at the bedside and on the patient's facility floor or unit."/>
+                    <ns0:Concept code="99306" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Initial nursing facility care, per day, for the evaluation and management of a patient, which requires these 3 key components: A comprehensive history; A comprehensive examination; and Medical decision making of high complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the problem(s) requiring admission are of high severity. Typically, 45 minutes are spent at the bedside and on the patient's facility floor or unit."/>
+                    <ns0:Concept code="99307" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Subsequent nursing facility care, per day, for the evaluation and management of a patient, which requires at least 2 of these 3 key components: A problem focused interval history; A problem focused examination; Straightforward medical decision making. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the patient is stable, recovering, or improving. Typically, 10 minutes are spent at the bedside and on the patient's facility floor or unit."/>
+                    <ns0:Concept code="99308" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Subsequent nursing facility care, per day, for the evaluation and management of a patient, which requires at least 2 of these 3 key components: An expanded problem focused interval history; An expanded problem focused examination; Medical decision making of low complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the patient is responding inadequately to therapy or has developed a minor complication. Typically, 15 minutes are spent at the bedside and on the patient's facility floor or unit."/>
+                    <ns0:Concept code="99309" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Subsequent nursing facility care, per day, for the evaluation and management of a patient, which requires at least 2 of these 3 key components: A detailed interval history; A detailed examination; Medical decision making of moderate complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the patient has developed a significant complication or a significant new problem. Typically, 25 minutes are spent at the bedside and on the patient's facility floor or unit."/>
+                    <ns0:Concept code="99310" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Subsequent nursing facility care, per day, for the evaluation and management of a patient, which requires at least 2 of these 3 key components: A comprehensive interval history; A comprehensive examination; Medical decision making of high complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. The patient may be unstable or may have developed a significant new problem requiring immediate physician attention. Typically, 35 minutes are spent at the bedside and on the patient's facility floor or unit."/>
+                    <ns0:Concept code="99315" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Nursing facility discharge day management; 30 minutes or less"/>
+                    <ns0:Concept code="99316" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Nursing facility discharge day management; more than 30 minutes"/>
+                    <ns0:Concept code="99318" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Evaluation and management of a patient involving an annual nursing facility assessment, which requires these 3 key components: A detailed interval history; A comprehensive examination; and Medical decision making that is of low to moderate complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the patient is stable, recovering, or improving. Typically, 30 minutes are spent at the bedside and on the patient's facility floor or unit."/>
                     <ns0:Concept code="99324" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Domiciliary or rest home visit for the evaluation and management of a new patient, which requires these 3 key components: A problem focused history; A problem focused examination; and Straightforward medical decision making. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of low severity. Typically, 20 minutes are spent with the patient and/or family or caregiver."/>
                     <ns0:Concept code="99325" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Domiciliary or rest home visit for the evaluation and management of a new patient, which requires these 3 key components: An expanded problem focused history; An expanded problem focused examination; and Medical decision making of low complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of moderate severity. Typically, 30 minutes are spent with the patient and/or family or caregiver."/>
                     <ns0:Concept code="99326" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Domiciliary or rest home visit for the evaluation and management of a new patient, which requires these 3 key components: A detailed history; A detailed examination; and Medical decision making of moderate complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of moderate to high severity. Typically, 45 minutes are spent with the patient and/or family or caregiver."/>
@@ -414,6 +423,8 @@ http_interactions:
                     <ns0:Concept code="99335" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Domiciliary or rest home visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: An expanded problem focused interval history; An expanded problem focused examination; Medical decision making of low complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of low to moderate severity. Typically, 25 minutes are spent with the patient and/or family or caregiver."/>
                     <ns0:Concept code="99336" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Domiciliary or rest home visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: A detailed interval history; A detailed examination; Medical decision making of moderate complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of moderate to high severity. Typically, 40 minutes are spent with the patient and/or family or caregiver."/>
                     <ns0:Concept code="99337" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Domiciliary or rest home visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: A comprehensive interval history; A comprehensive examination; Medical decision making of moderate to high complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of moderate to high severity. The patient may be unstable or may have developed a significant new problem requiring immediate physician attention. Typically, 60 minutes are spent with the patient and/or family or caregiver."/>
+                    <ns0:Concept code="99339" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Individual physician supervision of a patient (patient not present) in home, domiciliary or rest home (eg, assisted living facility) requiring complex and multidisciplinary care modalities involving regular physician development and/or revision of care plans, review of subsequent reports of patient status, review of related laboratory and other studies, communication (including telephone calls) for purposes of assessment or care decisions with health care professional(s), family member(s), surrogate decision maker(s) (eg, legal guardian) and/or key caregiver(s) involved in patient's care, integration of new information into the medical treatment plan and/or adjustment of medical therapy, within a calendar month; 15-29 minutes"/>
+                    <ns0:Concept code="99340" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Individual physician supervision of a patient (patient not present) in home, domiciliary or rest home (eg, assisted living facility) requiring complex and multidisciplinary care modalities involving regular physician development and/or revision of care plans, review of subsequent reports of patient status, review of related laboratory and other studies, communication (including telephone calls) for purposes of assessment or care decisions with health care professional(s), family member(s), surrogate decision maker(s) (eg, legal guardian) and/or key caregiver(s) involved in patient's care, integration of new information into the medical treatment plan and/or adjustment of medical therapy, within a calendar month; 30 minutes or more"/>
                     <ns0:Concept code="99341" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Home visit for the evaluation and management of a new patient, which requires these 3 key components: A problem focused history; A problem focused examination; and Straightforward medical decision making. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of low severity. Typically, 20 minutes are spent face-to-face with the patient and/or family."/>
                     <ns0:Concept code="99342" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Home visit for the evaluation and management of a new patient, which requires these 3 key components: An expanded problem focused history; An expanded problem focused examination; and Medical decision making of low complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of moderate severity. Typically, 30 minutes are spent face-to-face with the patient and/or family."/>
                     <ns0:Concept code="99343" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Home visit for the evaluation and management of a new patient, which requires these 3 key components: A detailed history; A detailed examination; and Medical decision making of moderate complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Usually, the presenting problem(s) are of moderate to high severity. Typically, 45 minutes are spent face-to-face with the patient and/or family."/>
@@ -444,14 +455,14 @@ http_interactions:
                 <ns0:Type>Grouping</ns0:Type>
                 <ns0:Binding>Dynamic</ns0:Binding>
                 <ns0:Status>Active</ns0:Status>
-                <ns0:RevisionDate>2017-10-03</ns0:RevisionDate>
+                <ns0:RevisionDate>2018-10-12</ns0:RevisionDate>
             </ns0:DescribedValueSet>
         </ns0:RetrieveMultipleValueSetsResponse>
     http_version: 
-  recorded_at: Tue, 03 Oct 2017 14:44:03 GMT
+  recorded_at: Fri, 12 Oct 2018 15:52:24 GMT
 - request:
     method: post
-    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-271332-1X6Cj3cRG2j2hpWvddLpXXM9Xz2db3MLMPNz3pNbAfhYALcMdX-cas
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-1741567-dwVMfhNBzGo0yiyCIlnRsprXzrGg6U1ej2MQsxE5O3nHFe0h3U-cas
     body:
       encoding: UTF-8
       string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
@@ -488,24 +499,24 @@ http_interactions:
       Content-Length:
       - '35'
       Date:
-      - Tue, 03 Oct 2017 14:44:03 GMT
+      - Fri, 12 Oct 2018 15:52:24 GMT
       Set-Cookie:
-      - BIGipServervsacweb_p=!Rx+YofdrTz3WSL/LMWjf8K3rTDmEEo6DL05E7ZZcg4KzULb726a6ts4PwlWURYjThazN55TCoVReGZQ=;
-        expires=Tue, 03-Oct-2017 16:44:03 GMT; path=/; Httponly; Secure
+      - BIGipServervsacweb_p=!YZYW1Bjj3DMAR4Tm9OGvBt4MxRMcjvPKeLrsmC3QB6IIN1hg43mGpnOHUNJUScRRn8fBiIrbsPZbLw0=;
+        expires=Fri, 12-Oct-2018 17:52:24 GMT; path=/; Httponly; Secure
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.111 8080"
+      - "/Common/vsacweb_p 10.1.5.110 8080"
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
     body:
       encoding: UTF-8
-      string: ST-1145572-qaCVgIqZIGNLJfaNdXmx-cas
+      string: ST-6244988-Ws0bJyewS42p2DWVtYzY-cas
     http_version: 
-  recorded_at: Tue, 03 Oct 2017 14:44:03 GMT
+  recorded_at: Fri, 12 Oct 2018 15:52:24 GMT
 - request:
     method: get
-    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.114222.4.11.836&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-1145572-qaCVgIqZIGNLJfaNdXmx-cas
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.114222.4.11.836&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-6244988-Ws0bJyewS42p2DWVtYzY-cas
     body:
       encoding: US-ASCII
       string: ''
@@ -534,19 +545,19 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Set-Cookie:
-      - BIGipServervsacweb_p=!yq2QcOIm5h91xNPLMWjf8K3rTDmEEieUyAdZQM2BhpgBNF2GoN96XbqODMj58bukkO1yeW73ChcyfxQ=;
-        expires=Tue, 03-Oct-2017 16:44:04 GMT; path=/; Httponly; Secure
-      - JSESSIONID=14A1E3B56C6CC52219550422ECE8B21D;path=/vsac;HttpOnly;Secure
+      - BIGipServervsacweb_p=!3uxrmd/hGEVdYsTNtNHn4GsLooFbUzSyvqYsJvzqCr5eBou8kIIELp7OtxIvak0yaSS7ZLCPu62YwG4=;
+        expires=Fri, 12-Oct-2018 17:52:25 GMT; path=/; Httponly; Secure
+      - JSESSIONID=099C2DB61474A741DFBFB2F9F2DFB315;path=/vsac;HttpOnly;Secure
       Content-Type:
       - text/xml;charset=utf-8
       Content-Length:
       - '1765'
       Date:
-      - Tue, 03 Oct 2017 14:44:03 GMT
+      - Fri, 12 Oct 2018 15:52:24 GMT
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.111 8080"
+      - "/Common/vsacweb_p 10.1.5.110 8080"
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
     body:
@@ -568,14 +579,14 @@ http_interactions:
                 <ns0:Type>Extensional</ns0:Type>
                 <ns0:Binding>Dynamic</ns0:Binding>
                 <ns0:Status>Active</ns0:Status>
-                <ns0:RevisionDate>2017-10-03</ns0:RevisionDate>
+                <ns0:RevisionDate>2018-10-12</ns0:RevisionDate>
             </ns0:DescribedValueSet>
         </ns0:RetrieveMultipleValueSetsResponse>
     http_version: 
-  recorded_at: Tue, 03 Oct 2017 14:44:04 GMT
+  recorded_at: Fri, 12 Oct 2018 15:52:25 GMT
 - request:
     method: post
-    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-271332-1X6Cj3cRG2j2hpWvddLpXXM9Xz2db3MLMPNz3pNbAfhYALcMdX-cas
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-1741567-dwVMfhNBzGo0yiyCIlnRsprXzrGg6U1ej2MQsxE5O3nHFe0h3U-cas
     body:
       encoding: UTF-8
       string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
@@ -612,24 +623,24 @@ http_interactions:
       Content-Length:
       - '35'
       Date:
-      - Tue, 03 Oct 2017 14:44:03 GMT
+      - Fri, 12 Oct 2018 15:52:24 GMT
       Set-Cookie:
-      - BIGipServervsacweb_p=!V9NExs+GWD+xAFjLMWjf8K3rTDmEEj+SCAD5zUWE+juK1YEp55JZdF4r4Ff2GHkfQ2J27ITbT2SfitU=;
-        expires=Tue, 03-Oct-2017 16:44:04 GMT; path=/; Httponly; Secure
+      - BIGipServervsacweb_p=!ywBM9g+jCCfvWQrm9OGvBt4MxRMcjl8PB8IMGOuGv0CB8A036nfDd5287MIorcvdS8asywoL40KKzqo=;
+        expires=Fri, 12-Oct-2018 17:52:25 GMT; path=/; Httponly; Secure
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.114 8080"
+      - "/Common/vsacweb_p 10.1.5.110 8080"
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
     body:
       encoding: UTF-8
-      string: ST-1145576-MJHw1PfwxMFTQyIwxvSh-cas
+      string: ST-6244993-qcxtNscVeNQGBLYR7ei1-cas
     http_version: 
-  recorded_at: Tue, 03 Oct 2017 14:44:04 GMT
+  recorded_at: Fri, 12 Oct 2018 15:52:25 GMT
 - request:
     method: get
-    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113762.1.4.1&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-1145576-MJHw1PfwxMFTQyIwxvSh-cas
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113762.1.4.1&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-6244993-qcxtNscVeNQGBLYR7ei1-cas
     body:
       encoding: US-ASCII
       string: ''
@@ -658,15 +669,15 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Set-Cookie:
-      - BIGipServervsacweb_p=!asHh53cIi/HCDsDLMWjf8K3rTDmEEvXVHlEOTc+zzvKIHbpc5/ve6ohUasYB7zUIceCu5sUJiIGuCc8=;
-        expires=Tue, 03-Oct-2017 16:44:04 GMT; path=/; Httponly; Secure
-      - JSESSIONID=09C734A9858630AD17CB72913626E367;path=/vsac;HttpOnly;Secure
+      - BIGipServervsacweb_p=!nluLjoLpxYvNYo3NtNHn4GsLooFbU+3wytIiAIt2FyU8rUDSR4lRsKGdT64Yo+PG1BekZF2yNX0gcCo=;
+        expires=Fri, 12-Oct-2018 17:52:25 GMT; path=/; Httponly; Secure
+      - JSESSIONID=66D80B905DBAE2B551F0C6F45E221AF6;path=/vsac;HttpOnly;Secure
       Content-Type:
       - text/xml;charset=utf-8
       Content-Length:
       - '1356'
       Date:
-      - Tue, 03 Oct 2017 14:44:03 GMT
+      - Fri, 12 Oct 2018 15:52:25 GMT
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
@@ -688,14 +699,14 @@ http_interactions:
                 <ns0:Type>Extensional</ns0:Type>
                 <ns0:Binding>Dynamic</ns0:Binding>
                 <ns0:Status>Active</ns0:Status>
-                <ns0:RevisionDate>2017-10-03</ns0:RevisionDate>
+                <ns0:RevisionDate>2018-10-12</ns0:RevisionDate>
             </ns0:DescribedValueSet>
         </ns0:RetrieveMultipleValueSetsResponse>
     http_version: 
-  recorded_at: Tue, 03 Oct 2017 14:44:04 GMT
+  recorded_at: Fri, 12 Oct 2018 15:52:25 GMT
 - request:
     method: post
-    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-271332-1X6Cj3cRG2j2hpWvddLpXXM9Xz2db3MLMPNz3pNbAfhYALcMdX-cas
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-1741567-dwVMfhNBzGo0yiyCIlnRsprXzrGg6U1ej2MQsxE5O3nHFe0h3U-cas
     body:
       encoding: UTF-8
       string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
@@ -732,24 +743,24 @@ http_interactions:
       Content-Length:
       - '35'
       Date:
-      - Tue, 03 Oct 2017 14:44:03 GMT
+      - Fri, 12 Oct 2018 15:52:25 GMT
       Set-Cookie:
-      - BIGipServervsacweb_p=!FzPoPtspEIUEhuHLMWjf8K3rTDmEEu5JC4x/SJ6KXYZf4YOGLsweDv6/gfP/PO/jGFhmzeafdvDtVV4=;
-        expires=Tue, 03-Oct-2017 16:44:04 GMT; path=/; Httponly; Secure
+      - BIGipServervsacweb_p=!L1Tuwyi0ZPursSjNtNHn4GsLooFbU9cHJIstHR/eb/NEHhXJ6lSoHPBt4z96GKfxl1BfY9/5HU0oJ9U=;
+        expires=Fri, 12-Oct-2018 17:52:25 GMT; path=/; Httponly; Secure
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.114 8080"
+      - "/Common/vsacweb_p 10.1.5.111 8080"
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
     body:
       encoding: UTF-8
-      string: ST-1145577-JLg7H1E1AyQx9CqDiyaS-cas
+      string: ST-6244996-HsKUrsEcad2F3Z0qfnve-cas
     http_version: 
-  recorded_at: Tue, 03 Oct 2017 14:44:04 GMT
+  recorded_at: Fri, 12 Oct 2018 15:52:25 GMT
 - request:
     method: get
-    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.114222.4.11.837&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-1145577-JLg7H1E1AyQx9CqDiyaS-cas
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.114222.4.11.837&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-6244996-HsKUrsEcad2F3Z0qfnve-cas
     body:
       encoding: US-ASCII
       string: ''
@@ -778,19 +789,19 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Set-Cookie:
-      - BIGipServervsacweb_p=!NHaTi6HOxZ7xmbnLMWjf8K3rTDmEEhA3EnKcrePaeEjh58Np7WpUkSLL/OYnCZYo+FADPhrBSKKceTE=;
-        expires=Tue, 03-Oct-2017 16:44:05 GMT; path=/; Httponly; Secure
-      - JSESSIONID=717513A8E49CD5D8448EBC1CE7AB9F2F;path=/vsac;HttpOnly;Secure
+      - BIGipServervsacweb_p=!100mne+KhvSvYjjNtNHn4GsLooFbUxjzP0syR2hrn86U5AJQYcBSwaoyqjT+c3DbnOpHuNSqVn/JeAo=;
+        expires=Fri, 12-Oct-2018 17:52:26 GMT; path=/; Httponly; Secure
+      - JSESSIONID=6FBF0124D3594919E640E17533AF6248;path=/vsac;HttpOnly;Secure
       Content-Type:
       - text/xml;charset=utf-8
       Content-Length:
       - '1128'
       Date:
-      - Tue, 03 Oct 2017 14:44:04 GMT
+      - Fri, 12 Oct 2018 15:52:26 GMT
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.114 8080"
+      - "/Common/vsacweb_p 10.1.5.110 8080"
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
     body:
@@ -808,14 +819,14 @@ http_interactions:
                 <ns0:Type>Extensional</ns0:Type>
                 <ns0:Binding>Dynamic</ns0:Binding>
                 <ns0:Status>Active</ns0:Status>
-                <ns0:RevisionDate>2017-10-03</ns0:RevisionDate>
+                <ns0:RevisionDate>2018-10-12</ns0:RevisionDate>
             </ns0:DescribedValueSet>
         </ns0:RetrieveMultipleValueSetsResponse>
     http_version: 
-  recorded_at: Tue, 03 Oct 2017 14:44:05 GMT
+  recorded_at: Fri, 12 Oct 2018 15:52:26 GMT
 - request:
     method: post
-    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-271332-1X6Cj3cRG2j2hpWvddLpXXM9Xz2db3MLMPNz3pNbAfhYALcMdX-cas
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-1741567-dwVMfhNBzGo0yiyCIlnRsprXzrGg6U1ej2MQsxE5O3nHFe0h3U-cas
     body:
       encoding: UTF-8
       string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
@@ -852,10 +863,10 @@ http_interactions:
       Content-Length:
       - '35'
       Date:
-      - Tue, 03 Oct 2017 14:44:04 GMT
+      - Fri, 12 Oct 2018 15:52:25 GMT
       Set-Cookie:
-      - BIGipServervsacweb_p=!3I2gY0dSqGcSk5XLMWjf8K3rTDmEEkHPBUxDtvbUQGtiuzKipwuGBNTxd4+adrrKj5RCmZin8g8Bh+A=;
-        expires=Tue, 03-Oct-2017 16:44:05 GMT; path=/; Httponly; Secure
+      - BIGipServervsacweb_p=!MC9KOO0phccx4ELNtNHn4GsLooFbU0Pe3AMa9z/xFy1oMWEWHaYpNC9EXuyWOWE6ZMG0F/2ZKUN3cmQ=;
+        expires=Fri, 12-Oct-2018 17:52:26 GMT; path=/; Httponly; Secure
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
@@ -864,12 +875,12 @@ http_interactions:
       - max-age=31536000; includeSubDomains; preload
     body:
       encoding: UTF-8
-      string: ST-1145579-nIjfTxW67ZsJfu0Lxddv-cas
+      string: ST-6244999-ToNh0wvxIwQQeZRvJdUf-cas
     http_version: 
-  recorded_at: Tue, 03 Oct 2017 14:44:05 GMT
+  recorded_at: Fri, 12 Oct 2018 15:52:26 GMT
 - request:
     method: get
-    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.600.1.462&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-1145579-nIjfTxW67ZsJfu0Lxddv-cas
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.600.1.462&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-6244999-ToNh0wvxIwQQeZRvJdUf-cas
     body:
       encoding: US-ASCII
       string: ''
@@ -898,19 +909,19 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Set-Cookie:
-      - BIGipServervsacweb_p=!XUXdaKk5fdnqBJjLMWjf8K3rTDmEEpVZo7tWhAh6ugtQuZchCOI3hMABRwZtvbjM+5T0QW2vU9zUORU=;
-        expires=Tue, 03-Oct-2017 16:44:05 GMT; path=/; Httponly; Secure
-      - JSESSIONID=901E485E798DD419A1CCC3B5667B1BCE;path=/vsac;HttpOnly;Secure
+      - BIGipServervsacweb_p=!/AM09o/0gVjngkLNtNHn4GsLooFbU59cjkhmAN/N4mLhlcfPns6H14ShhdNlKGI/sMTCFiCSOtb01ts=;
+        expires=Fri, 12-Oct-2018 17:52:26 GMT; path=/; Httponly; Secure
+      - JSESSIONID=162DE272A1ECC26136E395979BC3D8B5;path=/vsac;HttpOnly;Secure
       Content-Type:
       - text/xml;charset=utf-8
       Content-Length:
       - '1311'
       Date:
-      - Tue, 03 Oct 2017 14:44:04 GMT
+      - Fri, 12 Oct 2018 15:52:26 GMT
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.114 8080"
+      - "/Common/vsacweb_p 10.1.5.110 8080"
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
     body:
@@ -927,14 +938,14 @@ http_interactions:
                 <ns0:Type>Extensional</ns0:Type>
                 <ns0:Binding>Dynamic</ns0:Binding>
                 <ns0:Status>Active</ns0:Status>
-                <ns0:RevisionDate>2017-10-03</ns0:RevisionDate>
+                <ns0:RevisionDate>2018-10-12</ns0:RevisionDate>
             </ns0:DescribedValueSet>
         </ns0:RetrieveMultipleValueSetsResponse>
     http_version: 
-  recorded_at: Tue, 03 Oct 2017 14:44:05 GMT
+  recorded_at: Fri, 12 Oct 2018 15:52:26 GMT
 - request:
     method: post
-    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-271332-1X6Cj3cRG2j2hpWvddLpXXM9Xz2db3MLMPNz3pNbAfhYALcMdX-cas
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-1741567-dwVMfhNBzGo0yiyCIlnRsprXzrGg6U1ej2MQsxE5O3nHFe0h3U-cas
     body:
       encoding: UTF-8
       string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
@@ -971,10 +982,10 @@ http_interactions:
       Content-Length:
       - '35'
       Date:
-      - Tue, 03 Oct 2017 14:44:04 GMT
+      - Fri, 12 Oct 2018 15:52:26 GMT
       Set-Cookie:
-      - BIGipServervsacweb_p=!eOgZLLZn2Va3jy/LMWjf8K3rTDmEEjZUsH67S9qrtcSLdK+p3XJ80/SdFzqeP7iojRytiEcxPyOgslw=;
-        expires=Tue, 03-Oct-2017 16:44:05 GMT; path=/; Httponly; Secure
+      - BIGipServervsacweb_p=!Lom+/yO1LhFeWvXNtNHn4GsLooFbU2ahNZU4nHH8lv+ooA9e+Es5P91Y2ujFVp2nINRKDFMFZ+dvvFE=;
+        expires=Fri, 12-Oct-2018 17:52:27 GMT; path=/; Httponly; Secure
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
@@ -983,12 +994,12 @@ http_interactions:
       - max-age=31536000; includeSubDomains; preload
     body:
       encoding: UTF-8
-      string: ST-1145580-VKihRpxTyve6tuBcz5Pf-cas
+      string: ST-6245002-cQHPwP71j3Jm7uQVJ2x6-cas
     http_version: 
-  recorded_at: Tue, 03 Oct 2017 14:44:05 GMT
+  recorded_at: Fri, 12 Oct 2018 15:52:27 GMT
 - request:
     method: get
-    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.114222.4.11.3591&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-1145580-VKihRpxTyve6tuBcz5Pf-cas
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.114222.4.11.3591&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-6245002-cQHPwP71j3Jm7uQVJ2x6-cas
     body:
       encoding: US-ASCII
       string: ''
@@ -1017,19 +1028,19 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Set-Cookie:
-      - BIGipServervsacweb_p=!mOXzHqXk4wZ/j8LLMWjf8K3rTDmEEieQkyPOHEc5RY8cVNKMjko05cZ47LHMqB77Qkg1dm/pNyRK66s=;
-        expires=Tue, 03-Oct-2017 16:44:05 GMT; path=/; Httponly; Secure
-      - JSESSIONID=717CE6F6BA733FCFF9DD519A697CE75F;path=/vsac;HttpOnly;Secure
+      - BIGipServervsacweb_p=!P2WPMa9RJTL5TNzm9OGvBt4MxRMcjqTPne56YVDL8asYw3WDyQr3M4/JIz98DtYkUQiYTWpB027lIJA=;
+        expires=Fri, 12-Oct-2018 17:52:27 GMT; path=/; Httponly; Secure
+      - JSESSIONID=2EB3F34E4396C84C41BFAE8D92A686FA;path=/vsac;HttpOnly;Secure
       Content-Type:
       - text/xml;charset=utf-8
       Content-Length:
-      - '24825'
+      - '24136'
       Date:
-      - Tue, 03 Oct 2017 14:44:04 GMT
+      - Fri, 12 Oct 2018 15:52:26 GMT
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.114 8080"
+      - "/Common/vsacweb_p 10.1.5.111 8080"
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
     body:
@@ -1059,7 +1070,6 @@ http_interactions:
                     <ns0:Concept code="219" codeSystem="2.16.840.1.113883.3.221.5" codeSystemName="SOP" codeSystemVersion="5.0" displayName="Medicaid Managed Care Other"/>
                     <ns0:Concept code="22" codeSystem="2.16.840.1.113883.3.221.5" codeSystemName="SOP" codeSystemVersion="5.0" displayName="Medicaid (Non-managed Care Plan)"/>
                     <ns0:Concept code="23" codeSystem="2.16.840.1.113883.3.221.5" codeSystemName="SOP" codeSystemVersion="5.0" displayName="Medicaid/SCHIP"/>
-                    <ns0:Concept code="24" codeSystem="2.16.840.1.113883.3.221.5" codeSystemName="SOP" codeSystemVersion="5.0" displayName="Medicaid Applicant"/>
                     <ns0:Concept code="25" codeSystem="2.16.840.1.113883.3.221.5" codeSystemName="SOP" codeSystemVersion="5.0" displayName="Medicaid - Out of State"/>
                     <ns0:Concept code="29" codeSystem="2.16.840.1.113883.3.221.5" codeSystemName="SOP" codeSystemVersion="5.0" displayName="Medicaid Other"/>
                     <ns0:Concept code="3" codeSystem="2.16.840.1.113883.3.221.5" codeSystemName="SOP" codeSystemVersion="5.0" displayName="OTHER GOVERNMENT (Federal/State/Local) (excluding Department of Corrections)"/>
@@ -1152,9 +1162,6 @@ http_interactions:
                     <ns0:Concept code="613" codeSystem="2.16.840.1.113883.3.221.5" codeSystemName="SOP" codeSystemVersion="5.0" displayName="BC Managed Care - POS"/>
                     <ns0:Concept code="619" codeSystem="2.16.840.1.113883.3.221.5" codeSystemName="SOP" codeSystemVersion="5.0" displayName="BC Managed Care - Other"/>
                     <ns0:Concept code="62" codeSystem="2.16.840.1.113883.3.221.5" codeSystemName="SOP" codeSystemVersion="5.0" displayName="BC Indemnity"/>
-                    <ns0:Concept code="63" codeSystem="2.16.840.1.113883.3.221.5" codeSystemName="SOP" codeSystemVersion="5.0" displayName="BC (Indemnity or Managed Care) - Out of State"/>
-                    <ns0:Concept code="64" codeSystem="2.16.840.1.113883.3.221.5" codeSystemName="SOP" codeSystemVersion="5.0" displayName="BC (Indemnity or Managed Care) - Unspecified"/>
-                    <ns0:Concept code="69" codeSystem="2.16.840.1.113883.3.221.5" codeSystemName="SOP" codeSystemVersion="5.0" displayName="BC (Indemnity or Managed Care) - Other"/>
                     <ns0:Concept code="7" codeSystem="2.16.840.1.113883.3.221.5" codeSystemName="SOP" codeSystemVersion="5.0" displayName="MANAGED CARE, UNSPECIFIED (to be used only if one can't distinguish public from private)"/>
                     <ns0:Concept code="71" codeSystem="2.16.840.1.113883.3.221.5" codeSystemName="SOP" codeSystemVersion="5.0" displayName="HMO"/>
                     <ns0:Concept code="72" codeSystem="2.16.840.1.113883.3.221.5" codeSystemName="SOP" codeSystemVersion="5.0" displayName="PPO"/>
@@ -1190,9 +1197,9 @@ http_interactions:
                 <ns0:Type>Extensional</ns0:Type>
                 <ns0:Binding>Dynamic</ns0:Binding>
                 <ns0:Status>Active</ns0:Status>
-                <ns0:RevisionDate>2017-10-03</ns0:RevisionDate>
+                <ns0:RevisionDate>2018-10-12</ns0:RevisionDate>
             </ns0:DescribedValueSet>
         </ns0:RetrieveMultipleValueSetsResponse>
     http_version: 
-  recorded_at: Tue, 03 Oct 2017 14:44:06 GMT
+  recorded_at: Fri, 12 Oct 2018 15:52:27 GMT
 recorded_with: VCR 3.0.3
