@@ -33,8 +33,8 @@ GIT
 
 GIT
   remote: https://github.com/projecttacoma/hqmf2js.git
-  revision: 56392bbe59e4e51f140c90271dd76797c122198c
-  branch: bonnie-prior
+  revision: b397b63f3edf1210506335f183d3ef62fe16eca7
+  branch: bonnie-qdm
   specs:
     hqmf2js (1.3.0)
       health-data-standards (~> 3.7)
@@ -44,14 +44,14 @@ GIT
 GIT
   remote: https://github.com/projecttacoma/patientapi.git
   revision: 4cae28f52820e7e390b12bc0df2d961b1ac7bad7
-  branch: bonnie-prior
+  branch: bonnie-qdm
   specs:
     hquery-patient-api (1.0.4)
 
 GIT
   remote: https://github.com/projecttacoma/simplexml_parser.git
   revision: 329bab05526a4dd8c584ccb3ed1b3dc2fbbb2ba8
-  branch: bonnie-prior
+  branch: bonnie-qdm
   specs:
     simplexml_parser (1.0.0)
 
