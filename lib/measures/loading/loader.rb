@@ -32,7 +32,7 @@ module Measures
 
       metadata = measure_details
       if metadata
-        measure.measure_id = metadata["nqf_id"]
+        measure.measure_id = metadata["nqf_id"] || json["id"]
         measure.type = metadata["type"]
         measure.category = metadata["category"]
         measure.episode_of_care = metadata["episode_of_care"]
@@ -93,7 +93,7 @@ module Measures
 
       # Add metadata
       metadata = measure_details
-      measure.measure_id = metadata["nqf_id"]
+      measure.measure_id = metadata["nqf_id"] || json["id"]
       measure.type = metadata["type"]
       measure.category = metadata["category"] || "Miscellaneous"
       measure.episode_of_care = metadata["episode_of_care"]

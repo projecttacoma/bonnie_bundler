@@ -214,7 +214,6 @@ module Measures
       measure_details["composite"] = composite_measure?(measure_dir)
       measure = Measures::Loader.load_hqmf_cql_model_json(json, user, cql_artifacts[:all_value_set_oids], main_cql_library, cql_artifacts[:cql_definition_dependency_structure],
                                                           cql_artifacts[:elms], cql_artifacts[:elm_annotations], files[:CQL], measure_details, cql_artifacts[:value_set_oid_version_objects])
-      measure.measure_id = json["id"]
       measure
     end
 

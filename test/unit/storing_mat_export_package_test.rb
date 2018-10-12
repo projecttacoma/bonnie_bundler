@@ -23,7 +23,6 @@ class StoringMATExportPackageTest < ActiveSupport::TestCase
 
       assert_equal 1, CqlMeasurePackage.all.count
       measure_package = CqlMeasurePackage.all.first
-      binding.pry
       assert_equal measure.id, measure_package.measure_id
       Dir.mktmpdir do |dir|
         # Write the package to a temp directory
