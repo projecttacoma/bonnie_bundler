@@ -57,8 +57,8 @@ module Measures
         end
         #If it's a composite measure, verify that each of the components are valid
         #!TODO: Need to generate error message specifying which if any of the component verifications failed
-        Dir.glob("#{current_directory}/*").each do |file|
-          if File.directory?(file)
+        Dir.glob("#{current_directory}/*").select.each do |file| 
+          if !file.end_with?('__MACOSX') && File.directory?(file)
             if !valid_composite_contents?(file)
               return false
             end
@@ -214,7 +214,7 @@ module Measures
       measure_details["composite"] = composite_measure?(measure_dir)
       measure = Measures::Loader.load_hqmf_cql_model_json(json, user, cql_artifacts[:all_value_set_oids], main_cql_library, cql_artifacts[:cql_definition_dependency_structure],
                                                           cql_artifacts[:elms], cql_artifacts[:elm_annotations], files[:CQL], measure_details, cql_artifacts[:value_set_oid_version_objects])
-
+      measure.measure_id = json["id"]
       measure
     end
 
