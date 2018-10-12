@@ -1,11 +1,11 @@
 source "https://rubygems.org"
 gemspec
 
-gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git', :branch => 'master_bonnie'
+gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git', :branch => 'bonnie-prior'
 # gem 'quality-measure-engine', :git => 'https://github.com/projectcypress/quality-measure-engine.git', :branch => 'master'
-# gem 'hqmf2js', :git => 'https://github.com/projecttacoma/hqmf2js.git', :branch => 'master'
-# gem 'hquery-patient-api', :git => 'https://github.com/projecttacoma/patientapi.git', :branch => 'master'
-# gem 'simplexml_parser', :git => 'https://github.com/projecttacoma/simplexml_parser.git', :branch => 'master'
+# gem 'hqmf2js', :git => 'https://github.com/projecttacoma/hqmf2js.git', :branch => 'bonnie-prior'
+# gem 'hquery-patient-api', :git => 'https://github.com/projecttacoma/patientapi.git', :branch => 'bonnie-prior'
+# gem 'simplexml_parser', :git => 'https://github.com/projecttacoma/simplexml_parser.git', :branch => 'bonnie-prior'
 
 # gem 'health-data-standards', :path => '../health-data-standards'
 # gem 'quality-measure-engine', :path => '../quality-measure-engine'
