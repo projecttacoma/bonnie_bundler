@@ -30,7 +30,7 @@ module Measures
 
     # Works for both regular & composite measures
     def self.mat_cql_export?(zip_file)
-      #extract contents of zip file while retaining the directory structure
+      # Extract contents of zip file while retaining the directory structure
       original = Dir.pwd
       Dir.mktmpdir do |dir|
         Zip::ZipFile.open(zip_file.path) do |zip_file|
@@ -41,24 +41,24 @@ module Measures
           end
         end
         current_directory = dir
-        #detect the root is a single directory (ignore hidden files)
+        # Detect the root is a single directory 
         if Dir.glob("#{current_directory}/*").count < 3
-          #there is a single root directory, step into it
-          Dir.glob("#{current_directory}/*").each do |file|
-            if File.directory?(file)
+          # There is a single root directory, step into it (ignore __MACOSX file if it exists)
+          Dir.glob("#{current_directory}/*").select.each do |file| 
+            if !file.end_with?('__MACOSX') && File.directory?(file)
               current_directory = file
               break
             end
           end
         end
-        #check if measure contents are valid
+        # Check if measure contents are valid
         if !valid_composite_contents?(current_directory)
           return false
         end
-        #If it's a composite measure, verify that each of the components are valid
-        #!TODO: Need to generate error message specifying which if any of the component verifications failed
-        Dir.glob("#{current_directory}/*").select.each do |file| 
-          if !file.end_with?('__MACOSX') && File.directory?(file)
+        # If it's a composite measure, verify that each of the components are valid
+        # !TODO: Need to generate error message specifying which if any of the component verifications failed
+        Dir.glob("#{current_directory}/*").each do |file|
+          if File.directory?(file)
             if !valid_composite_contents?(file)
               return false
             end
@@ -70,7 +70,7 @@ module Measures
 
     # Verifies contents of each individual component measures
     def self.valid_composite_contents?(f_path)
-      #grab all cql, elm & human readable docs from measure
+      # Grab all cql, elm & human readable docs from measure
       cql_entry = Dir.glob(File.join(f_path,'**.cql')).select 
       elm_json = Dir.glob(File.join(f_path,'**.json')).select 
       human_readable_entry = Dir.glob(File.join(f_path,'**.html')).select 
@@ -78,7 +78,7 @@ module Measures
       # Grab all xml files in the measure.
       xml_files = Dir.glob(File.join(f_path,'**.xml')).select 
 
-      #find key value pair for HQMF and ELM xml files.
+      # Find key value pair for HQMF and ELM xml files.
       if xml_files.count > 0
         xml_files_hash = {}
         xml_files_hash[:ELM_XML] = []
@@ -170,6 +170,7 @@ module Measures
       return measures
     end
 
+    # Creates a composite's component measures and updates the composite with their hqmf_set_id's
     def self.create_component_measures(measures, measure_package, current_directory, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket)
       composite_measure = measures[0]
       Dir.glob("#{current_directory}/*").each do |file|
@@ -188,6 +189,7 @@ module Measures
       measures.map { |measure| measure.save! }
     end
 
+    # Creates and returns a measure 
     def self.create_measure(measure_dir, user, measure_details, vsac_options, vsac_ticket_granting_ticket)
       measure = nil
 
@@ -222,7 +224,6 @@ module Measures
       xml_paths = Dir.glob(File.join("#{dir}/**.xml")).select 
       elm_json_paths = Dir.glob(File.join("#{dir}/**.json")).select 
       
-      # COME_BACK: These extract() methods are incorrect since we are no longer using the zip file here, must change the "file" variable
       begin
         # cql_paths = []
         # cql_entries.each do |cql_file|
@@ -367,7 +368,7 @@ module Measures
                        :all_codes_and_code_names => all_codes_and_code_names}
     end
 
-    # returns a list of objects that include the valueset oids and their versions
+    # Returns a list of objects that include the valueset oids and their versions
     def self.get_value_set_oid_version_objects(value_sets, single_code_references)
       # [LDC] need to make this an array of objects instead of a hash because Mongo is
       # dumb and *let's you* have dots in keys on object creation but *doesn't let you*
