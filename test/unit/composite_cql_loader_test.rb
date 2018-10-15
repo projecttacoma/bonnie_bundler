@@ -14,7 +14,12 @@ class CompositeCQLLoaderTest < ActiveSupport::TestCase
       user.save
 
       measure_details = { 'episode_of_care'=> false }
-      Measures::CqlLoader.extract_measures(@cql_mat_export, user, measure_details, { profile: APP_CONFIG['vsac']['default_profile'] }, get_ticket_granting_ticket).map {|measure| measure.save}
+      begin
+        Measures::CqlLoader.extract_measures(@composite_cql_mat_export, user, measure_details, { profile: APP_CONFIG['vsac']['default_profile'] }, get_ticket_granting_ticket).map {|measure| measure.save}
+      rescue => e
+            $stdout.puts e.inspect
+            $stdout.puts e.backtrace
+      end
       assert_equal 8, CqlMeasure.all.count
       # Verify there is only one composite measure
       assert_equal 1, CqlMeasure.all.where(composite: true).count
