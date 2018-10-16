@@ -133,7 +133,8 @@ module Measures
     # Returns an array of measures
     # Single measure returned into the array if it is a non-composite measure
     def self.extract_measures(measure_zip, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket)
-      measures = []
+      measure = {}
+      component_measures = []
       # Unzip measure contents while retaining the directory structure
       Dir.mktmpdir do |dir|
         Zip::ZipFile.open(measure_zip.path) do |zip_file|
@@ -154,39 +155,45 @@ module Measures
             end
           end
         end
+
+        # If it is a composite measure, load in each of the components
+        if composite_measure?(current_directory)
+          create_component_measures(component_measures, current_directory, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket)
+        end
+
         # Load in regular/composite measure measure
-        measures << create_measure(current_directory, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket)
+        measure = create_measure(current_directory, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket)
 
         # Create, associate and save the measure package.
         measure_package = CqlMeasurePackage.new(file: BSON::Binary.new(measure_zip.read()))
-        measures[0].package = measure_package
-        measures[0].package.save
+        measure.package = measure_package
+        measure.package.save 
 
-        # If it is a composite measure, load in each of the components
-        if measures[0].composite
-          create_component_measures(measures, measure_package, current_directory, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket)
-        end
-      end # End of temporary directory usage 
-      return measures
-    end
-
-    # Creates a composite's component measures and updates the composite with their hqmf_set_id's
-    def self.create_component_measures(measures, measure_package, current_directory, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket)
-      composite_measure = measures[0]
-      Dir.glob("#{current_directory}/*").each do |file|
-        if File.directory?(file)
-          component_measure = create_measure(file, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket)
-          # Update the component's hqmf_set_id
-          component_measure.hqmf_set_id = composite_measure.hqmf_set_id + '&' + component_measure.hqmf_set_id 
+        component_measures.each do |component_measure|
+          # Update the components' hqmf_set_id's
+          component_measure.hqmf_set_id = measure.hqmf_set_id + '&' + component_measure.hqmf_set_id
           # Associate parent measure package with component package
           component_measure.package = measure_package
           # Associate each component with the composite
-          composite_measure.components.push(component_measure.hqmf_set_id)
-          measures << component_measure
+          measure.components.push(component_measure.hqmf_set_id)
+        end
+        # Save all measures
+        component_measures.map { |component_measure| component_measure.save! }
+        measure.save
+      end # End of temporary directory usage 
+      
+      return {measure: measure, component_measures: component_measures}
+    end
+
+    # Creates a composite's component measures 
+    def self.create_component_measures(component_measures, current_directory, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket)
+      Dir.glob("#{current_directory}/*").each do |file|
+        if File.directory?(file)
+          component_measure = create_measure(file, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket)
+          component_measures << component_measure
         end
       end
-      # Save all measures
-      measures.map { |measure| measure.save! }
+      component_measures
     end
 
     # Creates and returns a measure 
@@ -202,6 +209,7 @@ module Measures
       # Get main measure from hqmf parser
       main_cql_library = hqmf_model.cql_measure_library
 
+      binding.pry
       cql_artifacts = process_cql(files, main_cql_library, user, vsac_options, vsac_ticket_granting_ticket, hqmf_model.hqmf_set_id)
 
       # Create CQL Measure
@@ -534,6 +542,7 @@ module Measures
 
     # Given an elm structure and a statment_name return the statement JSON structure.
     def self.find_definition_in_elm(elm, statement_name)
+      binding.pry
       elm['library']['statements']['def'].each do |statement|
         return [elm['library']['identifier']['id'], statement] if statement['name'] == statement_name
       end
