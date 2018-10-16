@@ -156,13 +156,23 @@ module Measures
           end
         end
 
+        component_elm_files = {}
+        component_elm_files[:ELM_JSON] = []
+        component_elm_files[:ELM_XML] = {}
         # If it is a composite measure, load in each of the components
         if composite_measure?(current_directory)
           create_component_measures(component_measures, current_directory, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket)
+          component_measures.each do |component_measure|
+            component_elm_files[:ELM_JSON].push(*component_measure.elm) 
+            if (component_elm_files[:ELM_XML].keys & component_measure.elm_annotations.keys).count > 0 
+                puts "WARNING: Component measures share libraries. Version may or may not be the same."
+            end
+            component_elm_files[:ELM_XML] = component_measure.elm_annotations.merge(component_elm_files[:ELM_XML])
+          end
         end
 
         # Load in regular/composite measure measure
-        measure = create_measure(current_directory, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket)
+        measure = create_measure(current_directory, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket, component_elm_files)
 
         # Create, associate and save the measure package.
         measure_package = CqlMeasurePackage.new(file: BSON::Binary.new(measure_zip.read()))
@@ -197,11 +207,15 @@ module Measures
     end
 
     # Creates and returns a measure 
-    def self.create_measure(measure_dir, user, measure_details, vsac_options, vsac_ticket_granting_ticket)
+    def self.create_measure(measure_dir, user, measure_details, vsac_options, vsac_ticket_granting_ticket, component_elm_files=nil)
       measure = nil
 
       # Grabs the cql file contents, the elm_xml contents, elm_json contents and the hqmf file path
       files = get_files_from_directory(measure_dir)
+      if (!component_elm_files.nil?)
+        files[:ELM_JSON].push(*component_elm_files[:ELM_JSON]) 
+        files[:ELM_XML] = component_elm_files[:ELM_XML].merge(files[:ELM_XML])
+      end
 
       # Load hqmf into HQMF Parser
       hqmf_model = Measures::Loader.parse_hqmf_model(files[:HQMF_XML_PATH])
@@ -209,7 +223,7 @@ module Measures
       # Get main measure from hqmf parser
       main_cql_library = hqmf_model.cql_measure_library
 
-      binding.pry
+      # binding.pry
       cql_artifacts = process_cql(files, main_cql_library, user, vsac_options, vsac_ticket_granting_ticket, hqmf_model.hqmf_set_id)
 
       # Create CQL Measure
@@ -542,7 +556,7 @@ module Measures
 
     # Given an elm structure and a statment_name return the statement JSON structure.
     def self.find_definition_in_elm(elm, statement_name)
-      binding.pry
+      # binding.pry
       elm['library']['statements']['def'].each do |statement|
         return [elm['library']['identifier']['id'], statement] if statement['name'] == statement_name
       end
