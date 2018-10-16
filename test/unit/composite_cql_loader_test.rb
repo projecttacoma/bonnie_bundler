@@ -15,7 +15,7 @@ class CompositeCQLLoaderTest < ActiveSupport::TestCase
 
       measure_details = { 'episode_of_care'=> false }
       begin
-        Measures::CqlLoader.extract_measures(@composite_cql_mat_export, user, measure_details, { profile: APP_CONFIG['vsac']['default_profile'] }, get_ticket_granting_ticket).map {|measure| measure.save}
+        Measures::CqlLoader.extract_measures(@composite_cql_mat_export, user, measure_details, { profile: APP_CONFIG['vsac']['default_profile'] }, get_ticket_granting_ticket)
       rescue => e
             $stdout.puts e.inspect
             $stdout.puts e.backtrace
@@ -33,7 +33,7 @@ class CompositeCQLLoaderTest < ActiveSupport::TestCase
         # Verify each composite measure has a unique hqmf_set_id
         assert_equal 1, CqlMeasure.all.where(hqmf_set_id: measure.hqmf_set_id).count
         # Verify the composite's array of components is correct
-        assert composite_measure.components.contains?(measure.hqmf_set_id)
+        assert composite_measure.components.include?(measure.hqmf_set_id)
       end
       # Verify the composite is associated with each of the components
       assert_equal 7, composite_measure.components.count

@@ -133,7 +133,7 @@ module Measures
     # Returns an array of measures
     # Single measure returned into the array if it is a non-composite measure
     def self.extract_measures(measure_zip, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket)
-      measure = {}
+      measure = nil
       component_measures = []
       # Unzip measure contents while retaining the directory structure
       Dir.mktmpdir do |dir|
@@ -191,8 +191,10 @@ module Measures
         component_measures.map { |component_measure| component_measure.save! }
         measure.save
       end # End of temporary directory usage 
-      
-      return {measure: measure, component_measures: component_measures}
+
+      # Put measure (and component measures) into an array to return
+      measures = component_measures << measure
+      return measures
     end
 
     # Creates a composite's component measures 
@@ -212,10 +214,6 @@ module Measures
 
       # Grabs the cql file contents, the elm_xml contents, elm_json contents and the hqmf file path
       files = get_files_from_directory(measure_dir)
-      if (!component_elm_files.nil?)
-        files[:ELM_JSON].push(*component_elm_files[:ELM_JSON]) 
-        files[:ELM_XML] = component_elm_files[:ELM_XML].merge(files[:ELM_XML])
-      end
 
       # Load hqmf into HQMF Parser
       hqmf_model = Measures::Loader.parse_hqmf_model(files[:HQMF_XML_PATH])
@@ -224,7 +222,7 @@ module Measures
       main_cql_library = hqmf_model.cql_measure_library
 
       # binding.pry
-      cql_artifacts = process_cql(files, main_cql_library, user, vsac_options, vsac_ticket_granting_ticket, hqmf_model.hqmf_set_id)
+      cql_artifacts = process_cql(files, main_cql_library, user, vsac_options, vsac_ticket_granting_ticket, hqmf_model.hqmf_set_id, component_elm_files)
 
       # Create CQL Measure
       hqmf_model.backfill_patient_characteristics_with_codes(cql_artifacts[:all_codes_and_code_names])
@@ -306,13 +304,17 @@ module Measures
     end
 
     # Manages all of the CQL processing that is not related to the HQMF.
-    def self.process_cql(files, main_cql_library, user, vsac_options, vsac_ticket_granting_ticket, measure_id=nil)
+    def self.process_cql(files, main_cql_library, user, vsac_options, vsac_ticket_granting_ticket, measure_id=nil, component_elm_files=nil)
       elm_strings = files[:ELM_JSON]
       # Removes 'urn:oid:' from ELM for Bonnie and Parse the JSON
       elm_strings.each { |elm_string| elm_string.gsub! 'urn:oid:', '' }
       elms = elm_strings.map{ |elm| JSON.parse(elm, :max_nesting=>1000)}
       elm_annotations = parse_elm_annotations(files[:ELM_XML])
 
+      if (!component_elm_files.nil?)
+        elms.push(*component_elm_files[:ELM_JSON]) 
+        elm_annotations = component_elm_files[:ELM_XML].merge(elm_annotations)
+      end
       # Hash of define statements to which define statements they use.
       cql_definition_dependency_structure = populate_cql_definition_dependency_structure(main_cql_library, elms)
       # Go back for the library statements
