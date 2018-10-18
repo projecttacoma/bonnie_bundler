@@ -187,9 +187,6 @@ module Measures
           # Associate each component with the composite
           measure.components.push(component_measure.hqmf_set_id)
         end
-        # Save all measures
-        component_measures.map { |component_measure| component_measure.save! }
-        measure.save
       end # End of temporary directory usage 
 
       # Put measure (and component measures) into an array to return
