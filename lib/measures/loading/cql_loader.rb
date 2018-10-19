@@ -242,19 +242,11 @@ module Measures
       elm_json_paths = Dir.glob(File.join("#{dir}/**.json")).select 
       
       begin
-        # cql_paths = []
-        # cql_entries.each do |cql_file|
-        #  cql_paths << extract(file, cql_file, dir) if cql_file.size > 0
-        # end
         cql_contents = []
         cql_paths.each do |cql_path|
           cql_contents << open(cql_path).read
         end
 
-        # elm_json_paths = []
-        # elm_json_entries.each do |json_file|
-        #  elm_json_paths << extract(file, json_file, dir) if json_file.size > 0
-        # end
         elm_json = []
         elm_json_paths.each do |elm_json_path|
           elm_json << open(elm_json_path).read
