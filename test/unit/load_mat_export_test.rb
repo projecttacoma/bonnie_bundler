@@ -10,6 +10,12 @@ class LoadMATExportTest < ActiveSupport::TestCase
     @cql_draft_measure_mat_export = File.new File.join('test', 'fixtures', 'DRAFT_CMS2_CQL.zip')
   end
 
+
+  test "Verify the measure to be uploaded is valid" do
+    is_valid = Measures::CqlLoader.mat_cql_export?(@cql_mat_export)
+    assert_equal true, is_valid
+  end
+
   test "Loading a CQL Mat export zip file including draft, with VSAC credentials" do
     VCR.use_cassette("valid_vsac_response_includes_draft") do
       dump_db

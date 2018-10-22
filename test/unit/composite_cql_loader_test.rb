@@ -10,6 +10,22 @@ class CompositeCQLLoaderTest < ActiveSupport::TestCase
     @missing_composite_files = File.new File.join('test', 'fixtures', 'CMSAWA_v5_6_Artifacts_missing_composite_files.zip')
   end
 
+  test "Verify the composite measure to be uploaded is valid" do
+    is_valid = Measures::CqlLoader.mat_cql_export?(@composite_cql_mat_export)
+    assert_equal true, is_valid
+  end
+
+  test "Flag when an invalid composite measure is provided" do
+    is_valid = Measures::CqlLoader.mat_cql_export?(@missing_file_composite_cql_mat_export)
+    assert_equal false, is_valid
+
+    #is_valid = Measures::CqlLoader.mat_cql_export?(@missing_component_composite_cql_mat_export)
+    #assert_equal false, is_valid
+
+    is_valid = Measures::CqlLoader.mat_cql_export?(@missing_composite_files)
+    assert_equal false, is_valid
+  end
+
   test 'Loading a Composite Measure' do
     VCR.use_cassette('load_composite_measure') do
       dump_db
