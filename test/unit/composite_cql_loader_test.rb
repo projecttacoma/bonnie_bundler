@@ -19,9 +19,6 @@ class CompositeCQLLoaderTest < ActiveSupport::TestCase
     is_valid = Measures::CqlLoader.mat_cql_export?(@missing_file_composite_cql_mat_export)
     assert_equal false, is_valid
 
-    #is_valid = Measures::CqlLoader.mat_cql_export?(@missing_component_composite_cql_mat_export)
-    #assert_equal false, is_valid
-
     is_valid = Measures::CqlLoader.mat_cql_export?(@missing_composite_files)
     assert_equal false, is_valid
   end
