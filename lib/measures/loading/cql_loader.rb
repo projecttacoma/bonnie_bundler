@@ -3,7 +3,6 @@ require 'pry'
 module Measures
   # Utility class for loading CQL measure definitions into the database from the MAT export zip
   class CqlLoader
-
     # Returns true if ths uploaded measure zip file is a composite measure
     def self.composite_measure?(measure_dir)
       # Look through all xml files at current directory level and find QDM 
@@ -28,6 +27,7 @@ module Measures
       false
     end
 
+    # Verifies that the zip file contains a valid measure
     # Works for both regular & composite measures
     def self.mat_cql_export?(zip_file)
       # Extract contents of zip file while retaining the directory structure
@@ -41,9 +41,9 @@ module Measures
           end
         end
         current_directory = dir
-        # Detect the root is a single directory 
+        # Detect if the zip file contents were stored into a single directory
         if Dir.glob("#{current_directory}/*").count < 3
-          # There is a single root directory, step into it (ignore __MACOSX file if it exists)
+          # If there is a single folder containing the zip file contents, step into it (ignore __MACOSX file if it exists)
           Dir.glob("#{current_directory}/*").select.each do |file| 
             if !file.end_with?('__MACOSX') && File.directory?(file)
               current_directory = file
@@ -52,14 +52,14 @@ module Measures
           end
         end
         # Check if measure contents are valid
-        if !valid_composite_contents?(current_directory)
+        if !valid_measure_contents?(current_directory)
           return false
         end
         # If it's a composite measure, verify that each of the components are valid
         # !TODO: Need to generate error message specifying which if any of the component verifications failed
         Dir.glob("#{current_directory}/*").each do |file|
           if File.directory?(file)
-            if !valid_composite_contents?(file)
+            if !valid_measure_contents?(file)
               return false
             end
           end
@@ -68,8 +68,8 @@ module Measures
       true  
     end
 
-    # Verifies contents of each individual component measures
-    def self.valid_composite_contents?(f_path)
+    # Verifies contents of the given measure are valid (works for regular, composite and component measures)
+    def self.valid_measure_contents?(f_path)
       # Grab all cql, elm & human readable docs from measure
       cql_entry = Dir.glob(File.join(f_path,'**.cql')).select 
       elm_json = Dir.glob(File.join(f_path,'**.json')).select 
@@ -83,7 +83,7 @@ module Measures
         xml_files_hash = {}
         xml_files_hash[:ELM_XML] = []
         begin
-          # Iterate over all files passed in, extract file to temporary directory.
+          # Find HQMF and ELM xml files
           xml_files.each do |xml_file|
             if xml_file && xml_file.size > 0
               # Open up xml file and read contents.
@@ -136,18 +136,18 @@ module Measures
       measure = nil
       component_measures = []
       # Unzip measure contents while retaining the directory structure
-      Dir.mktmpdir do |dir|
+      Dir.mktmpdir do |tmp_dir|
         Zip::ZipFile.open(measure_zip.path) do |zip_file|
           zip_file.each do |f|  
-            f_path = File.join(dir, f.name)
+            f_path = File.join(tmp_dir, f.name)
             FileUtils.mkdir_p(File.dirname(f_path))
             f.extract(f_path)            
           end
         end
-        current_directory = dir
-        # Detect if the root is a single directory (ignore hidden files)
+        current_directory = tmp_dir
+        # Detect if the zip file contents were stored into a single directory
         if Dir.glob("#{current_directory}/*").count < 3
-          # When there is a single root directory, step into it
+          # If there is a single folder containing the zip file contents, step into it (ignore __MACOSX file if it exists)
           Dir.glob("#{current_directory}/*").select.each do |file| 
             if !file.end_with?('__MACOSX') && File.directory?(file)
               current_directory = file
@@ -155,11 +155,12 @@ module Measures
             end
           end
         end
-
         component_elm_files = {}
         component_elm_files[:ELM_JSON] = []
         component_elm_files[:ELM_XML] = {}
+
         # If it is a composite measure, load in each of the components
+        # Components must be loaded first so their elms can be passed onto the composite
         if composite_measure?(current_directory)
           create_component_measures(component_measures, current_directory, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket)
           component_measures.each do |component_measure|
@@ -180,11 +181,12 @@ module Measures
         measure.package.save 
 
         component_measures.each do |component_measure|
-          # Update the components' hqmf_set_id's
+          # Update the components' hqmf_set_id, formatted as follows:
+          #   <composite_hqmf_set_id>&<component_hqmf_set_id>
           component_measure.hqmf_set_id = measure.hqmf_set_id + '&' + component_measure.hqmf_set_id
           # Associate parent measure package with component package
           component_measure.package = measure_package
-          # Associate each component with the composite
+          # Associate the component with the composite
           measure.components.push(component_measure.hqmf_set_id)
         end
       end # End of temporary directory usage 
@@ -218,7 +220,6 @@ module Measures
       # Get main measure from hqmf parser
       main_cql_library = hqmf_model.cql_measure_library
 
-      # binding.pry
       cql_artifacts = process_cql(files, main_cql_library, user, vsac_options, vsac_ticket_granting_ticket, hqmf_model.hqmf_set_id, component_elm_files)
 
       # Create CQL Measure
@@ -547,7 +548,6 @@ module Measures
 
     # Given an elm structure and a statment_name return the statement JSON structure.
     def self.find_definition_in_elm(elm, statement_name)
-      # binding.pry
       elm['library']['statements']['def'].each do |statement|
         return [elm['library']['identifier']['id'], statement] if statement['name'] == statement_name
       end
