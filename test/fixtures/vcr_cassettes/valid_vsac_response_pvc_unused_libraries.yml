@@ -12,7 +12,7 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       Content-Length:
-      - '37'
+      - '38'
       Content-Type:
       - application/x-www-form-urlencoded
       User-Agent:
@@ -37,12 +37,12 @@ http_interactions:
       Content-Type:
       - text/plain;charset=utf-8
       Content-Length:
-      - '66'
+      - '65'
       Date:
-      - Thu, 11 Oct 2018 19:40:24 GMT
+      - Mon, 22 Oct 2018 16:59:18 GMT
       Set-Cookie:
-      - BIGipServervsacweb_p=!xoa386PjaaBwkrPm9OGvBt4MxRMcjk+RorfByeFiLl7tZxAF8aS3P3nuKVVix5uOmpvqwSsqANLZV1M=;
-        expires=Thu, 11-Oct-2018 21:40:24 GMT; path=/; Httponly; Secure
+      - BIGipServervsacweb_p=!IivMROeDMT9Vapfm9OGvBt4MxRMcjlr1j0k6Vqjde5T8AEinZN/CW4QS4VbgMB90EUq2C8qAcpkeIRc=;
+        expires=Mon, 22-Oct-2018 18:59:18 GMT; path=/; Httponly; Secure
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
@@ -51,12 +51,12 @@ http_interactions:
       - max-age=31536000; includeSubDomains; preload
     body:
       encoding: UTF-8
-      string: TGT-1700537-DPW7ppXP5forVHqM5Pe2cZbp4orzCQNfQT4krmZz0cjO0lns2j-cas
+      string: TGT-368395-crBdZSAoat66JCmtd5YhmdlbaKqbUBHccjGY2JidbMyy11lSSK-cas
     http_version: 
-  recorded_at: Thu, 11 Oct 2018 19:40:24 GMT
+  recorded_at: Mon, 22 Oct 2018 16:59:18 GMT
 - request:
     method: post
-    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-1700537-DPW7ppXP5forVHqM5Pe2cZbp4orzCQNfQT4krmZz0cjO0lns2j-cas
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-368395-crBdZSAoat66JCmtd5YhmdlbaKqbUBHccjGY2JidbMyy11lSSK-cas
     body:
       encoding: UTF-8
       string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
@@ -93,10 +93,10 @@ http_interactions:
       Content-Length:
       - '35'
       Date:
-      - Thu, 11 Oct 2018 19:40:25 GMT
+      - Mon, 22 Oct 2018 16:59:19 GMT
       Set-Cookie:
-      - BIGipServervsacweb_p=!JH6tU+47HdtNZlPm9OGvBt4MxRMcjgrdq7RBcoS87GZi7L8l3VyVeYbuQcqFHnABtBYMHfj3IvZdfVs=;
-        expires=Thu, 11-Oct-2018 21:40:25 GMT; path=/; Httponly; Secure
+      - BIGipServervsacweb_p=!5QbIs3Y/zbHwj2fm9OGvBt4MxRMcjnxzwvVLB24J2wOTzGbHog0aaO55BvjQgHMpZfph0yQ3NTIcBfc=;
+        expires=Mon, 22-Oct-2018 18:59:19 GMT; path=/; Httponly; Secure
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
@@ -105,12 +105,12 @@ http_interactions:
       - max-age=31536000; includeSubDomains; preload
     body:
       encoding: UTF-8
-      string: ST-5821312-u6cblmcXlV4WlfE9KIHl-cas
+      string: ST-1692689-JC0jZwEYkLIxwrZzGxef-cas
     http_version: 
-  recorded_at: Thu, 11 Oct 2018 19:40:25 GMT
+  recorded_at: Mon, 22 Oct 2018 16:59:19 GMT
 - request:
     method: get
-    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.117.1.7.1.207&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-5821312-u6cblmcXlV4WlfE9KIHl-cas
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.117.1.7.1.207&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-1692689-JC0jZwEYkLIxwrZzGxef-cas
     body:
       encoding: US-ASCII
       string: ''
@@ -139,15 +139,15 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Set-Cookie:
-      - BIGipServervsacweb_p=!G8yB1ikqt7S8GJ7m9OGvBt4MxRMcjnO+ISXoysHnkKUTFroKgzZj62ZprnVy/4coiaWmPnuDkeAfbog=;
-        expires=Thu, 11-Oct-2018 21:40:26 GMT; path=/; Httponly; Secure
-      - JSESSIONID=E1BD25451D8C9DB1DA1DE9C4AF23F732;path=/vsac;HttpOnly;Secure
+      - BIGipServervsacweb_p=!8dRGR7+Jimm9+KLNtNHn4GsLooFbU15wo1mAGcXOSzuY298+/IaV8nO21ARnqZ9XmvUdD6nX0SQ1NVQ=;
+        expires=Mon, 22-Oct-2018 18:59:20 GMT; path=/; Httponly; Secure
+      - JSESSIONID=C78AE8A4213332A9377B90669D31A41D;path=/vsac;HttpOnly;Secure
       Content-Type:
       - text/xml;charset=utf-8
       Content-Length:
       - '1686'
       Date:
-      - Thu, 11 Oct 2018 19:40:25 GMT
+      - Mon, 22 Oct 2018 16:59:19 GMT
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
@@ -168,14 +168,14 @@ http_interactions:
                 <ns0:Type>Extensional</ns0:Type>
                 <ns0:Binding>Dynamic</ns0:Binding>
                 <ns0:Status>Active</ns0:Status>
-                <ns0:RevisionDate>2018-10-11</ns0:RevisionDate>
+                <ns0:RevisionDate>2018-10-22</ns0:RevisionDate>
             </ns0:DescribedValueSet>
         </ns0:RetrieveMultipleValueSetsResponse>
     http_version: 
-  recorded_at: Thu, 11 Oct 2018 19:40:26 GMT
+  recorded_at: Mon, 22 Oct 2018 16:59:20 GMT
 - request:
     method: post
-    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-1700537-DPW7ppXP5forVHqM5Pe2cZbp4orzCQNfQT4krmZz0cjO0lns2j-cas
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-368395-crBdZSAoat66JCmtd5YhmdlbaKqbUBHccjGY2JidbMyy11lSSK-cas
     body:
       encoding: UTF-8
       string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
@@ -212,24 +212,24 @@ http_interactions:
       Content-Length:
       - '35'
       Date:
-      - Thu, 11 Oct 2018 19:40:26 GMT
+      - Mon, 22 Oct 2018 16:59:19 GMT
       Set-Cookie:
-      - BIGipServervsacweb_p=!+bJavH7nxb4aIYXNtNHn4GsLooFbU4oYcb9oAH7/MLN+xP0JvFDExig92Yz2hTCjG8WhkctFb6zLZWg=;
-        expires=Thu, 11-Oct-2018 21:40:26 GMT; path=/; Httponly; Secure
+      - BIGipServervsacweb_p=!zLKeN+nGUoOUVCbNtNHn4GsLooFbUxU+YQc28Y4H3e9ICKnPxC54G37WtpudabdOBagRvttJmIe6iBw=;
+        expires=Mon, 22-Oct-2018 18:59:20 GMT; path=/; Httponly; Secure
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.114 8080"
+      - "/Common/vsacweb_p 10.1.5.111 8080"
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
     body:
       encoding: UTF-8
-      string: ST-5821315-rTsYuQHLf7MENo6RAfKt-cas
+      string: ST-1692691-mZPdZ7V7qJPkGZpAsY1k-cas
     http_version: 
-  recorded_at: Thu, 11 Oct 2018 19:40:26 GMT
+  recorded_at: Mon, 22 Oct 2018 16:59:20 GMT
 - request:
     method: get
-    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.117.1.7.1.209&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-5821315-rTsYuQHLf7MENo6RAfKt-cas
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.117.1.7.1.209&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-1692691-mZPdZ7V7qJPkGZpAsY1k-cas
     body:
       encoding: US-ASCII
       string: ''
@@ -258,15 +258,15 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Set-Cookie:
-      - BIGipServervsacweb_p=!YTQpxsEF4GoJ9rfm9OGvBt4MxRMcjrcMFSCf/O3gjfkTaoIUxckoEXuPFBy2JXlUDRyaSpEex9Ike3o=;
-        expires=Thu, 11-Oct-2018 21:40:27 GMT; path=/; Httponly; Secure
-      - JSESSIONID=22F7811149734A5A9016E0C0ED4F9C3E;path=/vsac;HttpOnly;Secure
+      - BIGipServervsacweb_p=!auMo/qKtVqcLiQbm9OGvBt4MxRMcjhfpNkx9x6JdF7/6DwGs+bEIXxBHstBqhE+xZBMVYuf8mq/raYM=;
+        expires=Mon, 22-Oct-2018 18:59:20 GMT; path=/; Httponly; Secure
+      - JSESSIONID=C4548B03F71AA4156C1857104191FD8E;path=/vsac;HttpOnly;Secure
       Content-Type:
       - text/xml;charset=utf-8
       Content-Length:
       - '1613'
       Date:
-      - Thu, 11 Oct 2018 19:40:27 GMT
+      - Mon, 22 Oct 2018 16:59:20 GMT
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
@@ -287,14 +287,14 @@ http_interactions:
                 <ns0:Type>Extensional</ns0:Type>
                 <ns0:Binding>Dynamic</ns0:Binding>
                 <ns0:Status>Active</ns0:Status>
-                <ns0:RevisionDate>2018-10-11</ns0:RevisionDate>
+                <ns0:RevisionDate>2018-10-22</ns0:RevisionDate>
             </ns0:DescribedValueSet>
         </ns0:RetrieveMultipleValueSetsResponse>
     http_version: 
-  recorded_at: Thu, 11 Oct 2018 19:40:27 GMT
+  recorded_at: Mon, 22 Oct 2018 16:59:20 GMT
 - request:
     method: post
-    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-1700537-DPW7ppXP5forVHqM5Pe2cZbp4orzCQNfQT4krmZz0cjO0lns2j-cas
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-368395-crBdZSAoat66JCmtd5YhmdlbaKqbUBHccjGY2JidbMyy11lSSK-cas
     body:
       encoding: UTF-8
       string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
@@ -331,24 +331,24 @@ http_interactions:
       Content-Length:
       - '35'
       Date:
-      - Thu, 11 Oct 2018 19:40:27 GMT
+      - Mon, 22 Oct 2018 16:59:20 GMT
       Set-Cookie:
-      - BIGipServervsacweb_p=!4lFR+uG82FCkX1bNtNHn4GsLooFbUw/cq1VWNEC1FcWcYKMwRNUNky3Stlg5e91eRDcrfo7SyXr36+0=;
-        expires=Thu, 11-Oct-2018 21:40:27 GMT; path=/; Httponly; Secure
+      - BIGipServervsacweb_p=!/qC2gFhVFFGLgOnNtNHn4GsLooFbU62b2wI12e8uwkcYTBopmJ1WEIaRKTaRyzfIE0BjeSVelAimKyo=;
+        expires=Mon, 22-Oct-2018 18:59:20 GMT; path=/; Httponly; Secure
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.110 8080"
+      - "/Common/vsacweb_p 10.1.5.111 8080"
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
     body:
       encoding: UTF-8
-      string: ST-5821317-aj7Rouq1ErAlClj5bcxH-cas
+      string: ST-1692692-35jYPkolP6r94epmjYym-cas
     http_version: 
-  recorded_at: Thu, 11 Oct 2018 19:40:27 GMT
+  recorded_at: Mon, 22 Oct 2018 16:59:20 GMT
 - request:
     method: get
-    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.666.5.307&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-5821317-aj7Rouq1ErAlClj5bcxH-cas
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.666.5.307&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-1692692-35jYPkolP6r94epmjYym-cas
     body:
       encoding: US-ASCII
       string: ''
@@ -377,15 +377,15 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Set-Cookie:
-      - BIGipServervsacweb_p=!N8oCbYJeoMDzDnrm9OGvBt4MxRMcjvYqA4i0dKc4+Cgdhn8it9zzttESwJrLzPPcSUpBl2cCns5Tfck=;
-        expires=Thu, 11-Oct-2018 21:40:27 GMT; path=/; Httponly; Secure
-      - JSESSIONID=25CDE75927C9F7F2E4147D90A3A6A32D;path=/vsac;HttpOnly;Secure
+      - BIGipServervsacweb_p=!aWt8sz6RgQsS5Djm9OGvBt4MxRMcjnyp7d3gDrdn53jzVmWeGYyIMSZWaM+0sGjvEqFY4KXTEfM8Gew=;
+        expires=Mon, 22-Oct-2018 18:59:21 GMT; path=/; Httponly; Secure
+      - JSESSIONID=D47BC9B5F1955E3DFC8E29332CBB1798;path=/vsac;HttpOnly;Secure
       Content-Type:
       - text/xml;charset=utf-8
       Content-Length:
       - '1647'
       Date:
-      - Thu, 11 Oct 2018 19:40:27 GMT
+      - Mon, 22 Oct 2018 16:59:20 GMT
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
@@ -408,14 +408,14 @@ http_interactions:
                 <ns0:Type>Extensional</ns0:Type>
                 <ns0:Binding>Dynamic</ns0:Binding>
                 <ns0:Status>Active</ns0:Status>
-                <ns0:RevisionDate>2018-10-11</ns0:RevisionDate>
+                <ns0:RevisionDate>2018-10-22</ns0:RevisionDate>
             </ns0:DescribedValueSet>
         </ns0:RetrieveMultipleValueSetsResponse>
     http_version: 
-  recorded_at: Thu, 11 Oct 2018 19:40:27 GMT
+  recorded_at: Mon, 22 Oct 2018 16:59:21 GMT
 - request:
     method: post
-    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-1700537-DPW7ppXP5forVHqM5Pe2cZbp4orzCQNfQT4krmZz0cjO0lns2j-cas
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-368395-crBdZSAoat66JCmtd5YhmdlbaKqbUBHccjGY2JidbMyy11lSSK-cas
     body:
       encoding: UTF-8
       string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
@@ -452,24 +452,24 @@ http_interactions:
       Content-Length:
       - '35'
       Date:
-      - Thu, 11 Oct 2018 19:40:27 GMT
+      - Mon, 22 Oct 2018 16:59:20 GMT
       Set-Cookie:
-      - BIGipServervsacweb_p=!dz4bXafJUB+KF8Hm9OGvBt4MxRMcjnn1HLlGrDFgmw/hdlXtFF5jCJiwcaGmLuSx0h8Hnt1L8GiIYjU=;
-        expires=Thu, 11-Oct-2018 21:40:27 GMT; path=/; Httponly; Secure
+      - BIGipServervsacweb_p=!FFckgq8Ucjd5MlLNtNHn4GsLooFbU9ZbEJx0CRI+tlDIc1QfVgDQ4UX2rG4LwYrRlLkaptr4kX1b194=;
+        expires=Mon, 22-Oct-2018 18:59:21 GMT; path=/; Httponly; Secure
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.114 8080"
+      - "/Common/vsacweb_p 10.1.5.111 8080"
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
     body:
       encoding: UTF-8
-      string: ST-5821321-Vp7yYigUedfGscfpFccR-cas
+      string: ST-1692693-iswNXe1HQP0mEXhdsRhv-cas
     http_version: 
-  recorded_at: Thu, 11 Oct 2018 19:40:27 GMT
+  recorded_at: Mon, 22 Oct 2018 16:59:21 GMT
 - request:
     method: get
-    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113762.1.4.1108.15&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-5821321-Vp7yYigUedfGscfpFccR-cas
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113762.1.4.1108.15&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-1692693-iswNXe1HQP0mEXhdsRhv-cas
     body:
       encoding: US-ASCII
       string: ''
@@ -498,15 +498,15 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Set-Cookie:
-      - BIGipServervsacweb_p=!TQJxoxvhiL8ZBFfm9OGvBt4MxRMcjmahljGIJiBLtsW97UaE4zJ9g8E0Nz1ocXmYxvKxZ1CNT07SYas=;
-        expires=Thu, 11-Oct-2018 21:40:28 GMT; path=/; Httponly; Secure
-      - JSESSIONID=55A32FE0624B7E32EB1BC7468CDB5811;path=/vsac;HttpOnly;Secure
+      - BIGipServervsacweb_p=!otfK4oPJo9PtOOvm9OGvBt4MxRMcjlD2h5JVbTRUCQAxKb4GA5yd/uAgaXoHEohSKzXUVyrQ0SanhjI=;
+        expires=Mon, 22-Oct-2018 18:59:21 GMT; path=/; Httponly; Secure
+      - JSESSIONID=65EBC08877485E15CA85DB2321CB599B;path=/vsac;HttpOnly;Secure
       Content-Type:
       - text/xml;charset=utf-8
       Content-Length:
       - '1536'
       Date:
-      - Thu, 11 Oct 2018 19:40:28 GMT
+      - Mon, 22 Oct 2018 16:59:20 GMT
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
@@ -528,14 +528,14 @@ http_interactions:
                 <ns0:Type>Extensional</ns0:Type>
                 <ns0:Binding>Dynamic</ns0:Binding>
                 <ns0:Status>Active</ns0:Status>
-                <ns0:RevisionDate>2018-10-11</ns0:RevisionDate>
+                <ns0:RevisionDate>2018-10-22</ns0:RevisionDate>
             </ns0:DescribedValueSet>
         </ns0:RetrieveMultipleValueSetsResponse>
     http_version: 
-  recorded_at: Thu, 11 Oct 2018 19:40:28 GMT
+  recorded_at: Mon, 22 Oct 2018 16:59:21 GMT
 - request:
     method: post
-    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-1700537-DPW7ppXP5forVHqM5Pe2cZbp4orzCQNfQT4krmZz0cjO0lns2j-cas
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-368395-crBdZSAoat66JCmtd5YhmdlbaKqbUBHccjGY2JidbMyy11lSSK-cas
     body:
       encoding: UTF-8
       string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
@@ -572,24 +572,24 @@ http_interactions:
       Content-Length:
       - '35'
       Date:
-      - Thu, 11 Oct 2018 19:40:27 GMT
+      - Mon, 22 Oct 2018 16:59:20 GMT
       Set-Cookie:
-      - BIGipServervsacweb_p=!0WtH8ywmEuBPxaPm9OGvBt4MxRMcjnXtfsBGsDh+IpI1B4cV4ZwKXUrVxMOw1Q8AfbaS8fidm0Ebqho=;
-        expires=Thu, 11-Oct-2018 21:40:28 GMT; path=/; Httponly; Secure
+      - BIGipServervsacweb_p=!LiLcQnrv1zn2/3Lm9OGvBt4MxRMcjnxTzVZVV2cTZoIvnD23wyRIA60mICHboYifjXQTwt0YnzeUiCs=;
+        expires=Mon, 22-Oct-2018 18:59:21 GMT; path=/; Httponly; Secure
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.114 8080"
+      - "/Common/vsacweb_p 10.1.5.111 8080"
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
     body:
       encoding: UTF-8
-      string: ST-5821323-Gmson5t0P4A2EcP2YwS2-cas
+      string: ST-1692695-bUyJMlnD5HiLNffPP1nv-cas
     http_version: 
-  recorded_at: Thu, 11 Oct 2018 19:40:28 GMT
+  recorded_at: Mon, 22 Oct 2018 16:59:21 GMT
 - request:
     method: get
-    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.117.1.7.1.292&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-5821323-Gmson5t0P4A2EcP2YwS2-cas
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.117.1.7.1.292&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-1692695-bUyJMlnD5HiLNffPP1nv-cas
     body:
       encoding: US-ASCII
       string: ''
@@ -618,15 +618,15 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Set-Cookie:
-      - BIGipServervsacweb_p=!qPz+adLNDhjGjdDm9OGvBt4MxRMcjt5+4IKI7UdBpeWef8frR6E5CSeo6WAh8YbMUBPuq3s2wH+Xalk=;
-        expires=Thu, 11-Oct-2018 21:40:28 GMT; path=/; Httponly; Secure
-      - JSESSIONID=8E5A721C9FB388AE72279ED0B5177662;path=/vsac;HttpOnly;Secure
+      - BIGipServervsacweb_p=!oCNoDQbRBOLehmTNtNHn4GsLooFbU8zq3tyN9WVSDe8IiyuRSbXxHg90sobDMNoGUC3+uM3H14rB0dA=;
+        expires=Mon, 22-Oct-2018 18:59:21 GMT; path=/; Httponly; Secure
+      - JSESSIONID=CD10EA682C999BBAD240C18A5DB38CCD;path=/vsac;HttpOnly;Secure
       Content-Type:
       - text/xml;charset=utf-8
       Content-Length:
       - '1369'
       Date:
-      - Thu, 11 Oct 2018 19:40:28 GMT
+      - Mon, 22 Oct 2018 16:59:21 GMT
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
@@ -647,14 +647,14 @@ http_interactions:
                 <ns0:Type>Extensional</ns0:Type>
                 <ns0:Binding>Dynamic</ns0:Binding>
                 <ns0:Status>Active</ns0:Status>
-                <ns0:RevisionDate>2018-10-11</ns0:RevisionDate>
+                <ns0:RevisionDate>2018-10-22</ns0:RevisionDate>
             </ns0:DescribedValueSet>
         </ns0:RetrieveMultipleValueSetsResponse>
     http_version: 
-  recorded_at: Thu, 11 Oct 2018 19:40:28 GMT
+  recorded_at: Mon, 22 Oct 2018 16:59:21 GMT
 - request:
     method: post
-    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-1700537-DPW7ppXP5forVHqM5Pe2cZbp4orzCQNfQT4krmZz0cjO0lns2j-cas
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-368395-crBdZSAoat66JCmtd5YhmdlbaKqbUBHccjGY2JidbMyy11lSSK-cas
     body:
       encoding: UTF-8
       string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
@@ -691,10 +691,10 @@ http_interactions:
       Content-Length:
       - '35'
       Date:
-      - Thu, 11 Oct 2018 19:40:28 GMT
+      - Mon, 22 Oct 2018 16:59:21 GMT
       Set-Cookie:
-      - BIGipServervsacweb_p=!EuNtqZjWl8mlMQDm9OGvBt4MxRMcjkoEdQw02JfpJ3Z5fF0wXRwuGgDbeTXdOmdBovxxe6A7Fdo5hxA=;
-        expires=Thu, 11-Oct-2018 21:40:28 GMT; path=/; Httponly; Secure
+      - BIGipServervsacweb_p=!2ERHTN2odtCd0FDm9OGvBt4MxRMcjljxiwHOkP66TgMJmulGhpROwegf/Bc7L/U5CE8j+9r2AxX2CFE=;
+        expires=Mon, 22-Oct-2018 18:59:22 GMT; path=/; Httponly; Secure
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
@@ -703,12 +703,12 @@ http_interactions:
       - max-age=31536000; includeSubDomains; preload
     body:
       encoding: UTF-8
-      string: ST-5821326-9aOcPKHQQSnqswX3PPUu-cas
+      string: ST-1692696-4XY2IQkrmYlFNgui1rGJ-cas
     http_version: 
-  recorded_at: Thu, 11 Oct 2018 19:40:28 GMT
+  recorded_at: Mon, 22 Oct 2018 16:59:22 GMT
 - request:
     method: get
-    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.666.5.307&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-5821326-9aOcPKHQQSnqswX3PPUu-cas
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.666.5.307&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-1692696-4XY2IQkrmYlFNgui1rGJ-cas
     body:
       encoding: US-ASCII
       string: ''
@@ -737,19 +737,19 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Set-Cookie:
-      - BIGipServervsacweb_p=!ByPV8YNCpc/e5WHm9OGvBt4MxRMcjss7RXyNqVs0TBcCUg3aAz3OSfTlj5L7Y+mJvkTg30YRDhIIL+Q=;
-        expires=Thu, 11-Oct-2018 21:40:29 GMT; path=/; Httponly; Secure
-      - JSESSIONID=CAC733363A8780B3584FD12F92CBC74B;path=/vsac;HttpOnly;Secure
+      - BIGipServervsacweb_p=!stVeOk6CP4vonvbNtNHn4GsLooFbU0QFI0Q8ADifh1zpqwP9aIqRPlJZwQpFz2Nw7wEglRd2LBWJWrE=;
+        expires=Mon, 22-Oct-2018 18:59:22 GMT; path=/; Httponly; Secure
+      - JSESSIONID=6288896E9FC60C0022425E1F2B761D25;path=/vsac;HttpOnly;Secure
       Content-Type:
       - text/xml;charset=utf-8
       Content-Length:
       - '1647'
       Date:
-      - Thu, 11 Oct 2018 19:40:29 GMT
+      - Mon, 22 Oct 2018 16:59:21 GMT
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.114 8080"
+      - "/Common/vsacweb_p 10.1.5.111 8080"
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
     body:
@@ -768,14 +768,14 @@ http_interactions:
                 <ns0:Type>Extensional</ns0:Type>
                 <ns0:Binding>Dynamic</ns0:Binding>
                 <ns0:Status>Active</ns0:Status>
-                <ns0:RevisionDate>2018-10-11</ns0:RevisionDate>
+                <ns0:RevisionDate>2018-10-22</ns0:RevisionDate>
             </ns0:DescribedValueSet>
         </ns0:RetrieveMultipleValueSetsResponse>
     http_version: 
-  recorded_at: Thu, 11 Oct 2018 19:40:29 GMT
+  recorded_at: Mon, 22 Oct 2018 16:59:22 GMT
 - request:
     method: post
-    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-1700537-DPW7ppXP5forVHqM5Pe2cZbp4orzCQNfQT4krmZz0cjO0lns2j-cas
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-368395-crBdZSAoat66JCmtd5YhmdlbaKqbUBHccjGY2JidbMyy11lSSK-cas
     body:
       encoding: UTF-8
       string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
@@ -812,24 +812,24 @@ http_interactions:
       Content-Length:
       - '35'
       Date:
-      - Thu, 11 Oct 2018 19:40:28 GMT
+      - Mon, 22 Oct 2018 16:59:21 GMT
       Set-Cookie:
-      - BIGipServervsacweb_p=!t8p73m0O8Pij90DNtNHn4GsLooFbU8VJa7cz1ZWEfExBPoI+YFobVreYp6o8F3JPJCMvZMq46PpvrEM=;
-        expires=Thu, 11-Oct-2018 21:40:29 GMT; path=/; Httponly; Secure
+      - BIGipServervsacweb_p=!CvVmwqJbG4g0rn3NtNHn4GsLooFbUwXFEu5IvAuueSm2dzh2MsUYTV4BmNsdOD2Fe42Zd6g0BfYmpeI=;
+        expires=Mon, 22-Oct-2018 18:59:22 GMT; path=/; Httponly; Secure
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.110 8080"
+      - "/Common/vsacweb_p 10.1.5.111 8080"
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
     body:
       encoding: UTF-8
-      string: ST-5821332-BhIQfwvZZggXDub5ewee-cas
+      string: ST-1692698-R7wFJcbjjeEyq6diDCBL-cas
     http_version: 
-  recorded_at: Thu, 11 Oct 2018 19:40:29 GMT
+  recorded_at: Mon, 22 Oct 2018 16:59:22 GMT
 - request:
     method: get
-    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113762.1.4.1110.23&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-5821332-BhIQfwvZZggXDub5ewee-cas
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113762.1.4.1110.23&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-1692698-R7wFJcbjjeEyq6diDCBL-cas
     body:
       encoding: US-ASCII
       string: ''
@@ -858,15 +858,15 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Set-Cookie:
-      - BIGipServervsacweb_p=!Y3YuX9Ynqr+jIV/NtNHn4GsLooFbU0XC3WYjPBdkyjXOp6YT92+SwOCCt1iAu11nrtfI4K2cuMGZN9A=;
-        expires=Thu, 11-Oct-2018 21:40:29 GMT; path=/; Httponly; Secure
-      - JSESSIONID=3F0202E38FA8FFF7D2379CEEAFC0E739;path=/vsac;HttpOnly;Secure
+      - BIGipServervsacweb_p=!QDZJOwci1S58Wl/NtNHn4GsLooFbU8JalH01SgDKOwSc2qhpm2uVKy+sQ2ClxlU4w5uomq1TmaI3BDI=;
+        expires=Mon, 22-Oct-2018 18:59:22 GMT; path=/; Httponly; Secure
+      - JSESSIONID=E38F6482CD6D506F37411F2ACEEB6CC2;path=/vsac;HttpOnly;Secure
       Content-Type:
       - text/xml;charset=utf-8
       Content-Length:
       - '3199'
       Date:
-      - Thu, 11 Oct 2018 19:40:29 GMT
+      - Mon, 22 Oct 2018 16:59:21 GMT
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
@@ -897,14 +897,14 @@ http_interactions:
                 <ns0:Type>Extensional</ns0:Type>
                 <ns0:Binding>Dynamic</ns0:Binding>
                 <ns0:Status>Active</ns0:Status>
-                <ns0:RevisionDate>2018-10-11</ns0:RevisionDate>
+                <ns0:RevisionDate>2018-10-22</ns0:RevisionDate>
             </ns0:DescribedValueSet>
         </ns0:RetrieveMultipleValueSetsResponse>
     http_version: 
-  recorded_at: Thu, 11 Oct 2018 19:40:30 GMT
+  recorded_at: Mon, 22 Oct 2018 16:59:22 GMT
 - request:
     method: post
-    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-1700537-DPW7ppXP5forVHqM5Pe2cZbp4orzCQNfQT4krmZz0cjO0lns2j-cas
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-368395-crBdZSAoat66JCmtd5YhmdlbaKqbUBHccjGY2JidbMyy11lSSK-cas
     body:
       encoding: UTF-8
       string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
@@ -941,10 +941,10 @@ http_interactions:
       Content-Length:
       - '35'
       Date:
-      - Thu, 11 Oct 2018 19:40:29 GMT
+      - Mon, 22 Oct 2018 16:59:21 GMT
       Set-Cookie:
-      - BIGipServervsacweb_p=!vstae5WhK0BhtTvm9OGvBt4MxRMcjhDCXqoICf+JdjhPHLxFVcEl8XoQ1oQ4HisR44lwDuCrl7xy3k4=;
-        expires=Thu, 11-Oct-2018 21:40:30 GMT; path=/; Httponly; Secure
+      - BIGipServervsacweb_p=!1LOkxrYtFp+hEFjNtNHn4GsLooFbUw747MXcH3/kCBAjsbwdggkNiAQ1TQiw8jBygYpDfqAPuZeiQYY=;
+        expires=Mon, 22-Oct-2018 18:59:22 GMT; path=/; Httponly; Secure
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
@@ -953,12 +953,12 @@ http_interactions:
       - max-age=31536000; includeSubDomains; preload
     body:
       encoding: UTF-8
-      string: ST-5821333-MxTecdI2kXIzHbeDpzgH-cas
+      string: ST-1692699-JbyqR3dhq3dON2KoViUx-cas
     http_version: 
-  recorded_at: Thu, 11 Oct 2018 19:40:30 GMT
+  recorded_at: Mon, 22 Oct 2018 16:59:22 GMT
 - request:
     method: get
-    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113762.1.4.1&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-5821333-MxTecdI2kXIzHbeDpzgH-cas
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113762.1.4.1&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-1692699-JbyqR3dhq3dON2KoViUx-cas
     body:
       encoding: US-ASCII
       string: ''
@@ -987,15 +987,15 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Set-Cookie:
-      - BIGipServervsacweb_p=!MR+gCI3tz0gb4XbNtNHn4GsLooFbU8cv7ep5RFUQuBmhEW3L06Znnb92KclIg0jOIvk1LGYg8ufHERw=;
-        expires=Thu, 11-Oct-2018 21:40:30 GMT; path=/; Httponly; Secure
-      - JSESSIONID=90C34C0F40B3E353D5765F254AD5F207;path=/vsac;HttpOnly;Secure
+      - BIGipServervsacweb_p=!6/hGk+ne/7t5wLfm9OGvBt4MxRMcjj6kNipCo8mLrB6bcj5ZFQDRGz9KZAD/JLEutQMO3QsV/Pmw1Uw=;
+        expires=Mon, 22-Oct-2018 18:59:23 GMT; path=/; Httponly; Secure
+      - JSESSIONID=311215E9C965F2585CA62EB548627B69;path=/vsac;HttpOnly;Secure
       Content-Type:
       - text/xml;charset=utf-8
       Content-Length:
       - '1356'
       Date:
-      - Thu, 11 Oct 2018 19:40:29 GMT
+      - Mon, 22 Oct 2018 16:59:23 GMT
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
@@ -1017,14 +1017,14 @@ http_interactions:
                 <ns0:Type>Extensional</ns0:Type>
                 <ns0:Binding>Dynamic</ns0:Binding>
                 <ns0:Status>Active</ns0:Status>
-                <ns0:RevisionDate>2018-10-11</ns0:RevisionDate>
+                <ns0:RevisionDate>2018-10-22</ns0:RevisionDate>
             </ns0:DescribedValueSet>
         </ns0:RetrieveMultipleValueSetsResponse>
     http_version: 
-  recorded_at: Thu, 11 Oct 2018 19:40:30 GMT
+  recorded_at: Mon, 22 Oct 2018 16:59:23 GMT
 - request:
     method: post
-    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-1700537-DPW7ppXP5forVHqM5Pe2cZbp4orzCQNfQT4krmZz0cjO0lns2j-cas
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-368395-crBdZSAoat66JCmtd5YhmdlbaKqbUBHccjGY2JidbMyy11lSSK-cas
     body:
       encoding: UTF-8
       string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
@@ -1061,10 +1061,10 @@ http_interactions:
       Content-Length:
       - '35'
       Date:
-      - Thu, 11 Oct 2018 19:40:29 GMT
+      - Mon, 22 Oct 2018 16:59:23 GMT
       Set-Cookie:
-      - BIGipServervsacweb_p=!D20Wi8AZpNF92mDm9OGvBt4MxRMcjmymUCKrolRKKRTf9c8MwyHbj4r/IGLeN1XE629V5l/ukBTRKko=;
-        expires=Thu, 11-Oct-2018 21:40:30 GMT; path=/; Httponly; Secure
+      - BIGipServervsacweb_p=!AFl8scI/Lyz9wKHNtNHn4GsLooFbUydnN1ClHFWJHfj+7qMqPZtw14ZG/b4hegklHLWW2HOiNm350r4=;
+        expires=Mon, 22-Oct-2018 18:59:23 GMT; path=/; Httponly; Secure
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
@@ -1073,12 +1073,12 @@ http_interactions:
       - max-age=31536000; includeSubDomains; preload
     body:
       encoding: UTF-8
-      string: ST-5821337-DHXCSswn2vFW7tgtM0Rl-cas
+      string: ST-1692700-AeDyudXNfdq9XpziIvwr-cas
     http_version: 
-  recorded_at: Thu, 11 Oct 2018 19:40:30 GMT
+  recorded_at: Mon, 22 Oct 2018 16:59:23 GMT
 - request:
     method: get
-    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.114222.4.11.836&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-5821337-DHXCSswn2vFW7tgtM0Rl-cas
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.114222.4.11.836&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-1692700-AeDyudXNfdq9XpziIvwr-cas
     body:
       encoding: US-ASCII
       string: ''
@@ -1107,19 +1107,19 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Set-Cookie:
-      - BIGipServervsacweb_p=!da23d6Wr2lX7RKzm9OGvBt4MxRMcjqohWGwk6OEWty6vVS7J7xpGKoQ/j2NT+I8FpgNrt9+coRL9O8U=;
-        expires=Thu, 11-Oct-2018 21:40:31 GMT; path=/; Httponly; Secure
-      - JSESSIONID=AE7CD5D2507086056A2F2D0007239669;path=/vsac;HttpOnly;Secure
+      - BIGipServervsacweb_p=!QwF4QdF421HRFlfNtNHn4GsLooFbU+b/sHRa+a/ba/Wn+G+Bh7urUBOi1Y6Fvj37W7JLU3lM1FRX5dI=;
+        expires=Mon, 22-Oct-2018 18:59:23 GMT; path=/; Httponly; Secure
+      - JSESSIONID=7DDD129847C3F6ED93A5941BC2C8CF48;path=/vsac;HttpOnly;Secure
       Content-Type:
       - text/xml;charset=utf-8
       Content-Length:
       - '1765'
       Date:
-      - Thu, 11 Oct 2018 19:40:30 GMT
+      - Mon, 22 Oct 2018 16:59:23 GMT
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.110 8080"
+      - "/Common/vsacweb_p 10.1.5.111 8080"
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
     body:
@@ -1141,14 +1141,14 @@ http_interactions:
                 <ns0:Type>Extensional</ns0:Type>
                 <ns0:Binding>Dynamic</ns0:Binding>
                 <ns0:Status>Active</ns0:Status>
-                <ns0:RevisionDate>2018-10-11</ns0:RevisionDate>
+                <ns0:RevisionDate>2018-10-22</ns0:RevisionDate>
             </ns0:DescribedValueSet>
         </ns0:RetrieveMultipleValueSetsResponse>
     http_version: 
-  recorded_at: Thu, 11 Oct 2018 19:40:31 GMT
+  recorded_at: Mon, 22 Oct 2018 16:59:23 GMT
 - request:
     method: post
-    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-1700537-DPW7ppXP5forVHqM5Pe2cZbp4orzCQNfQT4krmZz0cjO0lns2j-cas
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-368395-crBdZSAoat66JCmtd5YhmdlbaKqbUBHccjGY2JidbMyy11lSSK-cas
     body:
       encoding: UTF-8
       string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
@@ -1185,10 +1185,10 @@ http_interactions:
       Content-Length:
       - '35'
       Date:
-      - Thu, 11 Oct 2018 19:40:31 GMT
+      - Mon, 22 Oct 2018 16:59:23 GMT
       Set-Cookie:
-      - BIGipServervsacweb_p=!O4QnLdJFeloz2sjm9OGvBt4MxRMcjjFA7hjLHLY3BaUw6rNjEMg+QX/MRdGGo14dJMRgUk9oSq/xJYg=;
-        expires=Thu, 11-Oct-2018 21:40:31 GMT; path=/; Httponly; Secure
+      - BIGipServervsacweb_p=!L7ncGi1Dss6qcCjNtNHn4GsLooFbUxvU6xzrtOx4P7k47XI2hWvdHflZurTaP07JnYr4pafT9e33Xoc=;
+        expires=Mon, 22-Oct-2018 18:59:23 GMT; path=/; Httponly; Secure
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
@@ -1197,12 +1197,12 @@ http_interactions:
       - max-age=31536000; includeSubDomains; preload
     body:
       encoding: UTF-8
-      string: ST-5821340-okavHFzAGbuYI5Z13LPP-cas
+      string: ST-1692702-iu0KwElnnNbEVfJDfWQf-cas
     http_version: 
-  recorded_at: Thu, 11 Oct 2018 19:40:31 GMT
+  recorded_at: Mon, 22 Oct 2018 16:59:23 GMT
 - request:
     method: get
-    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.114222.4.11.837&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-5821340-okavHFzAGbuYI5Z13LPP-cas
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.114222.4.11.837&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-1692702-iu0KwElnnNbEVfJDfWQf-cas
     body:
       encoding: US-ASCII
       string: ''
@@ -1231,15 +1231,15 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Set-Cookie:
-      - BIGipServervsacweb_p=!TmsECL5FEmDpj+Xm9OGvBt4MxRMcjqne0wW+7jR7Q9VSXFhxExfXcw4orqWw4Q27ksNdW8wDXTmmrLY=;
-        expires=Thu, 11-Oct-2018 21:40:31 GMT; path=/; Httponly; Secure
-      - JSESSIONID=162F438047C156564557005C36E07E94;path=/vsac;HttpOnly;Secure
+      - BIGipServervsacweb_p=!vDFu8aOYPVPZDS/NtNHn4GsLooFbUxK4BDktMe8kCKqwjDbkcWKNS0ZDDwFW1SykgF9TpNdR9HIIxDo=;
+        expires=Mon, 22-Oct-2018 18:59:24 GMT; path=/; Httponly; Secure
+      - JSESSIONID=877173916074C2DC29B7EC3EE147EC27;path=/vsac;HttpOnly;Secure
       Content-Type:
       - text/xml;charset=utf-8
       Content-Length:
       - '1128'
       Date:
-      - Thu, 11 Oct 2018 19:40:31 GMT
+      - Mon, 22 Oct 2018 16:59:23 GMT
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
@@ -1261,14 +1261,14 @@ http_interactions:
                 <ns0:Type>Extensional</ns0:Type>
                 <ns0:Binding>Dynamic</ns0:Binding>
                 <ns0:Status>Active</ns0:Status>
-                <ns0:RevisionDate>2018-10-11</ns0:RevisionDate>
+                <ns0:RevisionDate>2018-10-22</ns0:RevisionDate>
             </ns0:DescribedValueSet>
         </ns0:RetrieveMultipleValueSetsResponse>
     http_version: 
-  recorded_at: Thu, 11 Oct 2018 19:40:31 GMT
+  recorded_at: Mon, 22 Oct 2018 16:59:24 GMT
 - request:
     method: post
-    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-1700537-DPW7ppXP5forVHqM5Pe2cZbp4orzCQNfQT4krmZz0cjO0lns2j-cas
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-368395-crBdZSAoat66JCmtd5YhmdlbaKqbUBHccjGY2JidbMyy11lSSK-cas
     body:
       encoding: UTF-8
       string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
@@ -1305,24 +1305,24 @@ http_interactions:
       Content-Length:
       - '35'
       Date:
-      - Thu, 11 Oct 2018 19:40:31 GMT
+      - Mon, 22 Oct 2018 16:59:24 GMT
       Set-Cookie:
-      - BIGipServervsacweb_p=!pTj+6Mu0Gec8emTNtNHn4GsLooFbU5ZzZPTBvcdvY58C+W4EzTeqjVm7S8oknkGdxaTNW3S/LJgaF0o=;
-        expires=Thu, 11-Oct-2018 21:40:31 GMT; path=/; Httponly; Secure
+      - BIGipServervsacweb_p=!6KSMKUdlLbeUAZXNtNHn4GsLooFbU7GH2iCS5/axxYQqI5BE9mxm/6yK9oZITdCqxN9Eo5k3OLScw0E=;
+        expires=Mon, 22-Oct-2018 18:59:24 GMT; path=/; Httponly; Secure
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.110 8080"
+      - "/Common/vsacweb_p 10.1.5.111 8080"
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
     body:
       encoding: UTF-8
-      string: ST-5821343-FbGanjZtgWB2CkJAldGJ-cas
+      string: ST-1692703-Mxt7CdhGpOWl2n50mW1h-cas
     http_version: 
-  recorded_at: Thu, 11 Oct 2018 19:40:32 GMT
+  recorded_at: Mon, 22 Oct 2018 16:59:24 GMT
 - request:
     method: get
-    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.114222.4.11.3591&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-5821343-FbGanjZtgWB2CkJAldGJ-cas
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.114222.4.11.3591&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-1692703-Mxt7CdhGpOWl2n50mW1h-cas
     body:
       encoding: US-ASCII
       string: ''
@@ -1351,19 +1351,19 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Set-Cookie:
-      - BIGipServervsacweb_p=!Gd61FcVj86k4+mnNtNHn4GsLooFbUzOJL/kmQ4QTYd8IW4TRlNt2zsvWgRvkfWi9LMPRJV1BnkjxKGc=;
-        expires=Thu, 11-Oct-2018 21:40:32 GMT; path=/; Httponly; Secure
-      - JSESSIONID=3942A892E618E30CE924FBBE5B3BFBA4;path=/vsac;HttpOnly;Secure
+      - BIGipServervsacweb_p=!/CWBLIoxx2eMPonNtNHn4GsLooFbUy0Arem2WsdMBfRWFyeXgNVp2/5wlBJKPFVhmqRt06ksTGmrsJ4=;
+        expires=Mon, 22-Oct-2018 18:59:24 GMT; path=/; Httponly; Secure
+      - JSESSIONID=064143A43D017559F2A5B6C8DF55CEA2;path=/vsac;HttpOnly;Secure
       Content-Type:
       - text/xml;charset=utf-8
       Content-Length:
       - '24136'
       Date:
-      - Thu, 11 Oct 2018 19:40:32 GMT
+      - Mon, 22 Oct 2018 16:59:24 GMT
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.114 8080"
+      - "/Common/vsacweb_p 10.1.5.111 8080"
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
     body:
@@ -1520,14 +1520,14 @@ http_interactions:
                 <ns0:Type>Extensional</ns0:Type>
                 <ns0:Binding>Dynamic</ns0:Binding>
                 <ns0:Status>Active</ns0:Status>
-                <ns0:RevisionDate>2018-10-11</ns0:RevisionDate>
+                <ns0:RevisionDate>2018-10-22</ns0:RevisionDate>
             </ns0:DescribedValueSet>
         </ns0:RetrieveMultipleValueSetsResponse>
     http_version: 
-  recorded_at: Thu, 11 Oct 2018 19:40:32 GMT
+  recorded_at: Mon, 22 Oct 2018 16:59:24 GMT
 - request:
     method: post
-    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-1700537-DPW7ppXP5forVHqM5Pe2cZbp4orzCQNfQT4krmZz0cjO0lns2j-cas
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-368395-crBdZSAoat66JCmtd5YhmdlbaKqbUBHccjGY2JidbMyy11lSSK-cas
     body:
       encoding: UTF-8
       string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
@@ -1564,10 +1564,10 @@ http_interactions:
       Content-Length:
       - '35'
       Date:
-      - Thu, 11 Oct 2018 19:40:32 GMT
+      - Mon, 22 Oct 2018 16:59:24 GMT
       Set-Cookie:
-      - BIGipServervsacweb_p=!KtfoH3l+A5q/gd3m9OGvBt4MxRMcjnQdiZ1wiIXw8pNpbvXGfArf3PFAvwMTRSLw8jOWNLDtAweNuNA=;
-        expires=Thu, 11-Oct-2018 21:40:32 GMT; path=/; Httponly; Secure
+      - BIGipServervsacweb_p=!41QBX2K+ozrTGGrNtNHn4GsLooFbU68RE4ni7ZYKCS8gPuhbCwfGQ0ZrdFIIxLlkb4WyuRkZmFSg4F8=;
+        expires=Mon, 22-Oct-2018 18:59:24 GMT; path=/; Httponly; Secure
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
@@ -1576,12 +1576,12 @@ http_interactions:
       - max-age=31536000; includeSubDomains; preload
     body:
       encoding: UTF-8
-      string: ST-5821347-DrWep31ruskMYeiiXp72-cas
+      string: ST-1692704-uEovnbW1LuTEZryGfLwM-cas
     http_version: 
-  recorded_at: Thu, 11 Oct 2018 19:40:32 GMT
+  recorded_at: Mon, 22 Oct 2018 16:59:24 GMT
 - request:
     method: get
-    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.464.1003.199.12.1027&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-5821347-DrWep31ruskMYeiiXp72-cas
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.464.1003.199.12.1027&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-1692704-uEovnbW1LuTEZryGfLwM-cas
     body:
       encoding: US-ASCII
       string: ''
@@ -1610,19 +1610,19 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Set-Cookie:
-      - BIGipServervsacweb_p=!wRh43tFbtowkwh7NtNHn4GsLooFbUwLi+FBK9hf0ETCJwwbIeTB13OymI2VBBXU9U1KWuAUFZ1VT+EE=;
-        expires=Thu, 11-Oct-2018 21:40:32 GMT; path=/; Httponly; Secure
-      - JSESSIONID=55342B90FF559E4E60C28A189A229712;path=/vsac;HttpOnly;Secure
+      - BIGipServervsacweb_p=!KbU98H87nwzFD/7NtNHn4GsLooFbUzYU7rDGb7ByuyXGzS3EUG6+IrV5kzRlrrkjUFNIi23+2nWitVo=;
+        expires=Mon, 22-Oct-2018 18:59:26 GMT; path=/; Httponly; Secure
+      - JSESSIONID=0AFBD621530FB6A33D9631A5EBD0F565;path=/vsac;HttpOnly;Secure
       Content-Type:
       - text/xml;charset=utf-8
       Content-Length:
       - '1175'
       Date:
-      - Thu, 11 Oct 2018 19:40:31 GMT
+      - Mon, 22 Oct 2018 16:59:25 GMT
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.110 8080"
+      - "/Common/vsacweb_p 10.1.5.111 8080"
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
     body:
@@ -1640,14 +1640,14 @@ http_interactions:
                 <ns0:Type>Grouping</ns0:Type>
                 <ns0:Binding>Dynamic</ns0:Binding>
                 <ns0:Status>Active</ns0:Status>
-                <ns0:RevisionDate>2018-10-11</ns0:RevisionDate>
+                <ns0:RevisionDate>2018-10-22</ns0:RevisionDate>
             </ns0:DescribedValueSet>
         </ns0:RetrieveMultipleValueSetsResponse>
     http_version: 
-  recorded_at: Thu, 11 Oct 2018 19:40:33 GMT
+  recorded_at: Mon, 22 Oct 2018 16:59:26 GMT
 - request:
     method: post
-    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-1700537-DPW7ppXP5forVHqM5Pe2cZbp4orzCQNfQT4krmZz0cjO0lns2j-cas
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-368395-crBdZSAoat66JCmtd5YhmdlbaKqbUBHccjGY2JidbMyy11lSSK-cas
     body:
       encoding: UTF-8
       string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
@@ -1684,10 +1684,10 @@ http_interactions:
       Content-Length:
       - '35'
       Date:
-      - Thu, 11 Oct 2018 19:40:32 GMT
+      - Mon, 22 Oct 2018 16:59:26 GMT
       Set-Cookie:
-      - BIGipServervsacweb_p=!aV3FvnHsEjYwUfnm9OGvBt4MxRMcjms8aA8ZgprRBWT/ItTjLQE8N43jBsocxncaKb0BiuNULyRQmJM=;
-        expires=Thu, 11-Oct-2018 21:40:33 GMT; path=/; Httponly; Secure
+      - BIGipServervsacweb_p=!Mqb1K5yKTh8A7nTm9OGvBt4MxRMcjmRbh0xsexbxNGxH6oRcmj5XuoQ4HMko508NaFCZ9pyRkJKgpI8=;
+        expires=Mon, 22-Oct-2018 18:59:26 GMT; path=/; Httponly; Secure
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
@@ -1696,12 +1696,12 @@ http_interactions:
       - max-age=31536000; includeSubDomains; preload
     body:
       encoding: UTF-8
-      string: ST-5821350-Tf9fsBWboWTRpeB5TB1Y-cas
+      string: ST-1692707-qvRfUHN9i3qVgCQaRxom-cas
     http_version: 
-  recorded_at: Thu, 11 Oct 2018 19:40:33 GMT
+  recorded_at: Mon, 22 Oct 2018 16:59:26 GMT
 - request:
     method: get
-    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.464.1004.1448&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-5821350-Tf9fsBWboWTRpeB5TB1Y-cas
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.464.1004.1325&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-1692707-qvRfUHN9i3qVgCQaRxom-cas
     body:
       encoding: US-ASCII
       string: ''
@@ -1714,27 +1714,1463 @@ http_interactions:
       - Ruby
   response:
     status:
-      code: 500
+      code: 200
       message: ''
     headers:
-      Content-Length:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
       - '0'
-      Date:
-      - Thu, 11 Oct 2018 19:40:33 GMT
-      Connection:
-      - close
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
       Set-Cookie:
-      - BIGipServervsacweb_p=!/wXT7ue9Ns/112bm9OGvBt4MxRMcjoUg0/RCGMyEA+Ndh4U5KuRXcJIyIjw/30UDooPw3Dp0uCRqPp8=;
-        expires=Thu, 11-Oct-2018 21:40:33 GMT; path=/; Httponly; Secure
+      - BIGipServervsacweb_p=!Is9CSm2JCRS2TqLm9OGvBt4MxRMcjixh9SpttLnUDTno6rbqiiF+lNklECMflFsJcTZzsCIhSlUMqX0=;
+        expires=Mon, 22-Oct-2018 18:59:27 GMT; path=/; Httponly; Secure
+      - JSESSIONID=5DC85268569F319BB3F3D7D6ED36A2FF;path=/vsac;HttpOnly;Secure
+      Content-Type:
+      - text/xml;charset=utf-8
+      Content-Length:
+      - '13391'
+      Date:
+      - Mon, 22 Oct 2018 16:59:27 GMT
       X-Vip-Info:
       - 130.14.16.40:443
       X-Pool-Info:
-      - "/Common/vsacweb_p 10.1.5.114 8080"
+      - "/Common/vsacweb_p 10.1.5.111 8080"
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
     body:
       encoding: UTF-8
-      string: ''
+      string: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <ns0:RetrieveMultipleValueSetsResponse xmlns:ns0="urn:ihe:iti:svs:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <ns0:DescribedValueSet ID="2.16.840.1.113883.3.464.1004.1325" displayName="Bone Marrow Transplant" version="N/A">
+                <ns0:ConceptList>
+                    <ns0:Concept code="19944001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Autologous bone marrow transplant without purging (procedure)"/>
+                    <ns0:Concept code="234331007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Syngeneic bone marrow transplant (procedure)"/>
+                    <ns0:Concept code="234332000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="T-cell depleted allogeneic bone marrow graft (procedure)"/>
+                    <ns0:Concept code="234333005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Imperfect T-cell depleted allogeneic bone marrow graft (procedure)"/>
+                    <ns0:Concept code="234334004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Allogeneic related bone marrow transplant (procedure)"/>
+                    <ns0:Concept code="234335003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Allogeneic unrelated bone marrow transplant (procedure)"/>
+                    <ns0:Concept code="234336002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Hemopoietic stem cell transplant (procedure)"/>
+                    <ns0:Concept code="23719005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Transplantation of bone marrow (procedure)"/>
+                    <ns0:Concept code="30230AZ" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Embryonic Stem Cells into Peripheral Vein, Open Approach"/>
+                    <ns0:Concept code="30230G0" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Autologous Bone Marrow into Peripheral Vein, Open Approach"/>
+                    <ns0:Concept code="30230X0" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Autologous Cord Blood Stem Cells into Peripheral Vein, Open Approach"/>
+                    <ns0:Concept code="30230Y0" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Autologous Hematopoietic Stem Cells into Peripheral Vein, Open Approach"/>
+                    <ns0:Concept code="30233AZ" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Embryonic Stem Cells into Peripheral Vein, Percutaneous Approach"/>
+                    <ns0:Concept code="30233G0" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Autologous Bone Marrow into Peripheral Vein, Percutaneous Approach"/>
+                    <ns0:Concept code="30233X0" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Autologous Cord Blood Stem Cells into Peripheral Vein, Percutaneous Approach"/>
+                    <ns0:Concept code="30233Y0" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Autologous Hematopoietic Stem Cells into Peripheral Vein, Percutaneous Approach"/>
+                    <ns0:Concept code="30240AZ" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Embryonic Stem Cells into Central Vein, Open Approach"/>
+                    <ns0:Concept code="30240G0" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Autologous Bone Marrow into Central Vein, Open Approach"/>
+                    <ns0:Concept code="30240X0" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Autologous Cord Blood Stem Cells into Central Vein, Open Approach"/>
+                    <ns0:Concept code="30240Y0" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Autologous Hematopoietic Stem Cells into Central Vein, Open Approach"/>
+                    <ns0:Concept code="30243AZ" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Embryonic Stem Cells into Central Vein, Percutaneous Approach"/>
+                    <ns0:Concept code="30243G0" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Autologous Bone Marrow into Central Vein, Percutaneous Approach"/>
+                    <ns0:Concept code="30243X0" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Autologous Cord Blood Stem Cells into Central Vein, Percutaneous Approach"/>
+                    <ns0:Concept code="30243Y0" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Autologous Hematopoietic Stem Cells into Central Vein, Percutaneous Approach"/>
+                    <ns0:Concept code="30250G0" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Autologous Bone Marrow into Peripheral Artery, Open Approach"/>
+                    <ns0:Concept code="30250G1" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Nonautologous Bone Marrow into Peripheral Artery, Open Approach"/>
+                    <ns0:Concept code="30250X0" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Autologous Cord Blood Stem Cells into Peripheral Artery, Open Approach"/>
+                    <ns0:Concept code="30250X1" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Nonautologous Cord Blood Stem Cells into Peripheral Artery, Open Approach"/>
+                    <ns0:Concept code="30250Y0" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Autologous Hematopoietic Stem Cells into Peripheral Artery, Open Approach"/>
+                    <ns0:Concept code="30250Y1" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Nonautologous Hematopoietic Stem Cells into Peripheral Artery, Open Approach"/>
+                    <ns0:Concept code="30253G0" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Autologous Bone Marrow into Peripheral Artery, Percutaneous Approach"/>
+                    <ns0:Concept code="30253G1" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Nonautologous Bone Marrow into Peripheral Artery, Percutaneous Approach"/>
+                    <ns0:Concept code="30253X0" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Autologous Cord Blood Stem Cells into Peripheral Artery, Percutaneous Approach"/>
+                    <ns0:Concept code="30253X1" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Nonautologous Cord Blood Stem Cells into Peripheral Artery, Percutaneous Approach"/>
+                    <ns0:Concept code="30253Y0" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Autologous Hematopoietic Stem Cells into Peripheral Artery, Percutaneous Approach"/>
+                    <ns0:Concept code="30253Y1" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Nonautologous Hematopoietic Stem Cells into Peripheral Artery, Percutaneous Approach"/>
+                    <ns0:Concept code="30260G0" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Autologous Bone Marrow into Central Artery, Open Approach"/>
+                    <ns0:Concept code="30260G1" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Nonautologous Bone Marrow into Central Artery, Open Approach"/>
+                    <ns0:Concept code="30260X0" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Autologous Cord Blood Stem Cells into Central Artery, Open Approach"/>
+                    <ns0:Concept code="30260X1" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Nonautologous Cord Blood Stem Cells into Central Artery, Open Approach"/>
+                    <ns0:Concept code="30260Y0" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Autologous Hematopoietic Stem Cells into Central Artery, Open Approach"/>
+                    <ns0:Concept code="30260Y1" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Nonautologous Hematopoietic Stem Cells into Central Artery, Open Approach"/>
+                    <ns0:Concept code="30263G0" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Autologous Bone Marrow into Central Artery, Percutaneous Approach"/>
+                    <ns0:Concept code="30263G1" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Nonautologous Bone Marrow into Central Artery, Percutaneous Approach"/>
+                    <ns0:Concept code="30263X0" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Autologous Cord Blood Stem Cells into Central Artery, Percutaneous Approach"/>
+                    <ns0:Concept code="30263X1" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Nonautologous Cord Blood Stem Cells into Central Artery, Percutaneous Approach"/>
+                    <ns0:Concept code="30263Y0" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Autologous Hematopoietic Stem Cells into Central Artery, Percutaneous Approach"/>
+                    <ns0:Concept code="30263Y1" codeSystem="2.16.840.1.113883.6.4" codeSystemName="ICD10PCS" codeSystemVersion="2016" displayName="Transfusion of Nonautologous Hematopoietic Stem Cells into Central Artery, Percutaneous Approach"/>
+                    <ns0:Concept code="426425001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Allograft of bone marrow from sibling donor (procedure)"/>
+                    <ns0:Concept code="427423003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Allograft of bone marrow from matched unrelated donor (procedure)"/>
+                    <ns0:Concept code="442557006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Grafting of bone marrow using allograft from unmatched unrelated donor (procedure)"/>
+                    <ns0:Concept code="445757003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Allogeneic bone marrow transplantation without purging (procedure)"/>
+                    <ns0:Concept code="446253009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Allogeneic bone marrow transplantation with purging (procedure)"/>
+                    <ns0:Concept code="46280001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Autologous bone marrow transplant with purging (procedure)"/>
+                    <ns0:Concept code="58390007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Allogeneic bone marrow transplantation (procedure)"/>
+                    <ns0:Concept code="58776007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Autologous bone marrow transplant (procedure)"/>
+                </ns0:ConceptList>
+                <ns0:Source>National Committee for Quality Assurance</ns0:Source>
+                <ns0:Purpose>(Clinical Focus: in progress),(Data Element Scope: in progress),(Inclusion Criteria: in progress),(Exclusion Criteria: in progress)</ns0:Purpose>
+                <ns0:Definition>(2.16.840.1.113883.3.464.1003.198.11.1098:Bone Marrow Transplant),(2.16.840.1.113883.3.464.1003.198.11.1099:Bone Marrow Transplant)</ns0:Definition>
+                <ns0:Type>Grouping</ns0:Type>
+                <ns0:Binding>Dynamic</ns0:Binding>
+                <ns0:Status>Active</ns0:Status>
+                <ns0:RevisionDate>2018-10-22</ns0:RevisionDate>
+            </ns0:DescribedValueSet>
+        </ns0:RetrieveMultipleValueSetsResponse>
     http_version: 
-  recorded_at: Thu, 11 Oct 2018 19:40:33 GMT
+  recorded_at: Mon, 22 Oct 2018 16:59:27 GMT
+- request:
+    method: post
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-368395-crBdZSAoat66JCmtd5YhmdlbaKqbUBHccjGY2JidbMyy11lSSK-cas
+    body:
+      encoding: UTF-8
+      string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Length:
+      - '39'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - text/plain;charset=utf-8
+      Content-Length:
+      - '35'
+      Date:
+      - Mon, 22 Oct 2018 16:59:27 GMT
+      Set-Cookie:
+      - BIGipServervsacweb_p=!MUt/LujmuJUKvozNtNHn4GsLooFbU9pn80i6xGphgbnwOe/9uDX1XI+HqE+cjJ0TArmXMi3uFpYhDVY=;
+        expires=Mon, 22-Oct-2018 18:59:28 GMT; path=/; Httponly; Secure
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.111 8080"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: ST-1692709-4BNGbcrE5ngLkAYDavkc-cas
+    http_version: 
+  recorded_at: Mon, 22 Oct 2018 16:59:28 GMT
+- request:
+    method: get
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.464.1004.1448&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-1692709-4BNGbcrE5ngLkAYDavkc-cas
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Set-Cookie:
+      - BIGipServervsacweb_p=!uyB/HjyVP2nC6YzNtNHn4GsLooFbU+9EoJkRZhvrwv9iwZWagyt8KFcHN2XoDKfF0Ew35xQN6qi8hLk=;
+        expires=Mon, 22-Oct-2018 18:59:29 GMT; path=/; Httponly; Secure
+      - JSESSIONID=104CDFBA81CE2EB79BA050F6F150CFA8;path=/vsac;HttpOnly;Secure
+      Content-Type:
+      - text/xml;charset=utf-8
+      Content-Length:
+      - '3523'
+      Date:
+      - Mon, 22 Oct 2018 16:59:29 GMT
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.111 8080"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <ns0:RetrieveMultipleValueSetsResponse xmlns:ns0="urn:ihe:iti:svs:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <ns0:DescribedValueSet ID="2.16.840.1.113883.3.464.1004.1448" displayName="Cerebrospinal Fluid Leaks" version="N/A">
+                <ns0:ConceptList>
+                    <ns0:Concept code="167719009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Cerebrospinal fluid lymphocytosis (finding)"/>
+                    <ns0:Concept code="193064009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Cerebrospinal fluid leak from spinal puncture (disorder)"/>
+                    <ns0:Concept code="213210005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Postoperative cerebrospinal fluid leak (disorder)"/>
+                    <ns0:Concept code="230744007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Cerebrospinal fluid leak (disorder)"/>
+                    <ns0:Concept code="232280003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Post-traumatic cerebrospinal otorrhea (disorder)"/>
+                    <ns0:Concept code="232281004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Postoperative cerebrospinal otorrhea (disorder)"/>
+                    <ns0:Concept code="427758000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Cerebrospinal fluid leak from mouth (disorder)"/>
+                    <ns0:Concept code="429759002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Cerebrospinal fluid leak from nose and mouth (disorder)"/>
+                    <ns0:Concept code="68382005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Cerebrospinal fluid otorrhea (disorder)"/>
+                    <ns0:Concept code="73965003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Cerebrospinal fluid leakage (morphologic abnormality)"/>
+                    <ns0:Concept code="85638002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Cerebrospinal fluid rhinorrhea (disorder)"/>
+                    <ns0:Concept code="G96.0" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Cerebrospinal fluid leak"/>
+                    <ns0:Concept code="G97.0" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Cerebrospinal fluid leak from spinal puncture"/>
+                </ns0:ConceptList>
+                <ns0:Source>National Committee for Quality Assurance</ns0:Source>
+                <ns0:Purpose>(Clinical Focus: in progress),(Data Element Scope: in progress),(Inclusion Criteria: in progress),(Exclusion Criteria: in progress)</ns0:Purpose>
+                <ns0:Definition>(2.16.840.1.113883.3.464.1003.113.11.1233:Cerebrospinal Fluid Leaks),(2.16.840.1.113883.3.464.1003.113.11.1234:Cerebrospinal Fluid Leaks)</ns0:Definition>
+                <ns0:Type>Grouping</ns0:Type>
+                <ns0:Binding>Dynamic</ns0:Binding>
+                <ns0:Status>Active</ns0:Status>
+                <ns0:RevisionDate>2018-10-22</ns0:RevisionDate>
+            </ns0:DescribedValueSet>
+        </ns0:RetrieveMultipleValueSetsResponse>
+    http_version: 
+  recorded_at: Mon, 22 Oct 2018 16:59:29 GMT
+- request:
+    method: post
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-368395-crBdZSAoat66JCmtd5YhmdlbaKqbUBHccjGY2JidbMyy11lSSK-cas
+    body:
+      encoding: UTF-8
+      string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Length:
+      - '39'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - text/plain;charset=utf-8
+      Content-Length:
+      - '35'
+      Date:
+      - Mon, 22 Oct 2018 16:59:29 GMT
+      Set-Cookie:
+      - BIGipServervsacweb_p=!WteWS8fzwiYhVwLNtNHn4GsLooFbU3Qc1RBSu9mSlbVSe6PdR0c2Bp1BeS6+YpjTzkSBhu9VjXYfCW4=;
+        expires=Mon, 22-Oct-2018 18:59:29 GMT; path=/; Httponly; Secure
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.111 8080"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: ST-1692711-XdlgGK5bmZ9gb674lqD1-cas
+    http_version: 
+  recorded_at: Mon, 22 Oct 2018 16:59:29 GMT
+- request:
+    method: get
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.464.1003.108.12.1040&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-1692711-XdlgGK5bmZ9gb674lqD1-cas
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Set-Cookie:
+      - BIGipServervsacweb_p=!LB9nrF4yjcs9Pgjm9OGvBt4MxRMcjlEwGyOm2BMsCakUgtA6VJ9URJyBZ/e8b5jIJUb6i+yRGaZ+6hs=;
+        expires=Mon, 22-Oct-2018 18:59:30 GMT; path=/; Httponly; Secure
+      - JSESSIONID=C75DC26DBB04614B9AA9DDA9FA70C2AB;path=/vsac;HttpOnly;Secure
+      Content-Type:
+      - text/xml;charset=utf-8
+      Content-Length:
+      - '1446'
+      Date:
+      - Mon, 22 Oct 2018 16:59:30 GMT
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.111 8080"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <ns0:RetrieveMultipleValueSetsResponse xmlns:ns0="urn:ihe:iti:svs:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <ns0:DescribedValueSet ID="2.16.840.1.113883.3.464.1003.108.12.1040" displayName="Chemotherapy" version="N/A">
+                <ns0:ConceptList>
+                    <ns0:Concept code="Z51.0" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Encounter for antineoplastic radiation therapy"/>
+                    <ns0:Concept code="Z51.11" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Encounter for antineoplastic chemotherapy"/>
+                    <ns0:Concept code="Z51.12" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Encounter for antineoplastic immunotherapy"/>
+                </ns0:ConceptList>
+                <ns0:Source>National Committee for Quality Assurance</ns0:Source>
+                <ns0:Purpose>(Clinical Focus: ),(Data Element Scope: ),(Inclusion Criteria: ),(Exclusion Criteria: )</ns0:Purpose>
+                <ns0:Definition>(2.16.840.1.113883.3.464.1003.108.11.1146:Chemotherapy)</ns0:Definition>
+                <ns0:Type>Grouping</ns0:Type>
+                <ns0:Binding>Dynamic</ns0:Binding>
+                <ns0:Status>Active</ns0:Status>
+                <ns0:RevisionDate>2018-10-22</ns0:RevisionDate>
+            </ns0:DescribedValueSet>
+        </ns0:RetrieveMultipleValueSetsResponse>
+    http_version: 
+  recorded_at: Mon, 22 Oct 2018 16:59:30 GMT
+- request:
+    method: post
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-368395-crBdZSAoat66JCmtd5YhmdlbaKqbUBHccjGY2JidbMyy11lSSK-cas
+    body:
+      encoding: UTF-8
+      string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Length:
+      - '39'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - text/plain;charset=utf-8
+      Content-Length:
+      - '35'
+      Date:
+      - Mon, 22 Oct 2018 16:59:30 GMT
+      Set-Cookie:
+      - BIGipServervsacweb_p=!AaCMOHtYgIjzGwjm9OGvBt4MxRMcjm2Wq9as7HSVVKw+8aZjBFZw+iStsqOJWl3s+ubfyIwMUL+5S18=;
+        expires=Mon, 22-Oct-2018 18:59:30 GMT; path=/; Httponly; Secure
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.111 8080"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: ST-1692714-7STrc10RrvLHbWJO6ccs-cas
+    http_version: 
+  recorded_at: Mon, 22 Oct 2018 16:59:30 GMT
+- request:
+    method: get
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.464.1004.1447&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-1692714-7STrc10RrvLHbWJO6ccs-cas
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Set-Cookie:
+      - BIGipServervsacweb_p=!qvg98OwA2p9FomnNtNHn4GsLooFbU6G9tQgjipbEOOB2kwT/mLm5rBHtFpHqPpSteB65ZsQOTteb7aA=;
+        expires=Mon, 22-Oct-2018 18:59:32 GMT; path=/; Httponly; Secure
+      - JSESSIONID=4875587D2A2F4FEAD4BF8D41BADB082A;path=/vsac;HttpOnly;Secure
+      Content-Type:
+      - text/xml;charset=utf-8
+      Content-Length:
+      - '6234'
+      Date:
+      - Mon, 22 Oct 2018 16:59:31 GMT
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.111 8080"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <ns0:RetrieveMultipleValueSetsResponse xmlns:ns0="urn:ihe:iti:svs:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <ns0:DescribedValueSet ID="2.16.840.1.113883.3.464.1004.1447" displayName="Cochlear Implant" version="N/A">
+                <ns0:ConceptList>
+                    <ns0:Concept code="310012007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Cochlear implant service (qualifier value)"/>
+                    <ns0:Concept code="310013002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Adult cochlear implant service (qualifier value)"/>
+                    <ns0:Concept code="310014008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Pediatric cochlear implant service (qualifier value)"/>
+                    <ns0:Concept code="467286008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Cochlear implant system coil cable (physical object)"/>
+                    <ns0:Concept code="467396002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Cochlear implant system (physical object)"/>
+                    <ns0:Concept code="467453006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Cochlear implant system sound processor (physical object)"/>
+                    <ns0:Concept code="467600008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Cochlear implant system electrode array assembly (physical object)"/>
+                    <ns0:Concept code="467624000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Cochlear implant system battery pack (physical object)"/>
+                    <ns0:Concept code="468054007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Cochlear implant system coil (physical object)"/>
+                    <ns0:Concept code="69930" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Cochlear device implantation, with or without mastoidectomy"/>
+                    <ns0:Concept code="701524004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Cochlear implant evaluation/programming application software (physical object)"/>
+                    <ns0:Concept code="701568002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Cochlear implant assessment system (physical object)"/>
+                    <ns0:Concept code="708553008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Cochlear implant system component (physical object)"/>
+                    <ns0:Concept code="711586008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Cochlear implant system coil cover (physical object)"/>
+                    <ns0:Concept code="711587004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Cochlear implant system sound processor earhook (physical object)"/>
+                    <ns0:Concept code="711588009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Cochlear implant system sound processor off-ear holder (physical object)"/>
+                    <ns0:Concept code="711589001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Cochlear implant system connector (physical object)"/>
+                    <ns0:Concept code="711590005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Cochlear implant system sound processor/coil decorative cover (physical object)"/>
+                    <ns0:Concept code="711593007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Cochlear implant system sound processor audio earhook (physical object)"/>
+                    <ns0:Concept code="L8614" codeSystem="2.16.840.1.113883.6.285" codeSystemName="HCPCS" codeSystemVersion="2016" displayName="Cochlear device, includes all internal and external components"/>
+                    <ns0:Concept code="L8619" codeSystem="2.16.840.1.113883.6.285" codeSystemName="HCPCS" codeSystemVersion="2016" displayName="Cochlear implant, external speech processor and controller, integrated system, replacement"/>
+                    <ns0:Concept code="L8627" codeSystem="2.16.840.1.113883.6.285" codeSystemName="HCPCS" codeSystemVersion="2016" displayName="Cochlear implant, external speech processor, component, replacement"/>
+                    <ns0:Concept code="L8628" codeSystem="2.16.840.1.113883.6.285" codeSystemName="HCPCS" codeSystemVersion="2016" displayName="Cochlear implant, external controller component, replacement"/>
+                    <ns0:Concept code="Z96.20" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Presence of otological and audiological implant, unspecified"/>
+                    <ns0:Concept code="Z96.21" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Cochlear implant status"/>
+                </ns0:ConceptList>
+                <ns0:Source>National Committee for Quality Assurance</ns0:Source>
+                <ns0:Purpose>(Clinical Focus: in progress),(Data Element Scope: in progress),(Inclusion Criteria: in progress),(Exclusion Criteria: in progress)</ns0:Purpose>
+                <ns0:Definition>(2.16.840.1.113883.3.464.1003.119.11.1004:Cochlear Implants),(2.16.840.1.113883.3.464.1003.119.11.1005:Cochlear Implants),(2.16.840.1.113883.3.464.1003.119.11.1006:Cochlear Implants),(2.16.840.1.113883.3.464.1003.119.11.1007:Cochlear Implants)</ns0:Definition>
+                <ns0:Type>Grouping</ns0:Type>
+                <ns0:Binding>Dynamic</ns0:Binding>
+                <ns0:Status>Active</ns0:Status>
+                <ns0:RevisionDate>2018-10-22</ns0:RevisionDate>
+            </ns0:DescribedValueSet>
+        </ns0:RetrieveMultipleValueSetsResponse>
+    http_version: 
+  recorded_at: Mon, 22 Oct 2018 16:59:32 GMT
+- request:
+    method: post
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-368395-crBdZSAoat66JCmtd5YhmdlbaKqbUBHccjGY2JidbMyy11lSSK-cas
+    body:
+      encoding: UTF-8
+      string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Length:
+      - '39'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - text/plain;charset=utf-8
+      Content-Length:
+      - '35'
+      Date:
+      - Mon, 22 Oct 2018 16:59:31 GMT
+      Set-Cookie:
+      - BIGipServervsacweb_p=!pvnkh/D5kzBZTQ/NtNHn4GsLooFbU5w4HyN6010jGSSik59N3qE1mXy25+WFrwbxtxW8kLiSwnzbjSE=;
+        expires=Mon, 22-Oct-2018 18:59:32 GMT; path=/; Httponly; Secure
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.111 8080"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: ST-1692716-IpasX1bcAfeoVv1Hl6pA-cas
+    http_version: 
+  recorded_at: Mon, 22 Oct 2018 16:59:32 GMT
+- request:
+    method: get
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.464.1003.120.12.1001&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-1692716-IpasX1bcAfeoVv1Hl6pA-cas
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Set-Cookie:
+      - BIGipServervsacweb_p=!zxaSwwsYv6pL4MXm9OGvBt4MxRMcjgFRXhBBqYg2rK0fFWDm/qokIpGae9z8aTku3nVBfLmu6usESss=;
+        expires=Mon, 22-Oct-2018 18:59:33 GMT; path=/; Httponly; Secure
+      - JSESSIONID=16816E447A0805DC226BBF701C220C9A;path=/vsac;HttpOnly;Secure
+      Content-Type:
+      - text/xml;charset=utf-8
+      Content-Length:
+      - '25056'
+      Date:
+      - Mon, 22 Oct 2018 16:59:32 GMT
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.111 8080"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <ns0:RetrieveMultipleValueSetsResponse xmlns:ns0="urn:ihe:iti:svs:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <ns0:DescribedValueSet ID="2.16.840.1.113883.3.464.1003.120.12.1001" displayName="Disorders of the Immune System" version="N/A">
+                <ns0:ConceptList>
+                    <ns0:Concept code="18827005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Complement abnormality (disorder)"/>
+                    <ns0:Concept code="190979003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Selective immunoglobulin A deficiency (disorder)"/>
+                    <ns0:Concept code="190980000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Selective immunoglobulin M deficiency (disorder)"/>
+                    <ns0:Concept code="190981001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Selective immunoglobulin G deficiency (disorder)"/>
+                    <ns0:Concept code="190996002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Severe combined immunodeficiency with reticular dysgenesis (disorder)"/>
+                    <ns0:Concept code="190997006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Severe combined immunodeficiency with low T- and B-cell numbers (disorder)"/>
+                    <ns0:Concept code="190998001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Severe combined immunodeficiency with low or normal B-cell numbers (disorder)"/>
+                    <ns0:Concept code="191001007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Major histocompatibility complex class I deficiency (disorder)"/>
+                    <ns0:Concept code="191002000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Major histocompatibility complex class II deficiency (disorder)"/>
+                    <ns0:Concept code="191011000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Common variable immunodeficiency with predominant abnormalities of B-cell numbers and functions (disorder)"/>
+                    <ns0:Concept code="191012007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Common variable immunodeficiency with predominant immunoregulatory T-cell disorders (disorder)"/>
+                    <ns0:Concept code="191013002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Common variable immunodeficiency with autoantibodies to B- or T-cells (disorder)"/>
+                    <ns0:Concept code="191018006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Lymphocyte function antigen-1 defect (disorder)"/>
+                    <ns0:Concept code="23238000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Common variable agammaglobulinemia (disorder)"/>
+                    <ns0:Concept code="234416002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="X-linked hypogammaglobulinemia (disorder)"/>
+                    <ns0:Concept code="234532001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Immunodeficiency disorder (disorder)"/>
+                    <ns0:Concept code="234562007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Anti-protein antibody deficiency (disorder)"/>
+                    <ns0:Concept code="234593008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Classical complement pathway abnormality (disorder)"/>
+                    <ns0:Concept code="234594002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Complement 1q deficiency (disorder)"/>
+                    <ns0:Concept code="234595001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Complement 1q beta chain deficiency (disorder)"/>
+                    <ns0:Concept code="234596000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Complement 1q dysfunction (disorder)"/>
+                    <ns0:Concept code="234597009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Complement 1r deficiency (disorder)"/>
+                    <ns0:Concept code="234598004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Complement 1s deficiency (disorder)"/>
+                    <ns0:Concept code="234599007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Complement 2 deficiency (disorder)"/>
+                    <ns0:Concept code="234600005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Complement 4 deficiency (disorder)"/>
+                    <ns0:Concept code="234601009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Complement 4A deficiency (disorder)"/>
+                    <ns0:Concept code="234602002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Complement 4B deficiency (disorder)"/>
+                    <ns0:Concept code="234603007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Complement 3 deficiency (disorder)"/>
+                    <ns0:Concept code="234604001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Alternative pathway deficiency (disorder)"/>
+                    <ns0:Concept code="234605000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Factor B deficiency (disorder)"/>
+                    <ns0:Concept code="234607008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Factor D deficiency (disorder)"/>
+                    <ns0:Concept code="234608003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Terminal component deficiency (disorder)"/>
+                    <ns0:Concept code="234609006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Complement 5 deficiency (disorder)"/>
+                    <ns0:Concept code="234611002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Complement 6 deficiency (disorder)"/>
+                    <ns0:Concept code="234612009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Complement 7 deficiency (disorder)"/>
+                    <ns0:Concept code="234613004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Combined complement 6 and 7 deficiencies (disorder)"/>
+                    <ns0:Concept code="234614005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Complement 8 beta chain deficiency (disorder)"/>
+                    <ns0:Concept code="234615006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Complement 8 beta chain dysfunction (disorder)"/>
+                    <ns0:Concept code="234616007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Complement 8 alpha-gamma deficiency (disorder)"/>
+                    <ns0:Concept code="234617003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Complement 9 deficiency (disorder)"/>
+                    <ns0:Concept code="234618008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Complement regulatory factor defect (disorder)"/>
+                    <ns0:Concept code="234619000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Hereditary C1 esterase inhibitor deficiency - deficient factor (disorder)"/>
+                    <ns0:Concept code="234620006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Hereditary C1 esterase inhibitor deficiency - dysfunctional factor (disorder)"/>
+                    <ns0:Concept code="234621005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Factor I deficiency (disorder)"/>
+                    <ns0:Concept code="234622003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Factor H deficiency (disorder)"/>
+                    <ns0:Concept code="234623008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Complement 4 binding protein deficiency (disorder)"/>
+                    <ns0:Concept code="234624002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Decay accelerating factor deficiency (disorder)"/>
+                    <ns0:Concept code="234625001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Homologous restriction factor deficiency (disorder)"/>
+                    <ns0:Concept code="234626000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Complement 5a inhibitor deficiency (disorder)"/>
+                    <ns0:Concept code="234627009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Anaphylotoxin inactivator deficiency (disorder)"/>
+                    <ns0:Concept code="234628004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Complement receptor deficiency (disorder)"/>
+                    <ns0:Concept code="234629007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Complement receptor 1 deficiency (disorder)"/>
+                    <ns0:Concept code="234630002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Complement receptor 3 deficiency (disorder)"/>
+                    <ns0:Concept code="234631003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Immunodeficiency with major anomalies (disorder)"/>
+                    <ns0:Concept code="234646005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Graft-versus-host disease (disorder)"/>
+                    <ns0:Concept code="24419001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Disorder of complement (disorder)"/>
+                    <ns0:Concept code="24743004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Complement deficiency disease (disorder)"/>
+                    <ns0:Concept code="25109007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Lymphopenic agammaglobulinemia - short-limbed dwarfism syndrome (disorder)"/>
+                    <ns0:Concept code="263661007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Complement 5 dysfunction (disorder)"/>
+                    <ns0:Concept code="267538002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Agranulocytopenic disorder (disorder)"/>
+                    <ns0:Concept code="36070007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Wiskott-Aldrich syndrome (disorder)"/>
+                    <ns0:Concept code="39674000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Familial C3B inhibitor deficiency syndrome (disorder)"/>
+                    <ns0:Concept code="402355000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Acute graft-versus-host disease (disorder)"/>
+                    <ns0:Concept code="402356004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Chronic graft-versus-host disease (disorder)"/>
+                    <ns0:Concept code="402357008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Lichenoid chronic graft-versus-host disease (disorder)"/>
+                    <ns0:Concept code="402358003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Sclerodermoid chronic graft-versus-host disease (disorder)"/>
+                    <ns0:Concept code="402360001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Materno-fetal graft-versus-host disease (disorder)"/>
+                    <ns0:Concept code="403835002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="X-linked hyper-immunoglobulin M syndrome (disorder)"/>
+                    <ns0:Concept code="403836001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Autosomal recessive hyper- immunoglobulin M syndrome (disorder)"/>
+                    <ns0:Concept code="403837005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Wiskott-Aldrich autosomal dominant variant syndrome (disorder)"/>
+                    <ns0:Concept code="414029004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Disorder of immune function (disorder)"/>
+                    <ns0:Concept code="426202004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Immune reconstitution syndrome (disorder)"/>
+                    <ns0:Concept code="427167008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Hereditary angioedema with normal C1 esterase inhibitor activity (disorder)"/>
+                    <ns0:Concept code="442459007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Combined immunodeficiency disease (disorder)"/>
+                    <ns0:Concept code="444547006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Graft versus host disease of skin (disorder)"/>
+                    <ns0:Concept code="449187006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Kappa light chain deficiency (disorder)"/>
+                    <ns0:Concept code="55602000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Nezelof's syndrome (disorder)"/>
+                    <ns0:Concept code="702444009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Autoimmune lymphoproliferative syndrome (disorder)"/>
+                    <ns0:Concept code="81166004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Properdin deficiency disease (disorder)"/>
+                    <ns0:Concept code="82286005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Hyperimmunoglobulin M syndrome (disorder)"/>
+                    <ns0:Concept code="82966003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Hereditary angioedema (disorder)"/>
+                    <ns0:Concept code="88714009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Transient hypogammaglobulinemia of infancy (disorder)"/>
+                    <ns0:Concept code="D80.0" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Hereditary hypogammaglobulinemia"/>
+                    <ns0:Concept code="D80.1" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Nonfamilial hypogammaglobulinemia"/>
+                    <ns0:Concept code="D80.2" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Selective deficiency of immunoglobulin A [IgA]"/>
+                    <ns0:Concept code="D80.3" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Selective deficiency of immunoglobulin G [IgG] subclasses"/>
+                    <ns0:Concept code="D80.4" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Selective deficiency of immunoglobulin M [IgM]"/>
+                    <ns0:Concept code="D80.5" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Immunodeficiency with increased immunoglobulin M [IgM]"/>
+                    <ns0:Concept code="D80.6" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Antibody deficiency with near-normal immunoglobulins or with hyperimmunoglobulinemia"/>
+                    <ns0:Concept code="D80.7" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Transient hypogammaglobulinemia of infancy"/>
+                    <ns0:Concept code="D80.8" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Other immunodeficiencies with predominantly antibody defects"/>
+                    <ns0:Concept code="D80.9" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Immunodeficiency with predominantly antibody defects, unspecified"/>
+                    <ns0:Concept code="D81.0" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Severe combined immunodeficiency [SCID] with reticular dysgenesis"/>
+                    <ns0:Concept code="D81.1" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Severe combined immunodeficiency [SCID] with low T- and B-cell numbers"/>
+                    <ns0:Concept code="D81.2" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Severe combined immunodeficiency [SCID] with low or normal B-cell numbers"/>
+                    <ns0:Concept code="D81.4" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Nezelof's syndrome"/>
+                    <ns0:Concept code="D81.6" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Major histocompatibility complex class I deficiency"/>
+                    <ns0:Concept code="D81.7" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Major histocompatibility complex class II deficiency"/>
+                    <ns0:Concept code="D81.89" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Other combined immunodeficiencies"/>
+                    <ns0:Concept code="D81.9" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Combined immunodeficiency, unspecified"/>
+                    <ns0:Concept code="D82.0" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Wiskott-Aldrich syndrome"/>
+                    <ns0:Concept code="D82.1" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Di George's syndrome"/>
+                    <ns0:Concept code="D82.2" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Immunodeficiency with short-limbed stature"/>
+                    <ns0:Concept code="D82.3" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Immunodeficiency following hereditary defective response to Epstein-Barr virus"/>
+                    <ns0:Concept code="D82.4" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Hyperimmunoglobulin E [IgE] syndrome"/>
+                    <ns0:Concept code="D82.8" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Immunodeficiency associated with other specified major defects"/>
+                    <ns0:Concept code="D82.9" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Immunodeficiency associated with major defect, unspecified"/>
+                    <ns0:Concept code="D83.0" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Common variable immunodeficiency with predominant abnormalities of B-cell numbers and function"/>
+                    <ns0:Concept code="D83.1" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Common variable immunodeficiency with predominant immunoregulatory T-cell disorders"/>
+                    <ns0:Concept code="D83.2" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Common variable immunodeficiency with autoantibodies to B- or T-cells"/>
+                    <ns0:Concept code="D83.8" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Other common variable immunodeficiencies"/>
+                    <ns0:Concept code="D83.9" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Common variable immunodeficiency, unspecified"/>
+                    <ns0:Concept code="D84.0" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Lymphocyte function antigen-1 [LFA-1] defect"/>
+                    <ns0:Concept code="D84.1" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Defects in the complement system"/>
+                    <ns0:Concept code="D84.8" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Other specified immunodeficiencies"/>
+                    <ns0:Concept code="D84.9" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Immunodeficiency, unspecified"/>
+                    <ns0:Concept code="D89.3" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Immune reconstitution syndrome"/>
+                    <ns0:Concept code="D89.810" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Acute graft-versus-host disease"/>
+                    <ns0:Concept code="D89.811" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Chronic graft-versus-host disease"/>
+                    <ns0:Concept code="D89.812" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Acute on chronic graft-versus-host disease"/>
+                    <ns0:Concept code="D89.813" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Graft-versus-host disease, unspecified"/>
+                    <ns0:Concept code="D89.82" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Autoimmune lymphoproliferative syndrome [ALPS]"/>
+                    <ns0:Concept code="D89.89" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Other specified disorders involving the immune mechanism, not elsewhere classified"/>
+                    <ns0:Concept code="D89.9" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Disorder involving the immune mechanism, unspecified"/>
+                </ns0:ConceptList>
+                <ns0:Source>National Committee for Quality Assurance</ns0:Source>
+                <ns0:Purpose>(Clinical Focus: ),(Data Element Scope: ),(Inclusion Criteria: ),(Exclusion Criteria: )</ns0:Purpose>
+                <ns0:Definition>(2.16.840.1.113883.3.464.1003.120.11.1001:Disorders of the Immune System),(2.16.840.1.113883.3.464.1003.120.11.1003:Disorders of the Immune System)</ns0:Definition>
+                <ns0:Type>Grouping</ns0:Type>
+                <ns0:Binding>Dynamic</ns0:Binding>
+                <ns0:Status>Active</ns0:Status>
+                <ns0:RevisionDate>2018-10-22</ns0:RevisionDate>
+            </ns0:DescribedValueSet>
+        </ns0:RetrieveMultipleValueSetsResponse>
+    http_version: 
+  recorded_at: Mon, 22 Oct 2018 16:59:33 GMT
+- request:
+    method: post
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-368395-crBdZSAoat66JCmtd5YhmdlbaKqbUBHccjGY2JidbMyy11lSSK-cas
+    body:
+      encoding: UTF-8
+      string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Length:
+      - '39'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - text/plain;charset=utf-8
+      Content-Length:
+      - '35'
+      Date:
+      - Mon, 22 Oct 2018 16:59:32 GMT
+      Set-Cookie:
+      - BIGipServervsacweb_p=!/QXOZ+yURStavALNtNHn4GsLooFbU+J+FZFlhBIbskpkMiMH10yJIqfYPAruANt63GMYWRfeGGw6YHo=;
+        expires=Mon, 22-Oct-2018 18:59:33 GMT; path=/; Httponly; Secure
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.111 8080"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: ST-1692718-QDFtgtaxPqLO9oRtlqLi-cas
+    http_version: 
+  recorded_at: Mon, 22 Oct 2018 16:59:33 GMT
+- request:
+    method: get
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.464.1004.1449&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-1692718-QDFtgtaxPqLO9oRtlqLi-cas
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Set-Cookie:
+      - BIGipServervsacweb_p=!BELdzjcHjZzObOXm9OGvBt4MxRMcjs9mEvwMCONjapQk7D1s24Ogj9r/f8mWxxhGz3BZBvMXeJguQbQ=;
+        expires=Mon, 22-Oct-2018 18:59:34 GMT; path=/; Httponly; Secure
+      - JSESSIONID=E89EF2027F47961C37B486B73E3479E2;path=/vsac;HttpOnly;Secure
+      Content-Type:
+      - text/xml;charset=utf-8
+      Content-Length:
+      - '22026'
+      Date:
+      - Mon, 22 Oct 2018 16:59:34 GMT
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.111 8080"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <ns0:RetrieveMultipleValueSetsResponse xmlns:ns0="urn:ihe:iti:svs:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <ns0:DescribedValueSet ID="2.16.840.1.113883.3.464.1004.1449" displayName="Functional or Aplastic Anemia" version="N/A">
+                <ns0:ConceptList>
+                    <ns0:Concept code="111576004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Acquired stomatocytosis (disorder)"/>
+                    <ns0:Concept code="111581008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Anemia due to physical agent (disorder)"/>
+                    <ns0:Concept code="11781007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Autoimmune hemolytic anemia due to complement (disorder)"/>
+                    <ns0:Concept code="127050002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Secondary autoimmune hemolytic anemia (disorder)"/>
+                    <ns0:Concept code="127054006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Cold agglutinin disease due to Epstein-Barr virus infection (disorder)"/>
+                    <ns0:Concept code="127059001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Drug-induced immune hemolytic anemia (disorder)"/>
+                    <ns0:Concept code="127060006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Drug-induced immune hemolytic anemia, hapten type (disorder)"/>
+                    <ns0:Concept code="127061005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Autoimmune hemolytic anemia, categorized by antibody class AND/OR complement (disorder)"/>
+                    <ns0:Concept code="127319005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Anemia due to alloimmune destruction of transfused red cells (disorder)"/>
+                    <ns0:Concept code="14126008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Autosomal-linked pyridoxine refractory sideroblastic anemia (disorder)"/>
+                    <ns0:Concept code="15276008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Drug-induced enzyme deficiency anemia (disorder)"/>
+                    <ns0:Concept code="16645003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Anemia due to insect venoms (disorder)"/>
+                    <ns0:Concept code="183005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Autoimmune pancytopenia (disorder)"/>
+                    <ns0:Concept code="18323000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Drug-induced immune hemolytic anemia, immune complex type (disorder)"/>
+                    <ns0:Concept code="191212002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Secondary cold-type hemolytic anemia (disorder)"/>
+                    <ns0:Concept code="191228007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Acquired spherocytosis (disorder)"/>
+                    <ns0:Concept code="191244003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Aplastic anemia due to chronic disease (disorder)"/>
+                    <ns0:Concept code="191246001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Aplastic anemia due to infection (disorder)"/>
+                    <ns0:Concept code="191247005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Aplastic anemia due to radiation (disorder)"/>
+                    <ns0:Concept code="191248000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Aplastic anemia due to toxic cause (disorder)"/>
+                    <ns0:Concept code="191256002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Idiopathic aplastic anemia (disorder)"/>
+                    <ns0:Concept code="191261000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Secondary sideroblastic anemia due to disease (disorder)"/>
+                    <ns0:Concept code="191262007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Secondary sideroblastic anemia due to drugs and toxins (disorder)"/>
+                    <ns0:Concept code="191265009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Anemia in neoplastic disease (disorder)"/>
+                    <ns0:Concept code="22098000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Chronic idiopathic autoimmune hemolytic anemia (disorder)"/>
+                    <ns0:Concept code="234366009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Alcohol-related sideroblastic anemia (disorder)"/>
+                    <ns0:Concept code="234371002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Congenital pure red cell aplasia (disorder)"/>
+                    <ns0:Concept code="234372009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Congenital red cell hypoplasia (disorder)"/>
+                    <ns0:Concept code="234373004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Constitutional red cell hypoplasia (disorder)"/>
+                    <ns0:Concept code="234376007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Acquired red cell aplasia (disorder)"/>
+                    <ns0:Concept code="267524009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Constitutional aplastic anemia with malformation (disorder)"/>
+                    <ns0:Concept code="267525005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Constitutional red cell aplasia and hypoplasia (disorder)"/>
+                    <ns0:Concept code="267527002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Aplastic anemia due to drugs (disorder)"/>
+                    <ns0:Concept code="26944003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Acute megaloblastic anemia due to dialysis (disorder)"/>
+                    <ns0:Concept code="273985002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Anemia due to isoimmunization (disorder)"/>
+                    <ns0:Concept code="276448005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Idiopathic sideroblastic anemia (disorder)"/>
+                    <ns0:Concept code="278363000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Alcoholic macrocytosis (disorder)"/>
+                    <ns0:Concept code="28975000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Constitutional aplastic anemia (disorder)"/>
+                    <ns0:Concept code="290246007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Sideropenic anemia with reticuloendothelial siderosis (disorder)"/>
+                    <ns0:Concept code="29551000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Anemia due to oxygen (disorder)"/>
+                    <ns0:Concept code="303266002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Aplastic bone marrow (disorder)"/>
+                    <ns0:Concept code="306058006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Aplastic anemia (disorder)"/>
+                    <ns0:Concept code="307726001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Anemia in ovarian carcinoma (disorder)"/>
+                    <ns0:Concept code="309742004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Drug-induced autoimmune hemolytic anemia (disorder)"/>
+                    <ns0:Concept code="33491002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Autoimmune hemolytic anemia due to immunoglobulin A plus complement (disorder)"/>
+                    <ns0:Concept code="34247008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Anemia due to mechanical damage (disorder)"/>
+                    <ns0:Concept code="36919001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Anemia due to lead (disorder)"/>
+                    <ns0:Concept code="398937006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Cold autoimmune hemolytic anemia (disorder)"/>
+                    <ns0:Concept code="413565006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Aplastic anemia associated with metabolic alteration (disorder)"/>
+                    <ns0:Concept code="413566007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Aplastic anemia associated with pancreatitis (disorder)"/>
+                    <ns0:Concept code="413567003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Aplastic anemia associated with pregnancy (disorder)"/>
+                    <ns0:Concept code="413603009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Autoimmune hemolytic anemia (disorder)"/>
+                    <ns0:Concept code="41841004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Sideroblastic anemia (disorder)"/>
+                    <ns0:Concept code="420543008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Anemia associated with acquired immunodeficiency syndrome (disorder)"/>
+                    <ns0:Concept code="421102007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Aplastic anemia associated with acquired immunodeficiency syndrome (disorder)"/>
+                    <ns0:Concept code="42461002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Anemia due to copper (disorder)"/>
+                    <ns0:Concept code="424988008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Anemia due to substance (disorder)"/>
+                    <ns0:Concept code="428383000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Anemia due to medication (disorder)"/>
+                    <ns0:Concept code="429564000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Anemia due to chemotherapy (disorder)"/>
+                    <ns0:Concept code="43707008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Anemia due to heat (disorder)"/>
+                    <ns0:Concept code="438476003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Autoimmune thrombotic thrombocytopenic purpura (disorder)"/>
+                    <ns0:Concept code="43858000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Secondary aplastic anemia (disorder)"/>
+                    <ns0:Concept code="439007008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Acquired thrombotic thrombocytopenic purpura (disorder)"/>
+                    <ns0:Concept code="441322009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Drug induced thrombotic thrombocytopenic purpura (disorder)"/>
+                    <ns0:Concept code="44288006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Anemia due to abnormality extrinsic to the red cell (disorder)"/>
+                    <ns0:Concept code="50220002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Cellular immunologic aplastic anemia (disorder)"/>
+                    <ns0:Concept code="50253007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Secondary paroxysmal cold hemoglobinuria (disorder)"/>
+                    <ns0:Concept code="5603006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Autoimmune hemolytic anemia due to immunoglobulin G (disorder)"/>
+                    <ns0:Concept code="57192008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Acute pure red cell aplasia (disorder)"/>
+                    <ns0:Concept code="5876000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Acquired pancytopenia (disorder)"/>
+                    <ns0:Concept code="62389006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Acute megaloblastic anemia due to severe illness (disorder)"/>
+                    <ns0:Concept code="62609001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Autoimmune hemolytic anemia due to immunoglobulin G plus complement (disorder)"/>
+                    <ns0:Concept code="71832003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Autoimmune hemolytic anemia due to immunoglobulin M (disorder)"/>
+                    <ns0:Concept code="71855000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Acute megaloblastic anemia secondary to total parenteral nutrition (disorder)"/>
+                    <ns0:Concept code="72501006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Anemia due to arsenic hydride (disorder)"/>
+                    <ns0:Concept code="73891003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Acute megaloblastic anemia due to nitrous oxide (disorder)"/>
+                    <ns0:Concept code="77084001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Immunologic aplastic anemia (disorder)"/>
+                    <ns0:Concept code="77607006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Drug-induced sideroblastic anemia (disorder)"/>
+                    <ns0:Concept code="82430007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Acute megaloblastic anemia (disorder)"/>
+                    <ns0:Concept code="862001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Anemia due to chlorates (disorder)"/>
+                    <ns0:Concept code="90175006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Secondary acquired sideroblastic anemia (disorder)"/>
+                    <ns0:Concept code="90414007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Chronic acquired pure red cell aplasia (disorder)"/>
+                    <ns0:Concept code="91411007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Autoimmune hemolytic anemia due to immunoglobulin A (disorder)"/>
+                    <ns0:Concept code="9764001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Anemia due to radiation (disorder)"/>
+                    <ns0:Concept code="D60.0" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Chronic acquired pure red cell aplasia"/>
+                    <ns0:Concept code="D60.1" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Transient acquired pure red cell aplasia"/>
+                    <ns0:Concept code="D60.8" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Other acquired pure red cell aplasias"/>
+                    <ns0:Concept code="D60.9" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Acquired pure red cell aplasia, unspecified"/>
+                    <ns0:Concept code="D61.01" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Constitutional (pure) red blood cell aplasia"/>
+                    <ns0:Concept code="D61.09" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Other constitutional aplastic anemia"/>
+                    <ns0:Concept code="D61.1" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Drug-induced aplastic anemia"/>
+                    <ns0:Concept code="D61.2" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Aplastic anemia due to other external agents"/>
+                    <ns0:Concept code="D61.3" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Idiopathic aplastic anemia"/>
+                    <ns0:Concept code="D61.810" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Antineoplastic chemotherapy induced pancytopenia"/>
+                    <ns0:Concept code="D61.811" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Other drug-induced pancytopenia"/>
+                    <ns0:Concept code="D61.818" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Other pancytopenia"/>
+                    <ns0:Concept code="D61.82" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Myelophthisis"/>
+                    <ns0:Concept code="D61.89" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Other specified aplastic anemias and other bone marrow failure syndromes"/>
+                    <ns0:Concept code="D61.9" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Aplastic anemia, unspecified"/>
+                    <ns0:Concept code="D62" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Acute posthemorrhagic anemia"/>
+                    <ns0:Concept code="D63.0" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Anemia in neoplastic disease"/>
+                    <ns0:Concept code="D63.1" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Anemia in chronic kidney disease"/>
+                    <ns0:Concept code="D63.8" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Anemia in other chronic diseases classified elsewhere"/>
+                    <ns0:Concept code="D64.0" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Hereditary sideroblastic anemia"/>
+                    <ns0:Concept code="D64.1" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Secondary sideroblastic anemia due to disease"/>
+                    <ns0:Concept code="D64.2" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Secondary sideroblastic anemia due to drugs and toxins"/>
+                    <ns0:Concept code="D64.3" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Other sideroblastic anemias"/>
+                    <ns0:Concept code="D64.4" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Congenital dyserythropoietic anemia"/>
+                    <ns0:Concept code="D64.81" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10CM" codeSystemVersion="2016" displayName="Anemia due to antineoplastic chemotherapy"/>
+                </ns0:ConceptList>
+                <ns0:Source>National Committee for Quality Assurance</ns0:Source>
+                <ns0:Purpose>(Clinical Focus: in progress),(Data Element Scope: in progress),(Inclusion Criteria: in progress),(Exclusion Criteria: in progress)</ns0:Purpose>
+                <ns0:Definition>(2.16.840.1.113883.3.464.1003.117.11.1037:Functional or Aplastic Anemia),(2.16.840.1.113883.3.464.1003.117.11.1038:Functional or Aplastic Anemia)</ns0:Definition>
+                <ns0:Type>Grouping</ns0:Type>
+                <ns0:Binding>Dynamic</ns0:Binding>
+                <ns0:Status>Active</ns0:Status>
+                <ns0:RevisionDate>2018-10-22</ns0:RevisionDate>
+            </ns0:DescribedValueSet>
+        </ns0:RetrieveMultipleValueSetsResponse>
+    http_version: 
+  recorded_at: Mon, 22 Oct 2018 16:59:34 GMT
+- request:
+    method: post
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-368395-crBdZSAoat66JCmtd5YhmdlbaKqbUBHccjGY2JidbMyy11lSSK-cas
+    body:
+      encoding: UTF-8
+      string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Length:
+      - '39'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - text/plain;charset=utf-8
+      Content-Length:
+      - '35'
+      Date:
+      - Mon, 22 Oct 2018 16:59:34 GMT
+      Set-Cookie:
+      - BIGipServervsacweb_p=!GbpVMXPHgGTbfJjNtNHn4GsLooFbU4B4PZwN/5MP81jEm/ciqFSUt/3wvec4JSJfFdh0j9jGPiYDxYQ=;
+        expires=Mon, 22-Oct-2018 18:59:34 GMT; path=/; Httponly; Secure
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.111 8080"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: ST-1692720-Me66fhNWAgzbAZah4NDB-cas
+    http_version: 
+  recorded_at: Mon, 22 Oct 2018 16:59:34 GMT
+- request:
+    method: get
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.464.1004.1439&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-1692720-Me66fhNWAgzbAZah4NDB-cas
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Set-Cookie:
+      - BIGipServervsacweb_p=!SoLwirRbBJdAQOrNtNHn4GsLooFbUyGpLE51cu4tmvaTVKtSUUDDkXR59SQ22rcxt7+qyU0yBfcbHR8=;
+        expires=Mon, 22-Oct-2018 18:59:34 GMT; path=/; Httponly; Secure
+      - JSESSIONID=EF7F38E008751B1152E0B66A4A3A9F1F;path=/vsac;HttpOnly;Secure
+      Content-Type:
+      - text/xml;charset=utf-8
+      Content-Length:
+      - '1741'
+      Date:
+      - Mon, 22 Oct 2018 16:59:34 GMT
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.111 8080"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <ns0:RetrieveMultipleValueSetsResponse xmlns:ns0="urn:ihe:iti:svs:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <ns0:DescribedValueSet ID="2.16.840.1.113883.3.464.1004.1439" displayName="Pneumococcal Conjugate Vaccine 13" version="N/A">
+                <ns0:ConceptList>
+                    <ns0:Concept code="133" codeSystem="2.16.840.1.113883.12.292" codeSystemName="CVX" codeSystemVersion="2016" displayName="pneumococcal conjugate vaccine, 13 valent"/>
+                    <ns0:Concept code="448964007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Pneumococcal 13-valent conjugate vaccine (product)"/>
+                    <ns0:Concept code="90670" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Pneumococcal conjugate vaccine, 13 valent (PCV13), for intramuscular use"/>
+                </ns0:ConceptList>
+                <ns0:Source>National Committee for Quality Assurance</ns0:Source>
+                <ns0:Purpose>(Clinical Focus: in progress),(Data Element Scope: in progress),(Inclusion Criteria: in progress),(Exclusion Criteria: in progress)</ns0:Purpose>
+                <ns0:Definition>(2.16.840.1.113883.3.464.1003.110.11.1119:Pneumococcal Conjugate Vaccine Administered),(2.16.840.1.113883.3.464.1003.110.11.1137:Pneumococcal 13 Valent Vaccine Administered),(2.16.840.1.113883.3.464.1003.110.11.1138:Pneumococcal 23 Valent Vaccine Administered)</ns0:Definition>
+                <ns0:Type>Grouping</ns0:Type>
+                <ns0:Binding>Dynamic</ns0:Binding>
+                <ns0:Status>Active</ns0:Status>
+                <ns0:RevisionDate>2018-10-22</ns0:RevisionDate>
+            </ns0:DescribedValueSet>
+        </ns0:RetrieveMultipleValueSetsResponse>
+    http_version: 
+  recorded_at: Mon, 22 Oct 2018 16:59:34 GMT
+- request:
+    method: post
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-368395-crBdZSAoat66JCmtd5YhmdlbaKqbUBHccjGY2JidbMyy11lSSK-cas
+    body:
+      encoding: UTF-8
+      string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Length:
+      - '39'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - text/plain;charset=utf-8
+      Content-Length:
+      - '35'
+      Date:
+      - Mon, 22 Oct 2018 16:59:34 GMT
+      Set-Cookie:
+      - BIGipServervsacweb_p=!rR7hbjH74AkffKDNtNHn4GsLooFbU4mrHRCn2O67IiaaSut100nVEjMwhndxkW0fILyIhlmi0/TzwmA=;
+        expires=Mon, 22-Oct-2018 18:59:34 GMT; path=/; Httponly; Secure
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.111 8080"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: ST-1692721-o6SgMikLE21kNYflXALy-cas
+    http_version: 
+  recorded_at: Mon, 22 Oct 2018 16:59:35 GMT
+- request:
+    method: get
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.464.1004.1440&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-1692721-o6SgMikLE21kNYflXALy-cas
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Set-Cookie:
+      - BIGipServervsacweb_p=!6SlEmJG/pQ7uRqLm9OGvBt4MxRMcjtgfxMteKbLFiEKslbviZYpv5Au3BpGpwnkVwI3P+3wX4xFmWSk=;
+        expires=Mon, 22-Oct-2018 18:59:35 GMT; path=/; Httponly; Secure
+      - JSESSIONID=E762D0B61CD215C9100C1D5BDCE550EA;path=/vsac;HttpOnly;Secure
+      Content-Type:
+      - text/xml;charset=utf-8
+      Content-Length:
+      - '1581'
+      Date:
+      - Mon, 22 Oct 2018 16:59:35 GMT
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.111 8080"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <ns0:RetrieveMultipleValueSetsResponse xmlns:ns0="urn:ihe:iti:svs:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <ns0:DescribedValueSet ID="2.16.840.1.113883.3.464.1004.1440" displayName="Pneumococcal Polysaccharide Vaccine 23" version="N/A">
+                <ns0:ConceptList>
+                    <ns0:Concept code="33" codeSystem="2.16.840.1.113883.12.292" codeSystemName="CVX" codeSystemVersion="2016" displayName="pneumococcal polysaccharide vaccine, 23 valent"/>
+                    <ns0:Concept code="90732" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" codeSystemVersion="2016" displayName="Pneumococcal polysaccharide vaccine, 23-valent (PPSV23), adult or immunosuppressed patient dosage, when administered to individuals 2 years or older, for subcutaneous or intramuscular use"/>
+                </ns0:ConceptList>
+                <ns0:Source>National Committee for Quality Assurance</ns0:Source>
+                <ns0:Purpose>(Clinical Focus: in progress),(Data Element Scope: in progress),(Inclusion Criteria: in progress),(Exclusion Criteria: in progress)</ns0:Purpose>
+                <ns0:Definition>(2.16.840.1.113883.3.464.1003.110.11.1139:Pneumococcal 23 Valent Vaccine Administration),(2.16.840.1.113883.3.464.1003.110.11.1140:Pneumococcal 23 Valent Vaccine Administered)</ns0:Definition>
+                <ns0:Type>Grouping</ns0:Type>
+                <ns0:Binding>Dynamic</ns0:Binding>
+                <ns0:Status>Active</ns0:Status>
+                <ns0:RevisionDate>2018-10-22</ns0:RevisionDate>
+            </ns0:DescribedValueSet>
+        </ns0:RetrieveMultipleValueSetsResponse>
+    http_version: 
+  recorded_at: Mon, 22 Oct 2018 16:59:35 GMT
+- request:
+    method: post
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-368395-crBdZSAoat66JCmtd5YhmdlbaKqbUBHccjGY2JidbMyy11lSSK-cas
+    body:
+      encoding: UTF-8
+      string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Length:
+      - '39'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - text/plain;charset=utf-8
+      Content-Length:
+      - '35'
+      Date:
+      - Mon, 22 Oct 2018 16:59:35 GMT
+      Set-Cookie:
+      - BIGipServervsacweb_p=!bnQ457Y72Jmqje3NtNHn4GsLooFbU5qteIc4VVtmfUq366Ago3cHjZJxHNh+DIEeDWeaMhJwohqtK24=;
+        expires=Mon, 22-Oct-2018 18:59:35 GMT; path=/; Httponly; Secure
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.111 8080"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: ST-1692723-BGFXekVovoxgFHJZ7TEY-cas
+    http_version: 
+  recorded_at: Mon, 22 Oct 2018 16:59:35 GMT
+- request:
+    method: get
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113762.1.4.1108.15&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-1692723-BGFXekVovoxgFHJZ7TEY-cas
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Set-Cookie:
+      - BIGipServervsacweb_p=!K+ODJjXTQntqIkPNtNHn4GsLooFbU3PwupcoX5NtohnTHKyKWDP3rL4sksPJwndANKvihfB4Z61cv/w=;
+        expires=Mon, 22-Oct-2018 18:59:35 GMT; path=/; Httponly; Secure
+      - JSESSIONID=4D32FD33C0C5379E754EEAA3CECCC707;path=/vsac;HttpOnly;Secure
+      Content-Type:
+      - text/xml;charset=utf-8
+      Content-Length:
+      - '1536'
+      Date:
+      - Mon, 22 Oct 2018 16:59:35 GMT
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.111 8080"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <ns0:RetrieveMultipleValueSetsResponse xmlns:ns0="urn:ihe:iti:svs:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <ns0:DescribedValueSet ID="2.16.840.1.113762.1.4.1108.15" displayName="Hospice care ambulatory" version="N/A">
+                <ns0:ConceptList>
+                    <ns0:Concept code="385763009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Hospice care (regime/therapy)"/>
+                    <ns0:Concept code="385765002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Hospice care management (procedure)"/>
+                </ns0:ConceptList>
+                <ns0:Source>Mathematica</ns0:Source>
+                <ns0:Purpose>(Clinical Focus: Patients receiving hospice care outside of hospital or long term care facility.),(Data Element Scope: The intent of this value set is to identify all patients receiving hospice care outside of hospital or long term care facility .  Using the quality data model this maps to "Intervention, Order" and "Procedure, Order".),(Inclusion Criteria: All hospice care concepts should be included.),(Exclusion Criteria: Do not include concepts for palliative care or comfort measures.)</ns0:Purpose>
+                <ns0:Type>Extensional</ns0:Type>
+                <ns0:Binding>Dynamic</ns0:Binding>
+                <ns0:Status>Active</ns0:Status>
+                <ns0:RevisionDate>2018-10-22</ns0:RevisionDate>
+            </ns0:DescribedValueSet>
+        </ns0:RetrieveMultipleValueSetsResponse>
+    http_version: 
+  recorded_at: Mon, 22 Oct 2018 16:59:35 GMT
+- request:
+    method: post
+    uri: https://vsac.nlm.nih.gov/vsac/ws/Ticket/TGT-368395-crBdZSAoat66JCmtd5YhmdlbaKqbUBHccjGY2JidbMyy11lSSK-cas
+    body:
+      encoding: UTF-8
+      string: service=http%3A%2F%2Fumlsks.nlm.nih.gov
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Length:
+      - '39'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - text/plain;charset=utf-8
+      Content-Length:
+      - '35'
+      Date:
+      - Mon, 22 Oct 2018 16:59:35 GMT
+      Set-Cookie:
+      - BIGipServervsacweb_p=!A4zv1nKxVVKYX/zNtNHn4GsLooFbU5wn1wuZg0vWTiD4J5rH1l9QTIYJ6zoFRJ5/IpLD3+qVKPU8JR0=;
+        expires=Mon, 22-Oct-2018 18:59:35 GMT; path=/; Httponly; Secure
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.111 8080"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: ST-1692724-CcbdQVlye46Zc0iPA9mv-cas
+    http_version: 
+  recorded_at: Mon, 22 Oct 2018 16:59:35 GMT
+- request:
+    method: get
+    uri: https://vsac.nlm.nih.gov/vsac/svs/RetrieveMultipleValueSets?id=2.16.840.1.113883.3.666.5.307&includeDraft=yes&profile=MU2%20Update%202016-04-01&ticket=ST-1692724-CcbdQVlye46Zc0iPA9mv-cas
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Set-Cookie:
+      - BIGipServervsacweb_p=!BxGs6Vn7K60pjxzNtNHn4GsLooFbU6qPHHkjBD+tPJJYJfgnMxCchgMzPSga1C2gYsX6vR5//oRc21I=;
+        expires=Mon, 22-Oct-2018 18:59:36 GMT; path=/; Httponly; Secure
+      - JSESSIONID=F61AB4FB40C39BAAEC27341778F9C9F0;path=/vsac;HttpOnly;Secure
+      Content-Type:
+      - text/xml;charset=utf-8
+      Content-Length:
+      - '1647'
+      Date:
+      - Mon, 22 Oct 2018 16:59:35 GMT
+      X-Vip-Info:
+      - 130.14.16.40:443
+      X-Pool-Info:
+      - "/Common/vsacweb_p 10.1.5.111 8080"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <ns0:RetrieveMultipleValueSetsResponse xmlns:ns0="urn:ihe:iti:svs:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <ns0:DescribedValueSet ID="2.16.840.1.113883.3.666.5.307" displayName="Encounter Inpatient" version="N/A">
+                <ns0:ConceptList>
+                    <ns0:Concept code="183452005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Emergency hospital admission (procedure)"/>
+                    <ns0:Concept code="32485007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Hospital admission (procedure)"/>
+                    <ns0:Concept code="8715000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" codeSystemVersion="2015-09" displayName="Hospital admission, elective (procedure)"/>
+                </ns0:ConceptList>
+                <ns0:Source>Lantana</ns0:Source>
+                <ns0:Purpose>(Clinical Focus: This set of values identify the most common inpatient encounter types.),(Data Element Scope: The intent of this data element is to identify patients who have had an inpatient encounter. Using the Quality Data Model, this particular element will map to the "encounter" category.),(Inclusion Criteria: Only SNOMED CT codes representing inpatient encounter should be included.),(Exclusion Criteria: None.)</ns0:Purpose>
+                <ns0:Type>Extensional</ns0:Type>
+                <ns0:Binding>Dynamic</ns0:Binding>
+                <ns0:Status>Active</ns0:Status>
+                <ns0:RevisionDate>2018-10-22</ns0:RevisionDate>
+            </ns0:DescribedValueSet>
+        </ns0:RetrieveMultipleValueSetsResponse>
+    http_version: 
+  recorded_at: Mon, 22 Oct 2018 16:59:36 GMT
 recorded_with: VCR 3.0.3
