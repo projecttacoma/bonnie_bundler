@@ -14,7 +14,7 @@ class StoringMATExportPackageTest < ActiveSupport::TestCase
       user.save
 
       measure_details = { 'episode_of_care'=> false }
-      Measures::CqlLoader.extract_measures(@cql_mat_export, user, measure_details, { profile: APP_CONFIG['vsac']['default_profile'] }, get_ticket_granting_ticket).map {|measure| measure.save}
+      Measures::CqlLoader.extract_measures(@cql_mat_export, user, measure_details, { profile: APP_CONFIG['vsac']['default_profile'] }, get_ticket_granting_ticket).each {|measure| measure.save}
       assert_equal 1, CqlMeasure.all.count
       measure = CqlMeasure.all.first
       assert_equal "Test 158", measure.title
@@ -22,7 +22,7 @@ class StoringMATExportPackageTest < ActiveSupport::TestCase
       assert_equal 1, CqlMeasurePackage.all.count
       measure_package = CqlMeasurePackage.all.first
       assert_equal measure.id, measure_package.measure_id
-      
+
       Dir.mktmpdir do |dir|
         # Write the package to a temp directory
         File.open(File.join(dir, measure.measure_id + '.zip'), 'wb') do |zip_file|

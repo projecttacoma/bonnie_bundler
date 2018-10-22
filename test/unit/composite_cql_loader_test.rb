@@ -7,6 +7,7 @@ class CompositeCQLLoaderTest < ActiveSupport::TestCase
     @composite_cql_mat_export = File.new File.join('test', 'fixtures', 'CMSAWA_v5_6_Artifacts.zip')
     @missing_file_composite_cql_mat_export = File.new File.join('test', 'fixtures', 'CMSAWA_v5_6_Artifacts_missing_file.zip')
     @missing_component_composite_cql_mat_export = File.new File.join('test', 'fixtures', 'CMSAWA_v5_6_Artifacts_missing_component.zip')
+    @missing_composite_files = File.new File.join('test', 'fixtures', 'CMSAWA_v5_6_Artifacts_missing_composite_files.zip')
   end
 
   test 'Loading a Composite Measure' do
@@ -17,7 +18,7 @@ class CompositeCQLLoaderTest < ActiveSupport::TestCase
 
       measure_details = { 'episode_of_care'=> false }
 
-      Measures::CqlLoader.extract_measures(@composite_cql_mat_export, user, measure_details, { profile: APP_CONFIG['vsac']['default_profile'] }, get_ticket_granting_ticket).map {|measure| measure.save}
+      Measures::CqlLoader.extract_measures(@composite_cql_mat_export, user, measure_details, { profile: APP_CONFIG['vsac']['default_profile'] }, get_ticket_granting_ticket).each {|measure| measure.save}
       
       assert_equal 8, CqlMeasure.all.count
       # Verify there is only one composite measure
@@ -51,32 +52,9 @@ class CompositeCQLLoaderTest < ActiveSupport::TestCase
       # A TypeError is thrown because it tries to convert a nil to a String
       # This error is handled in measures_controller.rb create
       assert_raise TypeError do
-        Measures::CqlLoader.extract_measures(@missing_file_composite_cql_mat_export, user, measure_details, { profile: APP_CONFIG['vsac']['default_profile'] }, get_ticket_granting_ticket).map {|measure| measure.save}
+        Measures::CqlLoader.extract_measures(@missing_file_composite_cql_mat_export, user, measure_details, { profile: APP_CONFIG['vsac']['default_profile'] }, get_ticket_granting_ticket).each {|measure| measure.save}
       end
       assert_equal 0, CqlMeasure.all.count
-    end
-  end
-
-  # TODO: Need to move this to bonnie, because it needs to call the update_measures() function
-  # in bonnie
-  test 'Loading the same composite measure twice' do
-    skip("WIP")
-    VCR.use_cassette('load_composite_measure_twice') do
-      dump_db
-      user = User.new
-      user.save
-
-      # This test also covers updating a existing composite measure
-      measure_details = { 'episode_of_care'=> false }
-      Measures::CqlLoader.extract_measures(@composite_cql_mat_export, user, measure_details, { profile: APP_CONFIG['vsac']['default_profile'] }, get_ticket_granting_ticket).map {|measure| measure.save}
-      assert_equal 8, CqlMeasure.all.count
-
-      existing = CqlMeasure.by_user(user).where(hqmf_set_id: measure.hqmf_set_id).first
-      Measures::CqlLoader.extract_measures(@composite_cql_mat_export, user, measure_details, { profile: APP_CONFIG['vsac']['default_profile'] }, get_ticket_granting_ticket).map {|measure| measure.save}
-      update_error_message = MeasureHelper.update_measures(measures, params, current_user, measure_details, { profile: APP_CONFIG['vsac']['default_profile'] }, get_ticket_granting_ticket, true, existing)
-
-      assert_equal 8, CqlMeasure.all.count
-
     end
   end
 
@@ -92,16 +70,27 @@ class CompositeCQLLoaderTest < ActiveSupport::TestCase
       # The missing component path does not exist
       # This error is handled in measures_controller.rb create
       assert_raise NoMethodError do
-        Measures::CqlLoader.extract_measures(@missing_component_composite_cql_mat_export, user, measure_details, { profile: APP_CONFIG['vsac']['default_profile'] }, get_ticket_granting_ticket).map {|measure| measure.save}
+        Measures::CqlLoader.extract_measures(@missing_component_composite_cql_mat_export, user, measure_details, { profile: APP_CONFIG['vsac']['default_profile'] }, get_ticket_granting_ticket).each {|measure| measure.save}
       end
       assert_equal 0, CqlMeasure.all.count
     end
   end
-  
-  # Think this is already covered by update/load twice test. Need to have a measure that has 
-  # an updated/new component measure to add. 
-  test 'Updating a composite measure that has a different component measure' do
-    skip("WIP")
-  end
 
+  test 'Loading an invalid composite measure that is missing the composite measure files' do
+    VCR.use_cassette('load_composite_measure_with_missing_composite_files') do
+      dump_db
+      user = User.new
+      user.save
+
+      measure_details = { 'episode_of_care'=> false }
+
+      # Catch a TypeError because of the parse_hqmf_model() method called from extract_measures()
+      # Invalid conversion of nil to string 
+      # This error is handled in measures_controller.rb create
+      assert_raise TypeError do
+        Measures::CqlLoader.extract_measures(@missing_composite_files, user, measure_details, { profile: APP_CONFIG['vsac']['default_profile'] }, get_ticket_granting_ticket).each {|measure| measure.save}
+      end
+      assert_equal 0, CqlMeasure.all.count
+    end
+  end
 end
