@@ -1,5 +1,3 @@
-require 'pry'
-
 module Measures
   # Utility class for loading CQL measure definitions into the database from the MAT export zip
   class CqlLoader
