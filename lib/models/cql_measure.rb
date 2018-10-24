@@ -170,11 +170,8 @@ class CqlMeasure
 
   # Component measure hqmf_set_id is formatted as follows:
   #   <composite_hqmf_set_id>&<component_hqmf_set_id>
-  def is_component
-    if self.hqmf_set_id.count("&") > 0
-      return true
-    end
-    false 
+  def is_component?
+    self.hqmf_set_id.count("&") > 0
   end
 
   # Returns the composite measure's hqmf_set_id for this component

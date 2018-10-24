@@ -67,14 +67,14 @@ module Measures
     end
 
     # Verifies contents of the given measure are valid (works for regular, composite and component measures)
-    def self.valid_measure_contents?(f_path)
+    def self.valid_measure_contents?(measure_dir)
       # Grab all cql, elm & human readable docs from measure
-      cql_entry = Dir.glob(File.join(f_path,'**.cql')).select 
-      elm_json = Dir.glob(File.join(f_path,'**.json')).select 
-      human_readable_entry = Dir.glob(File.join(f_path,'**.html')).select 
+      cql_entry = Dir.glob(File.join(measure_dir,'**.cql')).select 
+      elm_json = Dir.glob(File.join(measure_dir,'**.json')).select 
+      human_readable_entry = Dir.glob(File.join(measure_dir,'**.html')).select 
 
       # Grab all xml files in the measure.
-      xml_files = Dir.glob(File.join(f_path,'**.xml')).select 
+      xml_files = Dir.glob(File.join(measure_dir,'**.xml')).select 
 
       # Find key value pair for HQMF and ELM xml files.
       if xml_files.count > 0
@@ -153,25 +153,25 @@ module Measures
             end
           end
         end
-        component_elm_files = {}
-        component_elm_files[:ELM_JSON] = []
-        component_elm_files[:ELM_XML] = {}
+        component_elms = {}
+        component_elms[:ELM_JSON] = []
+        component_elms[:ELM_XML] = {}
 
         # If it is a composite measure, load in each of the components
         # Components must be loaded first so their elms can be passed onto the composite
         if composite_measure?(current_directory)
           create_component_measures(component_measures, current_directory, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket)
           component_measures.each do |component_measure|
-            component_elm_files[:ELM_JSON].push(*component_measure.elm) 
-            if (component_elm_files[:ELM_XML].keys & component_measure.elm_annotations.keys).count > 0 
+            component_elms[:ELM_JSON].push(*component_measure.elm) 
+            if (component_elms[:ELM_XML].keys & component_measure.elm_annotations.keys).count > 0 
                 puts "WARNING: Component measures share libraries. Version may or may not be the same."
             end
-            component_elm_files[:ELM_XML] = component_measure.elm_annotations.merge(component_elm_files[:ELM_XML])
+            component_elms[:ELM_XML] = component_measure.elm_annotations.merge(component_elms[:ELM_XML])
           end
         end
 
         # Load in regular/composite measure measure
-        measure = create_measure(current_directory, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket, component_elm_files)
+        measure = create_measure(current_directory, current_user, measure_details, vsac_options, vsac_ticket_granting_ticket, component_elms)
 
         # Create, associate and save the measure package.
         measure_package = CqlMeasurePackage.new(file: BSON::Binary.new(measure_zip.read()))
@@ -182,8 +182,6 @@ module Measures
           # Update the components' hqmf_set_id, formatted as follows:
           #   <composite_hqmf_set_id>&<component_hqmf_set_id>
           component_measure.hqmf_set_id = measure.hqmf_set_id + '&' + component_measure.hqmf_set_id
-          # Associate parent measure package with component package
-          component_measure.package = measure_package
           # Associate the component with the composite
           measure.components.push(component_measure.hqmf_set_id)
         end
@@ -206,7 +204,7 @@ module Measures
     end
 
     # Creates and returns a measure 
-    def self.create_measure(measure_dir, user, measure_details, vsac_options, vsac_ticket_granting_ticket, component_elm_files=nil)
+    def self.create_measure(measure_dir, user, measure_details, vsac_options, vsac_ticket_granting_ticket, component_elms=nil)
       measure = nil
 
       # Grabs the cql file contents, the elm_xml contents, elm_json contents and the hqmf file path
@@ -218,7 +216,7 @@ module Measures
       # Get main measure from hqmf parser
       main_cql_library = hqmf_model.cql_measure_library
 
-      cql_artifacts = process_cql(files, main_cql_library, user, vsac_options, vsac_ticket_granting_ticket, hqmf_model.hqmf_set_id, component_elm_files)
+      cql_artifacts = process_cql(files, main_cql_library, user, vsac_options, vsac_ticket_granting_ticket, hqmf_model.hqmf_set_id, component_elms)
 
       # Create CQL Measure
       hqmf_model.backfill_patient_characteristics_with_codes(cql_artifacts[:all_codes_and_code_names])
@@ -236,9 +234,9 @@ module Measures
     end
 
     def self.get_files_from_directory(dir)
-      cql_paths = Dir.glob(File.join("#{dir}/**.cql")).select 
-      xml_paths = Dir.glob(File.join("#{dir}/**.xml")).select 
-      elm_json_paths = Dir.glob(File.join("#{dir}/**.json")).select 
+      cql_paths = Dir.glob(File.join("#{dir}/**.cql")).sort
+      xml_paths = Dir.glob(File.join("#{dir}/**.xml")).sort
+      elm_json_paths = Dir.glob(File.join("#{dir}/**.json")).sort
       
       begin
         cql_contents = []
@@ -292,16 +290,16 @@ module Measures
     end
 
     # Manages all of the CQL processing that is not related to the HQMF.
-    def self.process_cql(files, main_cql_library, user, vsac_options, vsac_ticket_granting_ticket, measure_id=nil, component_elm_files=nil)
+    def self.process_cql(files, main_cql_library, user, vsac_options, vsac_ticket_granting_ticket, measure_id=nil, component_elms=nil)
       elm_strings = files[:ELM_JSON]
       # Removes 'urn:oid:' from ELM for Bonnie and Parse the JSON
       elm_strings.each { |elm_string| elm_string.gsub! 'urn:oid:', '' }
       elms = elm_strings.map{ |elm| JSON.parse(elm, :max_nesting=>1000)}
       elm_annotations = parse_elm_annotations(files[:ELM_XML])
 
-      if (!component_elm_files.nil?)
-        elms.push(*component_elm_files[:ELM_JSON]) 
-        elm_annotations = component_elm_files[:ELM_XML].merge(elm_annotations)
+      if (!component_elms.nil?)
+        elms.push(*component_elms[:ELM_JSON]) 
+        elm_annotations = component_elms[:ELM_XML].merge(elm_annotations)
       end
       # Hash of define statements to which define statements they use.
       cql_definition_dependency_structure = populate_cql_definition_dependency_structure(main_cql_library, elms)
