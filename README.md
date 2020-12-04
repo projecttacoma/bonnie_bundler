@@ -1,4 +1,4 @@
-NOTE: This repository is read-only, and kept for historical purposes. Active development should occur instead on https://github.com/MeasureAuthoringTool/bonnie_bundler
+# NOTE: This repository is read-only, and kept for historical purposes. Development is currently active on https://github.com/MeasureAuthoringTool/bonnie_bundler
 
 bonnie_bundler
 ==============
